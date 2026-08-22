@@ -1745,3 +1745,2624 @@ body.page-transition-out {
     }
 
 }
+/* =========================================================
+   ON AIR بِالعَافيَه
+   CINEMATIC INTRO LOGO REVEAL
+   ========================================================= */
+
+.intro-animation {
+    position: relative;
+    z-index: 20;
+
+    width: min(900px, 92vw);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    direction: ltr;
+
+    perspective: 1000px;
+}
+
+
+/* =========================================================
+   SIGNAL
+   ========================================================= */
+
+.intro-signal {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 30px;
+
+    color: var(--beige);
+
+    font-family: "Space Mono", monospace;
+    font-size: 9px;
+    letter-spacing: .28em;
+
+    opacity: 0;
+    transform: translateY(14px);
+
+    animation:
+        signalReveal .7s
+        cubic-bezier(.2,.8,.2,1)
+        .2s forwards;
+}
+
+.signal-dot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--teal);
+
+    box-shadow:
+        0 0 12px rgba(78,132,132,.8);
+
+    animation:
+        signalPulse 1.2s infinite;
+}
+
+@keyframes signalReveal {
+    to {
+        opacity: .75;
+        transform: translateY(0);
+    }
+}
+
+@keyframes signalPulse {
+    0%,100% {
+        opacity: .35;
+        transform: scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.animated-logo {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: min(700px, 90vw);
+    min-height: 190px;
+}
+
+
+/* =========================================================
+   ON AIR
+   ========================================================= */
+
+.logo-english {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    line-height: .8;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        clamp(70px, 11vw, 145px);
+
+    font-weight: 800;
+
+    letter-spacing: -.085em;
+
+    color: var(--cream);
+
+    white-space: nowrap;
+}
+
+.logo-letter {
+    display: inline-block;
+
+    opacity: 0;
+
+    filter: blur(10px);
+
+    will-change:
+        transform,
+        opacity,
+        filter;
+}
+
+
+/* الحروف تدخل من أماكن مختلفة */
+
+.letter-o {
+    transform:
+        translate(-90px,-55px)
+        rotate(-14deg)
+        scale(.7);
+
+    animation:
+        letterReveal .9s
+        cubic-bezier(.16,1,.3,1)
+        .55s forwards;
+}
+
+.letter-n {
+    transform:
+        translate(-55px,65px)
+        rotate(10deg)
+        scale(.65);
+
+    animation:
+        letterReveal .9s
+        cubic-bezier(.16,1,.3,1)
+        .67s forwards;
+}
+
+.letter-a {
+    transform:
+        translate(55px,-70px)
+        rotate(12deg)
+        scale(.65);
+
+    animation:
+        letterReveal .9s
+        cubic-bezier(.16,1,.3,1)
+        .79s forwards;
+}
+
+.letter-i {
+    transform:
+        translate(35px,55px)
+        rotate(-10deg)
+        scale(.7);
+
+    animation:
+        letterReveal .9s
+        cubic-bezier(.16,1,.3,1)
+        .91s forwards;
+}
+
+.letter-r {
+    transform:
+        translate(95px,-35px)
+        rotate(16deg)
+        scale(.65);
+
+    animation:
+        letterReveal .9s
+        cubic-bezier(.16,1,.3,1)
+        1.03s forwards;
+}
+
+@keyframes letterReveal {
+    to {
+        opacity: 1;
+
+        filter: blur(0);
+
+        transform:
+            translate(0)
+            rotate(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   بِالعَافيَه
+   ========================================================= */
+
+.logo-arabic {
+    position: relative;
+
+    margin-top: 20px;
+
+    color: var(--teal);
+
+    font-family: "Cairo", sans-serif;
+
+    font-size:
+        clamp(25px,3.3vw,48px);
+
+    font-weight: 600;
+
+    letter-spacing: .02em;
+
+    opacity: 0;
+
+    transform:
+        translateY(25px)
+        scale(.85);
+
+    filter: blur(8px);
+
+    animation:
+        arabicReveal 1s
+        cubic-bezier(.16,1,.3,1)
+        1.45s forwards;
+}
+
+@keyframes arabicReveal {
+    to {
+        opacity: 1;
+
+        filter: blur(0);
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* خطوط جانبية للاسم */
+
+.logo-arabic::before,
+.logo-arabic::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+
+    width: 45px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--teal)
+        );
+
+    opacity: .55;
+}
+
+.logo-arabic::before {
+    right: calc(100% + 20px);
+}
+
+.logo-arabic::after {
+    left: calc(100% + 20px);
+
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   UNDERLINE
+   ========================================================= */
+
+.logo-rule {
+    position: relative;
+
+    width: 0;
+    height: 1px;
+
+    margin-top: 17px;
+
+    background: var(--gold-line);
+
+    animation:
+        ruleReveal .8s
+        ease
+        1.85s forwards;
+}
+
+.logo-rule span {
+    position: absolute;
+
+    right: 0;
+    top: -2px;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--teal);
+
+    box-shadow:
+        0 0 12px rgba(78,132,132,.7);
+}
+
+@keyframes ruleReveal {
+    to {
+        width: 180px;
+    }
+}
+
+
+/* =========================================================
+   TRACKING POINTS
+   ========================================================= */
+
+.track-point {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border: 1px solid var(--teal);
+
+    opacity: 0;
+
+    transform: scale(0);
+
+    animation:
+        trackAppear .6s
+        ease
+        1.55s forwards;
+}
+
+.track-point::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 13px;
+    height: 13px;
+
+    border:
+        1px solid
+        rgba(78,132,132,.25);
+
+    transform:
+        translate(-50%,-50%);
+}
+
+.point-1 {
+    top: 15px;
+    left: 18%;
+}
+
+.point-2 {
+    top: 55px;
+    right: 14%;
+}
+
+.point-3 {
+    bottom: 48px;
+    left: 13%;
+}
+
+.point-4 {
+    bottom: 18px;
+    right: 21%;
+}
+
+@keyframes trackAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    70% {
+        opacity: .8;
+        transform: scale(1.35);
+    }
+
+    100% {
+        opacity: .45;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   TRACKING LINES
+   ========================================================= */
+
+.track-line {
+    position: absolute;
+
+    width: 0;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--teal),
+            transparent
+        );
+
+    opacity: .35;
+
+    animation:
+        trackingLine .8s
+        ease
+        1.6s forwards;
+}
+
+.line-top {
+    top: 35px;
+    left: 24%;
+}
+
+.line-bottom {
+    bottom: 30px;
+    right: 23%;
+}
+
+@keyframes trackingLine {
+    to {
+        width: 100px;
+    }
+}
+
+
+/* =========================================================
+   STATEMENT
+   ========================================================= */
+
+.intro-statement {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 34px;
+
+    color: var(--beige);
+
+    font-family: "Space Mono", monospace;
+
+    font-size:
+        clamp(8px,.8vw,12px);
+
+    letter-spacing: .18em;
+
+    opacity: 0;
+
+    transform: translateY(12px);
+
+    animation:
+        statementReveal .8s
+        ease
+        2.05s forwards;
+}
+
+.intro-statement span {
+    position: relative;
+}
+
+.intro-statement span:not(:last-child)::after {
+    content: "•";
+
+    position: absolute;
+
+    right: -11px;
+
+    color: var(--teal);
+}
+
+@keyframes statementReveal {
+    to {
+        opacity: .7;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   ENTER BUTTON
+   ========================================================= */
+
+.enter-wrapper {
+    margin-top: 34px;
+
+    opacity: 0;
+
+    transform: translateY(18px);
+
+    animation:
+        enterReveal .8s
+        cubic-bezier(.16,1,.3,1)
+        2.35s forwards;
+}
+
+@keyframes enterReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.enter-button {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    min-width: 245px;
+
+    padding: 13px 17px 13px 19px;
+
+    border:
+        1px solid
+        rgba(216,200,181,.48);
+
+    background:
+        rgba(3,12,20,.28);
+
+    color: var(--cream);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    font-family: "Space Mono", monospace;
+
+    transition:
+        border-color .35s ease,
+        background .35s ease,
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.enter-button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 100%;
+    height: 1px;
+
+    background: var(--teal);
+
+    transition: left .6s ease;
+}
+
+.enter-button:hover::before {
+    left: 120%;
+}
+
+.enter-button:hover {
+    border-color: var(--teal);
+
+    background:
+        rgba(78,132,132,.08);
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.35);
+}
+
+.enter-button:active {
+    transform: scale(.97);
+}
+
+
+/* =========================================================
+   CLAPPERBOARD
+   ========================================================= */
+
+.enter-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--teal);
+
+    flex-shrink: 0;
+
+    transition:
+        transform .35s ease;
+}
+
+.enter-icon svg {
+    width: 100%;
+    height: 100%;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.4;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+.enter-button:hover .enter-icon {
+    transform:
+        rotate(-5deg)
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   ENTER TEXT
+   ========================================================= */
+
+.enter-copy {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 3px;
+
+    flex: 1;
+
+    direction: ltr;
+}
+
+.enter-main {
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: .22em;
+}
+
+.enter-sub {
+    color: var(--beige);
+
+    font-size: 7px;
+
+    letter-spacing: .15em;
+
+    opacity: .6;
+}
+
+.enter-arrow {
+    color: var(--teal);
+
+    font-size: 23px;
+
+    transition:
+        transform .35s ease;
+}
+
+.enter-button:hover .enter-arrow {
+    transform:
+        translateX(-5px);
+
+    color: var(--cream);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .intro-signal {
+        margin-bottom: 22px;
+
+        font-size: 7px;
+
+        letter-spacing: .2em;
+    }
+
+    .animated-logo {
+        min-height: 145px;
+    }
+
+    .logo-english {
+        font-size:
+            clamp(48px,17vw,85px);
+    }
+
+    .logo-arabic {
+        margin-top: 14px;
+
+        font-size:
+            clamp(20px,6vw,30px);
+    }
+
+    .logo-arabic::before,
+    .logo-arabic::after {
+        width: 25px;
+    }
+
+    .logo-arabic::before {
+        right: calc(100% + 10px);
+    }
+
+    .logo-arabic::after {
+        left: calc(100% + 10px);
+    }
+
+    .intro-statement {
+        gap: 11px;
+
+        font-size: 7px;
+
+        letter-spacing: .12em;
+    }
+
+    .intro-statement span:not(:last-child)::after {
+        right: -8px;
+    }
+
+    .enter-wrapper {
+        margin-top: 27px;
+    }
+
+    .enter-button {
+        min-width: 220px;
+
+        padding: 11px 14px;
+    }
+
+    .track-point {
+        width: 4px;
+        height: 4px;
+    }
+}
+.logo-space {
+    display: block;
+    width: clamp(18px, 2vw, 32px);
+    flex-shrink: 0;
+}
+/* =========================================================
+   ON AIR — CINEMATIC LOGO REVEAL
+========================================================= */
+
+.intro-animation {
+    position: relative;
+    z-index: 20;
+
+    width: min(900px, 92vw);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    direction: ltr;
+
+    perspective: 1200px;
+}
+
+
+/* =========================================================
+   SIGNAL DETECTED
+========================================================= */
+
+.intro-signal {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 30px;
+
+    color: var(--beige);
+
+    font-family: "Space Mono", monospace;
+    font-size: 9px;
+    letter-spacing: .28em;
+
+    opacity: 0;
+    transform: translateY(14px);
+
+    animation:
+        signalReveal .7s
+        cubic-bezier(.2,.8,.2,1)
+        .25s forwards;
+}
+
+.signal-dot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--teal);
+
+    box-shadow:
+        0 0 12px rgba(78,132,132,.8);
+
+    animation:
+        signalPulse 1.2s infinite;
+}
+
+@keyframes signalReveal {
+
+    to {
+        opacity: .75;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes signalPulse {
+
+    0%,
+    100% {
+        opacity: .35;
+        transform: scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+
+}
+
+
+/* =========================================================
+   LOGO CONTAINER
+========================================================= */
+
+.animated-logo {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: min(750px, 90vw);
+
+    min-height: 210px;
+}
+
+
+/* =========================================================
+   ON AIR
+========================================================= */
+
+.logo-english {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    direction: ltr;
+
+    line-height: .8;
+
+    font-family:
+        Arial Black,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        clamp(70px, 11vw, 145px);
+
+    font-weight: 900;
+
+    letter-spacing: -.085em;
+
+    color: var(--cream);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   INDIVIDUAL LETTERS
+========================================================= */
+
+.logo-letter {
+
+    display: inline-block;
+
+    opacity: 0;
+
+    filter: blur(12px);
+
+    will-change:
+        transform,
+        opacity,
+        filter;
+}
+
+
+/* O */
+
+.letter-o {
+
+    transform:
+        translate(-140px, -90px)
+        rotate(-22deg)
+        scale(.55);
+
+    animation:
+        logoLetterIn .95s
+        cubic-bezier(.16,1,.3,1)
+        .55s forwards;
+}
+
+
+/* N */
+
+.letter-n {
+
+    transform:
+        translate(-100px, 100px)
+        rotate(15deg)
+        scale(.6);
+
+    animation:
+        logoLetterIn .95s
+        cubic-bezier(.16,1,.3,1)
+        .68s forwards;
+}
+
+
+/* A */
+
+.letter-a {
+
+    transform:
+        translate(110px, -100px)
+        rotate(18deg)
+        scale(.58);
+
+    animation:
+        logoLetterIn .95s
+        cubic-bezier(.16,1,.3,1)
+        .81s forwards;
+}
+
+
+/* I */
+
+.letter-i {
+
+    transform:
+        translate(70px, 90px)
+        rotate(-15deg)
+        scale(.6);
+
+    animation:
+        logoLetterIn .95s
+        cubic-bezier(.16,1,.3,1)
+        .94s forwards;
+}
+
+
+/* R */
+
+.letter-r {
+
+    transform:
+        translate(150px, -65px)
+        rotate(20deg)
+        scale(.55);
+
+    animation:
+        logoLetterIn .95s
+        cubic-bezier(.16,1,.3,1)
+        1.07s forwards;
+}
+
+
+@keyframes logoLetterIn {
+
+    0% {
+
+        opacity: 0;
+
+        filter: blur(14px);
+
+    }
+
+    45% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        filter: blur(0);
+
+        transform:
+            translate(0,0)
+            rotate(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   ARABIC TEAM NAME
+========================================================= */
+
+.logo-arabic {
+
+    position: relative;
+
+    margin-top: 22px;
+
+    color: var(--teal);
+
+    font-family:
+        "Cairo",
+        "Tajawal",
+        sans-serif;
+
+    font-size:
+        clamp(25px, 3.3vw, 48px);
+
+    font-weight: 600;
+
+    letter-spacing: .02em;
+
+    opacity: 0;
+
+    transform:
+        translateY(28px)
+        scale(.82);
+
+    filter: blur(10px);
+
+    animation:
+        arabicLogoIn 1s
+        cubic-bezier(.16,1,.3,1)
+        1.48s forwards;
+}
+
+
+@keyframes arabicLogoIn {
+
+    to {
+
+        opacity: 1;
+
+        filter: blur(0);
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   ARABIC SIDE LINES
+========================================================= */
+
+.logo-arabic::before,
+.logo-arabic::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+
+    width: 50px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--teal)
+        );
+
+    opacity: 0;
+
+    animation:
+        sideLineIn .7s ease
+        1.75s forwards;
+}
+
+
+.logo-arabic::before {
+
+    right:
+        calc(100% + 22px);
+}
+
+
+.logo-arabic::after {
+
+    left:
+        calc(100% + 22px);
+
+    transform:
+        rotate(180deg);
+}
+
+
+@keyframes sideLineIn {
+
+    from {
+
+        opacity: 0;
+
+        width: 0;
+
+    }
+
+    to {
+
+        opacity: .55;
+
+        width: 50px;
+
+    }
+
+}
+
+
+/* =========================================================
+   UNDERLINE
+========================================================= */
+
+.logo-rule {
+
+    position: relative;
+
+    width: 0;
+
+    height: 1px;
+
+    margin-top: 18px;
+
+    background:
+        var(--gold-line);
+
+    animation:
+        logoRuleIn .8s ease
+        1.9s forwards;
+}
+
+
+.logo-rule span {
+
+    position: absolute;
+
+    right: 0;
+
+    top: -2px;
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background:
+        var(--teal);
+
+    box-shadow:
+        0 0 12px
+        rgba(78,132,132,.8);
+}
+
+
+@keyframes logoRuleIn {
+
+    to {
+
+        width: 180px;
+
+    }
+
+}
+
+
+/* =========================================================
+   TRACKING POINTS
+========================================================= */
+
+.track-point {
+
+    position: absolute;
+
+    width: 5px;
+
+    height: 5px;
+
+    border:
+        1px solid
+        var(--teal);
+
+    opacity: 0;
+
+    transform: scale(0);
+
+    animation:
+        trackPointIn .6s ease
+        1.55s forwards;
+}
+
+
+.track-point::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 14px;
+    height: 14px;
+
+    border:
+        1px solid
+        rgba(78,132,132,.22);
+
+    transform:
+        translate(-50%,-50%);
+}
+
+
+.point-1 {
+
+    top: 18px;
+    left: 15%;
+}
+
+
+.point-2 {
+
+    top: 60px;
+    right: 13%;
+}
+
+
+.point-3 {
+
+    bottom: 50px;
+    left: 11%;
+}
+
+
+.point-4 {
+
+    bottom: 20px;
+    right: 20%;
+}
+
+
+@keyframes trackPointIn {
+
+    0% {
+
+        opacity: 0;
+        transform: scale(0);
+
+    }
+
+    70% {
+
+        opacity: .8;
+        transform: scale(1.4);
+
+    }
+
+    100% {
+
+        opacity: .45;
+        transform: scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   TRACKING LINES
+========================================================= */
+
+.track-line {
+
+    position: absolute;
+
+    width: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--teal),
+            transparent
+        );
+
+    opacity: .35;
+
+    animation:
+        trackingLineIn .8s ease
+        1.65s forwards;
+}
+
+
+.line-top {
+
+    top: 38px;
+    left: 23%;
+}
+
+
+.line-bottom {
+
+    bottom: 32px;
+    right: 22%;
+}
+
+
+@keyframes trackingLineIn {
+
+    to {
+
+        width: 105px;
+
+    }
+
+}
+
+
+/* =========================================================
+   TEAM STATEMENT
+========================================================= */
+
+.intro-statement {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 34px;
+
+    color: var(--beige);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        clamp(8px,.8vw,12px);
+
+    letter-spacing: .18em;
+
+    opacity: 0;
+
+    transform:
+        translateY(12px);
+
+    animation:
+        statementIn .8s ease
+        2.05s forwards;
+}
+
+
+.intro-statement span {
+
+    position: relative;
+}
+
+
+.intro-statement span:not(:last-child)::after {
+
+    content: "•";
+
+    position: absolute;
+
+    right: -11px;
+
+    color: var(--teal);
+
+}
+
+
+@keyframes statementIn {
+
+    to {
+
+        opacity: .7;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   ENTER BUTTON
+========================================================= */
+
+.enter-wrapper {
+
+    margin-top: 34px;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    animation:
+        enterIn .8s
+        cubic-bezier(.16,1,.3,1)
+        2.35s forwards;
+}
+
+
+@keyframes enterIn {
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+.enter-button {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    min-width: 245px;
+
+    padding:
+        13px 17px 13px 19px;
+
+    border:
+        1px solid
+        rgba(216,200,181,.48);
+
+    background:
+        rgba(3,12,20,.28);
+
+    color:
+        var(--cream);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    transition:
+        border-color .35s ease,
+        background .35s ease,
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+
+/* moving light */
+
+.enter-button::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -120%;
+
+    width: 100%;
+
+    height: 1px;
+
+    background:
+        var(--teal);
+
+    transition:
+        left .6s ease;
+}
+
+
+.enter-button:hover::before {
+
+    left: 120%;
+
+}
+
+
+.enter-button:hover {
+
+    border-color:
+        var(--teal);
+
+    background:
+        rgba(78,132,132,.08);
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.35);
+
+}
+
+
+.enter-button:active {
+
+    transform:
+        scale(.97);
+
+}
+
+
+/* =========================================================
+   CLAPPERBOARD ICON
+========================================================= */
+
+.enter-icon {
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color:
+        var(--teal);
+
+    flex-shrink: 0;
+
+    transition:
+        transform .35s ease;
+}
+
+
+.enter-icon svg {
+
+    width: 100%;
+    height: 100%;
+
+    fill: none;
+
+    stroke:
+        currentColor;
+
+    stroke-width: 1.4;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+.enter-button:hover .enter-icon {
+
+    transform:
+        rotate(-5deg)
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   ENTER TEXT
+========================================================= */
+
+.enter-copy {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 3px;
+
+    flex: 1;
+
+    direction: ltr;
+}
+
+
+.enter-main {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: .22em;
+}
+
+
+.enter-sub {
+
+    color:
+        var(--beige);
+
+    font-size: 7px;
+
+    letter-spacing: .15em;
+
+    opacity: .6;
+}
+
+
+.enter-arrow {
+
+    color:
+        var(--teal);
+
+    font-size: 23px;
+
+    transition:
+        transform .35s ease;
+}
+
+
+.enter-button:hover .enter-arrow {
+
+    transform:
+        translateX(-5px);
+
+    color:
+        var(--cream);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .intro-signal {
+
+        margin-bottom: 22px;
+
+        font-size: 7px;
+
+        letter-spacing: .2em;
+
+    }
+
+
+    .animated-logo {
+
+        min-height: 150px;
+
+    }
+
+
+    .logo-english {
+
+        font-size:
+            clamp(48px,17vw,85px);
+
+    }
+
+
+    .logo-space {
+
+        width: 14px;
+
+    }
+
+
+    .logo-arabic {
+
+        margin-top: 14px;
+
+        font-size:
+            clamp(20px,6vw,30px);
+
+    }
+
+
+    .logo-arabic::before,
+    .logo-arabic::after {
+
+        width: 25px;
+
+    }
+
+
+    .logo-arabic::before {
+
+        right:
+            calc(100% + 10px);
+
+    }
+
+
+    .logo-arabic::after {
+
+        left:
+            calc(100% + 10px);
+
+    }
+
+
+    .intro-statement {
+
+        gap: 11px;
+
+        font-size: 7px;
+
+        letter-spacing: .12em;
+
+    }
+
+
+    .intro-statement span:not(:last-child)::after {
+
+        right: -8px;
+
+    }
+
+
+    .enter-wrapper {
+
+        margin-top: 27px;
+
+    }
+
+
+    .enter-button {
+
+        min-width: 220px;
+
+        padding:
+            11px 14px;
+
+    }
+
+
+    .track-point {
+
+        width: 4px;
+
+        height: 4px;
+
+    }
+
+}
+/* =========================================================
+   WAIT FOR LOADER — START INTRO AFTER LOADING
+========================================================= */
+
+/* نوقف كل حركات اللوجو أثناء شاشة التحميل */
+body:not(.page-loaded) .intro-animation,
+body:not(.page-loaded) .intro-animation * {
+    animation-play-state: paused;
+}
+
+/* بعد اختفاء الـ loader تبدأ الحركة */
+body.page-loaded .intro-animation,
+body.page-loaded .intro-animation * {
+    animation-play-state: running;
+}
+/* =========================================================
+   FINAL INTRO TEXT
+========================================================= */
+
+.intro-statement {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    margin-top: 34px;
+
+    color: var(--cream);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        clamp(8px, .75vw, 12px);
+
+    font-weight: 400;
+
+    line-height: 1.45;
+
+    letter-spacing: .08em;
+
+    direction: ltr;
+
+    opacity: 0;
+
+    transform: translateY(12px);
+
+    animation:
+        statementReveal .8s
+        ease
+        2.05s forwards;
+}
+
+
+.intro-statement span {
+
+    display: block;
+
+    position: relative;
+
+    color: var(--cream);
+
+    opacity: .82;
+}
+
+
+/* السطر التاني */
+
+.intro-statement span:nth-child(2) {
+
+    color: var(--beige);
+
+    opacity: .65;
+
+}
+
+
+/* إزالة الـ bullets القديمة */
+
+.intro-statement span:not(:last-child)::after {
+
+    display: none;
+
+}
+
+
+/* =========================================================
+   ARABIC FINAL STATEMENT
+========================================================= */
+
+.intro-final-statement {
+
+    margin-top: 28px;
+
+    color: var(--beige);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(10px, .9vw, 14px);
+
+    font-weight: 400;
+
+    line-height: 1.7;
+
+    letter-spacing: .01em;
+
+    direction: rtl;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: translateY(12px);
+
+    animation:
+        finalStatementReveal .8s
+        cubic-bezier(.16,1,.3,1)
+        2.18s forwards;
+}
+
+
+@keyframes finalStatementReveal {
+
+    to {
+
+        opacity: .78;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   ENTER — NO BOX
+========================================================= */
+
+.enter-wrapper {
+
+    margin-top: 34px;
+
+    opacity: 0;
+
+    transform: translateY(18px);
+
+    animation:
+        enterReveal .8s
+        cubic-bezier(.16,1,.3,1)
+        2.35s forwards;
+}
+
+
+.enter-button {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 5px 2px;
+
+    min-width: auto;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: var(--cream);
+
+    cursor: pointer;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    transition:
+        transform .35s ease,
+        opacity .35s ease;
+}
+
+
+/* =========================================================
+   ENTER ICON
+========================================================= */
+
+.enter-icon {
+
+    width: 24px;
+
+    height: 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--teal);
+
+    flex-shrink: 0;
+
+    transition:
+        transform .4s cubic-bezier(.16,1,.3,1),
+        color .3s ease;
+}
+
+
+.enter-icon svg {
+
+    width: 100%;
+
+    height: 100%;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.25;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   ENTER TEXT
+========================================================= */
+
+.enter-copy {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    gap: 1px;
+
+    direction: ltr;
+
+}
+
+
+.enter-main {
+
+    color: var(--cream);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .28em;
+
+    line-height: 1;
+}
+
+
+.enter-sub {
+
+    color: var(--beige);
+
+    font-size: 5px;
+
+    letter-spacing: .13em;
+
+    line-height: 1.4;
+
+    opacity: .5;
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.enter-arrow {
+
+    color: var(--teal);
+
+    font-size: 17px;
+
+    line-height: 1;
+
+    opacity: .8;
+
+    transition:
+        transform .4s cubic-bezier(.16,1,.3,1),
+        color .3s ease;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.enter-button:hover {
+
+    transform: translateY(-3px);
+
+    opacity: 1;
+}
+
+
+.enter-button:hover .enter-icon {
+
+    transform:
+        rotate(-8deg)
+        scale(1.08);
+
+    color: var(--cream);
+}
+
+
+.enter-button:hover .enter-arrow {
+
+    transform: translateX(-5px);
+
+    color: var(--cream);
+}
+
+
+.enter-button:active {
+
+    transform: scale(.95);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .intro-statement {
+
+        margin-top: 27px;
+
+        font-size: 7px;
+
+        gap: 3px;
+
+        letter-spacing: .06em;
+
+    }
+
+
+    .intro-final-statement {
+
+        margin-top: 22px;
+
+        font-size: 10px;
+
+    }
+
+
+    .enter-wrapper {
+
+        margin-top: 28px;
+
+    }
+
+
+    .enter-icon {
+
+        width: 21px;
+
+        height: 21px;
+
+    }
+
+
+    .enter-main {
+
+        font-size: 9px;
+
+        letter-spacing: .23em;
+
+    }
+
+
+    .enter-sub {
+
+        font-size: 4.5px;
+
+    }
+
+
+    .enter-arrow {
+
+        font-size: 15px;
+
+    }
+
+}
+/* =========================================================
+   CINEMATIC CLAPPERBOARD
+========================================================= */
+
+.cinematic-clapper {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--teal);
+
+    flex-shrink: 0;
+
+    opacity: .9;
+
+    filter:
+        drop-shadow(
+            0 0 5px rgba(78,132,132,.18)
+        );
+
+    transition:
+        transform .4s cubic-bezier(.16,1,.3,1),
+        color .3s ease,
+        filter .3s ease;
+}
+
+.cinematic-clapper svg {
+    width: 100%;
+    height: 100%;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.25;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    overflow: visible;
+}
+
+.cinematic-clapper .clapper-top {
+    fill: rgba(78,132,132,.08);
+
+    transform-origin: 48px 18px;
+
+    transition:
+        transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+.cinematic-clapper .clapper-play {
+    fill: currentColor;
+    stroke: none;
+    opacity: .8;
+}
+
+.cinematic-clapper .focus-corner {
+    stroke-width: .9;
+    opacity: .3;
+}
+
+
+/* HOVER */
+
+.enter-button:hover .cinematic-clapper {
+    color: var(--cream);
+
+    transform:
+        translateY(-2px)
+        scale(1.08);
+
+    filter:
+        drop-shadow(
+            0 0 9px rgba(78,132,132,.35)
+        );
+}
+
+.enter-button:hover
+.cinematic-clapper .clapper-top {
+    transform:
+        rotate(-7deg)
+        translate(-1px,-2px);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .cinematic-clapper {
+        width: 27px;
+        height: 27px;
+    }
+
+}
+/* =====================================================
+   CINEMATIC ENTER BUTTON
+===================================================== */
+
+.enter-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 34px;
+}
+
+
+/* BUTTON */
+
+.enter-button {
+    appearance: none;
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    padding: 6px 4px;
+
+    color: #f3dfc2;
+
+    cursor: pointer;
+
+    font-family: "Space Mono", monospace;
+
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+
+
+/* REMOVE DEFAULT BUTTON EFFECT */
+
+.enter-button:focus {
+    outline: none;
+}
+
+.enter-button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   CLAPPERBOARD ICON
+===================================================== */
+
+.enter-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+
+/* SVG */
+
+.enter-icon svg {
+    width: 30px;
+    height: 30px;
+
+    overflow: visible;
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+
+/* BODY */
+
+.clapper-body {
+    fill: none;
+
+    stroke: #4e8484;
+
+    stroke-width: 1.5;
+}
+
+
+/* TOP */
+
+.clapper-top {
+    fill: none;
+
+    stroke: #d8c8b5;
+
+    stroke-width: 1.5;
+
+    stroke-linejoin: round;
+
+    transform-origin: center;
+}
+
+
+/* STRIPES */
+
+.clapper-stripe {
+    fill: none;
+
+    stroke: #4e8484;
+
+    stroke-width: 1.4;
+
+    stroke-linecap: round;
+}
+
+
+/* BODY LINES */
+
+.clapper-line {
+    stroke: #d8c8b5;
+
+    stroke-width: 1;
+
+    opacity: 0.75;
+}
+
+
+/* DOT */
+
+.clapper-dot {
+    fill: #d92832;
+
+    opacity: 0.9;
+
+    filter:
+        drop-shadow(0 0 4px rgba(217,40,50,0.45));
+}
+
+
+/* =====================================================
+   HOVER — CLAPPER OPENS SLIGHTLY
+===================================================== */
+
+.enter-button:hover .enter-icon svg {
+    transform: translateY(-1px) scale(1.04);
+
+    filter:
+        drop-shadow(0 0 7px rgba(78,132,132,0.28));
+}
+
+.enter-button:hover .clapper-top {
+    transform:
+        rotate(-7deg)
+        translate(-1px, -2px);
+}
+
+
+/* =====================================================
+   ENTER TEXT
+===================================================== */
+
+.enter-copy {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 2px;
+
+    line-height: 1;
+}
+
+
+.enter-main {
+    font-family: "Space Mono", monospace;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: #f3dfc2;
+
+    transition:
+        letter-spacing 0.35s ease,
+        color 0.35s ease;
+}
+
+
+.enter-sub {
+    font-family: "Space Mono", monospace;
+
+    font-size: 5px;
+
+    letter-spacing: 1.5px;
+
+    color: #7d8584;
+
+    opacity: 0.85;
+}
+
+
+/* =====================================================
+   ARROW
+===================================================== */
+
+.enter-arrow {
+    font-family: "Space Mono", monospace;
+
+    font-size: 15px;
+
+    color: #4e8484;
+
+    margin-left: 2px;
+
+    transition:
+        transform 0.35s ease,
+        color 0.35s ease;
+}
+
+
+.enter-button:hover .enter-arrow {
+    transform: translateX(5px);
+
+    color: #d8c8b5;
+}
+
+
+.enter-button:hover .enter-main {
+    letter-spacing: 4px;
+
+    color: #ffffff;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .enter-wrapper {
+        margin-top: 28px;
+    }
+
+    .enter-button {
+        gap: 11px;
+    }
+
+    .enter-icon,
+    .enter-icon svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .enter-main {
+        font-size: 11px;
+        letter-spacing: 2.5px;
+    }
+
+    .enter-sub {
+        font-size: 4px;
+        letter-spacing: 1px;
+    }
+
+    .enter-arrow {
+        font-size: 13px;
+    }
+
+}

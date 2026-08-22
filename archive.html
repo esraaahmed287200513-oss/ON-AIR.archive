@@ -50,6 +50,15 @@
         href="production.css"
     >
 
+    <!-- =====================================================
+         STICKY NOTES CSS
+    ====================================================== -->
+
+<link
+    rel="stylesheet"
+    href="sticky-notes.css"
+>
+
 </head>
 
 
@@ -2282,17 +2291,286 @@
     </div>
 
 </section>
+
+<section
+    class="leave-mark-section"
+    id="leaveMarkSection"
+    dir="rtl"
+    aria-labelledby="leaveMarkTitle"
+>
+
+    <!-- CINEMATIC BACKGROUND -->
+    <div class="leave-mark-atmosphere" aria-hidden="true">
+        <div class="leave-mark-grid"></div>
+        <div class="leave-mark-light"></div>
+        <div class="leave-mark-vignette"></div>
+        <div class="leave-mark-scan"></div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="leave-mark-intro">
+
+        <div class="leave-mark-index">
+            <span>11</span>
+            <i></i>
+            <span>YOUR MARK</span>
+        </div>
+
+        <div class="leave-mark-eyebrow">
+            <span class="leave-mark-rec"></span>
+            <span data-ar="DIGITAL GUESTBOOK / COMMUNITY ARCHIVE"
+                  data-en="DIGITAL GUESTBOOK / COMMUNITY ARCHIVE">
+                DIGITAL GUESTBOOK / COMMUNITY ARCHIVE
+            </span>
+        </div>
+
+        <h2
+            class="leave-mark-title"
+            id="leaveMarkTitle"
+            data-ar="سيب حاجة منك هنا."
+            data-en="LEAVE SOMETHING OF YOU HERE."
+        >
+            سيب حاجة منك هنا.
+        </h2>
+
+        <p
+            class="leave-mark-description"
+            data-ar="جملة، ذكرى، نصيحة، أو حتى كلمة واحدة. سيب أثر منك هنا، ويمكن يومًا ما تبقى جزء من أرشيف ON AIR."
+            data-en="A sentence, a memory, a piece of advice, or simply one word. Leave something of yourself here. Maybe one day, it becomes part of the ON AIR archive."
+        >
+            جملة، ذكرى، نصيحة، أو حتى كلمة واحدة.
+            سيب أثر منك هنا، ويمكن يومًا ما تبقى جزء من أرشيف ON AIR.
+        </p>
+
+        <div class="leave-mark-meta">
+            <span>ARCHIVE / 008</span>
+            <span>COMMUNITY</span>
+        </div>
+
+    </div>
+
+
+    <!-- WALL -->
+    <div class="sticky-wall-wrapper">
+
+        <!-- technical atmosphere only -->
+        <div class="sticky-wall-info sticky-wall-info-left">
+            FRAME / 008
+        </div>
+
+        <div class="sticky-wall-info sticky-wall-info-right">
+            ARCHIVE / NOTES
+        </div>
+
+        <div class="sticky-wall-info sticky-wall-info-bottom">
+            DRAG / MOVE / LEAVE YOUR MARK
+        </div>
+
+
+        <!-- NOTES -->
+        <div
+            class="sticky-notes-container"
+            id="stickyNotesContainer"
+        >
+            <!--
+                Supabase notes are inserted here.
+                Intentionally empty at first.
+            -->
+        </div>
+
+
+        <!-- EMPTY STATE -->
+        <div
+            class="sticky-wall-empty"
+            id="stickyWallEmpty"
+        >
+            <span class="empty-line"></span>
+
+            <span
+                data-ar="المساحة دي لسه مستنية أول أثر."
+                data-en="THIS SPACE IS WAITING FOR ITS FIRST TRACE."
+            >
+                المساحة دي لسه مستنية أول أثر.
+            </span>
+
+            <span class="empty-line"></span>
+        </div>
+
+
+        <!-- ADD NOTE BUTTON -->
+        <button
+            class="leave-note-button"
+            id="leaveNoteButton"
+            type="button"
+        >
+            <span class="leave-note-plus">+</span>
+
+            <span
+                data-ar="سيب أثرك"
+                data-en="LEAVE YOUR MARK"
+            >
+                سيب أثرك
+            </span>
+
+            <span class="leave-note-arrow">↗</span>
+        </button>
+
+    </div>
+
+
+    <!-- FORM -->
+    <div
+        class="leave-note-panel"
+        id="leaveNotePanel"
+        aria-hidden="true"
+    >
+
+        <form id="stickyNoteForm">
+
+            <div class="form-heading">
+                <span>NOTE / 009</span>
+
+                <button
+                    type="button"
+                    id="closeNotePanel"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+            </div>
+
+            <label for="stickyName">
+                NAME
+            </label>
+
+            <input
+                id="stickyName"
+                type="text"
+                maxlength="40"
+                autocomplete="name"
+                required
+            >
+
+            <label for="stickyMessage">
+                MESSAGE
+            </label>
+
+            <textarea
+                id="stickyMessage"
+                maxlength="180"
+                required
+            ></textarea>
+
+            <div
+                class="sticky-counter"
+                id="stickyCounter"
+            >
+                0/180
+            </div>
+
+            <input
+                id="stickyColor"
+                type="hidden"
+                value="navy"
+            >
+
+            <div class="sticky-color-picker">
+
+                <button
+                    type="button"
+                    class="sticky-color-option is-selected"
+                    data-color="navy"
+                    aria-label="Navy"
+                ></button>
+
+                <button
+                    type="button"
+                    class="sticky-color-option"
+                    data-color="cream"
+                    aria-label="Cream"
+                ></button>
+
+                <button
+                    type="button"
+                    class="sticky-color-option"
+                    data-color="beige"
+                    aria-label="Beige"
+                ></button>
+
+                <button
+                    type="button"
+                    class="sticky-color-option"
+                    data-color="dark"
+                    aria-label="Dark"
+                ></button>
+
+            </div>
+
+            <button
+                class="sticky-submit"
+                id="stickySubmit"
+                type="submit"
+            >
+                تعليق الرسالة
+            </button>
+
+            <div
+                class="sticky-form-status"
+                id="stickyFormStatus"
+            ></div>
+
+            <input
+                class="sticky-honeypot"
+                id="stickyWebsite"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+            >
+
+        </form>
+
+    </div>
+
+
+    <div class="leave-mark-footer">
+
+        <span></span>
+
+        <p
+            data-ar="كل أثر له مكان."
+            data-en="EVERY TRACE HAS A PLACE."
+        >
+            كل أثر له مكان.
+        </p>
+
+        <span></span>
+
+    </div>
+
+</section>
+
 </main>
 
 
+<!-- SUPABASE -->
+<script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
 <!-- =====================================================
      JAVASCRIPT
 ===================================================== -->
 
-<script src="archive.js"></script>
+<!-- SUPABASE -->
+<script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
+<!-- ON AIR SCRIPTS -->
+<script src="archive.js"></script>
 <script src="production.js"></script>
+<script src="sticky-notes.js"></script>
+
 
 <!-- =====================================================
      CUSTOM MICROPHONE CURSOR

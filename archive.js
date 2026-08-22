@@ -1694,3 +1694,1242 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+/* =========================================================
+   ON AIR — LEAVE YOUR MARK
+   STICKY NOTE COMMUNITY WALL
+========================================================= */
+
+(() => {
+
+    "use strict";
+
+
+    /* =====================================================
+       SUPABASE CONFIGURATION
+       
+       IMPORTANT:
+       Replace these two values with your own Supabase
+       project URL and ANON KEY.
+    ====================================================== */
+
+    const SUPABASE_URL =
+        "YOUR_SUPABASE_PROJECT_URL";
+
+    const SUPABASE_ANON_KEY =
+        "YOUR_SUPABASE_ANON_KEY";
+
+
+    let supabaseClient = null;
+
+
+    /* =====================================================
+       INITIALIZE SUPABASE
+    ====================================================== */
+
+    function initSupabase() {
+
+        if (
+            SUPABASE_URL.includes("YOUR_") ||
+            SUPABASE_ANON_KEY.includes("YOUR_")
+        ) {
+            console.warn(
+                "ON AIR Sticky Wall: Supabase is not configured yet."
+            );
+
+            return null;
+        }
+
+
+        if (
+            typeof window.supabase === "undefined"
+        ) {
+            console.warn(
+                "ON AIR Sticky Wall: Supabase library is missing."
+            );
+
+            return null;
+        }
+
+
+        try {
+
+            supabaseClient =
+                window.supabase.createClient(
+                    SUPABASE_URL,
+                    SUPABASE_ANON_KEY
+                );
+
+            return supabaseClient;
+
+        } catch (error) {
+
+            console.error(
+                "ON AIR Sticky Wall: Supabase initialization failed.",
+                error
+            );
+
+            return null;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       DOM
+    ====================================================== */
+
+    const modal =
+        document.getElementById(
+            "stickyModal"
+        );
+
+    const openButton =
+        document.getElementById(
+            "openStickyNote"
+        );
+
+    const closeButton =
+        document.getElementById(
+            "closeStickyNote"
+        );
+
+    const backdrop =
+        document.getElementById(
+            "stickyModalBackdrop"
+        );
+
+    const form =
+        document.getElementById(
+            "stickyNoteForm"
+        );
+
+    const messageInput =
+        document.getElementById(
+            "stickyMessageInput"
+        );
+
+    const nameInput =
+        document.getElementById(
+            "stickyNameInput"
+        );
+
+    const websiteInput =
+        document.getElementById(
+            "stickyWebsite"
+        );
+
+    const characterCount =
+        document.getElementById(
+            "stickyCharacterCount"
+        );
+
+    const submitButton =
+        document.getElementById(
+            "stickySubmitButton"
+        );
+
+    const formStatus =
+        document.getElementById(
+            "stickyFormStatus"
+        );
+
+    const notesContainer =
+        document.getElementById(
+            "stickyNotesContainer"
+        );
+
+    const loading =
+        document.getElementById(
+            "stickyLoading"
+        );
+
+    const emptyState =
+        document.getElementById(
+            "stickyEmpty"
+        );
+
+    const notesCount =
+        document.getElementById(
+            "stickyNotesCount"
+        );
+
+
+    if (
+        !modal ||
+        !openButton ||
+        !closeButton ||
+        !form ||
+        !messageInput ||
+        !nameInput ||
+        !notesContainer
+    ) {
+        return;
+    }
+
+
+    /* =====================================================
+       CONFIG
+    ====================================================== */
+
+    const MAX_MESSAGE_LENGTH = 180;
+
+    const MAX_NAME_LENGTH = 35;
+
+    const STORAGE_KEY =
+        "onAirStickyNotes";
+
+    const LAST_SUBMISSION_KEY =
+        "onAirStickyLastSubmission";
+
+
+    const COLORS = [
+        "sticky-note-teal",
+        "sticky-note-cream",
+        "sticky-note-beige",
+        "sticky-note-dark",
+        "sticky-note-red"
+    ];
+
+
+    /* =====================================================
+       LANGUAGE HELPER
+    ====================================================== */
+
+    function currentLanguage() {
+
+        return (
+            document.documentElement.lang === "en"
+            ? "en"
+            : "ar"
+        );
+
+    }
+
+
+    /* =====================================================
+       TRANSLATION
+    ====================================================== */
+
+    function translate(ar, en) {
+
+        return currentLanguage() === "en"
+            ? en
+            : ar;
+
+    }
+
+
+    /* =====================================================
+       MODAL OPEN
+    ====================================================== */
+
+    function openModal() {
+
+        modal.classList.add(
+            "is-open"
+        );
+
+        modal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        document.body.classList.add(
+            "sticky-modal-open"
+        );
+
+
+        setTimeout(() => {
+
+            messageInput.focus();
+
+        }, 300);
+
+    }
+
+
+    /* =====================================================
+       MODAL CLOSE
+    ====================================================== */
+
+    function closeModal() {
+
+        modal.classList.remove(
+            "is-open"
+        );
+
+        modal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        document.body.classList.remove(
+            "sticky-modal-open"
+        );
+
+        clearStatus();
+
+    }
+
+
+    openButton.addEventListener(
+        "click",
+        openModal
+    );
+
+
+    closeButton.addEventListener(
+        "click",
+        closeModal
+    );
+
+
+    backdrop?.addEventListener(
+        "click",
+        closeModal
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Escape" &&
+                modal.classList.contains(
+                    "is-open"
+                )
+            ) {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       CHARACTER COUNTER
+    ====================================================== */
+
+    function updateCharacterCount() {
+
+        const length =
+            messageInput.value.length;
+
+        characterCount.textContent =
+            length;
+
+        if (
+            length >
+            MAX_MESSAGE_LENGTH
+        ) {
+
+            characterCount.style.color =
+                "var(--red)";
+
+        } else {
+
+            characterCount.style.color =
+                "";
+
+        }
+
+    }
+
+
+    messageInput.addEventListener(
+        "input",
+        updateCharacterCount
+    );
+
+
+    /* =====================================================
+       STATUS
+    ====================================================== */
+
+    function clearStatus() {
+
+        formStatus.textContent = "";
+
+        formStatus.className =
+            "sticky-form-status";
+
+    }
+
+
+    function showStatus(
+        type,
+        ar,
+        en
+    ) {
+
+        formStatus.textContent =
+            translate(ar, en);
+
+        formStatus.className =
+            `sticky-form-status ${type}`;
+
+    }
+
+
+    /* =====================================================
+       SUBMIT STATE
+    ====================================================== */
+
+    function setSubmitting(
+        isSubmitting
+    ) {
+
+        if (
+            isSubmitting
+        ) {
+
+            submitButton.classList.add(
+                "loading"
+            );
+
+            submitButton.disabled =
+                true;
+
+            submitButton.querySelector(
+                ".sticky-submit-text"
+            ).textContent =
+                translate(
+                    "جاري تثبيت الرسالة...",
+                    "PINNING YOUR NOTE..."
+                );
+
+        } else {
+
+            submitButton.classList.remove(
+                "loading"
+            );
+
+            submitButton.disabled =
+                false;
+
+            submitButton.querySelector(
+                ".sticky-submit-text"
+            ).textContent =
+                translate(
+                    "ثبّت رسالتي على الحائط",
+                    "PIN MY NOTE TO THE WALL"
+                );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       BASIC VALIDATION
+    ====================================================== */
+
+    function validateMessage(
+        message
+    ) {
+
+        const clean =
+            message.trim();
+
+
+        if (
+            clean.length < 2
+        ) {
+
+            return {
+                valid: false,
+                ar: "اكتبي رسالة أطول شوية.",
+                en: "Write a slightly longer message."
+            };
+
+        }
+
+
+        if (
+            clean.length >
+            MAX_MESSAGE_LENGTH
+        ) {
+
+            return {
+                valid: false,
+                ar: "الرسالة طويلة زيادة.",
+                en: "Your message is too long."
+            };
+
+        }
+
+
+        return {
+            valid: true
+        };
+
+    }
+
+
+    /* =====================================================
+       RATE LIMIT
+       
+       One submission per 60 seconds per browser.
+    ====================================================== */
+
+    function isRateLimited() {
+
+        try {
+
+            const last =
+                Number(
+                    localStorage.getItem(
+                        LAST_SUBMISSION_KEY
+                    )
+                );
+
+
+            if (!last) {
+                return false;
+            }
+
+
+            const elapsed =
+                Date.now() - last;
+
+
+            return (
+                elapsed <
+                60 * 1000
+            );
+
+        } catch {
+
+            return false;
+
+        }
+
+    }
+
+
+    function saveSubmissionTime() {
+
+        try {
+
+            localStorage.setItem(
+                LAST_SUBMISSION_KEY,
+                String(Date.now())
+            );
+
+        } catch {}
+
+    }
+
+
+    /* =====================================================
+       FORM SUBMIT
+    ====================================================== */
+
+    form.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            clearStatus();
+
+
+            /* HONEYPOT */
+
+            if (
+                websiteInput &&
+                websiteInput.value.trim()
+            ) {
+
+                return;
+
+            }
+
+
+            const message =
+                messageInput.value.trim();
+
+            const name =
+                nameInput.value.trim();
+
+
+            /* VALIDATE */
+
+            const validation =
+                validateMessage(
+                    message
+                );
+
+
+            if (
+                !validation.valid
+            ) {
+
+                showStatus(
+                    "error",
+                    validation.ar,
+                    validation.en
+                );
+
+                return;
+
+            }
+
+
+            if (
+                name.length >
+                MAX_NAME_LENGTH
+            ) {
+
+                showStatus(
+                    "error",
+                    "الاسم طويل زيادة.",
+                    "Your name is too long."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                isRateLimited()
+            ) {
+
+                showStatus(
+                    "error",
+                    "استني دقيقة قبل ما تبعت رسالة تانية.",
+                    "Please wait a minute before sending another note."
+                );
+
+                return;
+
+            }
+
+
+            setSubmitting(true);
+
+
+            try {
+
+                const client =
+                    initSupabase();
+
+
+                /* =========================================
+                   SUPABASE MODE
+                ========================================== */
+
+                if (client) {
+
+                    const {
+                        error
+                    } =
+                        await client
+                            .from(
+                                "sticky_notes"
+                            )
+                            .insert({
+                                message:
+                                    message,
+
+                                name:
+                                    name ||
+                                    null,
+
+                                approved:
+                                    false
+                            });
+
+
+                    if (error) {
+
+                        throw error;
+
+                    }
+
+
+                    saveSubmissionTime();
+
+
+                    form.reset();
+
+                    updateCharacterCount();
+
+
+                    showStatus(
+                        "success",
+                        "وصلت! رسالتك دخلت المراجعة وهتظهر بعد الموافقة.",
+                        "Got it! Your note is waiting for approval."
+                    );
+
+
+                    setTimeout(() => {
+
+                        closeModal();
+
+                    }, 2200);
+
+
+                    return;
+
+                }
+
+
+                /* =========================================
+                   LOCAL FALLBACK
+                ========================================== */
+
+                saveLocalNote({
+                    message,
+                    name
+                });
+
+
+                saveSubmissionTime();
+
+
+                form.reset();
+
+                updateCharacterCount();
+
+
+                showStatus(
+                    "success",
+                    "رسالتك اتثبتت على الجهاز ده.",
+                    "Your note was saved on this device."
+                );
+
+
+                setTimeout(() => {
+
+                    closeModal();
+
+                }, 1800);
+
+
+            } catch (error) {
+
+                console.error(
+                    "ON AIR Sticky Wall submission error:",
+                    error
+                );
+
+
+                showStatus(
+                    "error",
+                    "حصلت مشكلة. جربي تاني.",
+                    "Something went wrong. Please try again."
+                );
+
+            } finally {
+
+                setSubmitting(false);
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       LOCAL STORAGE
+    ====================================================== */
+
+    function getLocalNotes() {
+
+        try {
+
+            const raw =
+                localStorage.getItem(
+                    STORAGE_KEY
+                );
+
+
+            if (!raw) {
+                return [];
+            }
+
+
+            const parsed =
+                JSON.parse(raw);
+
+
+            return Array.isArray(parsed)
+                ? parsed
+                : [];
+
+        } catch {
+
+            return [];
+
+        }
+
+    }
+
+
+    function saveLocalNote(
+        note
+    ) {
+
+        const notes =
+            getLocalNotes();
+
+
+        notes.push({
+            id:
+                `local-${Date.now()}`,
+
+            message:
+                note.message,
+
+            name:
+                note.name || null,
+
+            created_at:
+                new Date().toISOString()
+        });
+
+
+        try {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(notes)
+            );
+
+        } catch {}
+
+
+        renderUserNote(
+            note
+        );
+
+        updateCount();
+
+    }
+
+
+    /* =====================================================
+       LOAD SUPABASE NOTES
+    ====================================================== */
+
+    async function loadSupabaseNotes() {
+
+        const client =
+            initSupabase();
+
+
+        if (!client) {
+
+            loadLocalNotes();
+
+            finishLoading();
+
+            return;
+
+        }
+
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+                await client
+                    .from(
+                        "sticky_notes"
+                    )
+                    .select(
+                        "id,message,name,created_at"
+                    )
+                    .eq(
+                        "approved",
+                        true
+                    )
+                    .order(
+                        "created_at",
+                        {
+                            ascending: true
+                        }
+                    )
+                    .limit(100);
+
+
+            if (error) {
+
+                throw error;
+
+            }
+
+
+            data.forEach(
+                note => {
+
+                    renderUserNote(
+                        note
+                    );
+
+                }
+            );
+
+
+            updateCount();
+
+
+        } catch (error) {
+
+            console.error(
+                "ON AIR Sticky Wall load error:",
+                error
+            );
+
+
+            loadLocalNotes();
+
+        } finally {
+
+            finishLoading();
+
+        }
+
+    }
+
+
+    /* =====================================================
+       LOCAL LOAD
+    ====================================================== */
+
+    function loadLocalNotes() {
+
+        const notes =
+            getLocalNotes();
+
+
+        notes.forEach(
+            note => {
+
+                renderUserNote(
+                    note
+                );
+
+            }
+        );
+
+
+        updateCount();
+
+    }
+
+
+    /* =====================================================
+       FINISH LOADING
+    ====================================================== */
+
+    function finishLoading() {
+
+        if (!loading) {
+            return;
+        }
+
+
+        loading.classList.add(
+            "hidden"
+        );
+
+    }
+
+
+    /* =====================================================
+       RANDOM NOTE STYLE
+    ====================================================== */
+
+    function randomBetween(
+        min,
+        max
+    ) {
+
+        return (
+            Math.random() *
+            (max - min)
+        ) + min;
+
+    }
+
+
+    function getNoteStyle() {
+
+        return {
+
+            x:
+                randomBetween(
+                    10,
+                    90
+                ),
+
+            y:
+                randomBetween(
+                    20,
+                    82
+                ),
+
+            rotation:
+                randomBetween(
+                    -5,
+                    5
+                ),
+
+            color:
+                COLORS[
+                    Math.floor(
+                        Math.random() *
+                        COLORS.length
+                    )
+                ]
+
+        };
+
+    }
+
+
+    /* =====================================================
+       CREATE NOTE
+    ====================================================== */
+
+    function renderUserNote(
+        note
+    ) {
+
+        if (
+            !note ||
+            !note.message
+        ) {
+
+            return;
+
+        }
+
+
+        const style =
+            getNoteStyle();
+
+
+        const article =
+            document.createElement(
+                "article"
+            );
+
+
+        article.className =
+            `onair-sticky-note user-sticky-note ${style.color}`;
+
+
+        article.style.setProperty(
+            "--x",
+            `${style.x}%`
+        );
+
+
+        article.style.setProperty(
+            "--y",
+            `${style.y}%`
+        );
+
+
+        article.style.setProperty(
+            "--r",
+            `${style.rotation}deg`
+        );
+
+
+        article.dataset.userNote =
+            "true";
+
+
+        article.dataset.noteId =
+            note.id || "";
+
+
+        const pin =
+            document.createElement(
+                "span"
+            );
+
+        pin.className =
+            "sticky-pin";
+
+
+        const content =
+            document.createElement(
+                "div"
+            );
+
+        content.className =
+            "sticky-paper-content";
+
+
+        const paragraph =
+            document.createElement(
+                "p"
+            );
+
+        paragraph.textContent =
+            note.message;
+
+
+        content.appendChild(
+            paragraph
+        );
+
+
+        article.appendChild(
+            pin
+        );
+
+
+        article.appendChild(
+            content
+        );
+
+
+        if (note.name) {
+
+            const author =
+                document.createElement(
+                    "span"
+                );
+
+            author.className =
+                "sticky-author";
+
+            author.textContent =
+                `— ${note.name}`;
+
+            article.appendChild(
+                author
+            );
+
+        } else {
+
+            const author =
+                document.createElement(
+                    "span"
+                );
+
+            author.className =
+                "sticky-author";
+
+            author.textContent =
+                "— ANONYMOUS";
+
+            article.appendChild(
+                author
+            );
+
+        }
+
+
+        notesContainer.appendChild(
+            article
+        );
+
+    }
+
+
+    /* =====================================================
+       COUNT
+    ====================================================== */
+
+    function updateCount() {
+
+        const userNotes =
+            notesContainer.querySelectorAll(
+                "[data-user-note='true']"
+            ).length;
+
+
+        const total =
+            userNotes;
+
+
+        if (notesCount) {
+
+            notesCount.textContent =
+                String(total).padStart(
+                    3,
+                    "0"
+                ) +
+                (
+                    currentLanguage() === "en"
+                    ? " NOTES"
+                    : " رسالة"
+                );
+
+        }
+
+
+        if (emptyState) {
+
+            emptyState.hidden =
+                total > 0;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       LANGUAGE CHANGE OBSERVER
+       
+       Your existing archive.js changes language
+       dynamically. We watch the HTML lang attribute.
+    ====================================================== */
+
+    const languageObserver =
+        new MutationObserver(
+            () => {
+
+                updateCount();
+
+                updateCharacterCount();
+
+            }
+        );
+
+
+    languageObserver.observe(
+        document.documentElement,
+        {
+            attributes: true,
+            attributeFilter: [
+                "lang"
+            ]
+        }
+    );
+
+
+    /* =====================================================
+       INIT
+    ====================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        () => {
+
+            initSupabase();
+
+            updateCharacterCount();
+
+            loadSupabaseNotes();
+
+        }
+    );
+
+
+})();

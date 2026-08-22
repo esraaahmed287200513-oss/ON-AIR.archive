@@ -7258,3 +7258,1861 @@ html[lang="en"]
         translate(6px,-7px);
 
 }
+
+/* =========================================================
+   ON AIR — LEAVE YOUR MARK
+   STICKY NOTE COMMUNITY WALL
+========================================================= */
+
+.leave-mark-section {
+    position: relative;
+
+    width: min(94%, 1380px);
+
+    margin:
+        170px auto
+        190px;
+
+    padding-bottom: 60px;
+
+    direction: rtl;
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.leave-mark-intro {
+    position: relative;
+
+    text-align: center;
+
+    margin-bottom: 65px;
+}
+
+
+.leave-mark-index {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    direction: ltr;
+
+    margin-bottom: 26px;
+
+    color: var(--beige);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 10px;
+
+    letter-spacing: .18em;
+
+    opacity: .7;
+}
+
+
+.leave-mark-index i {
+    width: 38px;
+    height: 1px;
+
+    display: block;
+
+    background: var(--beige);
+
+    opacity: .55;
+}
+
+
+.leave-mark-eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+
+    color: var(--teal);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: .16em;
+
+    direction: ltr;
+}
+
+
+.leave-mark-rec-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--red);
+
+    box-shadow:
+        0 0 10px
+        rgba(217, 40, 50, .45);
+
+    animation:
+        stickyRecBlink 1.4s infinite;
+}
+
+
+@keyframes stickyRecBlink {
+
+    0%,
+    45% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: .35;
+    }
+
+}
+
+
+.leave-mark-title {
+    margin: 0;
+
+    color: var(--cream);
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(42px, 6vw, 82px);
+
+    font-weight: 800;
+
+    line-height: 1.08;
+
+    letter-spacing: -.035em;
+}
+
+
+.leave-mark-description {
+    width: min(90%, 760px);
+
+    margin:
+        24px auto
+        0;
+
+    color: var(--beige);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(13px, 1.2vw, 16px);
+
+    line-height: 2;
+
+    opacity: .78;
+}
+
+
+.leave-mark-meta {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 13px;
+
+    margin-top: 25px;
+
+    direction: ltr;
+
+    color: var(--gray);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: .15em;
+}
+
+
+.leave-mark-meta span:first-child {
+    color: var(--teal);
+}
+
+
+/* =========================================================
+   WALL
+========================================================= */
+
+.sticky-wall-wrapper {
+    position: relative;
+
+    min-height: 820px;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        rgba(216, 200, 181, .34);
+
+    background:
+        linear-gradient(
+            145deg,
+            #07121B 0%,
+            #0B1824 48%,
+            #061019 100%
+        );
+
+    box-shadow:
+        0 40px 100px
+        rgba(0, 0, 0, .48);
+
+    isolation: isolate;
+}
+
+
+.sticky-wall-wrapper::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -2;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(78, 132, 132, .18),
+            transparent 52%
+        );
+}
+
+
+.sticky-wall-wrapper::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 40;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 55%,
+            rgba(1, 10, 19, .45)
+        );
+
+    opacity: .7;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.sticky-wall-grid {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -1;
+
+    background-image:
+        linear-gradient(
+            rgba(78, 132, 132, .10) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(78, 132, 132, .10) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        44px 44px;
+
+    opacity: .75;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   GLOW
+========================================================= */
+
+.sticky-wall-glow {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 520px;
+    height: 520px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(78, 132, 132, .13),
+            transparent 68%
+        );
+
+    filter:
+        blur(15px);
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CAMERA CORNERS
+========================================================= */
+
+.sticky-wall-corner {
+    position: absolute;
+
+    width: 55px;
+    height: 55px;
+
+    z-index: 70;
+
+    pointer-events: none;
+}
+
+
+.sticky-wall-corner::before,
+.sticky-wall-corner::after {
+    content: "";
+
+    position: absolute;
+
+    background:
+        rgba(216, 200, 181, .62);
+}
+
+
+.sticky-wall-corner::before {
+    width: 100%;
+    height: 1px;
+}
+
+
+.sticky-wall-corner::after {
+    width: 1px;
+    height: 100%;
+}
+
+
+.corner-tl {
+    top: 25px;
+    left: 25px;
+}
+
+
+.corner-tr {
+    top: 25px;
+    right: 25px;
+}
+
+
+.corner-tr::before,
+.corner-tr::after {
+    right: 0;
+}
+
+
+.corner-bl {
+    bottom: 25px;
+    left: 25px;
+}
+
+
+.corner-bl::before,
+.corner-bl::after {
+    bottom: 0;
+}
+
+
+.corner-br {
+    bottom: 25px;
+    right: 25px;
+}
+
+
+.corner-br::before,
+.corner-br::after {
+    right: 0;
+    bottom: 0;
+}
+
+
+/* =========================================================
+   TECHNICAL LABELS
+========================================================= */
+
+.sticky-wall-tech {
+    position: absolute;
+
+    z-index: 80;
+
+    color: rgba(216, 200, 181, .58);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .14em;
+
+    direction: ltr;
+
+    pointer-events: none;
+}
+
+
+.tech-top-left {
+    top: 29px;
+    left: 95px;
+}
+
+
+.tech-top-right {
+    top: 29px;
+    right: 95px;
+}
+
+
+.tech-bottom-left {
+    bottom: 30px;
+    left: 95px;
+}
+
+
+.tech-bottom-right {
+    bottom: 30px;
+    right: 95px;
+}
+
+
+/* =========================================================
+   NOTES CONTAINER
+========================================================= */
+
+.sticky-notes-container {
+    position: relative;
+
+    min-height: 820px;
+
+    width: 100%;
+
+    padding:
+        50px
+        80px;
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   STICKY NOTE
+========================================================= */
+
+.onair-sticky-note {
+    position: absolute;
+
+    left:
+        var(--x);
+
+    top:
+        var(--y);
+
+    width: 205px;
+    min-height: 190px;
+
+    padding:
+        42px
+        24px
+        24px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    text-align: center;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(var(--r));
+
+    border:
+        1px solid
+        rgba(1, 10, 19, .13);
+
+    box-shadow:
+        0 18px 28px
+        rgba(0, 0, 0, .34),
+
+        0 4px 8px
+        rgba(0, 0, 0, .18);
+
+    transition:
+        transform .45s
+            cubic-bezier(.16, 1, .3, 1),
+
+        box-shadow .45s ease,
+
+        filter .45s ease;
+
+    z-index: 5;
+
+    cursor: default;
+
+    animation:
+        stickyNoteAppear .75s
+        cubic-bezier(.16, 1, .3, 1)
+        both;
+}
+
+
+@keyframes stickyNoteAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -42%)
+            rotate(0deg)
+            scale(.86);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            rotate(var(--r))
+            scale(1);
+    }
+
+}
+
+
+.onair-sticky-note:hover {
+    z-index: 100;
+
+    transform:
+        translate(-50%, -58%)
+        rotate(0deg)
+        scale(1.07);
+
+    box-shadow:
+        0 30px 55px
+        rgba(0, 0, 0, .52),
+
+        0 0 35px
+        rgba(78, 132, 132, .16);
+
+    filter:
+        brightness(1.05);
+}
+
+
+/* =========================================================
+   PIN
+========================================================= */
+
+.sticky-pin {
+    position: absolute;
+
+    top: 13px;
+    left: 50%;
+
+    width: 13px;
+    height: 13px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        var(--red);
+
+    box-shadow:
+        0 3px 5px
+        rgba(0, 0, 0, .38),
+
+        0 0 10px
+        rgba(217, 40, 50, .20);
+}
+
+
+.sticky-pin::after {
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+    left: 3px;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.6);
+}
+
+
+/* =========================================================
+   PAPER CONTENT
+========================================================= */
+
+.sticky-paper-content {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex: 1;
+}
+
+
+.sticky-paper-content p {
+    margin: 0;
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    line-height: 1.65;
+
+    color:
+        var(--navy);
+
+    overflow-wrap:
+        anywhere;
+}
+
+
+.sticky-author {
+    display: block;
+
+    margin-top: 18px;
+
+    color:
+        rgba(11, 24, 36, .55);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .11em;
+
+    direction: ltr;
+}
+
+
+.sticky-note-red .sticky-paper-content p,
+.sticky-note-red .sticky-author {
+    color: var(--cream);
+}
+
+
+/* =========================================================
+   COLORS — ON AIR PALETTE
+========================================================= */
+
+.sticky-note-teal {
+    background:
+        var(--teal);
+}
+
+
+.sticky-note-cream {
+    background:
+        var(--cream);
+}
+
+
+.sticky-note-beige {
+    background:
+        var(--beige);
+}
+
+
+.sticky-note-red {
+    background:
+        var(--red);
+}
+
+
+.sticky-note-dark {
+    background:
+        #376666;
+}
+
+
+.sticky-note-dark .sticky-paper-content p,
+.sticky-note-dark .sticky-author {
+    color: var(--cream);
+}
+
+
+/* =========================================================
+   USER NOTES
+========================================================= */
+
+.user-sticky-note {
+    cursor: pointer;
+}
+
+
+.user-sticky-note::after {
+    content:
+        "ARCHIVED";
+
+    position: absolute;
+
+    right: 10px;
+    bottom: 8px;
+
+    color:
+        rgba(11, 24, 36, .25);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 5px;
+
+    letter-spacing: .15em;
+}
+
+
+/* =========================================================
+   ADD NOTE BUTTON
+========================================================= */
+
+.leave-note-button {
+    position: absolute;
+
+    left: 50%;
+    bottom: 42px;
+
+    transform:
+        translateX(-50%)
+        rotate(-1deg);
+
+    z-index: 90;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    min-width: 230px;
+
+    padding:
+        17px
+        22px;
+
+    border:
+        1px solid
+        rgba(243, 223, 194, .42);
+
+    background:
+        rgba(7, 18, 27, .93);
+
+    color:
+        var(--cream);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: .13em;
+
+    cursor: pointer;
+
+    backdrop-filter:
+        blur(10px);
+
+    transition:
+        .35s ease;
+}
+
+
+.leave-note-plus {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    color:
+        var(--teal);
+
+    font-size: 20px;
+
+    line-height: 1;
+}
+
+
+.leave-note-arrow {
+    color:
+        var(--beige);
+
+    transition:
+        transform .3s ease;
+}
+
+
+.leave-note-button:hover {
+    transform:
+        translateX(-50%)
+        translateY(-6px)
+        rotate(0deg);
+
+    background:
+        var(--teal);
+
+    border-color:
+        var(--teal);
+
+    color:
+        var(--navy);
+}
+
+
+.leave-note-button:hover
+.leave-note-plus,
+.leave-note-button:hover
+.leave-note-arrow {
+    color:
+        var(--navy);
+}
+
+
+.leave-note-button:hover
+.leave-note-arrow {
+    transform:
+        translate(3px, -3px);
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.sticky-loading {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 120;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    background:
+        rgba(1, 10, 19, .65);
+
+    color:
+        var(--beige);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: .14em;
+
+    backdrop-filter:
+        blur(2px);
+
+    transition:
+        opacity .35s ease;
+}
+
+
+.sticky-loading.hidden {
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.sticky-loader-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background:
+        var(--red);
+
+    animation:
+        stickyRecBlink 1s infinite;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.sticky-empty {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: min(85%, 400px);
+
+    text-align: center;
+
+    color:
+        var(--beige);
+
+    z-index: 30;
+}
+
+
+.sticky-empty span {
+    display: block;
+
+    margin-bottom: 18px;
+
+    color:
+        var(--teal);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: .2em;
+}
+
+
+.sticky-empty p {
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.leave-mark-footer {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 25px;
+
+    margin-top: 48px;
+
+    text-align: center;
+}
+
+
+.leave-mark-footer p {
+    max-width: 600px;
+
+    margin: 0;
+
+    color:
+        var(--gray);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 11px;
+
+    line-height: 1.9;
+}
+
+
+.footer-line {
+    width: 60px;
+    height: 1px;
+
+    background:
+        rgba(216, 200, 181, .35);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.sticky-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+}
+
+
+.sticky-modal.is-open {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.sticky-modal-backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(1, 10, 19, .84);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.sticky-modal-paper {
+    position: relative;
+
+    width:
+        min(92vw, 540px);
+
+    padding:
+        48px
+        42px
+        40px;
+
+    background:
+        var(--cream);
+
+    color:
+        var(--navy);
+
+    box-shadow:
+        0 40px 100px
+        rgba(0, 0, 0, .55);
+
+    transform:
+        translateY(30px)
+        rotate(-1.5deg)
+        scale(.96);
+
+    transition:
+        transform .5s
+        cubic-bezier(.16, 1, .3, 1);
+
+    direction: rtl;
+}
+
+
+.sticky-modal.is-open
+.sticky-modal-paper {
+    transform:
+        translateY(0)
+        rotate(-1.5deg)
+        scale(1);
+}
+
+
+.sticky-modal-pin {
+    position: absolute;
+
+    top: 14px;
+    left: 50%;
+
+    width: 14px;
+    height: 14px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        var(--red);
+
+    box-shadow:
+        0 3px 6px
+        rgba(0,0,0,.3);
+}
+
+
+.sticky-modal-close {
+    position: absolute;
+
+    top: 13px;
+    left: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    border: 0;
+
+    background:
+        transparent;
+
+    color:
+        var(--navy);
+
+    font-size: 29px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    opacity: .7;
+
+    transition:
+        opacity .2s ease;
+}
+
+
+.sticky-modal-close:hover {
+    opacity: 1;
+}
+
+
+.sticky-modal-label {
+    margin-bottom: 17px;
+
+    color:
+        var(--teal);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: .15em;
+
+    direction: ltr;
+
+    text-align: left;
+}
+
+
+.sticky-modal-paper h3 {
+    margin: 0 0 12px;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(28px, 5vw, 42px);
+
+    font-weight: 800;
+
+    line-height: 1.25;
+}
+
+
+.sticky-modal-description {
+    margin:
+        0 0 28px;
+
+    color:
+        rgba(11, 24, 36, .68);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.9;
+}
+
+
+.sticky-form-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color:
+        rgba(11, 24, 36, .65);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .12em;
+
+    direction: ltr;
+
+    text-align: left;
+}
+
+
+#stickyNoteForm textarea,
+#stickyNoteForm input {
+    width: 100%;
+
+    border:
+        1px solid
+        rgba(11, 24, 36, .22);
+
+    outline: none;
+
+    background:
+        rgba(255, 255, 255, .28);
+
+    color:
+        var(--navy);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    transition:
+        border-color .25s ease,
+        background .25s ease;
+}
+
+
+#stickyNoteForm textarea {
+    min-height: 140px;
+
+    padding:
+        14px
+        15px;
+
+    resize: vertical;
+
+    line-height: 1.8;
+}
+
+
+#stickyNoteForm input {
+    height: 48px;
+
+    padding:
+        0 15px;
+}
+
+
+#stickyNoteForm textarea:focus,
+#stickyNoteForm input:focus {
+    border-color:
+        var(--teal);
+
+    background:
+        rgba(255, 255, 255, .55);
+}
+
+
+.sticky-character-count {
+    display: flex;
+
+    justify-content: flex-start;
+
+    direction: ltr;
+
+    margin:
+        6px 0
+        18px;
+
+    color:
+        rgba(11, 24, 36, .48);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+}
+
+
+.sticky-honeypot {
+    position: absolute;
+
+    left: -9999px;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.sticky-form-note {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin:
+        18px 0;
+
+    color:
+        rgba(11, 24, 36, .52);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 9px;
+
+    line-height: 1.7;
+}
+
+
+.sticky-form-note-icon {
+    flex: 0 0 auto;
+
+    color:
+        var(--red);
+}
+
+
+.sticky-submit-button {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding:
+        17px
+        18px;
+
+    border: 0;
+
+    background:
+        var(--navy);
+
+    color:
+        var(--cream);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: .08em;
+
+    cursor: pointer;
+
+    transition:
+        background .3s ease,
+        transform .25s ease;
+}
+
+
+.sticky-submit-button:hover {
+    background:
+        var(--teal);
+
+    color:
+        var(--navy);
+}
+
+
+.sticky-submit-button:active {
+    transform:
+        scale(.985);
+}
+
+
+.sticky-submit-button.loading {
+    opacity: .6;
+
+    pointer-events: none;
+}
+
+
+.sticky-form-status {
+    min-height: 24px;
+
+    margin-top: 12px;
+
+    text-align: center;
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 10px;
+
+    line-height: 1.7;
+}
+
+
+.sticky-form-status.success {
+    color:
+        #32765f;
+}
+
+
+.sticky-form-status.error {
+    color:
+        var(--red);
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.leave-note-button:focus-visible,
+.sticky-modal-close:focus-visible,
+.sticky-submit-button:focus-visible,
+#stickyNoteForm textarea:focus-visible,
+#stickyNoteForm input:focus-visible {
+    outline:
+        2px solid
+        var(--teal);
+
+    outline-offset:
+        3px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .leave-mark-section {
+        width: 94%;
+
+        margin:
+            120px auto
+            130px;
+    }
+
+
+    .sticky-wall-wrapper {
+        min-height: 1050px;
+    }
+
+
+    .sticky-notes-container {
+        min-height: 1050px;
+
+        padding: 20px;
+    }
+
+
+    .onair-sticky-note {
+        width: 165px;
+
+        min-height: 155px;
+
+        padding:
+            37px
+            18px
+            18px;
+    }
+
+
+    .sticky-paper-content p {
+        font-size: 13px;
+
+        line-height: 1.55;
+    }
+
+
+    .sticky-author {
+        font-size: 6px;
+    }
+
+
+    .onair-sticky-note:nth-child(n+1) {
+        --x: var(--mobile-x);
+        --y: var(--mobile-y);
+    }
+
+
+    .onair-sticky-note:nth-child(1) {
+        --mobile-x: 24%;
+        --mobile-y: 13%;
+    }
+
+
+    .onair-sticky-note:nth-child(2) {
+        --mobile-x: 74%;
+        --mobile-y: 13%;
+    }
+
+
+    .onair-sticky-note:nth-child(3) {
+        --mobile-x: 25%;
+        --mobile-y: 34%;
+    }
+
+
+    .onair-sticky-note:nth-child(4) {
+        --mobile-x: 75%;
+        --mobile-y: 34%;
+    }
+
+
+    .onair-sticky-note:nth-child(5) {
+        --mobile-x: 24%;
+        --mobile-y: 55%;
+    }
+
+
+    .onair-sticky-note:nth-child(6) {
+        --mobile-x: 74%;
+        --mobile-y: 55%;
+    }
+
+
+    .onair-sticky-note:nth-child(7) {
+        --mobile-x: 25%;
+        --mobile-y: 76%;
+    }
+
+
+    .onair-sticky-note:nth-child(8) {
+        --mobile-x: 75%;
+        --mobile-y: 76%;
+    }
+
+
+    .tech-top-left,
+    .tech-bottom-left {
+        left: 65px;
+    }
+
+
+    .tech-top-right,
+    .tech-bottom-right {
+        right: 65px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .leave-mark-section {
+        margin:
+            100px auto
+            100px;
+    }
+
+
+    .leave-mark-title {
+        font-size: 42px;
+    }
+
+
+    .leave-mark-description {
+        font-size: 12px;
+
+        line-height: 1.9;
+    }
+
+
+    .leave-mark-meta {
+        font-size: 7px;
+
+        gap: 8px;
+    }
+
+
+    .sticky-wall-wrapper {
+        min-height: 930px;
+    }
+
+
+    .sticky-notes-container {
+        min-height: 930px;
+
+        padding: 10px;
+    }
+
+
+    .onair-sticky-note {
+        width: 135px;
+
+        min-height: 130px;
+
+        padding:
+            31px
+            13px
+            13px;
+    }
+
+
+    .sticky-paper-content p {
+        font-size: 10.5px;
+
+        line-height: 1.5;
+    }
+
+
+    .sticky-author {
+        margin-top: 10px;
+
+        font-size: 5px;
+    }
+
+
+    .sticky-pin {
+        width: 10px;
+        height: 10px;
+
+        top: 10px;
+    }
+
+
+    .sticky-pin::after {
+        top: 3px;
+        left: 3px;
+
+        width: 3px;
+        height: 3px;
+    }
+
+
+    .onair-sticky-note:nth-child(1) {
+        --mobile-x: 27%;
+        --mobile-y: 13%;
+    }
+
+
+    .onair-sticky-note:nth-child(2) {
+        --mobile-x: 73%;
+        --mobile-y: 13%;
+    }
+
+
+    .onair-sticky-note:nth-child(3) {
+        --mobile-x: 27%;
+        --mobile-y: 33%;
+    }
+
+
+    .onair-sticky-note:nth-child(4) {
+        --mobile-x: 73%;
+        --mobile-y: 33%;
+    }
+
+
+    .onair-sticky-note:nth-child(5) {
+        --mobile-x: 27%;
+        --mobile-y: 53%;
+    }
+
+
+    .onair-sticky-note:nth-child(6) {
+        --mobile-x: 73%;
+        --mobile-y: 53%;
+    }
+
+
+    .onair-sticky-note:nth-child(7) {
+        --mobile-x: 27%;
+        --mobile-y: 73%;
+    }
+
+
+    .onair-sticky-note:nth-child(8) {
+        --mobile-x: 73%;
+        --mobile-y: 73%;
+    }
+
+
+    .tech-top-left,
+    .tech-top-right,
+    .tech-bottom-left,
+    .tech-bottom-right {
+        font-size: 5px;
+    }
+
+
+    .sticky-wall-corner {
+        width: 35px;
+        height: 35px;
+    }
+
+
+    .corner-tl,
+    .corner-tr {
+        top: 15px;
+    }
+
+
+    .corner-bl,
+    .corner-br {
+        bottom: 15px;
+    }
+
+
+    .corner-tl,
+    .corner-bl {
+        left: 15px;
+    }
+
+
+    .corner-tr,
+    .corner-br {
+        right: 15px;
+    }
+
+
+    .tech-top-left,
+    .tech-bottom-left {
+        left: 50px;
+    }
+
+
+    .tech-top-right,
+    .tech-bottom-right {
+        right: 50px;
+    }
+
+
+    .leave-note-button {
+        min-width: 190px;
+
+        bottom: 25px;
+
+        padding:
+            15px
+            17px;
+
+        font-size: 8px;
+    }
+
+
+    .leave-mark-footer {
+        gap: 12px;
+    }
+
+
+    .footer-line {
+        width: 25px;
+    }
+
+
+    .leave-mark-footer p {
+        font-size: 9px;
+    }
+
+
+    .sticky-modal-paper {
+        width: 94vw;
+
+        padding:
+            42px
+            22px
+            25px;
+    }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .onair-sticky-note,
+    .leave-mark-rec-dot,
+    .sticky-loader-dot {
+        animation: none !important;
+    }
+
+    .onair-sticky-note,
+    .leave-note-button,
+    .sticky-modal-paper {
+        transition: none !important;
+    }
+
+}

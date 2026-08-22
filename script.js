@@ -410,48 +410,10 @@ function enterArchive() {
 }
 
 
-/* =====================================================
-   CLICK ANYWHERE TO ENTER
-===================================================== */
-
-document.addEventListener("click", (event) => {
-
-    if (transitionStarted) return;
-
-
-    /*
-       Don't trigger the page transition
-       when clicking language buttons.
-    */
-
-    if (
-        event.target.closest(".language")
-    ) {
-        return;
-    }
-
-
-    /*
-       Don't trigger if clicking
-       another interactive control.
-    */
-
-    if (
-        event.target.closest("button") &&
-        !event.target.closest("#enterExperience")
-    ) {
-        return;
-    }
-
-
-    enterArchive();
-
-});
-
 
 /* =====================================================
-   ENTER BUTTON — IF IT STILL EXISTS
-===================================================== */
+   ENTER BUTTON
+   ===================================================== */
 
 const enterButton =
     document.getElementById("enterExperience");
@@ -461,6 +423,8 @@ if (enterButton) {
     enterButton.addEventListener(
         "click",
         (event) => {
+
+            event.preventDefault();
 
             event.stopPropagation();
 
