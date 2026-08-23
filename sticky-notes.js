@@ -3,12 +3,17 @@
    SUPABASE + APPROVAL + DRAGGABLE NOTES
 ========================================================= */
 
+"use strict";
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
 const SUPABASE_URL =
     "https://tthojxggagdfywhfzttf.supabase.co";
 
 const SUPABASE_KEY =
     "sb_publishable_dkq5F1nnGa3kWFFZVijueA_tUYoQdTq";
-
 
 const stickySupabase =
     window.supabase.createClient(
@@ -39,9 +44,7 @@ const ROTATIONS = [
     -2.1,
     1.4,
     -3.8,
-    2.8,
-    -1.1,
-    3.5
+    2.8
 ];
 
 
@@ -50,111 +53,77 @@ const ROTATIONS = [
 ========================================================= */
 
 const section =
-    document.getElementById(
-        "leaveMarkSection"
-    );
+    document.getElementById("leaveMarkSection");
 
 const notesContainer =
-    document.getElementById(
-        "stickyNotesContainer"
-    );
+    document.getElementById("stickyNotesContainer");
 
 const emptyState =
-    document.getElementById(
-        "stickyWallEmpty"
-    );
+    document.getElementById("stickyWallEmpty");
 
 const formPanel =
-    document.getElementById(
-        "leaveNotePanel"
-    );
+    document.getElementById("leaveNotePanel");
 
 const openButton =
-    document.getElementById(
-        "leaveNoteButton"
-    );
+    document.getElementById("leaveNoteButton");
 
 const closeButton =
-    document.getElementById(
-        "closeNotePanel"
-    );
+    document.getElementById("closeNotePanel");
 
 const form =
-    document.getElementById(
-        "stickyNoteForm"
-    );
+    document.getElementById("stickyNoteForm");
 
 const nameInput =
-    document.getElementById(
-        "stickyName"
-    );
+    document.getElementById("stickyName");
 
 const messageInput =
-    document.getElementById(
-        "stickyMessage"
-    );
+    document.getElementById("stickyMessage");
 
 const colorInput =
-    document.getElementById(
-        "stickyColor"
-    );
+    document.getElementById("stickyColor");
 
 const submitButton =
-    document.getElementById(
-        "stickySubmit"
-    );
+    document.getElementById("stickySubmit");
 
-const status =
-    document.getElementById(
-        "stickyFormStatus"
-    );
+const statusElement =
+    document.getElementById("stickyFormStatus");
 
 const counter =
-    document.getElementById(
-        "stickyCounter"
-    );
+    document.getElementById("stickyCounter");
 
 const honeypot =
-    document.getElementById(
-        "stickyWebsite"
-    );
+    document.getElementById("stickyWebsite");
 
 
 /* =========================================================
-   SECTION REVEAL
-   السكشن يبدأ hidden
+   STATUS
 ========================================================= */
 
-if (section) {
+function showStatus(message, type = "") {
 
-    const observer =
-        new IntersectionObserver(
-            entries => {
+    if (!statusElement) return;
 
-                entries.forEach(entry => {
+    statusElement.textContent = message;
 
-                    if (
-                        entry.isIntersecting
-                    ) {
+    statusElement.className =
+        "sticky-form-status";
 
-                        section.classList.add(
-                            "is-visible"
-                        );
+    if (type) {
+        statusElement.classList.add(type);
+    }
+}
 
-                        observer.unobserve(
-                            section
-                        );
-                    }
 
-                });
+/* =========================================================
+   COUNTER
+========================================================= */
 
-            },
-            {
-                threshold: .12
-            }
-        );
+function updateCounter() {
 
-    observer.observe(section);
+    if (!messageInput || !counter) return;
+
+    counter.textContent =
+        `${messageInput.value.length}/${MAX_MESSAGE_LENGTH}`;
 }
 
 
@@ -164,11 +133,11 @@ if (section) {
 
 function getCurrentLanguage() {
 
-    return (
+    const lang =
         document.documentElement
-            .getAttribute("lang") || "ar"
-    ).toLowerCase()
-        .startsWith("en")
+            .getAttribute("lang") || "ar";
+
+    return lang.toLowerCase().startsWith("en")
         ? "en"
         : "ar";
 }
@@ -181,7 +150,7 @@ function updateStickyLanguage() {
 
     document
         .querySelectorAll(
-            "[data-ar][data-en]"
+            "#leaveMarkSection [data-ar][data-en]"
         )
         .forEach(element => {
 
@@ -200,8 +169,6 @@ function updateStickyLanguage() {
 }
 
 
-/* watch language changes */
-
 const languageObserver =
     new MutationObserver(
         updateStickyLanguage
@@ -215,20 +182,58 @@ languageObserver.observe(
     }
 );
 
-updateStickyLanguage();
+
+/* =========================================================
+   SECTION REVEAL
+   لا تظهر في أول فتح الموقع
+========================================================= */
+
+if (section) {
+
+    section.classList.add(
+        "sticky-section-hidden"
+    );
+
+    const sectionObserver =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (!entry.isIntersecting)
+                        return;
+
+                    section.classList.add(
+                        "is-visible"
+                    );
+
+                    sectionObserver.unobserve(
+                        section
+                    );
+
+                });
+
+            },
+            {
+                threshold: 0.08,
+                rootMargin:
+                    "0px 0px -80px 0px"
+            }
+        );
+
+    sectionObserver.observe(section);
+}
 
 
 /* =========================================================
-   FORM OPEN / CLOSE
+   FORM OPEN
 ========================================================= */
 
 function openNotePanel() {
 
     if (!formPanel) return;
 
-    formPanel.classList.add(
-        "is-open"
-    );
+    formPanel.classList.add("is-open");
 
     formPanel.setAttribute(
         "aria-hidden",
@@ -236,20 +241,20 @@ function openNotePanel() {
     );
 
     setTimeout(() => {
-
         nameInput?.focus();
-
-    }, 300);
+    }, 250);
 }
 
+
+/* =========================================================
+   FORM CLOSE
+========================================================= */
 
 function closeNotePanel() {
 
     if (!formPanel) return;
 
-    formPanel.classList.remove(
-        "is-open"
-    );
+    formPanel.classList.remove("is-open");
 
     formPanel.setAttribute(
         "aria-hidden",
@@ -274,8 +279,7 @@ formPanel?.addEventListener(
     event => {
 
         if (
-            event.target ===
-            formPanel
+            event.target === formPanel
         ) {
             closeNotePanel();
         }
@@ -283,46 +287,16 @@ formPanel?.addEventListener(
     }
 );
 
-
-/* =========================================================
-   ESC
-========================================================= */
 
 document.addEventListener(
     "keydown",
     event => {
 
-        if (
-            event.key === "Escape"
-        ) {
+        if (event.key === "Escape") {
             closeNotePanel();
         }
 
     }
-);
-
-
-/* =========================================================
-   COUNTER
-========================================================= */
-
-function updateCounter() {
-
-    if (!messageInput || !counter)
-        return;
-
-    const length =
-        messageInput.value.length;
-
-    counter.textContent =
-        `${length}/${MAX_MESSAGE_LENGTH}`;
-
-}
-
-
-messageInput?.addEventListener(
-    "input",
-    updateCounter
 );
 
 
@@ -343,7 +317,7 @@ function escapeHTML(value) {
 
 
 /* =========================================================
-   POSITION STORAGE
+   POSITIONS
 ========================================================= */
 
 function getSavedPositions() {
@@ -364,10 +338,7 @@ function getSavedPositions() {
 }
 
 
-function savePosition(
-    note,
-    id
-) {
+function savePosition(note, id) {
 
     const saved =
         getSavedPositions();
@@ -379,6 +350,7 @@ function savePosition(
 
         top:
             note.style.top
+
     };
 
     localStorage.setItem(
@@ -397,166 +369,110 @@ function createStickyNote(
     index
 ) {
 
+    if (!notesContainer)
+        return null;
+
     const note =
         document.createElement("article");
 
     const color =
-        NOTE_COLORS.includes(
-            data.color
-        )
+        NOTE_COLORS.includes(data.color)
             ? data.color
             : "navy";
-
 
     note.className =
         `onair-sticky-note sticky-note-${color}`;
 
-
     note.dataset.id =
         data.id;
-
 
     const saved =
         getSavedPositions();
 
-
     const defaultPositions = [
 
-        ["4%", "12%"],
-        ["27%", "7%"],
-        ["51%", "18%"],
-        ["76%", "10%"],
-        ["13%", "53%"],
-        ["38%", "62%"],
-        ["64%", "50%"],
-        ["84%", "62%"]
+        ["7%", "18%"],
+        ["29%", "10%"],
+        ["52%", "23%"],
+        ["76%", "13%"],
+
+        ["18%", "58%"],
+        ["43%", "68%"],
+        ["68%", "55%"],
+        ["86%", "72%"]
 
     ];
 
-
     const position =
         saved[data.id]
-        ? saved[data.id]
-        : {
+            ? saved[data.id]
+            : {
 
-            left:
-                defaultPositions[
-                    index %
-                    defaultPositions.length
-                ][0],
+                left:
+                    defaultPositions[
+                        index %
+                        defaultPositions.length
+                    ][0],
 
-            top:
-                defaultPositions[
-                    index %
-                    defaultPositions.length
-                ][1]
-        };
+                top:
+                    defaultPositions[
+                        index %
+                        defaultPositions.length
+                    ][1]
+
+            };
 
 
-    note.style.setProperty(
-        "--x",
-        position.left
-    );
+    note.style.left =
+        position.left;
 
-    note.style.setProperty(
-        "--y",
-        position.top
-    );
+    note.style.top =
+        position.top;
 
     note.style.setProperty(
         "--r",
         `${ROTATIONS[
-            index %
-            ROTATIONS.length
+            index % ROTATIONS.length
         ]}deg`
     );
 
 
     note.innerHTML = `
 
-        <div class="sticky-pin">
-        </div>
+        <div class="sticky-pin"></div>
 
         <div class="sticky-paper-content">
 
             <p>
-                ${escapeHTML(
-                    data.message
-                )}
+                ${escapeHTML(data.message)}
             </p>
 
         </div>
 
         <div class="sticky-author">
+
             — ${escapeHTML(data.name)}
+
         </div>
 
     `;
 
 
-    /* entrance */
-
     note.style.opacity = "0";
 
-    note.style.transform =
-        `
-        translate3d(
-            0,
-            30px,
-            0
-        )
-        rotate(
-            ${ROTATIONS[
-                index %
-                ROTATIONS.length
-            ]}deg
-        )
-        scale(.94)
-        `;
 
-
-    notesContainer.appendChild(
-        note
-    );
+    notesContainer.appendChild(note);
 
 
     requestAnimationFrame(() => {
 
         setTimeout(() => {
 
-            note.style.transition =
-                `
-                opacity .8s ease,
-                transform .9s
-                cubic-bezier(
-                    .16,
-                    1,
-                    .3,
-                    1
-                ),
-                box-shadow .3s ease,
-                filter .3s ease
-                `;
+            note.classList.add(
+                "is-visible"
+            );
 
-            note.style.opacity = "1";
-
-            note.style.transform =
-                `
-                translate3d(
-                    0,
-                    0,
-                    0
-                )
-                rotate(
-                    ${ROTATIONS[
-                        index %
-                        ROTATIONS.length
-                    ]}deg
-                )
-                scale(1)
-                `;
-
-        }, index * 100);
+        }, index * 80);
 
     });
 
@@ -566,19 +482,15 @@ function createStickyNote(
         data.id
     );
 
-
     return note;
 }
 
 
 /* =========================================================
-   DRAG
+   DRAG — DESKTOP MOUSE
 ========================================================= */
 
-function makeDraggable(
-    note,
-    id
-) {
+function makeDraggable(note, id) {
 
     let dragging = false;
 
@@ -592,6 +504,18 @@ function makeDraggable(
     note.addEventListener(
         "pointerdown",
         event => {
+
+            /*
+             * الموبايل لا يسحب النوتة.
+             * ده مقصود عشان الـ scroll ما يعلقش.
+             */
+
+            if (
+                event.pointerType === "touch"
+            ) {
+                return;
+            }
+
 
             if (
                 event.button !== undefined &&
@@ -607,7 +531,6 @@ function makeDraggable(
                 "is-dragging"
             );
 
-
             note.setPointerCapture(
                 event.pointerId
             );
@@ -616,7 +539,6 @@ function makeDraggable(
             const containerRect =
                 notesContainer
                     .getBoundingClientRect();
-
 
             const noteRect =
                 note.getBoundingClientRect();
@@ -632,7 +554,6 @@ function makeDraggable(
             startLeft =
                 noteRect.left -
                 containerRect.left;
-
 
             startTop =
                 noteRect.top -
@@ -678,7 +599,6 @@ function makeDraggable(
                 rect.width -
                 note.offsetWidth;
 
-
             const maxTop =
                 rect.height -
                 note.offsetHeight;
@@ -704,40 +624,22 @@ function makeDraggable(
                 );
 
 
-            const leftPercent =
-                (
-                    left /
-                    rect.width
-                ) * 100;
-
-
-            const topPercent =
-                (
-                    top /
-                    rect.height
-                ) * 100;
-
-
             note.style.left =
-                `${leftPercent}%`;
+                `${(left / rect.width) * 100}%`;
 
             note.style.top =
-                `${topPercent}%`;
+                `${(top / rect.height) * 100}%`;
 
         }
     );
 
 
-    function stopDragging(
-        event
-    ) {
+    function stopDragging(event) {
 
         if (!dragging)
             return;
 
-
         dragging = false;
-
 
         note.classList.remove(
             "is-dragging"
@@ -777,9 +679,11 @@ function makeDraggable(
    RENDER
 ========================================================= */
 
-function renderNotes(
-    notes
-) {
+function renderNotes(notes) {
+
+    if (!notesContainer)
+        return;
+
 
     notesContainer.innerHTML = "";
 
@@ -821,6 +725,10 @@ function renderNotes(
 
 async function loadStickyNotes() {
 
+    if (!notesContainer)
+        return;
+
+
     try {
 
         const {
@@ -853,152 +761,273 @@ async function loadStickyNotes() {
             data || []
         );
 
-    }
-
-    catch (error) {
-
-        console.error(
-            "Sticky Notes:",
-            error
-        );
-
-        notesContainer.innerHTML = "";
-
-        emptyState?.classList.remove(
-            "is-hidden"
-        );
-
-    }
-}
-
-async function submitStickyNote(event) {
-    event.preventDefault();
-
-    if (honeypot && honeypot.value.trim() !== "") {
-        return;
-    }
-
-    const name = stickyName.value.trim();
-    const message = stickyMessage.value.trim();
-    const color = stickyColor.value;
-
-    if (!name) {
-        showStickyStatus("اكتب اسمك الأول.", "error");
-        stickyName.focus();
-        return;
-    }
-
-    if (!message) {
-        showStickyStatus("اكتب الجملة اللي عايز تسيبها.", "error");
-        stickyMessage.focus();
-        return;
-    }
-
-    if (name.length > MAX_NAME_LENGTH) {
-        showStickyStatus(
-            `الاسم لازم يكون أقل من ${MAX_NAME_LENGTH} حرف.`,
-            "error"
-        );
-        return;
-    }
-
-    if (message.length > MAX_MESSAGE_LENGTH) {
-        showStickyStatus(
-            `الجملة طويلة جدًا. الحد الأقصى ${MAX_MESSAGE_LENGTH} حرف.`,
-            "error"
-        );
-        return;
-    }
-
-    if (!NOTE_COLORS.includes(color)) {
-        showStickyStatus("اختار لون الملاحظة.", "error");
-        return;
-    }
-
-    stickySubmit.disabled = true;
-    stickySubmit.classList.add("is-loading");
-
-    showStickyStatus("بنراجع كلمتك...");
-
-    try {
-
-        const { data, error } = await stickySupabase
-            .from("sticky_notes")
-            .insert({
-                name: name.slice(0, MAX_NAME_LENGTH),
-                message: message.slice(0, MAX_MESSAGE_LENGTH),
-                color: color,
-                approved: false
-            })
-            .select()
-            .single();
-
-        if (error) {
-            console.error("SUPABASE INSERT ERROR:", error);
-            throw error;
-        }
-
-        console.log("NOTE SAVED:", data);
-
-        stickyForm.reset();
-
-        stickyColor.value = "cream";
-
-        updateCounter();
-
-        showStickyStatus(
-            "وصلت كلمتك ، هنراجعها قبل ما تظهر في الأرشيف.",
-            "success"
-        );
-
-        setTimeout(() => {
-            showStickyStatus("");
-        }, 5000);
 
     } catch (error) {
 
-        console.error("Sticky Note Error:", error);
-
-        showStickyStatus(
-            "حصلت مشكلة في حفظ الرسالة.",
-            "error"
+        console.error(
+            "SUPABASE LOAD ERROR:",
+            error
         );
 
-    } finally {
+        renderNotes([]);
 
-        stickySubmit.disabled = false;
-        stickySubmit.classList.remove("is-loading");
     }
 }
-
 
 
 /* =========================================================
-   STATUS
+   SUBMIT
+   الرسالة تدخل Supabase كـ approved:false
 ========================================================= */
 
-function showStatus(
-    message,
-    type = ""
-) {
+async function submitStickyNote(event) {
 
-    if (!status)
+    event.preventDefault();
+
+
+    if (
+        honeypot &&
+        honeypot.value.trim() !== ""
+    ) {
+        return;
+    }
+
+
+    const name =
+        nameInput?.value.trim() || "";
+
+    const message =
+        messageInput?.value.trim() || "";
+
+    const color =
+        colorInput?.value || "navy";
+
+
+    if (!name) {
+
+        showStatus(
+            "اكتبي اسمك الأول.",
+            "error"
+        );
+
+        nameInput?.focus();
+
+        return;
+    }
+
+
+    if (!message) {
+
+        showStatus(
+            "اكتبي الرسالة اللي عايزة تسيبيها.",
+            "error"
+        );
+
+        messageInput?.focus();
+
+        return;
+    }
+
+
+    if (
+        name.length >
+        MAX_NAME_LENGTH
+    ) {
+
+        showStatus(
+            `الاسم لازم يكون أقل من ${MAX_NAME_LENGTH} حرف.`,
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (
+        message.length >
+        MAX_MESSAGE_LENGTH
+    ) {
+
+        showStatus(
+            `الرسالة طويلة جدًا. الحد الأقصى ${MAX_MESSAGE_LENGTH} حرف.`,
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (
+        !NOTE_COLORS.includes(color)
+    ) {
+
+        showStatus(
+            "اختاري لون الرسالة.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (!submitButton)
         return;
 
-    status.textContent =
-        message;
 
-    status.className =
-        "sticky-form-status";
+    submitButton.disabled =
+        true;
 
-    if (type) {
+    submitButton.classList.add(
+        "is-loading"
+    );
 
-        status.classList.add(
-            type
+
+    showStatus(
+        "بنحفظ كلمتك في الأرشيف..."
+    );
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await stickySupabase
+
+                .from("sticky_notes")
+
+                .insert({
+
+                    name:
+                        name.slice(
+                            0,
+                            MAX_NAME_LENGTH
+                        ),
+
+                    message:
+                        message.slice(
+                            0,
+                            MAX_MESSAGE_LENGTH
+                        ),
+
+                    color:
+                        color,
+
+                    /*
+                     * مهم جدًا:
+                     * الرسالة لا تظهر مباشرة.
+                     * لازم تتوافق عليها الأول.
+                     */
+
+                    approved:
+                        false
+
+                })
+
+                .select(
+                    "id,name,message,color,approved,created_at"
+                )
+                .single();
+
+
+        if (error) {
+
+            console.error(
+                "SUPABASE INSERT ERROR:",
+                error
+            );
+
+            throw error;
+        }
+
+
+        console.log(
+            "NOTE WAITING FOR APPROVAL:",
+            data
+        );
+
+
+        form?.reset();
+
+
+        if (colorInput) {
+            colorInput.value =
+                "navy";
+        }
+
+
+        document
+            .querySelectorAll(
+                ".sticky-color-option"
+            )
+            .forEach(
+                button => {
+
+                    button.classList.toggle(
+                        "is-selected",
+                        button.dataset.color ===
+                        "navy"
+                    );
+
+                }
+            );
+
+
+        updateCounter();
+
+
+        showStatus(
+            getCurrentLanguage() === "en"
+                ? "Your message was received and is waiting for approval."
+                : "وصلت رسالتك، وهتظهر بعد الموافقة عليها.",
+            "success"
+        );
+
+
+        setTimeout(
+            closeNotePanel,
+            1800
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "STICKY NOTE ERROR:",
+            error
+        );
+
+
+        showStatus(
+            getCurrentLanguage() === "en"
+                ? "We couldn't save your message. Check the database policy."
+                : "الرسالة ما اتحفظتش. راجعي إعدادات Supabase.",
+            "error"
+        );
+
+
+    } finally {
+
+        submitButton.disabled =
+            false;
+
+        submitButton.classList.remove(
+            "is-loading"
         );
 
     }
 }
+
+
+/* =========================================================
+   FORM SUBMIT
+========================================================= */
+
+form?.addEventListener(
+    "submit",
+    submitStickyNote
+);
 
 
 /* =========================================================
@@ -1018,6 +1047,15 @@ document
 
                     const color =
                         button.dataset.color;
+
+
+                    if (
+                        !NOTE_COLORS.includes(
+                            color
+                        )
+                    ) {
+                        return;
+                    }
 
 
                     colorInput.value =
@@ -1063,11 +1101,6 @@ stickySupabase
         },
         payload => {
 
-            /*
-                Reload because the new message
-                might still be unapproved.
-            */
-
             if (
                 payload.new?.approved === true
             ) {
@@ -1085,12 +1118,7 @@ stickySupabase
             schema: "public",
             table: "sticky_notes"
         },
-        payload => {
-
-            /*
-                This is what makes a moderator
-                approval appear automatically.
-            */
+        () => {
 
             loadStickyNotes();
 
@@ -1108,6 +1136,8 @@ document.addEventListener(
     () => {
 
         updateCounter();
+
+        updateStickyLanguage();
 
         loadStickyNotes();
 

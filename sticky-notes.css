@@ -1235,3 +1235,140 @@
     }
 
 }
+@media (max-width: 700px) {
+
+    .sticky-notes-container {
+        touch-action: pan-y;
+        overflow: hidden;
+    }
+
+    .onair-sticky-note {
+        touch-action: pan-y;
+        cursor: default;
+    }
+
+}
+/* =========================================================
+   ON AIR — LEAVE YOUR MARK
+   NO EXTRA FRAME
+========================================================= */
+
+.leave-mark-section {
+    width: 100% !important;
+    margin: 0 !important;
+    padding:
+        150px 0 120px !important;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    background: transparent !important;
+}
+
+
+/* السكشن جزء من كادر الموقع نفسه */
+
+.sticky-wall-wrapper {
+    width: 100% !important;
+
+    border: none !important;
+    outline: none !important;
+
+    box-shadow: none !important;
+
+    border-radius: 0 !important;
+
+    background:
+        transparent !important;
+}
+
+
+/* مفيش كادر داخلي */
+
+.sticky-wall-wrapper::before {
+    display: none !important;
+}
+
+.sticky-wall-wrapper::after {
+    display: none !important;
+}
+
+
+/* مفيش corners */
+
+.sticky-wall-corner {
+    display: none !important;
+}
+/* =========================================================
+   ON AIR — STICKY NOTES
+   FINAL COLORS — NO GREEN
+========================================================= */
+
+.onair-sticky-note.sticky-note-navy {
+    background:
+        linear-gradient(
+            145deg,
+            #172F52 0%,
+            #112548 60%,
+            #09192D 100%
+        ) !important;
+
+    color: #F3DFC2 !important;
+}
+
+
+.onair-sticky-note.sticky-note-cream {
+    background:
+        linear-gradient(
+            145deg,
+            #FFF7EE 0%,
+            #F3DFC2 65%,
+            #DED0C0 100%
+        ) !important;
+
+    color: #112548 !important;
+}
+
+
+.onair-sticky-note.sticky-note-beige {
+    background:
+        linear-gradient(
+            145deg,
+            #E9DED0 0%,
+            #D8C8B5 65%,
+            #C5B5A4 100%
+        ) !important;
+
+    color: #112548 !important;
+}
+
+
+.onair-sticky-note.sticky-note-dark {
+    background:
+        linear-gradient(
+            145deg,
+            #17202B 0%,
+            #0B1824 65%,
+            #050C14 100%
+        ) !important;
+
+    color: #F3DFC2 !important;
+}
+
+
+/* =========================================================
+   أي نوت قديمة لونها Teal تتحول لـ Navy
+========================================================= */
+
+.onair-sticky-note.sticky-note-teal {
+    background:
+        linear-gradient(
+            145deg,
+            #172F52 0%,
+            #112548 60%,
+            #09192D 100%
+        ) !important;
+
+    color: #F3DFC2 !important;
+}
