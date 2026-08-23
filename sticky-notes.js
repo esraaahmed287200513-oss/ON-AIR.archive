@@ -898,26 +898,17 @@ async function submitStickyNote(event) {
         approved: false
     });
 
-if (error) {
-    console.error(
-        "SUPABASE INSERT ERROR:",
-        error
-    );
+     if (error) {
+         console.error(
+             "SUPABASE INSERT ERROR:",
+             error
+         );
 
-    throw error;
-}
+       throw error;
+     }
 
 
-        if (error) {
-
-            console.error(
-                "SUPABASE INSERT ERROR:",
-                error
-            );
-
-            throw error;
-        }
-
+     
 
         console.log(
             "NOTE WAITING FOR APPROVAL:",
