@@ -11235,3 +11235,1426 @@ html[lang="en"]
             1fr !important;
     }
 }
+/* =========================================================
+   ON AIR — FRAME 002
+   CINEMATIC TEAM IDENTITY + CREW
+   FINAL VISUAL OVERHAUL
+========================================================= */
+
+
+/* =========================================================
+   01 — TEAM IDENTITY / FRAME 002
+========================================================= */
+
+.team-identity {
+    position: relative !important;
+
+    width: 100% !important;
+    min-height: 100svh !important;
+
+    margin: 0 !important;
+    padding: 120px 30px 90px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 0 !important;
+
+    overflow: hidden !important;
+
+    isolation: isolate !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(3, 10, 17, .30),
+            rgba(3, 10, 17, .68)
+        ),
+        url("images/crew-background.png") center center / cover no-repeat !important;
+
+    border-top:
+        1px solid
+        rgba(216, 200, 181, .10);
+
+    border-bottom:
+        1px solid
+        rgba(216, 200, 181, .12);
+}
+
+
+/* cinematic dark layer */
+
+.team-identity::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -3;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(78, 132, 132, .12),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 50% 50%,
+            transparent 25%,
+            rgba(0, 0, 0, .78) 100%
+        );
+}
+
+
+/* cinematic grid */
+
+.team-identity::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    opacity: .34;
+
+    background-image:
+        linear-gradient(
+            rgba(78, 132, 132, .045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(78, 132, 132, .045) 1px,
+            transparent 1px
+        );
+
+    background-size: 34px 34px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent,
+            black 15%,
+            black 85%,
+            transparent
+        );
+}
+
+
+/* =========================================================
+   02 — CAMERA CORNERS
+========================================================= */
+
+.team-identity-content::before,
+.team-identity-content::after {
+    content: "";
+
+    position: absolute;
+
+    width: 44px;
+    height: 44px;
+
+    pointer-events: none;
+
+    opacity: .65;
+}
+
+
+/* top left */
+
+.team-identity-content::before {
+    top: -55px;
+    left: -45vw;
+
+    border-top:
+        1px solid
+        rgba(216, 200, 181, .58);
+
+    border-left:
+        1px solid
+        rgba(216, 200, 181, .58);
+}
+
+
+/* top right */
+
+.team-identity-content::after {
+    top: -55px;
+    right: -45vw;
+
+    border-top:
+        1px solid
+        rgba(216, 200, 181, .58);
+
+    border-right:
+        1px solid
+        rgba(216, 200, 181, .58);
+}
+
+
+/* =========================================================
+   03 — CONTENT
+========================================================= */
+
+.team-identity-content {
+    position: relative !important;
+
+    z-index: 5 !important;
+
+    width: min(900px, 100%) !important;
+    max-width: 900px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    text-align: center !important;
+
+    direction: rtl !important;
+}
+
+
+/* =========================================================
+   04 — LOGO
+========================================================= */
+
+.team-identity-logo {
+    position: relative !important;
+
+    width: clamp(170px, 22vw, 250px) !important;
+    height: clamp(170px, 22vw, 250px) !important;
+
+    margin: 0 auto 38px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    transform: none !important;
+
+    z-index: 10 !important;
+}
+
+
+/* logo glow */
+
+.team-identity-logo::before {
+    content: "";
+
+    position: absolute;
+    inset: -35px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(216, 200, 181, .13),
+            transparent 67%
+        );
+
+    filter: blur(10px);
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* logo image */
+
+.team-identity-logo img {
+    width: 100% !important;
+    height: 100% !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    object-fit: contain !important;
+
+    display: block !important;
+
+    filter:
+        drop-shadow(
+            0 22px 45px
+            rgba(0,0,0,.45)
+        );
+
+    transition:
+        transform .8s
+        cubic-bezier(.16,1,.3,1),
+        filter .8s ease !important;
+}
+
+
+.team-identity-logo:hover img {
+    transform:
+        scale(1.035)
+        translateY(-4px) !important;
+
+    filter:
+        drop-shadow(
+            0 28px 55px
+            rgba(0,0,0,.55)
+        );
+}
+
+
+/* =========================================================
+   05 — LABEL
+========================================================= */
+
+.team-identity-label {
+    position: relative !important;
+
+    margin:
+        0 0 20px !important;
+
+    padding: 0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 9px !important;
+
+    direction: rtl !important;
+
+    color:
+        rgba(216, 200, 181, .70) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 8px !important;
+
+    letter-spacing: .28em !important;
+
+    text-transform: uppercase;
+}
+
+
+/* red / teal status dot */
+
+.team-identity-label .label-dot {
+    width: 6px !important;
+    height: 6px !important;
+
+    flex: 0 0 6px;
+
+    border-radius: 50%;
+
+    background:
+        #D92832 !important;
+
+    box-shadow:
+        0 0 12px
+        rgba(217,40,50,.45);
+
+    animation:
+        teamIdentityRec
+        1.4s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes teamIdentityRec {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .32;
+    }
+}
+
+
+/* =========================================================
+   06 — MAIN TITLE
+========================================================= */
+
+.team-identity-title {
+    position: relative !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    gap: 0 !important;
+
+    text-align: center !important;
+
+    direction: rtl !important;
+}
+
+
+/* title lines */
+
+.team-identity-title span {
+    display: block !important;
+
+    margin: 0 !important;
+
+    color:
+        #F3DFC2 !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        clamp(44px, 7vw, 88px) !important;
+
+    font-weight:
+        400 !important;
+
+    line-height:
+        .98 !important;
+
+    letter-spacing:
+        -.045em !important;
+
+    white-space:
+        nowrap !important;
+
+    text-shadow:
+        0 12px 45px
+        rgba(0,0,0,.45);
+}
+
+
+/* second and third lines slightly lighter */
+
+.team-identity-title span:nth-child(2) {
+    opacity: .88;
+}
+
+.team-identity-title span:nth-child(3) {
+    opacity: .72;
+}
+
+
+/* =========================================================
+   07 — DIVIDER
+========================================================= */
+
+.team-identity-line {
+    width:
+        clamp(70px, 9vw, 115px) !important;
+
+    height: 1px !important;
+
+    margin:
+        30px auto 0 !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(78,132,132,.85),
+            transparent
+        ) !important;
+
+    box-shadow:
+        0 0 15px
+        rgba(78,132,132,.25);
+
+    opacity: .8;
+}
+
+
+/* =========================================================
+   08 — FOOTER META
+========================================================= */
+
+.team-identity-footer {
+    position: relative !important;
+
+    width: min(720px, 100%) !important;
+
+    margin:
+        24px auto 0 !important;
+
+    padding: 0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap:
+        clamp(20px, 4vw, 55px) !important;
+
+    direction: rtl !important;
+
+    flex-wrap: nowrap !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* little separators */
+
+.team-identity-footer span {
+    position: relative;
+
+    color:
+        rgba(216,200,181,.58) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        clamp(9px, .9vw, 12px) !important;
+
+    font-weight: 400 !important;
+
+    transition:
+        color .3s ease,
+        transform .3s ease;
+}
+
+
+.team-identity-footer span:hover {
+    color:
+        var(--cream) !important;
+
+    transform:
+        translateY(-2px);
+}
+
+
+.team-identity-footer span:not(:last-child)::after {
+    content: "·";
+
+    position: absolute;
+
+    left:
+        calc(
+            100% +
+            clamp(9px, 2vw, 24px)
+        );
+
+    color:
+        rgba(78,132,132,.55);
+}
+
+
+/* =========================================================
+   09 — FRAME META
+========================================================= */
+
+.team-identity::marker {
+    display: none;
+}
+
+
+/* top technical label */
+
+.team-identity > .team-identity-logo::after {
+    content:
+        "FRAME 002   /   TEAM FILE";
+
+    position: absolute;
+
+    top:
+        calc(100% + 25px);
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: max-content;
+
+    color:
+        rgba(216,200,181,.38);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .22em;
+
+    direction: ltr;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   10 — CREW SECTION
+========================================================= */
+
+.crew-section {
+    position: relative !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+
+    padding:
+        125px 6vw 150px !important;
+
+    overflow: hidden !important;
+
+    isolation: isolate !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(3,10,17,.72),
+            rgba(3,10,17,.88)
+        ),
+        url("images/crew-background.png")
+        center center / cover no-repeat !important;
+
+    border-top:
+        1px solid
+        rgba(216,200,181,.10);
+}
+
+
+/* dark atmosphere */
+
+.crew-section::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(78,132,132,.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.25),
+            transparent 50%,
+            rgba(0,0,0,.25)
+        );
+}
+
+
+/* subtle grid */
+
+.crew-section::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    opacity: .22;
+
+    background-image:
+        linear-gradient(
+            rgba(78,132,132,.04) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(78,132,132,.04) 1px,
+            transparent 1px
+        );
+
+    background-size: 34px 34px;
+}
+
+
+/* =========================================================
+   11 — FILM LINE
+========================================================= */
+
+.crew-film-line {
+    position: relative !important;
+
+    width: min(1250px, 100%) !important;
+
+    margin:
+        0 auto 90px !important;
+
+    padding:
+        12px 0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    gap: 20px !important;
+
+    border-top:
+        1px solid
+        rgba(216,200,181,.16) !important;
+
+    border-bottom:
+        1px solid
+        rgba(216,200,181,.16) !important;
+
+    color:
+        rgba(216,200,181,.36) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 7px !important;
+
+    letter-spacing: .28em !important;
+}
+
+
+/* =========================================================
+   12 — CREW INTRO
+========================================================= */
+
+.crew-intro {
+    position: relative !important;
+
+    width: min(1000px, 100%) !important;
+
+    margin:
+        0 auto 75px !important;
+
+    text-align: center !important;
+}
+
+
+/* kicker */
+
+.crew-kicker {
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 10px !important;
+
+    margin-bottom: 22px !important;
+
+    color:
+        var(--teal) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 8px !important;
+
+    letter-spacing: .28em !important;
+}
+
+
+/* red dot */
+
+.crew-kicker .rec-dot,
+.crew-kicker .crew-rec-dot {
+    width: 6px !important;
+    height: 6px !important;
+
+    background:
+        #D92832 !important;
+
+    box-shadow:
+        0 0 10px
+        rgba(217,40,50,.4);
+}
+
+
+/* main heading */
+
+.crew-intro h2 {
+    margin: 0 !important;
+
+    color:
+        #F3DFC2 !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        clamp(42px, 6vw, 82px) !important;
+
+    font-weight:
+        400 !important;
+
+    line-height:
+        1.05 !important;
+
+    letter-spacing:
+        -.045em !important;
+
+    text-shadow:
+        0 14px 45px
+        rgba(0,0,0,.4);
+}
+
+
+/* subtitle */
+
+.crew-intro p {
+    margin:
+        20px auto 0 !important;
+
+    max-width: 600px;
+
+    color:
+        rgba(216,200,181,.58) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        clamp(10px, 1vw, 13px) !important;
+
+    line-height: 1.9 !important;
+}
+
+
+/* =========================================================
+   13 — CREW GRID
+========================================================= */
+
+.crew-grid {
+    position: relative !important;
+
+    width:
+        min(1180px, 100%) !important;
+
+    margin:
+        0 auto !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr)) !important;
+
+    gap:
+        18px !important;
+}
+
+
+/* =========================================================
+   14 — CREW CARD
+========================================================= */
+
+.crew-card {
+    height:
+        380px !important;
+
+    perspective:
+        1400px !important;
+
+    cursor:
+        pointer;
+}
+
+
+/* inner */
+
+.crew-card-inner {
+    width: 100% !important;
+    height: 100% !important;
+
+    transition:
+        transform .9s
+        cubic-bezier(.16,1,.3,1) !important;
+}
+
+
+/* faces */
+
+.crew-card-face {
+    border:
+        1px solid
+        rgba(216,200,181,.13) !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13,31,48,.72),
+            rgba(3,10,17,.88)
+        ) !important;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.28) !important;
+}
+
+
+/* front */
+
+.crew-card-front {
+    padding:
+        24px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,36,55,.82),
+            rgba(4,12,20,.92)
+        ) !important;
+}
+
+
+/* inner frame */
+
+.crew-card-front::before {
+    inset:
+        11px !important;
+
+    border:
+        1px solid
+        rgba(216,200,181,.055) !important;
+}
+
+
+/* top metadata */
+
+.crew-card-top {
+    color:
+        rgba(216,200,181,.38) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 6px !important;
+
+    letter-spacing: .22em !important;
+}
+
+
+/* icon */
+
+.crew-icon {
+    color:
+        var(--cream) !important;
+
+    opacity:
+        .075 !important;
+
+    font-size:
+        72px !important;
+
+    filter:
+        grayscale(1)
+        brightness(.9) !important;
+}
+
+
+.crew-card:hover .crew-icon {
+    opacity:
+        .17 !important;
+
+    transform:
+        translate(-50%, -65%)
+        scale(1.08) !important;
+}
+
+
+/* name */
+
+.crew-name {
+    color:
+        #F3DFC2 !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        clamp(22px, 2.1vw, 31px) !important;
+
+    font-weight:
+        500 !important;
+
+    line-height: 1.2 !important;
+}
+
+
+/* role */
+
+.crew-meta {
+    color:
+        rgba(78,132,132,.95) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        6px !important;
+
+    letter-spacing:
+        .16em !important;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* bottom */
+
+.crew-card-bottom {
+    margin-top:
+        20px !important;
+
+    padding-top:
+        12px !important;
+
+    border-top:
+        1px solid
+        rgba(216,200,181,.09) !important;
+
+    color:
+        rgba(216,200,181,.25) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        5px !important;
+
+    letter-spacing:
+        .20em !important;
+}
+
+
+/* =========================================================
+   15 — CARD BACK
+========================================================= */
+
+.crew-card-back {
+    padding:
+        30px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #4e8484,
+            #315c5d
+        ) !important;
+
+    color:
+        #061016 !important;
+}
+
+
+.crew-card-back::before {
+    inset:
+        12px !important;
+
+    border:
+        1px solid
+        rgba(3,10,17,.22) !important;
+}
+
+
+.back-label {
+    margin-bottom:
+        24px !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        7px !important;
+
+    letter-spacing:
+        .28em !important;
+}
+
+
+.crew-card-back h3 {
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        30px !important;
+}
+
+
+.crew-card-back p {
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        12px !important;
+}
+
+
+/* portfolio */
+
+.portfolio-link {
+    min-width:
+        150px !important;
+
+    padding:
+        10px 18px !important;
+
+    border:
+        1px solid
+        rgba(3,10,17,.38) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        7px !important;
+
+    letter-spacing:
+        .14em !important;
+}
+
+
+/* =========================================================
+   16 — MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .team-identity {
+        min-height:
+            100svh !important;
+
+        padding:
+            95px 20px 75px !important;
+
+        background-position:
+            center center !important;
+    }
+
+
+    .team-identity-logo {
+        width:
+            165px !important;
+
+        height:
+            165px !important;
+
+        margin:
+            0 auto 42px !important;
+    }
+
+
+    .team-identity-logo::after {
+        top:
+            calc(100% + 20px);
+
+        font-size:
+            5px;
+    }
+
+
+    .team-identity-label {
+        font-size:
+            6px !important;
+
+        letter-spacing:
+            .20em !important;
+
+        margin-bottom:
+            17px !important;
+    }
+
+
+    .team-identity-title span {
+        font-size:
+            clamp(
+                39px,
+                11vw,
+                52px
+            ) !important;
+
+        line-height:
+            1.02 !important;
+    }
+
+
+    .team-identity-line {
+        margin-top:
+            25px !important;
+
+        width:
+            65px !important;
+    }
+
+
+    .team-identity-footer {
+        width:
+            100% !important;
+
+        gap:
+            12px !important;
+
+        flex-wrap:
+            wrap !important;
+
+        white-space:
+            normal !important;
+    }
+
+
+    .team-identity-footer span {
+        font-size:
+            8px !important;
+    }
+
+
+    .team-identity-footer span:not(:last-child)::after {
+        display:
+            none;
+    }
+
+
+    /* camera corners */
+
+    .team-identity-content::before {
+        top:
+            -48px;
+
+        left:
+            -44vw;
+
+        width:
+            32px;
+
+        height:
+            32px;
+    }
+
+
+    .team-identity-content::after {
+        top:
+            -48px;
+
+        right:
+            -44vw;
+
+        width:
+            32px;
+
+        height:
+            32px;
+    }
+
+
+    /* CREW */
+
+    .crew-section {
+        padding:
+            90px 18px 110px !important;
+    }
+
+
+    .crew-film-line {
+        margin-bottom:
+            70px !important;
+
+        font-size:
+            5px !important;
+
+        letter-spacing:
+            .18em !important;
+    }
+
+
+    .crew-intro {
+        margin-bottom:
+            55px !important;
+    }
+
+
+    .crew-kicker {
+        font-size:
+            6px !important;
+
+        letter-spacing:
+            .18em !important;
+    }
+
+
+    .crew-intro h2 {
+        font-size:
+            clamp(
+                36px,
+                10vw,
+                50px
+            ) !important;
+    }
+
+
+    .crew-intro p {
+        font-size:
+            10px !important;
+
+        line-height:
+            1.9 !important;
+    }
+
+
+    /* one column = cinematic vertical archive */
+
+    .crew-grid {
+        grid-template-columns:
+            1fr !important;
+
+        gap:
+            14px !important;
+    }
+
+
+    .crew-card {
+        height:
+            330px !important;
+    }
+
+
+    .crew-card-front {
+        padding:
+            21px !important;
+    }
+
+
+    .crew-name {
+        font-size:
+            25px !important;
+    }
+
+
+    .crew-meta {
+        font-size:
+            5px !important;
+
+        letter-spacing:
+            .12em !important;
+    }
+
+
+    .crew-icon {
+        font-size:
+            68px !important;
+    }
+
+}
+
+
+/* =========================================================
+   17 — VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .team-identity {
+        padding:
+            85px 15px 65px !important;
+    }
+
+
+    .team-identity-logo {
+        width:
+            145px !important;
+
+        height:
+            145px !important;
+
+        margin-bottom:
+            38px !important;
+    }
+
+
+    .team-identity-title span {
+        font-size:
+            36px !important;
+    }
+
+
+    .team-identity-footer span {
+        font-size:
+            7px !important;
+    }
+
+
+    .crew-section {
+        padding:
+            80px 14px 95px !important;
+    }
+
+
+    .crew-card {
+        height:
+            315px !important;
+    }
+
+}
+
+
+/* =========================================================
+   18 — REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .team-identity-label .label-dot {
+        animation:
+            none !important;
+    }
+
+    .team-identity-logo img,
+    .crew-card-inner,
+    .crew-icon {
+        transition:
+            none !important;
+    }
+
+}

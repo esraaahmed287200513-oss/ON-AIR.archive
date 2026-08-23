@@ -1,25 +1,40 @@
 /* =========================================================
-   ON AIR — CREW / TEAM IDENTITY
-   CINEMATIC ARCHIVE
+   ON AIR
+   TEAM IDENTITY + CREW
+   CINEMATIC REBUILD
 ========================================================= */
 
-.crew-section {
-    --crew-navy: #07111d;
-    --crew-deep: #030910;
-    --crew-cream: #f7ede3;
-    --crew-beige: #e1d7cc;
-    --crew-teal: #4eb484;
-    --crew-gray: #6d6d6d;
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+.onair-team-stage {
+
+    --navy: #06121c;
+    --navy-deep: #020a11;
+
+    --gold: #c9a77d;
+    --gold-light: #e6cda9;
+    --gold-dim: #927654;
+
+    --cream: #f0dfc7;
+
+    --red: #b51f29;
 
     position: relative;
+
     width: 100%;
     min-height: 100vh;
+
     overflow: hidden;
 
     background:
-        #07111d;
+        #06121c;
 
-    color: var(--crew-cream);
+    color: var(--cream);
 
     font-family:
         "Cairo",
@@ -31,670 +46,338 @@
 
 
 /* =========================================================
-   BACKGROUND IMAGE
+   BACKGROUND
 ========================================================= */
 
-.crew-bg {
+.onair-team-bg {
+
     position: absolute;
+
     inset: 0;
 
-    z-index: -5;
+    z-index: -10;
 
     background-image:
         url("images/crew-background.png");
 
     background-size: cover;
-    background-position: center center;
+
+    background-position:
+        center center;
+
     background-repeat: no-repeat;
 
-    transform: scale(1.015);
+    transform:
+        scale(1.015);
 }
 
 
 /* =========================================================
-   ATMOSPHERE
+   CINEMATIC DARK VIGNETTE
 ========================================================= */
 
-.crew-vignette {
+.onair-team-vignette {
+
     position: absolute;
+
     inset: 0;
 
-    z-index: -4;
+    z-index: -9;
 
     pointer-events: none;
 
     background:
+
+        /* Light behind logo */
         radial-gradient(
-            circle at 48% 48%,
+            ellipse 42% 38% at 50% 29%,
+            rgba(224, 174, 115, .22),
+            rgba(224, 174, 115, .07) 42%,
+            transparent 75%
+        ),
+
+        /* Dark edges */
+        radial-gradient(
+            ellipse at center,
             transparent 28%,
-            rgba(0, 0, 0, 0.18) 60%,
-            rgba(0, 0, 0, 0.72) 100%
+            rgba(0, 6, 11, .32) 62%,
+            rgba(0, 5, 10, .80) 100%
+        ),
+
+        /* Overall dark cinematic layer */
+        linear-gradient(
+            180deg,
+            rgba(2, 9, 15, .32) 0%,
+            rgba(3, 12, 19, .16) 38%,
+            rgba(2, 8, 14, .54) 100%
         );
-}
-
-
-.crew-scanlines {
-    position: absolute;
-    inset: 0;
-
-    z-index: 20;
-
-    pointer-events: none;
-
-    opacity: 0.08;
-
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            transparent 0,
-            transparent 3px,
-            rgba(247, 237, 227, 0.16) 4px
-        );
-
-    mix-blend-mode: screen;
 }
 
 
 /* =========================================================
-   TOP TECH
+   FILM GRAIN
 ========================================================= */
 
-.crew-tech-top {
+.onair-team-grain {
+
     position: absolute;
 
-    top: 28px;
-    left: 52px;
-    right: 52px;
+    inset: 0;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    z-index: 40;
+
+    pointer-events: none;
+
+    opacity: .075;
+
+    background-image:
+
+        repeating-radial-gradient(
+            circle at 0 0,
+            rgba(255,255,255,.25) 0,
+            rgba(255,255,255,.25) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    mix-blend-mode:
+        overlay;
+}
+
+
+/* =========================================================
+   CAMERA CORNERS
+========================================================= */
+
+.onair-corner {
+
+    position: absolute;
+
+    width: 37px;
+    height: 37px;
 
     z-index: 30;
 
-    font-family: "Space Mono", monospace;
+    opacity: .8;
 
-    font-size: 13px;
-    letter-spacing: 0.14em;
-
-    color: var(--crew-cream);
-
-    text-transform: uppercase;
+    pointer-events: none;
 }
 
 
-.crew-tech-left,
-.crew-tech-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.onair-corner-tl {
+
+    top: 29px;
+    left: 23px;
+
+    border-top:
+        2px solid var(--gold);
+
+    border-left:
+        2px solid var(--gold);
 }
 
 
-.crew-separator {
-    opacity: 0.45;
+.onair-corner-tr {
+
+    top: 29px;
+    right: 23px;
+
+    border-top:
+        2px solid var(--gold);
+
+    border-right:
+        2px solid var(--gold);
 }
 
 
-.crew-rec {
-    display: flex;
-    align-items: center;
-    gap: 9px;
+.onair-corner-bl {
+
+    bottom: 26px;
+    left: 23px;
+
+    border-bottom:
+        2px solid var(--gold);
+
+    border-left:
+        2px solid var(--gold);
 }
 
 
-.crew-rec i {
-    width: 9px;
-    height: 9px;
+.onair-corner-br {
 
-    display: inline-block;
+    bottom: 26px;
+    right: 23px;
 
-    border-radius: 50%;
+    border-bottom:
+        2px solid var(--gold);
 
-    background: #d92832;
-
-    box-shadow:
-        0 0 10px rgba(217, 40, 50, 0.7);
-
-    animation: crewRecPulse 1.8s ease-in-out infinite;
-}
-
-
-@keyframes crewRecPulse {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.35;
-    }
-
+    border-right:
+        2px solid var(--gold);
 }
 
 
 /* =========================================================
-   MAIN LAYOUT
+   TOP LOGO
 ========================================================= */
 
-.crew-main {
+.onair-identity {
+
     position: relative;
 
-    width: min(1400px, calc(100% - 160px));
+    z-index: 10;
 
-    min-height: 100vh;
+    width: min(
+        1400px,
+        calc(100% - 80px)
+    );
 
     margin: 0 auto;
 
-    padding:
-        125px
-        0
-        70px;
+    padding-top: 65px;
 
-    display: grid;
-
-    grid-template-columns:
-        minmax(460px, 0.88fr)
-        minmax(620px, 1.12fr);
-
-    gap: 70px;
-
-    align-items: center;
+    text-align: center;
 }
 
 
 /* =========================================================
-   LEFT IDENTITY
+   LOGO
 ========================================================= */
 
-.crew-identity-panel {
+.onair-logo-light {
+
     position: relative;
-
-    min-height: 760px;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: flex-start;
-
-    padding-top: 20px;
-}
-
-
-.crew-index {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    margin-bottom: 30px;
-
-    font-family: "Space Mono", monospace;
-
-    font-size: 14px;
-
-    letter-spacing: 0.12em;
-
-    color: var(--crew-beige);
-}
-
-
-.crew-index i {
-    width: 48px;
-    height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--crew-teal),
-            transparent
-        );
-}
-
-
-.crew-identity-heading h2 {
-    margin: 0;
-
-    font-size: clamp(58px, 5.4vw, 92px);
-
-    line-height: 0.95;
-
-    font-weight: 400;
-
-    letter-spacing: -0.055em;
-
-    color: var(--crew-cream);
-}
-
-
-.crew-identity-en {
-    margin-top: 20px;
-
-    font-family: "Space Mono", monospace;
-
-    font-size: clamp(15px, 1.2vw, 22px);
-
-    letter-spacing: 0.42em;
-
-    color: var(--crew-teal);
-
-    direction: ltr;
-
-    text-align: left;
-
-    opacity: 0.9;
-}
-
-
-.crew-identity-text {
-    margin: 34px 0 0;
-
-    max-width: 430px;
-
-    font-size: 19px;
-
-    line-height: 1.9;
-
-    font-weight: 400;
-
-    color: var(--crew-beige);
-}
-
-
-/* =========================================================
-   LOGO STAGE
-========================================================= */
-
-.crew-logo-stage {
-    position: relative;
-
-    width: 100%;
-
-    min-height: 430px;
-
-    margin-top: 35px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-}
-
-
-.crew-logo-glow {
-    position: absolute;
 
     width: 330px;
-    height: 280px;
 
-    border-radius: 50%;
+    margin:
+        0 auto;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.onair-logo-light::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 260px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
 
     background:
+
         radial-gradient(
             ellipse,
-            rgba(247, 237, 227, 0.24),
-            rgba(78, 180, 132, 0.08) 40%,
+            rgba(224, 174, 120, .35),
+            rgba(224, 174, 120, .11) 35%,
             transparent 70%
         );
 
-    filter: blur(18px);
-
-    opacity: 0.85;
-}
-
-
-.crew-logo-board {
-    position: relative;
-
-    z-index: 3;
-
-    width: min(430px, 78%);
-
-    aspect-ratio: 1.35 / 1;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 35px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #e9d5bd 0%,
-            #f4e5d1 45%,
-            #b99b79 100%
-        );
-
-    border:
-        1px solid
-        rgba(247, 237, 227, 0.7);
-
-    box-shadow:
-        0 0 0 1px rgba(225, 215, 204, 0.12),
-        0 20px 55px rgba(0, 0, 0, 0.55),
-        0 0 35px rgba(247, 237, 227, 0.18);
-
-    transform:
-        perspective(900px)
-        rotateY(-4deg)
-        rotateX(2deg);
-}
-
-
-.crew-logo-board::before {
-    content: "";
-
-    position: absolute;
-    inset: 10px;
-
-    border:
-        1px solid
-        rgba(7, 17, 29, 0.18);
-
-    pointer-events: none;
-}
-
-
-.crew-logo-board::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        linear-gradient(
-            120deg,
-            transparent 20%,
-            rgba(255,255,255,0.22) 45%,
-            transparent 65%
-        );
-
-    opacity: 0.35;
-
-    pointer-events: none;
-}
-
-
-.crew-logo-board img {
-    position: relative;
-
-    z-index: 2;
-
-    width: 90%;
-    max-height: 85%;
-
-    object-fit: contain;
-
     filter:
-        drop-shadow(0 5px 8px rgba(0,0,0,0.18));
+        blur(28px);
+
+    z-index: -1;
 }
 
 
 /* =========================================================
-   CSS FILM REEL
+   LOGO — REMOVE WHITE BOX VISUALLY
 ========================================================= */
 
-.crew-reel {
-    position: absolute;
+.onair-logo-light {
+    position: relative;
+    width: 330px;
+    height: 185px;
+    margin: 0 auto;
 
-    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    width: 190px;
-    height: 190px;
-
-    right: 2%;
-    bottom: 22px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 50% 50%,
-            #222 0 11%,
-            #b18a5e 12% 15%,
-            #151a1c 16% 38%,
-            #866b4e 39% 42%,
-            #171b1c 43% 70%,
-            #9b7955 71% 74%,
-            #161a1b 75% 100%
-        );
-
-    border:
-        4px solid
-        rgba(170, 133, 91, 0.7);
-
-    box-shadow:
-        0 20px 40px rgba(0,0,0,0.65),
-        0 0 20px rgba(247,237,227,0.1);
-
-    transform:
-        rotate(-12deg);
+    isolation: isolate;
 }
 
-
-.crew-reel::before {
+.onair-logo-light::before {
     content: "";
 
     position: absolute;
 
-    inset: 25%;
+    width: 430px;
+    height: 250px;
 
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            #07111d 0 18%,
-            #b8956a 19% 23%,
-            #15191a 24% 100%
-        );
-}
-
-
-.crew-reel::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 10px;
-
-    border-radius: 50%;
-
-    border:
-        1px solid
-        rgba(247,237,227,0.16);
-}
-
-
-.reel-hole {
-    position: absolute;
-
-    width: 27px;
-    height: 27px;
-
-    border-radius: 50%;
-
-    background:
-        #07111d;
-
-    border:
-        3px solid
-        rgba(161, 125, 83, 0.7);
-
-    z-index: 2;
-}
-
-
-.reel-hole-1 {
-    top: 24px;
-    left: 80px;
-}
-
-
-.reel-hole-2 {
-    top: 72px;
-    right: 21px;
-}
-
-
-.reel-hole-3 {
-    bottom: 28px;
-    right: 48px;
-}
-
-
-.reel-hole-4 {
-    bottom: 28px;
-    left: 48px;
-}
-
-
-.reel-hole-5 {
-    top: 72px;
-    left: 21px;
-}
-
-
-.reel-center {
-    position: absolute;
-
-    z-index: 5;
-
-    width: 28px;
-    height: 28px;
-
-    top: 50%;
     left: 50%;
+    top: 50%;
 
     transform: translate(-50%, -50%);
 
-    border-radius: 50%;
-
     background:
-        #0b1013;
-
-    border:
-        5px solid
-        #b18a5e;
-}
-
-
-/* =========================================================
-   SIDE LABEL
-========================================================= */
-
-.crew-side-label {
-    position: absolute;
-
-    left: -55px;
-    bottom: 170px;
-
-    writing-mode: vertical-rl;
-
-    transform: rotate(180deg);
-
-    font-family: "Space Mono", monospace;
-
-    color: var(--crew-teal);
-
-    font-size: 12px;
-
-    letter-spacing: 0.24em;
-}
-
-
-/* =========================================================
-   RIGHT CREDITS
-========================================================= */
-
-.crew-credits-panel {
-    position: relative;
-
-    min-width: 0;
-
-    padding-top: 20px;
-}
-
-
-.crew-credits-heading {
-    margin-bottom: 18px;
-}
-
-
-.crew-title-line {
-    width: 100%;
-
-    height: 1px;
-
-    margin-bottom: 22px;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(78,180,132,0.75),
-            rgba(247,237,227,0.1),
-            transparent
+        radial-gradient(
+            ellipse at center,
+            rgba(226, 174, 115, .38) 0%,
+            rgba(226, 174, 115, .20) 25%,
+            rgba(226, 174, 115, .08) 45%,
+            transparent 72%
         );
+
+    filter: blur(28px);
+
+    z-index: -1;
 }
 
 
-.crew-credits-heading h2 {
-    margin: 0;
+/*
+   الـ multiply يخلي الأبيض يندمج مع الخلفية
+   بدل ما يظهر كمربع أبيض.
+*/
+.onair-logo-light img {
 
-    display: flex;
+    width: 280px;
+    max-width: 100%;
 
-    align-items: center;
+    height: auto;
 
-    gap: 15px;
+    display: block;
 
-    font-size: clamp(29px, 2.5vw, 44px);
+    object-fit: contain;
 
-    line-height: 1.3;
+    mix-blend-mode: multiply;
 
-    font-weight: 400;
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(224, 178, 121, .20)
+        );
 
-    color: var(--crew-cream);
+    opacity: .96;
 }
 
-
-.crew-title-dot {
-    width: 12px;
-    height: 12px;
-
-    flex: 0 0 auto;
-
-    border-radius: 50%;
-
-    background: var(--crew-teal);
-
-    box-shadow:
-        0 0 15px rgba(78,180,132,0.45);
-}
-
-
-.crew-credits-heading p {
-    margin: 10px 0 25px;
-
-    font-size: 16px;
-
-    color: var(--crew-beige);
-}
+   
 
 
 /* =========================================================
-   FEATURED DIRECTOR
+   IDENTITY SLOGAN
 ========================================================= */
 
-.crew-featured {
-    position: relative;
+.onair-identity-line {
 
-    min-height: 105px;
+    width: min(
+        650px,
+        calc(100% - 50px)
+    );
+
+    margin:
+        -8px auto 0;
 
     display: flex;
 
@@ -703,402 +386,845 @@
     justify-content: center;
 
     gap: 22px;
-
-    margin-bottom: 12px;
-
-    padding: 17px 28px;
-
-    border-top:
-        1px solid rgba(247,237,227,0.15);
-
-    border-bottom:
-        1px solid rgba(247,237,227,0.15);
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(78,180,132,0.04),
-            transparent
-        );
 }
 
 
-.crew-featured-number {
-    position: absolute;
+.onair-identity-line span {
 
-    right: 16px;
-
-    top: 20px;
-
-    font-family: "Space Mono", monospace;
-
-    font-size: 13px;
-
-    color: var(--crew-teal);
-}
-
-
-.crew-featured-icon {
-    width: 55px;
-    height: 55px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-
-
-.crew-featured-icon svg {
-    width: 50px;
-    height: 50px;
-
-    fill: none;
-
-    stroke:
-        var(--crew-teal);
-
-    stroke-width: 1.5;
-
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-
-.crew-featured-info {
-    text-align: center;
-}
-
-
-.crew-featured-info h3 {
-    margin: 0;
-
-    font-size: 29px;
-
-    font-weight: 500;
-
-    color: var(--crew-cream);
-}
-
-
-.crew-role-ar {
-    display: block;
-
-    margin-top: 2px;
-
-    font-size: 15px;
-
-    color: var(--crew-beige);
-}
-
-
-.crew-role-en {
-    display: block;
-
-    margin-top: 2px;
-
-    font-family: "Space Mono", monospace;
-
-    font-size: 10px;
-
-    letter-spacing: 0.06em;
-
-    direction: ltr;
-
-    color: rgba(225,215,204,0.7);
-}
-
-
-/* =========================================================
-   MEMBER GRID
-========================================================= */
-
-.crew-grid-new {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    column-gap: 35px;
-
-    border-bottom:
-        1px solid rgba(247,237,227,0.12);
-}
-
-
-.crew-member {
-    position: relative;
-
-    min-height: 88px;
-
-    display: grid;
-
-    grid-template-columns: 38px 48px minmax(0, 1fr);
-
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 13px 7px;
-
-    border-top:
-        1px solid rgba(247,237,227,0.11);
-
-    transition:
-        background 0.3s ease,
-        transform 0.3s ease;
-}
-
-
-.crew-member:hover {
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(78,180,132,0.07)
-        );
-
-    transform: translateX(-3px);
-}
-
-
-.member-number {
-    font-family: "Space Mono", monospace;
-
-    font-size: 12px;
-
-    color: var(--crew-teal);
-
-    direction: ltr;
-
-    text-align: center;
-}
-
-
-.member-icon {
-    width: 43px;
-    height: 43px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-
-
-.member-icon svg {
-    width: 39px;
-    height: 39px;
-
-    fill: none;
-
-    stroke:
-        var(--crew-teal);
-
-    stroke-width: 1.5;
-
-    stroke-linecap: round;
-    stroke-linejoin: round;
-
-    filter:
-        drop-shadow(
-            0 0 5px rgba(78,180,132,0.15)
-        );
-}
-
-
-.member-info {
-    min-width: 0;
-}
-
-
-.member-info h3 {
-    margin: 0;
-
-    font-size: 18px;
-
-    line-height: 1.25;
-
-    font-weight: 500;
-
-    color: var(--crew-cream);
-
-    white-space: nowrap;
-}
-
-
-.member-role-ar {
-    display: block;
-
-    margin-top: 2px;
-
-    font-size: 12px;
-
-    line-height: 1.35;
-
-    color: var(--crew-beige);
-}
-
-
-.member-role-en {
-    display: block;
-
-    margin-top: 2px;
-
-    font-family: "Space Mono", monospace;
-
-    font-size: 9px;
-
-    line-height: 1.25;
-
-    color:
-        rgba(225,215,204,0.58);
-
-    direction: ltr;
-
-    white-space: nowrap;
-}
-
-
-/* =========================================================
-   BOTTOM META
-========================================================= */
-
-.crew-bottom-meta {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-top: 20px;
-
-    font-family: "Space Mono", monospace;
-
-    font-size: 11px;
-
-    letter-spacing: 0.08em;
-
-    color: var(--crew-beige);
-}
-
-
-.crew-bottom-meta div {
-    flex: 1;
+    width: 95px;
 
     height: 1px;
 
-    margin: 0 18px;
-
     background:
+
         linear-gradient(
             90deg,
             transparent,
-            rgba(247,237,227,0.35),
+            rgba(201,167,125,.7)
+        );
+}
+
+
+.onair-identity-line span:last-child {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(201,167,125,.7),
             transparent
         );
 }
 
 
-/* =========================================================
-   SIDE TECH
-========================================================= */
+.onair-identity-line strong {
 
-.crew-side-left,
-.crew-side-right {
-    position: absolute;
+    white-space: nowrap;
 
-    top: 50%;
+    font-size: 17px;
 
-    writing-mode: vertical-rl;
+    font-weight: 600;
 
-    transform: translateY(-50%);
+    color:
+        var(--gold-light);
 
-    font-family: "Space Mono", monospace;
-
-    font-size: 12px;
-
-    letter-spacing: 0.25em;
-
-    color: var(--crew-teal);
-
-    opacity: 0.85;
-
-    z-index: 25;
-}
-
-
-.crew-side-left {
-    left: 24px;
-}
-
-
-.crew-side-right {
-    right: 24px;
+    letter-spacing:
+        .02em;
 }
 
 
 /* =========================================================
-   CORNERS
+   FILM STRIP
 ========================================================= */
 
-.crew-corner {
+.onair-film-strip {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 53px;
+
+    margin-top: 39px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(1,7,12,.92),
+            rgba(8,18,27,.82),
+            rgba(1,7,12,.95)
+        );
+
+    border-top:
+        1px solid
+        rgba(201,167,125,.12);
+
+    border-bottom:
+        1px solid
+        rgba(201,167,125,.12);
+
+    overflow: hidden;
+
+    box-shadow:
+
+        0 8px 18px
+        rgba(0,0,0,.35);
+}
+
+
+.onair-film-strip::before,
+.onair-film-strip::after {
+
+    content: "";
+
     position: absolute;
 
-    width: 58px;
-    height: 58px;
+    left: 0;
+    right: 0;
 
-    z-index: 25;
+    height: 14px;
+
+    background:
+
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 21px,
+            rgba(0,0,0,.92) 21px,
+            rgba(0,0,0,.92) 34px,
+            transparent 34px,
+            transparent 47px
+        );
+}
+
+
+.onair-film-strip::before {
+
+    top: 3px;
+}
+
+
+.onair-film-strip::after {
+
+    bottom: 3px;
+}
+
+
+.film-holes {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    height: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-around;
+
+    padding: 0 5px;
+}
+
+
+.film-holes.top {
+
+    top: 3px;
+}
+
+
+.film-holes.bottom {
+
+    bottom: 3px;
+}
+
+
+.film-holes i {
+
+    width: 19px;
+    height: 10px;
+
+    border-radius: 2px;
+
+    background:
+        rgba(2,8,13,.95);
+
+    border:
+        1px solid
+        rgba(201,167,125,.08);
+
+    flex: 0 0 auto;
+}
+
+
+/* =========================================================
+   CREW HEADING
+========================================================= */
+
+.onair-crew-heading {
+
+    position: relative;
+
+    z-index: 10;
+
+    text-align: center;
+
+    padding-top: 14px;
+
+    width: min(
+        1440px,
+        calc(100% - 70px)
+    );
+
+    margin:
+        0 auto;
+}
+
+
+.onair-section-number {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 11px;
+
+    color:
+        var(--gold-light);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 13px;
+
+    letter-spacing:
+        .13em;
+}
+
+
+.onair-section-number span {
+
+    color:
+        var(--gold);
+
+    font-size: 10px;
+}
+
+
+.onair-section-number b {
+
+    font-weight:
+        400;
+}
+
+
+.onair-section-label {
+
+    margin-top: 2px;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 10px;
+
+    letter-spacing:
+        .16em;
+
+    color:
+        rgba(230,205,169,.62);
+}
+
+
+.onair-crew-heading h2 {
+
+    margin:
+        5px 0 0;
+
+    font-size:
+        clamp(
+            29px,
+            3vw,
+            46px
+        );
+
+    line-height:
+        1.25;
+
+    font-weight:
+        700;
+
+    color:
+        var(--gold-light);
+
+    letter-spacing:
+        -.035em;
+
+    text-shadow:
+        0 2px 15px
+        rgba(0,0,0,.35);
+}
+
+
+.onair-crew-heading p {
+
+    margin:
+        1px 0 8px;
+
+    font-size:
+        14px;
+
+    color:
+        rgba(240,223,199,.72);
+}
+
+
+.onair-heading-line {
+
+    width: 36px;
+
+    height: 3px;
+
+    margin:
+        0 auto;
+
+    border-radius:
+        20px;
+
+    background:
+        #278f89;
+
+    box-shadow:
+        0 0 12px
+        rgba(39,143,137,.25);
+}
+
+
+/* =========================================================
+   CREW GRID
+========================================================= */
+
+.onair-crew-grid {
+
+    position: relative;
+
+    z-index: 10;
+
+    width: min(
+        1465px,
+        calc(100% - 72px)
+    );
+
+    margin:
+        12px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap:
+        12px 13px;
+}
+
+
+/* =========================================================
+   MEMBER CARD
+========================================================= */
+
+.onair-member {
+
+    position: relative;
+
+    min-width: 0;
+
+    height: 148px;
+
+    padding:
+        11px 10px 9px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(201,167,125,.34);
+
+    border-radius:
+        9px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(17,29,39,.90),
+            rgba(3,13,21,.94)
+        );
+
+    box-shadow:
+
+        inset 0 1px 0
+        rgba(255,255,255,.035),
+
+        inset 0 0 35px
+        rgba(201,167,125,.025),
+
+        0 7px 20px
+        rgba(0,0,0,.30);
+
+    overflow: hidden;
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.onair-member::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(201,167,125,.13),
+            transparent 42%
+        );
 
     pointer-events: none;
 }
 
 
-.crew-corner-tl {
-    top: 24px;
-    left: 24px;
+.onair-member::after {
 
-    border-top:
-        2px solid rgba(247,237,227,0.75);
+    content: "";
 
-    border-left:
-        2px solid rgba(247,237,227,0.75);
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 1px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(201,167,125,.5),
+            transparent
+        );
+
+    opacity: .45;
 }
 
 
-.crew-corner-tr {
-    top: 24px;
-    right: 24px;
+.onair-member:hover {
 
-    border-top:
-        2px solid rgba(247,237,227,0.75);
+    transform:
+        translateY(-4px);
 
-    border-right:
-        2px solid rgba(247,237,227,0.75);
+    border-color:
+        rgba(224,181,125,.68);
+
+    box-shadow:
+
+        inset 0 1px 0
+        rgba(255,255,255,.05),
+
+        0 10px 30px
+        rgba(0,0,0,.42),
+
+        0 0 20px
+        rgba(201,167,125,.08);
 }
 
 
-.crew-corner-bl {
-    bottom: 24px;
-    left: 24px;
 
-    border-bottom:
-        2px solid rgba(247,237,227,0.75);
+/* =========================================================
+   NUMBER
+========================================================= */
 
-    border-left:
-        2px solid rgba(247,237,227,0.75);
+.member-number {
+
+    position: absolute;
+
+    top: 10px;
+
+    right: 10px;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        12px;
+
+    color:
+        rgba(201,167,125,.72);
+
+    line-height: 1;
 }
 
 
-.crew-corner-br {
-    bottom: 24px;
-    right: 24px;
+/* =========================================================
+   ICON
+========================================================= */
 
-    border-bottom:
-        2px solid rgba(247,237,227,0.75);
+.member-icon {
 
-    border-right:
-        2px solid rgba(247,237,227,0.75);
+    width: 48px;
+    height: 48px;
+
+    margin-top: 1px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(201,167,125,.14),
+            rgba(201,167,125,.025) 65%,
+            transparent 70%
+        );
+}
+
+
+.member-icon svg {
+
+    width: 38px;
+    height: 38px;
+
+    fill: none;
+
+    stroke:
+        #d6b27f;
+
+    stroke-width:
+        1.65;
+
+    stroke-linecap:
+        round;
+
+    stroke-linejoin:
+        round;
+
+    filter:
+        drop-shadow(
+            0 0 4px
+            rgba(214,178,127,.12)
+        );
+}
+
+
+/* =========================================================
+   MEMBER TEXT
+========================================================= */
+
+.member-info {
+
+    position: relative;
+
+    width: 100%;
+
+    min-width: 0;
+
+    margin-top: 1px;
+}
+
+
+.member-info h3 {
+
+    margin: 0;
+
+    font-size:
+        15px;
+
+    line-height:
+        1.4;
+
+    font-weight:
+        600;
+
+    color:
+        var(--gold-light);
+
+    white-space:
+        nowrap;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+}
+
+
+.member-info span {
+
+    display: block;
+
+    margin-top:
+        3px;
+
+    font-size:
+        10px;
+
+    line-height:
+        1.45;
+
+    color:
+        rgba(240,223,199,.83);
+
+    white-space:
+        nowrap;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+}
+
+
+.member-info small {
+
+    display: block;
+
+    margin-top:
+        4px;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        7.2px;
+
+    line-height:
+        1.25;
+
+    letter-spacing:
+        .01em;
+
+    color:
+        rgba(230,205,169,.66);
+
+    white-space:
+        nowrap;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    direction:
+        ltr;
+}
+
+
+/* =========================================================
+   BOTTOM STATEMENT
+========================================================= */
+
+.onair-bottom-statement {
+
+    position: relative;
+
+    z-index: 10;
+
+    width:
+        min(
+            1490px,
+            calc(100% - 48px)
+        );
+
+    margin:
+        17px auto 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    color:
+        rgba(240,223,199,.7);
+
+    font-size:
+        15px;
+}
+
+
+.onair-bottom-statement > span {
+
+    height: 1px;
+
+    flex: 1;
+
+    max-width: 470px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(201,167,125,.35)
+        );
+}
+
+
+.onair-bottom-statement > span:last-child {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(201,167,125,.35),
+            transparent
+        );
+}
+
+
+.onair-bottom-statement div {
+
+    white-space:
+        nowrap;
+
+    letter-spacing:
+        .01em;
+}
+
+
+.onair-bottom-statement b {
+
+    color:
+        var(--red);
+
+    font-size:
+        12px;
+
+    margin-inline:
+        6px;
+}
+
+
+/* =========================================================
+   HIDDEN SVG DEFINITIONS
+========================================================= */
+
+.onair-icon-defs {
+
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   DESKTOP HEIGHT CONTROL
+========================================================= */
+
+@media (min-width: 1100px) {
+
+    .onair-team-stage {
+
+        min-height:
+            100vh;
+
+        height:
+            auto;
+
+    }
+
+}
+
+
+/* =========================================================
+   LARGE LAPTOP
+========================================================= */
+
+@media (max-width: 1250px) {
+
+    .onair-crew-grid {
+
+        grid-template-columns:
+            repeat(7, minmax(0, 1fr));
+
+        gap:
+            9px;
+
+    }
+
+
+    .onair-member {
+
+        height:
+            146px;
+
+        padding:
+            11px 7px 8px;
+
+    }
+
+
+    .member-info h3 {
+
+        font-size:
+            13px;
+
+    }
+
+
+    .member-info span {
+
+        font-size:
+            9px;
+
+    }
+
+
+    .member-info small {
+
+        font-size:
+            6.5px;
+
+    }
+
 }
 
 
@@ -1106,47 +1232,52 @@
    TABLET
 ========================================================= */
 
-@media (max-width: 1100px) {
+@media (max-width: 950px) {
 
-    .crew-main {
-        width: min(94%, 900px);
+    .onair-identity {
+
+        padding-top:
+            48px;
+
+    }
+
+     .onair-logo-light {
+             height: 145px;
+    }
+
+
+    .onair-logo-light img {
+
+        width:
+            230px;
+
+    }
+
+
+    .onair-crew-grid {
 
         grid-template-columns:
-            1fr;
+            repeat(4, 1fr);
 
-        gap: 45px;
+        width:
+            calc(100% - 40px);
 
-        padding-top: 120px;
     }
 
 
-    .crew-identity-panel {
-        min-height: auto;
+    .onair-member {
 
-        text-align: center;
+        height:
+            145px;
 
-        align-items: center;
     }
 
 
-    .crew-identity-text {
-        margin-left: auto;
-        margin-right: auto;
-    }
+    .onair-member:nth-child(1) {
 
+        grid-column:
+            span 1;
 
-    .crew-logo-stage {
-        max-width: 650px;
-    }
-
-
-    .crew-side-label {
-        display: none;
-    }
-
-
-    .crew-credits-panel {
-        width: 100%;
     }
 
 }
@@ -1158,299 +1289,374 @@
 
 @media (max-width: 700px) {
 
-    .crew-section {
-        min-height: auto;
+    .onair-team-stage {
+
+        min-height:
+            100vh;
+
     }
 
 
-    .crew-tech-top {
-        top: 18px;
-        left: 18px;
-        right: 18px;
+    .onair-corner {
 
-        font-size: 9px;
+        width:
+            25px;
 
-        gap: 8px;
+        height:
+            25px;
+
     }
 
 
-    .crew-tech-left,
-    .crew-tech-right {
-        gap: 7px;
+    .onair-corner-tl {
+
+        top:
+            18px;
+
+        left:
+            15px;
+
     }
 
 
-    .crew-tech-right span:nth-of-type(1) {
-        display: none;
+    .onair-corner-tr {
+
+        top:
+            18px;
+
+        right:
+            15px;
+
     }
 
 
-    .crew-main {
-        width: calc(100% - 38px);
+    .onair-corner-bl {
 
-        padding:
-            100px
-            0
-            55px;
+        bottom:
+            18px;
 
-        gap: 45px;
+        left:
+            15px;
+
     }
 
 
-    .crew-identity-panel {
-        min-height: auto;
+    .onair-corner-br {
 
-        padding-top: 10px;
+        bottom:
+            18px;
+
+        right:
+            15px;
+
     }
 
 
-    .crew-index {
-        margin-bottom: 20px;
+    .onair-identity {
 
-        font-size: 10px;
+        width:
+            calc(100% - 30px);
+
+        padding-top:
+            62px;
+
     }
 
 
-    .crew-identity-heading h2 {
-        font-size: 50px;
+    .onair-logo-light {
+
+        width:
+            245px;
+
     }
 
 
-    .crew-identity-en {
-        font-size: 12px;
+    .onair-logo-light img {
 
-        letter-spacing: 0.25em;
+        width:
+            210px;
 
-        text-align: center;
     }
 
 
-    .crew-identity-text {
-        margin-top: 22px;
+    .onair-logo-light::before {
 
-        font-size: 14px;
+        width:
+            360px;
 
-        line-height: 1.8;
+        height:
+            190px;
+
     }
 
 
-    .crew-logo-stage {
-        min-height: 290px;
+    .onair-identity-line {
 
-        margin-top: 20px;
+        gap:
+            9px;
+
+        margin-top:
+            -1px;
+
     }
 
 
-    .crew-logo-board {
-        width: 78%;
+    .onair-identity-line span {
 
-        padding: 22px;
+        width:
+            35px;
+
     }
 
 
-    .crew-reel {
-        width: 105px;
-        height: 105px;
+    .onair-identity-line strong {
 
-        right: 4%;
-        bottom: 8px;
+        font-size:
+            10px;
+
     }
 
 
-    .crew-hole,
-    .reel-hole {
-        width: 16px;
-        height: 16px;
+    .onair-film-strip {
+
+        height:
+            39px;
+
+        margin-top:
+            26px;
+
     }
 
 
-    .reel-hole-1 {
-        top: 13px;
-        left: 43px;
+    .onair-film-strip::before,
+    .onair-film-strip::after {
+
+        height:
+            10px;
+
     }
 
 
-    .reel-hole-2 {
-        top: 40px;
-        right: 12px;
+    .film-holes {
+
+        height:
+            9px;
+
     }
 
 
-    .reel-hole-3 {
-        bottom: 15px;
-        right: 26px;
+    .film-holes i {
+
+        width:
+            13px;
+
+        height:
+            7px;
+
     }
 
 
-    .reel-hole-4 {
-        bottom: 15px;
-        left: 26px;
+    .onair-crew-heading {
+
+        width:
+            calc(100% - 25px);
+
+        padding-top:
+            10px;
+
     }
 
 
-    .reel-hole-5 {
-        top: 40px;
-        left: 12px;
+    .onair-crew-heading h2 {
+
+        font-size:
+            25px;
+
     }
 
 
-    .crew-credits-heading h2 {
-        font-size: 25px;
+    .onair-crew-heading p {
 
-        gap: 9px;
+        font-size:
+            11px;
+
     }
 
 
-    .crew-title-dot {
-        width: 8px;
-        height: 8px;
-    }
+    .onair-crew-grid {
 
+        width:
+            calc(100% - 22px);
 
-    .crew-credits-heading p {
-        font-size: 13px;
-
-        margin-bottom: 18px;
-    }
-
-
-    .crew-featured {
-        min-height: 90px;
-
-        padding: 13px 30px;
-    }
-
-
-    .crew-featured-icon {
-        width: 42px;
-        height: 42px;
-    }
-
-
-    .crew-featured-icon svg {
-        width: 40px;
-        height: 40px;
-    }
-
-
-    .crew-featured-info h3 {
-        font-size: 23px;
-    }
-
-
-    .crew-role-ar {
-        font-size: 12px;
-    }
-
-
-    .crew-role-en {
-        font-size: 8px;
-    }
-
-
-    .crew-grid-new {
-        grid-template-columns: 1fr;
-
-        column-gap: 0;
-    }
-
-
-    .crew-member {
-        min-height: 76px;
+        margin-top:
+            10px;
 
         grid-template-columns:
-            30px
-            40px
-            minmax(0, 1fr);
+            repeat(2, 1fr);
 
-        gap: 8px;
+        gap:
+            8px;
 
-        padding: 10px 3px;
+    }
+
+
+    .onair-member {
+
+        height:
+            132px;
+
+        padding:
+            8px 5px 7px;
+
+    }
+
+
+    .member-number {
+
+        top:
+            7px;
+
+        right:
+            7px;
+
+        font-size:
+            9px;
+
     }
 
 
     .member-icon {
-        width: 38px;
-        height: 38px;
+
+        width:
+            38px;
+
+        height:
+            38px;
+
     }
 
 
     .member-icon svg {
-        width: 34px;
-        height: 34px;
+
+        width:
+            31px;
+
+        height:
+            31px;
+
     }
 
 
     .member-info h3 {
-        font-size: 16px;
+
+        font-size:
+            12px;
+
     }
 
 
-    .member-role-ar {
-        font-size: 11px;
+    .member-info span {
+
+        font-size:
+            8px;
+
     }
 
 
-    .member-role-en {
-        font-size: 7px;
+    .member-info small {
+
+        font-size:
+            5.8px;
+
     }
 
 
-    .crew-bottom-meta {
-        font-size: 8px;
+    .onair-bottom-statement {
+
+        margin-top:
+            14px;
+
+        margin-bottom:
+            20px;
+
+        gap:
+            7px;
+
+        font-size:
+            9px;
+
     }
 
 
-    .crew-side-left,
-    .crew-side-right {
-        display: none;
-    }
+    .onair-bottom-statement b {
 
+        font-size:
+            8px;
 
-    .crew-corner {
-        width: 35px;
-        height: 35px;
-    }
-
-
-    .crew-corner-tl,
-    .crew-corner-tr {
-        top: 12px;
-    }
-
-
-    .crew-corner-bl,
-    .crew-corner-br {
-        bottom: 12px;
-    }
-
-
-    .crew-corner-tl,
-    .crew-corner-bl {
-        left: 12px;
-    }
-
-
-    .crew-corner-tr,
-    .crew-corner-br {
-        right: 12px;
     }
 
 }
 
 
 /* =========================================================
-   REDUCE MOTION
+   SMALL PHONES
 ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (max-width: 400px) {
 
-    .crew-rec i {
-        animation: none;
+    .onair-logo-light img {
+
+        width:
+            180px;
+
     }
 
-    .crew-member {
-        transition: none;
+
+    .onair-identity-line strong {
+
+        font-size:
+            8px;
+
+    }
+
+
+    .onair-crew-heading h2 {
+
+        font-size:
+            22px;
+
+    }
+
+
+    .onair-member {
+
+        height:
+            126px;
+
+    }
+
+
+    .member-info h3 {
+
+        font-size:
+            11px;
+
+    }
+
+
+    .member-info span {
+
+        font-size:
+            7px;
+
+    }
+
+
+    .member-info small {
+
+        font-size:
+            5px;
+
     }
 
 }
