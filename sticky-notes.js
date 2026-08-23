@@ -889,46 +889,23 @@ async function submitStickyNote(event) {
 
     try {
 
-        const {
-            data,
-            error
-        } =
-            await stickySupabase
+        const { error } = await stickySupabase
+    .from("sticky_notes")
+    .insert({
+        name: name.slice(0, MAX_NAME_LENGTH),
+        message: message.slice(0, MAX_MESSAGE_LENGTH),
+        color: color,
+        approved: false
+    });
 
-                .from("sticky_notes")
+if (error) {
+    console.error(
+        "SUPABASE INSERT ERROR:",
+        error
+    );
 
-                .insert({
-
-                    name:
-                        name.slice(
-                            0,
-                            MAX_NAME_LENGTH
-                        ),
-
-                    message:
-                        message.slice(
-                            0,
-                            MAX_MESSAGE_LENGTH
-                        ),
-
-                    color:
-                        color,
-
-                    /*
-                     * مهم جدًا:
-                     * الرسالة لا تظهر مباشرة.
-                     * لازم تتوافق عليها الأول.
-                     */
-
-                    approved:
-                        false
-
-                })
-
-                .select(
-                    "id,name,message,color,approved,created_at"
-                )
-                .single();
+    throw error;
+}
 
 
         if (error) {
