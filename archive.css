@@ -12658,3 +12658,114 @@ html[lang="en"]
     }
 
 }
+/* =========================================================
+   MOBILE TOP BAR — FINAL FIX
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .top-bar {
+        height: 64px !important;
+
+        padding:
+            0 16px !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+
+        justify-content: flex-start !important;
+    }
+
+
+    /* نخفي AR / EN من الـ Top Bar
+       لأنه مش محتاج ياخد مساحة هنا */
+
+    .top-bar .language {
+        display: none !important;
+    }
+
+
+    /* REC */
+
+    .top-bar .rec {
+        position: relative;
+
+        flex: 0 0 auto;
+
+        gap: 7px;
+
+        font-size: 9px !important;
+
+        letter-spacing: .08em;
+    }
+
+
+    .top-bar .rec-dot {
+        width: 9px !important;
+        height: 9px !important;
+    }
+
+
+    /* FRAME / ISO / FPS */
+
+    .top-bar .technical-info {
+        position: absolute !important;
+
+        left: auto !important;
+        right: 14px !important;
+
+        transform: none !important;
+
+        display: flex !important;
+
+        align-items: center;
+
+        justify-content: flex-end;
+
+        gap: 7px !important;
+
+        max-width: calc(100% - 70px);
+
+        overflow: hidden;
+
+        white-space: nowrap;
+
+        font-size: 8px !important;
+
+        letter-spacing: .07em !important;
+    }
+
+
+    .top-bar .technical-info .separator {
+        flex: 0 0 auto;
+    }
+}
+
+
+/* الموبايلات الصغيرة */
+
+@media (max-width: 400px) {
+
+    .top-bar {
+        padding: 0 13px !important;
+    }
+
+
+    .top-bar .rec {
+        font-size: 8px !important;
+    }
+
+
+    .top-bar .technical-info {
+        right: 11px !important;
+
+        gap: 5px !important;
+
+        font-size: 7px !important;
+
+        letter-spacing: .04em !important;
+
+        max-width: calc(100% - 62px);
+    }
+}
