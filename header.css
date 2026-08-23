@@ -1,694 +1,1456 @@
-/* =========================================
-   GLOBAL
-========================================= */
+/* =========================================================
+   ON AIR — CREW / TEAM IDENTITY
+   CINEMATIC ARCHIVE
+========================================================= */
 
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    background: #020b13;
-    color: #f2dfc1;
-}
-
-
-/* =========================================
-   OPENING SECTION
-========================================= */
-
-.opening-intro {
-    min-height: 100vh;
-    width: 100%;
-    padding: 55px 7% 90px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.crew-section {
+    --crew-navy: #07111d;
+    --crew-deep: #030910;
+    --crew-cream: #f7ede3;
+    --crew-beige: #e1d7cc;
+    --crew-teal: #4eb484;
+    --crew-gray: #6d6d6d;
 
     position: relative;
-    background: #020b13;
+    width: 100%;
+    min-height: 100vh;
     overflow: hidden;
+
+    background:
+        #07111d;
+
+    color: var(--crew-cream);
+
+    font-family:
+        "Cairo",
+        "Tajawal",
+        sans-serif;
+
+    isolation: isolate;
 }
 
 
-/* Grid */
+/* =========================================================
+   BACKGROUND IMAGE
+========================================================= */
 
-.opening-intro::before {
-    content: "";
+.crew-bg {
     position: absolute;
     inset: 0;
 
+    z-index: -5;
+
     background-image:
-        linear-gradient(
-            rgba(255,255,255,0.025) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,0.025) 1px,
-            transparent 1px
+        url("images/crew-background.png");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    transform: scale(1.015);
+}
+
+
+/* =========================================================
+   ATMOSPHERE
+========================================================= */
+
+.crew-vignette {
+    position: absolute;
+    inset: 0;
+
+    z-index: -4;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 48% 48%,
+            transparent 28%,
+            rgba(0, 0, 0, 0.18) 60%,
+            rgba(0, 0, 0, 0.72) 100%
+        );
+}
+
+
+.crew-scanlines {
+    position: absolute;
+    inset: 0;
+
+    z-index: 20;
+
+    pointer-events: none;
+
+    opacity: 0.08;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 3px,
+            rgba(247, 237, 227, 0.16) 4px
         );
 
-    background-size: 42px 42px;
+    mix-blend-mode: screen;
+}
+
+
+/* =========================================================
+   TOP TECH
+========================================================= */
+
+.crew-tech-top {
+    position: absolute;
+
+    top: 28px;
+    left: 52px;
+    right: 52px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 30;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 13px;
+    letter-spacing: 0.14em;
+
+    color: var(--crew-cream);
+
+    text-transform: uppercase;
+}
+
+
+.crew-tech-left,
+.crew-tech-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.crew-separator {
+    opacity: 0.45;
+}
+
+
+.crew-rec {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+
+.crew-rec i {
+    width: 9px;
+    height: 9px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+
+    background: #d92832;
+
+    box-shadow:
+        0 0 10px rgba(217, 40, 50, 0.7);
+
+    animation: crewRecPulse 1.8s ease-in-out infinite;
+}
+
+
+@keyframes crewRecPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.crew-main {
+    position: relative;
+
+    width: min(1400px, calc(100% - 160px));
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding:
+        125px
+        0
+        70px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(460px, 0.88fr)
+        minmax(620px, 1.12fr);
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   LEFT IDENTITY
+========================================================= */
+
+.crew-identity-panel {
+    position: relative;
+
+    min-height: 760px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+    padding-top: 20px;
+}
+
+
+.crew-index {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 14px;
+
+    letter-spacing: 0.12em;
+
+    color: var(--crew-beige);
+}
+
+
+.crew-index i {
+    width: 48px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--crew-teal),
+            transparent
+        );
+}
+
+
+.crew-identity-heading h2 {
+    margin: 0;
+
+    font-size: clamp(58px, 5.4vw, 92px);
+
+    line-height: 0.95;
+
+    font-weight: 400;
+
+    letter-spacing: -0.055em;
+
+    color: var(--crew-cream);
+}
+
+
+.crew-identity-en {
+    margin-top: 20px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: clamp(15px, 1.2vw, 22px);
+
+    letter-spacing: 0.42em;
+
+    color: var(--crew-teal);
+
+    direction: ltr;
+
+    text-align: left;
+
+    opacity: 0.9;
+}
+
+
+.crew-identity-text {
+    margin: 34px 0 0;
+
+    max-width: 430px;
+
+    font-size: 19px;
+
+    line-height: 1.9;
+
+    font-weight: 400;
+
+    color: var(--crew-beige);
+}
+
+
+/* =========================================================
+   LOGO STAGE
+========================================================= */
+
+.crew-logo-stage {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 430px;
+
+    margin-top: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.crew-logo-glow {
+    position: absolute;
+
+    width: 330px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(247, 237, 227, 0.24),
+            rgba(78, 180, 132, 0.08) 40%,
+            transparent 70%
+        );
+
+    filter: blur(18px);
+
+    opacity: 0.85;
+}
+
+
+.crew-logo-board {
+    position: relative;
+
+    z-index: 3;
+
+    width: min(430px, 78%);
+
+    aspect-ratio: 1.35 / 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e9d5bd 0%,
+            #f4e5d1 45%,
+            #b99b79 100%
+        );
+
+    border:
+        1px solid
+        rgba(247, 237, 227, 0.7);
+
+    box-shadow:
+        0 0 0 1px rgba(225, 215, 204, 0.12),
+        0 20px 55px rgba(0, 0, 0, 0.55),
+        0 0 35px rgba(247, 237, 227, 0.18);
+
+    transform:
+        perspective(900px)
+        rotateY(-4deg)
+        rotateX(2deg);
+}
+
+
+.crew-logo-board::before {
+    content: "";
+
+    position: absolute;
+    inset: 10px;
+
+    border:
+        1px solid
+        rgba(7, 17, 29, 0.18);
+
     pointer-events: none;
 }
 
 
-/* Glow */
-
-.opening-intro::after {
+.crew-logo-board::after {
     content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 20%,
+            rgba(255,255,255,0.22) 45%,
+            transparent 65%
+        );
+
+    opacity: 0.35;
+
+    pointer-events: none;
+}
+
+
+.crew-logo-board img {
+    position: relative;
+
+    z-index: 2;
+
+    width: 90%;
+    max-height: 85%;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 5px 8px rgba(0,0,0,0.18));
+}
+
+
+/* =========================================================
+   CSS FILM REEL
+========================================================= */
+
+.crew-reel {
     position: absolute;
 
-    width: 600px;
-    height: 600px;
+    z-index: 4;
+
+    width: 190px;
+    height: 190px;
+
+    right: 2%;
+    bottom: 22px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            #222 0 11%,
+            #b18a5e 12% 15%,
+            #151a1c 16% 38%,
+            #866b4e 39% 42%,
+            #171b1c 43% 70%,
+            #9b7955 71% 74%,
+            #161a1b 75% 100%
+        );
+
+    border:
+        4px solid
+        rgba(170, 133, 91, 0.7);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.65),
+        0 0 20px rgba(247,237,227,0.1);
+
+    transform:
+        rotate(-12deg);
+}
+
+
+.crew-reel::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 25%;
+
+    border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(36, 92, 99, 0.25),
-            transparent 70%
+            #07111d 0 18%,
+            #b8956a 19% 23%,
+            #15191a 24% 100%
         );
+}
 
-    top: 30%;
+
+.crew-reel::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 10px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(247,237,227,0.16);
+}
+
+
+.reel-hole {
+    position: absolute;
+
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    background:
+        #07111d;
+
+    border:
+        3px solid
+        rgba(161, 125, 83, 0.7);
+
+    z-index: 2;
+}
+
+
+.reel-hole-1 {
+    top: 24px;
+    left: 80px;
+}
+
+
+.reel-hole-2 {
+    top: 72px;
+    right: 21px;
+}
+
+
+.reel-hole-3 {
+    bottom: 28px;
+    right: 48px;
+}
+
+
+.reel-hole-4 {
+    bottom: 28px;
+    left: 48px;
+}
+
+
+.reel-hole-5 {
+    top: 72px;
+    left: 21px;
+}
+
+
+.reel-center {
+    position: absolute;
+
+    z-index: 5;
+
+    width: 28px;
+    height: 28px;
+
+    top: 50%;
     left: 50%;
 
     transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        #0b1013;
+
+    border:
+        5px solid
+        #b18a5e;
+}
+
+
+/* =========================================================
+   SIDE LABEL
+========================================================= */
+
+.crew-side-label {
+    position: absolute;
+
+    left: -55px;
+    bottom: 170px;
+
+    writing-mode: vertical-rl;
+
+    transform: rotate(180deg);
+
+    font-family: "Space Mono", monospace;
+
+    color: var(--crew-teal);
+
+    font-size: 12px;
+
+    letter-spacing: 0.24em;
+}
+
+
+/* =========================================================
+   RIGHT CREDITS
+========================================================= */
+
+.crew-credits-panel {
+    position: relative;
+
+    min-width: 0;
+
+    padding-top: 20px;
+}
+
+
+.crew-credits-heading {
+    margin-bottom: 18px;
+}
+
+
+.crew-title-line {
+    width: 100%;
+
+    height: 1px;
+
+    margin-bottom: 22px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(78,180,132,0.75),
+            rgba(247,237,227,0.1),
+            transparent
+        );
+}
+
+
+.crew-credits-heading h2 {
+    margin: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    font-size: clamp(29px, 2.5vw, 44px);
+
+    line-height: 1.3;
+
+    font-weight: 400;
+
+    color: var(--crew-cream);
+}
+
+
+.crew-title-dot {
+    width: 12px;
+    height: 12px;
+
+    flex: 0 0 auto;
+
+    border-radius: 50%;
+
+    background: var(--crew-teal);
+
+    box-shadow:
+        0 0 15px rgba(78,180,132,0.45);
+}
+
+
+.crew-credits-heading p {
+    margin: 10px 0 25px;
+
+    font-size: 16px;
+
+    color: var(--crew-beige);
+}
+
+
+/* =========================================================
+   FEATURED DIRECTOR
+========================================================= */
+
+.crew-featured {
+    position: relative;
+
+    min-height: 105px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 22px;
+
+    margin-bottom: 12px;
+
+    padding: 17px 28px;
+
+    border-top:
+        1px solid rgba(247,237,227,0.15);
+
+    border-bottom:
+        1px solid rgba(247,237,227,0.15);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(78,180,132,0.04),
+            transparent
+        );
+}
+
+
+.crew-featured-number {
+    position: absolute;
+
+    right: 16px;
+
+    top: 20px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 13px;
+
+    color: var(--crew-teal);
+}
+
+
+.crew-featured-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.crew-featured-icon svg {
+    width: 50px;
+    height: 50px;
+
+    fill: none;
+
+    stroke:
+        var(--crew-teal);
+
+    stroke-width: 1.5;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.crew-featured-info {
+    text-align: center;
+}
+
+
+.crew-featured-info h3 {
+    margin: 0;
+
+    font-size: 29px;
+
+    font-weight: 500;
+
+    color: var(--crew-cream);
+}
+
+
+.crew-role-ar {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 15px;
+
+    color: var(--crew-beige);
+}
+
+
+.crew-role-en {
+    display: block;
+
+    margin-top: 2px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 0.06em;
+
+    direction: ltr;
+
+    color: rgba(225,215,204,0.7);
+}
+
+
+/* =========================================================
+   MEMBER GRID
+========================================================= */
+
+.crew-grid-new {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    column-gap: 35px;
+
+    border-bottom:
+        1px solid rgba(247,237,227,0.12);
+}
+
+
+.crew-member {
+    position: relative;
+
+    min-height: 88px;
+
+    display: grid;
+
+    grid-template-columns: 38px 48px minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px 7px;
+
+    border-top:
+        1px solid rgba(247,237,227,0.11);
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.crew-member:hover {
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(78,180,132,0.07)
+        );
+
+    transform: translateX(-3px);
+}
+
+
+.member-number {
+    font-family: "Space Mono", monospace;
+
+    font-size: 12px;
+
+    color: var(--crew-teal);
+
+    direction: ltr;
+
+    text-align: center;
+}
+
+
+.member-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.member-icon svg {
+    width: 39px;
+    height: 39px;
+
+    fill: none;
+
+    stroke:
+        var(--crew-teal);
+
+    stroke-width: 1.5;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    filter:
+        drop-shadow(
+            0 0 5px rgba(78,180,132,0.15)
+        );
+}
+
+
+.member-info {
+    min-width: 0;
+}
+
+
+.member-info h3 {
+    margin: 0;
+
+    font-size: 18px;
+
+    line-height: 1.25;
+
+    font-weight: 500;
+
+    color: var(--crew-cream);
+
+    white-space: nowrap;
+}
+
+
+.member-role-ar {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 12px;
+
+    line-height: 1.35;
+
+    color: var(--crew-beige);
+}
+
+
+.member-role-en {
+    display: block;
+
+    margin-top: 2px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 9px;
+
+    line-height: 1.25;
+
+    color:
+        rgba(225,215,204,0.58);
+
+    direction: ltr;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   BOTTOM META
+========================================================= */
+
+.crew-bottom-meta {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 20px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 0.08em;
+
+    color: var(--crew-beige);
+}
+
+
+.crew-bottom-meta div {
+    flex: 1;
+
+    height: 1px;
+
+    margin: 0 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(247,237,227,0.35),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   SIDE TECH
+========================================================= */
+
+.crew-side-left,
+.crew-side-right {
+    position: absolute;
+
+    top: 50%;
+
+    writing-mode: vertical-rl;
+
+    transform: translateY(-50%);
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 12px;
+
+    letter-spacing: 0.25em;
+
+    color: var(--crew-teal);
+
+    opacity: 0.85;
+
+    z-index: 25;
+}
+
+
+.crew-side-left {
+    left: 24px;
+}
+
+
+.crew-side-right {
+    right: 24px;
+}
+
+
+/* =========================================================
+   CORNERS
+========================================================= */
+
+.crew-corner {
+    position: absolute;
+
+    width: 58px;
+    height: 58px;
+
+    z-index: 25;
 
     pointer-events: none;
 }
 
 
-/* =========================================
-   META
-========================================= */
+.crew-corner-tl {
+    top: 24px;
+    left: 24px;
 
-.opening-meta {
-    width: 100%;
+    border-top:
+        2px solid rgba(247,237,227,0.75);
 
-    display: flex;
-    justify-content: space-between;
-
-    position: absolute;
-    top: 40px;
-    left: 0;
-
-    padding: 0 7%;
-
-    font-family: monospace;
-    font-size: 11px;
-    letter-spacing: 4px;
-
-    color: rgba(242,223,193,.55);
-
-    z-index: 2;
+    border-left:
+        2px solid rgba(247,237,227,0.75);
 }
 
 
-/* =========================================
-   LOGO
-========================================= */
+.crew-corner-tr {
+    top: 24px;
+    right: 24px;
 
-.opening-logo {
-    position: relative;
-    z-index: 2;
+    border-top:
+        2px solid rgba(247,237,227,0.75);
 
-    text-align: center;
-    margin-top: 30px;
-}
-
-.opening-onair {
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    font-size: clamp(80px, 11vw, 170px);
-
-    font-weight: 900;
-    line-height: .85;
-
-    letter-spacing: -8px;
-
-    color: #f2dfc1;
-
-    white-space: nowrap;
-}
-
-.opening-ar {
-    margin-top: 25px;
-
-    font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-
-    font-size: clamp(48px, 6vw, 85px);
-
-    color: #62a2a1;
-
-    line-height: 1;
+    border-right:
+        2px solid rgba(247,237,227,0.75);
 }
 
 
-/* =========================================
-   LINE
-========================================= */
+.crew-corner-bl {
+    bottom: 24px;
+    left: 24px;
 
-.opening-line {
-    width: 48px;
-    height: 1px;
+    border-bottom:
+        2px solid rgba(247,237,227,0.75);
 
-    background: #d9c4a5;
-
-    margin: 45px 0 40px;
-
-    position: relative;
-    z-index: 2;
+    border-left:
+        2px solid rgba(247,237,227,0.75);
 }
 
 
-/* =========================================
-   MESSAGE
-========================================= */
+.crew-corner-br {
+    bottom: 24px;
+    right: 24px;
 
-.opening-message {
-    position: relative;
-    z-index: 2;
+    border-bottom:
+        2px solid rgba(247,237,227,0.75);
 
-    text-align: center;
-
-    color: #f2dfc1;
-
-    font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-
-    font-size: clamp(38px, 5vw, 70px);
-
-    line-height: 1.4;
-    font-weight: 400;
+    border-right:
+        2px solid rgba(247,237,227,0.75);
 }
 
 
-/* English hidden by default */
+/* =========================================================
+   TABLET
+========================================================= */
 
-.en-content {
-    display: none;
-}
+@media (max-width: 1100px) {
 
+    .crew-main {
+        width: min(94%, 900px);
 
-/* English language */
+        grid-template-columns:
+            1fr;
 
-html[lang="en"] .ar-content {
-    display: none;
-}
+        gap: 45px;
 
-html[lang="en"] .en-content {
-    display: block;
-}
-
-
-/* =========================================
-   OPENING NOTE
-========================================= */
-
-.opening-note {
-    position: relative;
-    z-index: 2;
-
-    text-align: center;
-
-    margin-top: 35px;
-
-    color: rgba(242,223,193,.65);
-
-    font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-
-    font-size: 18px;
-
-    line-height: 1.9;
-}
-
-.opening-note p {
-    margin: 0;
-}
-
-
-/* =========================================
-   HEADER
-========================================= */
-
-.site-header {
-    width: 100%;
-    min-height: 95px;
-
-    padding: 20px 4%;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 15px;
-
-    background: rgba(2, 9, 19, 0.96);
-
-    border-top: 1px solid rgba(242,223,193,.2);
-    border-bottom: 1px solid rgba(242,223,193,.2);
-
-    position: sticky;
-    top: 0;
-
-    z-index: 100;
-
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
-
-
-/* =========================================
-   HEADER LOGO
-========================================= */
-
-.header-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    color: #f2dfc1;
-
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 22px;
-}
-
-.header-logo small {
-    color: #62a2a1;
-
-    font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-
-    font-size: 17px;
-}
-
-
-/* =========================================
-   HEADER BUTTONS
-========================================= */
-
-.sound-button,
-.menu-button,
-.language-switch button {
-
-    background: transparent;
-
-    border: 1px solid rgba(242,223,193,.25);
-
-    color: #d8c4a7;
-
-    padding: 14px 22px;
-
-    font-family: monospace;
-
-    letter-spacing: 3px;
-
-    font-size: 12px;
-
-    cursor: pointer;
-
-    transition:
-        border-color .3s ease,
-        color .3s ease,
-        background .3s ease;
-}
-
-.sound-button:hover,
-.menu-button:hover,
-.language-switch button:hover {
-
-    border-color: #d8c4a7;
-    color: #fff;
-}
-
-
-/* =========================================
-   LANGUAGE SWITCH
-========================================= */
-
-.language-switch {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-}
-
-.language-switch span {
-    color: rgba(242,223,193,.35);
-}
-
-.language-switch button {
-    padding: 10px 12px;
-}
-
-.language-switch button.active {
-    color: #62a2a1;
-    border-color: #62a2a1;
-}
-
-
-/* =========================================
-   TEAM STATEMENT
-========================================= */
-
-.team-statement {
-
-    width: min(90%, 1100px);
-
-    margin: 90px auto 120px;
-
-    padding: 55px 48px;
-
-    border: 1px solid rgba(239, 229, 211, 0.28);
-
-    background: rgba(13, 28, 45, 0.55);
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-
-/* =========================================
-   STATEMENT LABEL
-========================================= */
-
-.statement-label {
-
-    font-family: monospace;
-
-    font-size: 13px;
-
-    letter-spacing: 5px;
-
-    color: #c9b18d;
-
-    margin-bottom: 45px;
-}
-
-
-/* =========================================
-   ARABIC STATEMENT
-========================================= */
-
-.statement-ar {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 2px;
-
-    font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-
-    font-size: clamp(42px, 6vw, 82px);
-
-    line-height: 1.15;
-
-    font-weight: 400;
-
-    color: #f2eadf;
-}
-
-.statement-ar span:nth-child(2) {
-    color: #65a5a4;
-}
-
-
-/* =========================================
-   ENGLISH STATEMENT
-========================================= */
-
-.statement-en {
-
-    display: none;
-
-    flex-direction: column;
-
-    gap: 3px;
-
-    margin-top: 38px;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    font-weight: 800;
-
-    font-size: clamp(25px, 3vw, 45px);
-
-    letter-spacing: 3px;
-
-    color: #f2eadf;
-}
-
-.statement-en span:nth-child(2) {
-    color: #c9b18d;
-}
-
-
-/* =========================================
-   LANGUAGE CONTROL
-========================================= */
-
-html[lang="en"] .statement-ar {
-    display: none;
-}
-
-html[lang="en"] .statement-en {
-    display: flex;
-}
-
-
-/* =========================================
-   STATEMENT LINE
-========================================= */
-
-.statement-line {
-
-    width: 100%;
-
-    height: 1px;
-
-    background: rgba(239, 229, 211, 0.25);
-
-    margin-top: 45px;
-}
-
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 700px) {
-
-    /* Opening */
-
-    .opening-intro {
-        min-height: 100svh;
-
-        padding:
-            80px
-            25px
-            60px;
+        padding-top: 120px;
     }
 
 
-    .opening-meta {
-        top: 25px;
+    .crew-identity-panel {
+        min-height: auto;
 
-        padding: 0 25px;
+        text-align: center;
 
-        font-size: 8px;
-
-        letter-spacing: 2px;
+        align-items: center;
     }
 
 
-    .opening-meta span:nth-child(2) {
+    .crew-identity-text {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .crew-logo-stage {
+        max-width: 650px;
+    }
+
+
+    .crew-side-label {
         display: none;
     }
 
 
-    .opening-onair {
-        font-size: 70px;
-
-        letter-spacing: -5px;
-    }
-
-
-    .opening-ar {
-        font-size: 48px;
-    }
-
-
-    .opening-message {
-        font-size: 38px;
-    }
-
-
-    .opening-note {
-        font-size: 16px;
-
-        margin-top: 25px;
-    }
-
-
-    /* Header */
-
-    .site-header {
-
-        min-height: auto;
-
-        padding: 15px;
-
-        flex-wrap: wrap;
-
-        justify-content: center;
-
-        gap: 10px;
-    }
-
-
-    .header-logo {
-
+    .crew-credits-panel {
         width: 100%;
-
-        justify-content: center;
-
-        margin-bottom: 5px;
     }
 
-
-    .header-logo span {
-        font-size: 20px;
-    }
-
-
-    .header-logo small {
-        font-size: 15px;
-    }
-
-
-    .sound-button,
-    .menu-button,
-    .language-switch button {
-
-        padding: 11px 13px;
-
-        font-size: 10px;
-
-        letter-spacing: 2px;
-    }
-
-
-    .language-switch {
-        gap: 5px;
-    }
-
-
-    /* Team Statement */
-
-    .team-statement {
-
-        width: 88%;
-
-        margin: 60px auto 80px;
-
-        padding: 35px 25px;
-    }
-
-
-    .statement-label {
-
-        font-size: 10px;
-
-        letter-spacing: 3px;
-
-        margin-bottom: 30px;
-    }
-
-
-    .statement-ar {
-
-        font-size: 43px;
-    }
-
-
-    .statement-en {
-
-        font-size: 23px;
-
-        letter-spacing: 2px;
-
-        margin-top: 30px;
-    }
-
-
-    .statement-line {
-
-        margin-top: 30px;
-    }
 }
 
 
-/* =========================================
-   VERY SMALL SCREENS
-========================================= */
+/* =========================================================
+   MOBILE
+========================================================= */
 
-@media (max-width: 400px) {
+@media (max-width: 700px) {
 
-    .opening-onair {
-        font-size: 58px;
+    .crew-section {
+        min-height: auto;
     }
 
-    .opening-ar {
-        font-size: 40px;
+
+    .crew-tech-top {
+        top: 18px;
+        left: 18px;
+        right: 18px;
+
+        font-size: 9px;
+
+        gap: 8px;
     }
 
-    .opening-message {
-        font-size: 32px;
+
+    .crew-tech-left,
+    .crew-tech-right {
+        gap: 7px;
     }
 
-    .opening-note {
+
+    .crew-tech-right span:nth-of-type(1) {
+        display: none;
+    }
+
+
+    .crew-main {
+        width: calc(100% - 38px);
+
+        padding:
+            100px
+            0
+            55px;
+
+        gap: 45px;
+    }
+
+
+    .crew-identity-panel {
+        min-height: auto;
+
+        padding-top: 10px;
+    }
+
+
+    .crew-index {
+        margin-bottom: 20px;
+
+        font-size: 10px;
+    }
+
+
+    .crew-identity-heading h2 {
+        font-size: 50px;
+    }
+
+
+    .crew-identity-en {
+        font-size: 12px;
+
+        letter-spacing: 0.25em;
+
+        text-align: center;
+    }
+
+
+    .crew-identity-text {
+        margin-top: 22px;
+
         font-size: 14px;
+
+        line-height: 1.8;
     }
 
-    .sound-button,
-    .menu-button {
-        padding: 10px 11px;
+
+    .crew-logo-stage {
+        min-height: 290px;
+
+        margin-top: 20px;
     }
 
-    .statement-ar {
-        font-size: 36px;
+
+    .crew-logo-board {
+        width: 78%;
+
+        padding: 22px;
     }
 
-    .statement-en {
-        font-size: 19px;
+
+    .crew-reel {
+        width: 105px;
+        height: 105px;
+
+        right: 4%;
+        bottom: 8px;
     }
+
+
+    .crew-hole,
+    .reel-hole {
+        width: 16px;
+        height: 16px;
+    }
+
+
+    .reel-hole-1 {
+        top: 13px;
+        left: 43px;
+    }
+
+
+    .reel-hole-2 {
+        top: 40px;
+        right: 12px;
+    }
+
+
+    .reel-hole-3 {
+        bottom: 15px;
+        right: 26px;
+    }
+
+
+    .reel-hole-4 {
+        bottom: 15px;
+        left: 26px;
+    }
+
+
+    .reel-hole-5 {
+        top: 40px;
+        left: 12px;
+    }
+
+
+    .crew-credits-heading h2 {
+        font-size: 25px;
+
+        gap: 9px;
+    }
+
+
+    .crew-title-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+
+    .crew-credits-heading p {
+        font-size: 13px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .crew-featured {
+        min-height: 90px;
+
+        padding: 13px 30px;
+    }
+
+
+    .crew-featured-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    .crew-featured-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .crew-featured-info h3 {
+        font-size: 23px;
+    }
+
+
+    .crew-role-ar {
+        font-size: 12px;
+    }
+
+
+    .crew-role-en {
+        font-size: 8px;
+    }
+
+
+    .crew-grid-new {
+        grid-template-columns: 1fr;
+
+        column-gap: 0;
+    }
+
+
+    .crew-member {
+        min-height: 76px;
+
+        grid-template-columns:
+            30px
+            40px
+            minmax(0, 1fr);
+
+        gap: 8px;
+
+        padding: 10px 3px;
+    }
+
+
+    .member-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .member-icon svg {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    .member-info h3 {
+        font-size: 16px;
+    }
+
+
+    .member-role-ar {
+        font-size: 11px;
+    }
+
+
+    .member-role-en {
+        font-size: 7px;
+    }
+
+
+    .crew-bottom-meta {
+        font-size: 8px;
+    }
+
+
+    .crew-side-left,
+    .crew-side-right {
+        display: none;
+    }
+
+
+    .crew-corner {
+        width: 35px;
+        height: 35px;
+    }
+
+
+    .crew-corner-tl,
+    .crew-corner-tr {
+        top: 12px;
+    }
+
+
+    .crew-corner-bl,
+    .crew-corner-br {
+        bottom: 12px;
+    }
+
+
+    .crew-corner-tl,
+    .crew-corner-bl {
+        left: 12px;
+    }
+
+
+    .crew-corner-tr,
+    .crew-corner-br {
+        right: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .crew-rec i {
+        animation: none;
+    }
+
+    .crew-member {
+        transition: none;
+    }
+
 }

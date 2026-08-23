@@ -1,0 +1,1456 @@
+/* =========================================================
+   ON AIR — CREW / TEAM IDENTITY
+   CINEMATIC ARCHIVE
+========================================================= */
+
+.crew-section {
+    --crew-navy: #07111d;
+    --crew-deep: #030910;
+    --crew-cream: #f7ede3;
+    --crew-beige: #e1d7cc;
+    --crew-teal: #4eb484;
+    --crew-gray: #6d6d6d;
+
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+
+    background:
+        #07111d;
+
+    color: var(--crew-cream);
+
+    font-family:
+        "Cairo",
+        "Tajawal",
+        sans-serif;
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   BACKGROUND IMAGE
+========================================================= */
+
+.crew-bg {
+    position: absolute;
+    inset: 0;
+
+    z-index: -5;
+
+    background-image:
+        url("images/crew-background.png");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    transform: scale(1.015);
+}
+
+
+/* =========================================================
+   ATMOSPHERE
+========================================================= */
+
+.crew-vignette {
+    position: absolute;
+    inset: 0;
+
+    z-index: -4;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 48% 48%,
+            transparent 28%,
+            rgba(0, 0, 0, 0.18) 60%,
+            rgba(0, 0, 0, 0.72) 100%
+        );
+}
+
+
+.crew-scanlines {
+    position: absolute;
+    inset: 0;
+
+    z-index: 20;
+
+    pointer-events: none;
+
+    opacity: 0.08;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 3px,
+            rgba(247, 237, 227, 0.16) 4px
+        );
+
+    mix-blend-mode: screen;
+}
+
+
+/* =========================================================
+   TOP TECH
+========================================================= */
+
+.crew-tech-top {
+    position: absolute;
+
+    top: 28px;
+    left: 52px;
+    right: 52px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 30;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 13px;
+    letter-spacing: 0.14em;
+
+    color: var(--crew-cream);
+
+    text-transform: uppercase;
+}
+
+
+.crew-tech-left,
+.crew-tech-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.crew-separator {
+    opacity: 0.45;
+}
+
+
+.crew-rec {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+
+.crew-rec i {
+    width: 9px;
+    height: 9px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+
+    background: #d92832;
+
+    box-shadow:
+        0 0 10px rgba(217, 40, 50, 0.7);
+
+    animation: crewRecPulse 1.8s ease-in-out infinite;
+}
+
+
+@keyframes crewRecPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.crew-main {
+    position: relative;
+
+    width: min(1400px, calc(100% - 160px));
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding:
+        125px
+        0
+        70px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(460px, 0.88fr)
+        minmax(620px, 1.12fr);
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   LEFT IDENTITY
+========================================================= */
+
+.crew-identity-panel {
+    position: relative;
+
+    min-height: 760px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+    padding-top: 20px;
+}
+
+
+.crew-index {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 14px;
+
+    letter-spacing: 0.12em;
+
+    color: var(--crew-beige);
+}
+
+
+.crew-index i {
+    width: 48px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--crew-teal),
+            transparent
+        );
+}
+
+
+.crew-identity-heading h2 {
+    margin: 0;
+
+    font-size: clamp(58px, 5.4vw, 92px);
+
+    line-height: 0.95;
+
+    font-weight: 400;
+
+    letter-spacing: -0.055em;
+
+    color: var(--crew-cream);
+}
+
+
+.crew-identity-en {
+    margin-top: 20px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: clamp(15px, 1.2vw, 22px);
+
+    letter-spacing: 0.42em;
+
+    color: var(--crew-teal);
+
+    direction: ltr;
+
+    text-align: left;
+
+    opacity: 0.9;
+}
+
+
+.crew-identity-text {
+    margin: 34px 0 0;
+
+    max-width: 430px;
+
+    font-size: 19px;
+
+    line-height: 1.9;
+
+    font-weight: 400;
+
+    color: var(--crew-beige);
+}
+
+
+/* =========================================================
+   LOGO STAGE
+========================================================= */
+
+.crew-logo-stage {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 430px;
+
+    margin-top: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.crew-logo-glow {
+    position: absolute;
+
+    width: 330px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(247, 237, 227, 0.24),
+            rgba(78, 180, 132, 0.08) 40%,
+            transparent 70%
+        );
+
+    filter: blur(18px);
+
+    opacity: 0.85;
+}
+
+
+.crew-logo-board {
+    position: relative;
+
+    z-index: 3;
+
+    width: min(430px, 78%);
+
+    aspect-ratio: 1.35 / 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e9d5bd 0%,
+            #f4e5d1 45%,
+            #b99b79 100%
+        );
+
+    border:
+        1px solid
+        rgba(247, 237, 227, 0.7);
+
+    box-shadow:
+        0 0 0 1px rgba(225, 215, 204, 0.12),
+        0 20px 55px rgba(0, 0, 0, 0.55),
+        0 0 35px rgba(247, 237, 227, 0.18);
+
+    transform:
+        perspective(900px)
+        rotateY(-4deg)
+        rotateX(2deg);
+}
+
+
+.crew-logo-board::before {
+    content: "";
+
+    position: absolute;
+    inset: 10px;
+
+    border:
+        1px solid
+        rgba(7, 17, 29, 0.18);
+
+    pointer-events: none;
+}
+
+
+.crew-logo-board::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 20%,
+            rgba(255,255,255,0.22) 45%,
+            transparent 65%
+        );
+
+    opacity: 0.35;
+
+    pointer-events: none;
+}
+
+
+.crew-logo-board img {
+    position: relative;
+
+    z-index: 2;
+
+    width: 90%;
+    max-height: 85%;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 5px 8px rgba(0,0,0,0.18));
+}
+
+
+/* =========================================================
+   CSS FILM REEL
+========================================================= */
+
+.crew-reel {
+    position: absolute;
+
+    z-index: 4;
+
+    width: 190px;
+    height: 190px;
+
+    right: 2%;
+    bottom: 22px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            #222 0 11%,
+            #b18a5e 12% 15%,
+            #151a1c 16% 38%,
+            #866b4e 39% 42%,
+            #171b1c 43% 70%,
+            #9b7955 71% 74%,
+            #161a1b 75% 100%
+        );
+
+    border:
+        4px solid
+        rgba(170, 133, 91, 0.7);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.65),
+        0 0 20px rgba(247,237,227,0.1);
+
+    transform:
+        rotate(-12deg);
+}
+
+
+.crew-reel::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 25%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #07111d 0 18%,
+            #b8956a 19% 23%,
+            #15191a 24% 100%
+        );
+}
+
+
+.crew-reel::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 10px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(247,237,227,0.16);
+}
+
+
+.reel-hole {
+    position: absolute;
+
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    background:
+        #07111d;
+
+    border:
+        3px solid
+        rgba(161, 125, 83, 0.7);
+
+    z-index: 2;
+}
+
+
+.reel-hole-1 {
+    top: 24px;
+    left: 80px;
+}
+
+
+.reel-hole-2 {
+    top: 72px;
+    right: 21px;
+}
+
+
+.reel-hole-3 {
+    bottom: 28px;
+    right: 48px;
+}
+
+
+.reel-hole-4 {
+    bottom: 28px;
+    left: 48px;
+}
+
+
+.reel-hole-5 {
+    top: 72px;
+    left: 21px;
+}
+
+
+.reel-center {
+    position: absolute;
+
+    z-index: 5;
+
+    width: 28px;
+    height: 28px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        #0b1013;
+
+    border:
+        5px solid
+        #b18a5e;
+}
+
+
+/* =========================================================
+   SIDE LABEL
+========================================================= */
+
+.crew-side-label {
+    position: absolute;
+
+    left: -55px;
+    bottom: 170px;
+
+    writing-mode: vertical-rl;
+
+    transform: rotate(180deg);
+
+    font-family: "Space Mono", monospace;
+
+    color: var(--crew-teal);
+
+    font-size: 12px;
+
+    letter-spacing: 0.24em;
+}
+
+
+/* =========================================================
+   RIGHT CREDITS
+========================================================= */
+
+.crew-credits-panel {
+    position: relative;
+
+    min-width: 0;
+
+    padding-top: 20px;
+}
+
+
+.crew-credits-heading {
+    margin-bottom: 18px;
+}
+
+
+.crew-title-line {
+    width: 100%;
+
+    height: 1px;
+
+    margin-bottom: 22px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(78,180,132,0.75),
+            rgba(247,237,227,0.1),
+            transparent
+        );
+}
+
+
+.crew-credits-heading h2 {
+    margin: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    font-size: clamp(29px, 2.5vw, 44px);
+
+    line-height: 1.3;
+
+    font-weight: 400;
+
+    color: var(--crew-cream);
+}
+
+
+.crew-title-dot {
+    width: 12px;
+    height: 12px;
+
+    flex: 0 0 auto;
+
+    border-radius: 50%;
+
+    background: var(--crew-teal);
+
+    box-shadow:
+        0 0 15px rgba(78,180,132,0.45);
+}
+
+
+.crew-credits-heading p {
+    margin: 10px 0 25px;
+
+    font-size: 16px;
+
+    color: var(--crew-beige);
+}
+
+
+/* =========================================================
+   FEATURED DIRECTOR
+========================================================= */
+
+.crew-featured {
+    position: relative;
+
+    min-height: 105px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 22px;
+
+    margin-bottom: 12px;
+
+    padding: 17px 28px;
+
+    border-top:
+        1px solid rgba(247,237,227,0.15);
+
+    border-bottom:
+        1px solid rgba(247,237,227,0.15);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(78,180,132,0.04),
+            transparent
+        );
+}
+
+
+.crew-featured-number {
+    position: absolute;
+
+    right: 16px;
+
+    top: 20px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 13px;
+
+    color: var(--crew-teal);
+}
+
+
+.crew-featured-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.crew-featured-icon svg {
+    width: 50px;
+    height: 50px;
+
+    fill: none;
+
+    stroke:
+        var(--crew-teal);
+
+    stroke-width: 1.5;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.crew-featured-info {
+    text-align: center;
+}
+
+
+.crew-featured-info h3 {
+    margin: 0;
+
+    font-size: 29px;
+
+    font-weight: 500;
+
+    color: var(--crew-cream);
+}
+
+
+.crew-role-ar {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 15px;
+
+    color: var(--crew-beige);
+}
+
+
+.crew-role-en {
+    display: block;
+
+    margin-top: 2px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 0.06em;
+
+    direction: ltr;
+
+    color: rgba(225,215,204,0.7);
+}
+
+
+/* =========================================================
+   MEMBER GRID
+========================================================= */
+
+.crew-grid-new {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    column-gap: 35px;
+
+    border-bottom:
+        1px solid rgba(247,237,227,0.12);
+}
+
+
+.crew-member {
+    position: relative;
+
+    min-height: 88px;
+
+    display: grid;
+
+    grid-template-columns: 38px 48px minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px 7px;
+
+    border-top:
+        1px solid rgba(247,237,227,0.11);
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.crew-member:hover {
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(78,180,132,0.07)
+        );
+
+    transform: translateX(-3px);
+}
+
+
+.member-number {
+    font-family: "Space Mono", monospace;
+
+    font-size: 12px;
+
+    color: var(--crew-teal);
+
+    direction: ltr;
+
+    text-align: center;
+}
+
+
+.member-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.member-icon svg {
+    width: 39px;
+    height: 39px;
+
+    fill: none;
+
+    stroke:
+        var(--crew-teal);
+
+    stroke-width: 1.5;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    filter:
+        drop-shadow(
+            0 0 5px rgba(78,180,132,0.15)
+        );
+}
+
+
+.member-info {
+    min-width: 0;
+}
+
+
+.member-info h3 {
+    margin: 0;
+
+    font-size: 18px;
+
+    line-height: 1.25;
+
+    font-weight: 500;
+
+    color: var(--crew-cream);
+
+    white-space: nowrap;
+}
+
+
+.member-role-ar {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 12px;
+
+    line-height: 1.35;
+
+    color: var(--crew-beige);
+}
+
+
+.member-role-en {
+    display: block;
+
+    margin-top: 2px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 9px;
+
+    line-height: 1.25;
+
+    color:
+        rgba(225,215,204,0.58);
+
+    direction: ltr;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   BOTTOM META
+========================================================= */
+
+.crew-bottom-meta {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 20px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 0.08em;
+
+    color: var(--crew-beige);
+}
+
+
+.crew-bottom-meta div {
+    flex: 1;
+
+    height: 1px;
+
+    margin: 0 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(247,237,227,0.35),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   SIDE TECH
+========================================================= */
+
+.crew-side-left,
+.crew-side-right {
+    position: absolute;
+
+    top: 50%;
+
+    writing-mode: vertical-rl;
+
+    transform: translateY(-50%);
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 12px;
+
+    letter-spacing: 0.25em;
+
+    color: var(--crew-teal);
+
+    opacity: 0.85;
+
+    z-index: 25;
+}
+
+
+.crew-side-left {
+    left: 24px;
+}
+
+
+.crew-side-right {
+    right: 24px;
+}
+
+
+/* =========================================================
+   CORNERS
+========================================================= */
+
+.crew-corner {
+    position: absolute;
+
+    width: 58px;
+    height: 58px;
+
+    z-index: 25;
+
+    pointer-events: none;
+}
+
+
+.crew-corner-tl {
+    top: 24px;
+    left: 24px;
+
+    border-top:
+        2px solid rgba(247,237,227,0.75);
+
+    border-left:
+        2px solid rgba(247,237,227,0.75);
+}
+
+
+.crew-corner-tr {
+    top: 24px;
+    right: 24px;
+
+    border-top:
+        2px solid rgba(247,237,227,0.75);
+
+    border-right:
+        2px solid rgba(247,237,227,0.75);
+}
+
+
+.crew-corner-bl {
+    bottom: 24px;
+    left: 24px;
+
+    border-bottom:
+        2px solid rgba(247,237,227,0.75);
+
+    border-left:
+        2px solid rgba(247,237,227,0.75);
+}
+
+
+.crew-corner-br {
+    bottom: 24px;
+    right: 24px;
+
+    border-bottom:
+        2px solid rgba(247,237,227,0.75);
+
+    border-right:
+        2px solid rgba(247,237,227,0.75);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .crew-main {
+        width: min(94%, 900px);
+
+        grid-template-columns:
+            1fr;
+
+        gap: 45px;
+
+        padding-top: 120px;
+    }
+
+
+    .crew-identity-panel {
+        min-height: auto;
+
+        text-align: center;
+
+        align-items: center;
+    }
+
+
+    .crew-identity-text {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .crew-logo-stage {
+        max-width: 650px;
+    }
+
+
+    .crew-side-label {
+        display: none;
+    }
+
+
+    .crew-credits-panel {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .crew-section {
+        min-height: auto;
+    }
+
+
+    .crew-tech-top {
+        top: 18px;
+        left: 18px;
+        right: 18px;
+
+        font-size: 9px;
+
+        gap: 8px;
+    }
+
+
+    .crew-tech-left,
+    .crew-tech-right {
+        gap: 7px;
+    }
+
+
+    .crew-tech-right span:nth-of-type(1) {
+        display: none;
+    }
+
+
+    .crew-main {
+        width: calc(100% - 38px);
+
+        padding:
+            100px
+            0
+            55px;
+
+        gap: 45px;
+    }
+
+
+    .crew-identity-panel {
+        min-height: auto;
+
+        padding-top: 10px;
+    }
+
+
+    .crew-index {
+        margin-bottom: 20px;
+
+        font-size: 10px;
+    }
+
+
+    .crew-identity-heading h2 {
+        font-size: 50px;
+    }
+
+
+    .crew-identity-en {
+        font-size: 12px;
+
+        letter-spacing: 0.25em;
+
+        text-align: center;
+    }
+
+
+    .crew-identity-text {
+        margin-top: 22px;
+
+        font-size: 14px;
+
+        line-height: 1.8;
+    }
+
+
+    .crew-logo-stage {
+        min-height: 290px;
+
+        margin-top: 20px;
+    }
+
+
+    .crew-logo-board {
+        width: 78%;
+
+        padding: 22px;
+    }
+
+
+    .crew-reel {
+        width: 105px;
+        height: 105px;
+
+        right: 4%;
+        bottom: 8px;
+    }
+
+
+    .crew-hole,
+    .reel-hole {
+        width: 16px;
+        height: 16px;
+    }
+
+
+    .reel-hole-1 {
+        top: 13px;
+        left: 43px;
+    }
+
+
+    .reel-hole-2 {
+        top: 40px;
+        right: 12px;
+    }
+
+
+    .reel-hole-3 {
+        bottom: 15px;
+        right: 26px;
+    }
+
+
+    .reel-hole-4 {
+        bottom: 15px;
+        left: 26px;
+    }
+
+
+    .reel-hole-5 {
+        top: 40px;
+        left: 12px;
+    }
+
+
+    .crew-credits-heading h2 {
+        font-size: 25px;
+
+        gap: 9px;
+    }
+
+
+    .crew-title-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+
+    .crew-credits-heading p {
+        font-size: 13px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .crew-featured {
+        min-height: 90px;
+
+        padding: 13px 30px;
+    }
+
+
+    .crew-featured-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    .crew-featured-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .crew-featured-info h3 {
+        font-size: 23px;
+    }
+
+
+    .crew-role-ar {
+        font-size: 12px;
+    }
+
+
+    .crew-role-en {
+        font-size: 8px;
+    }
+
+
+    .crew-grid-new {
+        grid-template-columns: 1fr;
+
+        column-gap: 0;
+    }
+
+
+    .crew-member {
+        min-height: 76px;
+
+        grid-template-columns:
+            30px
+            40px
+            minmax(0, 1fr);
+
+        gap: 8px;
+
+        padding: 10px 3px;
+    }
+
+
+    .member-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .member-icon svg {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    .member-info h3 {
+        font-size: 16px;
+    }
+
+
+    .member-role-ar {
+        font-size: 11px;
+    }
+
+
+    .member-role-en {
+        font-size: 7px;
+    }
+
+
+    .crew-bottom-meta {
+        font-size: 8px;
+    }
+
+
+    .crew-side-left,
+    .crew-side-right {
+        display: none;
+    }
+
+
+    .crew-corner {
+        width: 35px;
+        height: 35px;
+    }
+
+
+    .crew-corner-tl,
+    .crew-corner-tr {
+        top: 12px;
+    }
+
+
+    .crew-corner-bl,
+    .crew-corner-br {
+        bottom: 12px;
+    }
+
+
+    .crew-corner-tl,
+    .crew-corner-bl {
+        left: 12px;
+    }
+
+
+    .crew-corner-tr,
+    .crew-corner-br {
+        right: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .crew-rec i {
+        animation: none;
+    }
+
+    .crew-member {
+        transition: none;
+    }
+
+}

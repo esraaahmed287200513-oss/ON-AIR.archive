@@ -10662,7 +10662,7 @@ html[lang="en"]
 @media (max-height: 700px) and (max-width: 700px) {
 
     .cinematic-content {
-        padding-top: 108px;
+        padding-top: 120px;
     }
 
 
@@ -10744,4 +10744,494 @@ html[lang="en"]
 
     }
 
+}
+/* =========================================================
+   ON AIR — TEAM + CREW CINEMATIC ARCHIVE
+   BACKGROUND SYSTEM
+========================================================= */
+
+.team-crew-archive {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(5, 12, 20, .18),
+            rgba(5, 12, 20, .38)
+        ),
+        url("images/crew-background.png")
+        center top / cover
+        no-repeat;
+
+    color: var(--cream);
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   CINEMATIC OVERLAY
+========================================================= */
+
+.team-crew-archive::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    background:
+        radial-gradient(
+            circle at 50% 18%,
+            rgba(247, 237, 227, .12),
+            transparent 32%
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(5, 12, 20, .05),
+            rgba(5, 12, 20, .55)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   FILM GRAIN
+========================================================= */
+
+.team-crew-archive::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 10;
+
+    pointer-events: none;
+
+    opacity: .16;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+
+    mix-blend-mode: soft-light;
+}
+
+
+/* =========================================================
+   TEAM IDENTITY
+========================================================= */
+
+.team-crew-archive .team-identity {
+    position: relative;
+
+    width: 100% !important;
+
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    padding:
+        120px
+        7vw
+        100px !important;
+
+    min-height: 620px;
+
+    background: transparent !important;
+
+    border: 0 !important;
+
+    box-shadow: none !important;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.team-crew-archive .team-identity-logo {
+    position: relative;
+
+    z-index: 3;
+
+    width: 270px !important;
+    height: 270px !important;
+
+    top: 0 !important;
+
+    filter:
+        drop-shadow(
+            0 20px 35px
+            rgba(0,0,0,.45)
+        );
+}
+
+
+/* =========================================================
+   TEAM TEXT
+========================================================= */
+
+.team-crew-archive .team-identity-content {
+    position: relative;
+
+    z-index: 3;
+
+    max-width: 700px !important;
+}
+
+
+/* =========================================================
+   TEAM LABEL
+========================================================= */
+
+.team-crew-archive .team-identity-label {
+    color: var(--beige) !important;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    letter-spacing: .14em;
+
+    text-shadow:
+        0 2px 12px rgba(0,0,0,.55);
+}
+
+
+/* =========================================================
+   TEAM TITLE
+========================================================= */
+
+.team-crew-archive .team-identity-title span {
+    color: var(--cream) !important;
+
+    text-shadow:
+        0 4px 30px rgba(0,0,0,.65);
+}
+
+
+/* =========================================================
+   TEAM LINE
+========================================================= */
+
+.team-crew-archive .team-identity-line {
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(247,237,227,.65),
+            transparent
+        ) !important;
+}
+
+
+/* =========================================================
+   TEAM FOOTER
+========================================================= */
+
+.team-crew-archive .team-identity-footer {
+    color: var(--beige) !important;
+
+    text-shadow:
+        0 2px 12px rgba(0,0,0,.65);
+}
+
+
+/* =========================================================
+   CREW SECTION
+========================================================= */
+
+.team-crew-archive .crew-section {
+    position: relative;
+
+    width: 100%;
+
+    padding:
+        90px
+        6vw
+        130px;
+
+    margin: 0 !important;
+
+    background: transparent !important;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   FILM DIVIDER
+========================================================= */
+
+.team-crew-archive .crew-film-line {
+    position: relative;
+
+    margin:
+        0 auto
+        90px;
+
+    width: 100%;
+
+    border-top:
+        1px solid
+        rgba(247,237,227,.20);
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.20);
+
+    background:
+        rgba(5,12,20,.22);
+
+    backdrop-filter:
+        blur(5px);
+
+    color:
+        rgba(247,237,227,.48);
+}
+
+
+/* =========================================================
+   CREW INTRO
+========================================================= */
+
+.team-crew-archive .crew-intro {
+    position: relative;
+
+    z-index: 3;
+
+    margin:
+        0 auto
+        80px;
+
+    text-shadow:
+        0 4px 25px rgba(0,0,0,.65);
+}
+
+
+.team-crew-archive .crew-kicker {
+    color:
+        var(--beige) !important;
+}
+
+
+.team-crew-archive .crew-intro h2 {
+    color:
+        var(--cream) !important;
+
+    text-shadow:
+        0 5px 30px rgba(0,0,0,.75);
+}
+
+
+.team-crew-archive .crew-intro p {
+    color:
+        var(--beige) !important;
+}
+
+
+/* =========================================================
+   CREW GRID
+========================================================= */
+
+.team-crew-archive .crew-grid {
+    position: relative;
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   CREW CARDS
+========================================================= */
+
+.team-crew-archive .crew-card-face {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,37,72,.86),
+            rgba(5,12,20,.94)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(247,237,227,.22) !important;
+
+    box-shadow:
+        0 25px 55px
+        rgba(0,0,0,.38),
+
+        inset 0 1px 0
+        rgba(247,237,227,.08);
+
+    backdrop-filter:
+        blur(12px);
+}
+
+
+.team-crew-archive .crew-card:hover
+.crew-card-front {
+    border-color:
+        rgba(247,237,227,.48) !important;
+
+    box-shadow:
+        0 30px 70px
+        rgba(0,0,0,.55),
+
+        0 0 35px
+        rgba(247,237,227,.08);
+}
+
+
+/* =========================================================
+   CREW NAMES
+========================================================= */
+
+.team-crew-archive .crew-name,
+.team-crew-archive .crew-card-back h3 {
+    color:
+        var(--cream) !important;
+}
+
+
+/* =========================================================
+   CREW META
+========================================================= */
+
+.team-crew-archive .crew-meta,
+.team-crew-archive .crew-card-back p {
+    color:
+        var(--beige) !important;
+}
+
+
+/* =========================================================
+   CREW ICON
+========================================================= */
+
+.team-crew-archive .crew-icon {
+    filter:
+        drop-shadow(
+            0 5px 15px
+            rgba(0,0,0,.45)
+        );
+}
+
+
+/* =========================================================
+   GROUP PHOTO
+========================================================= */
+
+.team-crew-archive .crew-photo-section {
+    position: relative;
+
+    z-index: 3;
+
+    margin-top: 120px;
+}
+
+
+/* =========================================================
+   ENDING
+========================================================= */
+
+.team-crew-archive .crew-ending {
+    position: relative;
+
+    z-index: 3;
+
+    text-shadow:
+        0 4px 20px rgba(0,0,0,.7);
+}
+
+
+.team-crew-archive .crew-ending h3 {
+    color:
+        var(--cream) !important;
+}
+
+
+.team-crew-archive .crew-ending p {
+    color:
+        var(--beige) !important;
+}
+
+
+.team-crew-archive .ending-meta {
+    color:
+        rgba(247,237,227,.55) !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .team-crew-archive .team-identity {
+        min-height: auto;
+
+        padding:
+            80px
+            20px
+            70px !important;
+    }
+
+
+    .team-crew-archive .team-identity-logo {
+        width: 180px !important;
+        height: 180px !important;
+    }
+
+
+    .team-crew-archive .team-identity-title span {
+        font-size:
+            clamp(
+                34px,
+                9vw,
+                48px
+            ) !important;
+    }
+
+
+    .team-crew-archive .crew-section {
+        padding:
+            55px
+            16px
+            90px;
+    }
+
+
+    .team-crew-archive .crew-film-line {
+        margin-bottom: 60px;
+    }
+
+
+    .team-crew-archive .crew-intro {
+        margin-bottom: 55px;
+    }
+
+
+    .team-crew-archive .crew-intro h2 {
+        font-size:
+            clamp(
+                30px,
+                8vw,
+                42px
+            );
+    }
+
+
+    .team-crew-archive .crew-grid {
+        grid-template-columns:
+            1fr !important;
+    }
 }
