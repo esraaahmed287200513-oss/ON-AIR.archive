@@ -908,13 +908,10 @@ async function submitStickyNote(event) {
      }
 
 
-     
-
-        console.log(
-            "NOTE WAITING FOR APPROVAL:",
-            data
-        );
-
+      console.log(
+    "NOTE WAITING FOR APPROVAL"
+);    
+   
 
         form?.reset();
 
