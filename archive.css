@@ -10161,299 +10161,546 @@ html[lang="en"]
 
 
 /* =========================================================
-   MOBILE
+   ON AIR — REAL MOBILE CINEMATIC ARCHIVE
 ========================================================= */
 
 @media (max-width: 700px) {
 
+    /* =====================================================
+       ARCHIVE FRAME
+    ===================================================== */
+
     .cinematic-archive {
-
-        min-height:
-            100svh;
-
+        min-height: calc(100svh - 64px);
+        height: calc(100svh - 64px);
+        overflow: hidden;
+        position: relative;
     }
 
+
+    /* =====================================================
+       BACKGROUND
+    ===================================================== */
 
     .cinematic-archive .archive-background {
+        position: absolute;
+        inset: 0;
 
-        background-position:
-            57% center;
+        background-size: cover;
+        background-position: 56% center;
 
         filter:
-            brightness(.42)
-            contrast(1.05)
-            saturate(.7);
+            brightness(.34)
+            contrast(1.12)
+            saturate(.65);
 
+        transform: scale(1.04);
     }
 
+
+    /* =====================================================
+       OVERLAY
+    ===================================================== */
+
+    .cinematic-archive .archive-film-overlay {
+        position: absolute;
+        inset: 0;
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(5, 12, 20, .82) 0%,
+                rgba(5, 12, 20, .32) 30%,
+                rgba(5, 12, 20, .08) 52%,
+                rgba(5, 12, 20, .48) 76%,
+                rgba(5, 12, 20, .96) 100%
+            ),
+
+            radial-gradient(
+                ellipse at center,
+                transparent 15%,
+                rgba(0, 0, 0, .62) 100%
+            );
+
+        z-index: 1;
+    }
+
+
+    /* =====================================================
+       GRID
+    ===================================================== */
+
+    .cinematic-archive .archive-grid {
+        background-size: 26px 26px;
+        opacity: .18;
+    }
+
+
+    /* =====================================================
+       CINEMATIC TECH BAR
+       
+       IMPORTANT:
+       ده مش الـTop Bar العام.
+       ده الـtechnical bar الموجود داخل الـArchive.
+       هنخفيه في الموبايل عشان مايبقاش عندنا شريطين.
+    ===================================================== */
 
     .cinematic-tech {
-
-        min-height:
-            62px;
-
-        padding:
-            0 14px;
-
-        gap:
-            7px;
-
-        font-size:
-            6px;
-
-        letter-spacing:
-            .08em;
-
+        display: none;
     }
 
 
-    .cinematic-tech i {
-
-        opacity:
-            .5;
-
-    }
-
+    /* =====================================================
+       CONTENT
+    ===================================================== */
 
     .cinematic-content {
+        position: relative;
+        z-index: 5;
+
+        width: 100%;
+        height: 100%;
+        min-height: calc(100svh - 64px);
+
+        box-sizing: border-box;
 
         padding:
-            90px 20px 85px;
+            74px
+            22px
+            70px;
 
-        min-height:
-            100svh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
+        justify-content: flex-start;
+
+        text-align: center;
     }
 
+
+    /* =====================================================
+       PROJECT ARCHIVE
+    ===================================================== */
 
     .cinematic-project-label {
+        margin-top: 10px;
+        margin-bottom: 18px;
 
-        font-size:
-            7px;
+        font-size: 7px;
+        line-height: 1.2;
 
-        letter-spacing:
-            .22em;
+        letter-spacing: .20em;
 
-        margin-bottom:
-            16px;
-
+        opacity: .78;
     }
 
 
+    /* =====================================================
+       LINE
+    ===================================================== */
+
     .cinematic-top-line {
+        width: 40px;
+        height: 1px;
 
-        width:
-            35px;
+        margin-bottom: 30px;
+    }
 
-        margin-bottom:
-            27px;
 
+    /* =====================================================
+       TEAM LOGO
+    ===================================================== */
+
+    .cinematic-logo {
+        width: 100%;
+
+        transform:
+            translateY(0)
+            scale(1);
     }
 
 
     .cinematic-logo-en {
+        font-size: clamp(58px, 18vw, 82px);
 
-        font-size:
-            clamp(62px, 18vw, 100px);
+        line-height: .80;
 
-        letter-spacing:
-            -.07em;
+        letter-spacing: -.075em;
 
+        white-space: nowrap;
     }
 
 
     .cinematic-logo-ar {
+        margin-top: 18px;
 
-        margin-top:
-            18px;
+        font-size: clamp(38px, 11vw, 52px);
 
-        font-size:
-            clamp(39px, 11vw, 58px);
-
+        line-height: 1;
     }
 
 
+    /* =====================================================
+       SCROLL
+    ===================================================== */
+
     .cinematic-scroll {
+        margin-top: 38px;
 
-        margin-top:
-            35px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
+        opacity: 1;
+    }
+
+
+    .cinematic-scroll-line {
+        width: 52px;
+
+        margin-bottom: 14px;
     }
 
 
     .cinematic-scroll-text {
+        direction: rtl;
 
-        font-size:
-            7px;
+        font-family:
+            "Cairo",
+            sans-serif;
 
-        letter-spacing:
-            .18em;
+        font-size: 9px;
 
+        letter-spacing: 0;
+
+        color:
+            rgba(243, 223, 194, .82);
     }
 
 
     .cinematic-mouse {
+        width: 23px;
+        height: 38px;
 
-        width:
-            24px;
+        margin-top: 13px;
 
-        height:
-            38px;
-
+        border-color:
+            rgba(243, 223, 194, .72);
     }
 
 
+    .cinematic-arrow {
+        margin-top: 7px;
+
+        font-size: 18px;
+    }
+
+
+    /* =====================================================
+       STATEMENT
+    ===================================================== */
+
     .cinematic-statement {
+        width: min(90%, 350px);
 
-        width:
-            88%;
+        margin-top: 34px;
 
-        margin-top:
-            38px;
+        padding: 0 8px;
 
+        box-sizing: border-box;
     }
 
 
     .cinematic-statement p {
+        margin: 0;
 
-        font-size:
-            15px;
+        font-family:
+            "Tajawal",
+            "Cairo",
+            sans-serif;
 
-        line-height:
-            2;
+        font-size: 14px;
 
+        font-weight: 300;
+
+        line-height: 1.9;
+
+        color:
+            rgba(243, 223, 194, .88);
     }
 
 
+    .cinematic-statement strong {
+        color: var(--teal);
+        font-weight: 500;
+    }
+
+
+    /* =====================================================
+       QUOTES
+    ===================================================== */
+
     .quote-mark {
-
-        font-size:
-            45px;
-
+        font-size: 42px;
+        opacity: .42;
     }
 
 
     .quote-left {
-
-        left:
-            -16px;
-
-        top:
-            -8px;
-
+        left: -13px;
+        top: -7px;
     }
 
 
     .quote-right {
-
-        right:
-            -16px;
-
-        bottom:
-            -14px;
-
+        right: -13px;
+        bottom: -12px;
     }
 
+
+    /* =====================================================
+       DIVIDER
+    ===================================================== */
+
+    .cinematic-divider {
+        width: 48px;
+
+        margin-top: 23px;
+    }
+
+
+    /* =====================================================
+       STATUS
+    ===================================================== */
 
     .cinematic-status {
+        margin-top: 13px;
 
-        font-size:
-            6px;
+        gap: 7px;
 
+        font-size: 7px;
+
+        letter-spacing: 0;
+
+        color:
+            rgba(216, 200, 181, .58);
     }
 
 
-    .cinematic-bottom-meta {
+    .status-dot {
+        width: 5px;
+        height: 5px;
+    }
 
-        bottom:
-            18px;
 
-        font-size:
-            6px;
+    /* =====================================================
+       CAMERA CORNERS
+    ===================================================== */
 
-        gap:
-            6px;
+    .cinematic-archive .camera-corner {
+        width: 34px;
+        height: 34px;
 
+        z-index: 15;
     }
 
 
     .cinematic-archive
-    .camera-corner {
-
-        width:
-            38px;
-
-        height:
-            38px;
-
+    .camera-corner.top-left {
+        top: 78px;
+        left: 16px;
     }
 
 
-    .cinematic-archive
-    .camera-corner.top-left,
     .cinematic-archive
     .camera-corner.top-right {
-
-        top:
-            88px;
-
+        top: 78px;
+        right: 16px;
     }
 
 
     .cinematic-archive
-    .camera-corner.bottom-left,
+    .camera-corner.bottom-left {
+        bottom: 16px;
+        left: 16px;
+    }
+
+
     .cinematic-archive
     .camera-corner.bottom-right {
+        bottom: 16px;
+        right: 16px;
+    }
 
-        bottom:
-            18px;
 
+    /* =====================================================
+       BOTTOM META
+    ===================================================== */
+
+    .cinematic-bottom-meta {
+        position: absolute;
+
+        left: 50%;
+        bottom: 16px;
+
+        width: 100%;
+
+        transform:
+            translateX(-50%);
+
+        justify-content: center;
+
+        gap: 6px;
+
+        font-size: 6px;
+
+        letter-spacing: .08em;
+
+        opacity: .60;
     }
 
 }
 
 
 /* =========================================================
-   VERY SMALL PHONES
+   SMALL PHONES
 ========================================================= */
 
 @media (max-width: 390px) {
 
-    .cinematic-tech {
+    .cinematic-content {
+        padding:
+            70px
+            18px
+            66px;
+    }
 
-        gap:
-            5px;
 
-        font-size:
-            5.5px;
+    .cinematic-project-label {
+        margin-top: 7px;
+        margin-bottom: 15px;
 
+        font-size: 6px;
+    }
+
+
+    .cinematic-top-line {
+        width: 35px;
+        margin-bottom: 26px;
     }
 
 
     .cinematic-logo-en {
-
-        font-size:
-            57px;
-
+        font-size: 57px;
     }
 
 
     .cinematic-logo-ar {
+        margin-top: 16px;
+        font-size: 37px;
+    }
 
-        font-size:
-            38px;
 
+    .cinematic-scroll {
+        margin-top: 32px;
+    }
+
+
+    .cinematic-scroll-text {
+        font-size: 8px;
+    }
+
+
+    .cinematic-mouse {
+        width: 22px;
+        height: 36px;
+    }
+
+
+    .cinematic-statement {
+        margin-top: 28px;
+        width: 92%;
     }
 
 
     .cinematic-statement p {
+        font-size: 13px;
+        line-height: 1.85;
+    }
 
-        font-size:
-            14px;
 
+    .quote-mark {
+        font-size: 38px;
+    }
+
+
+    .cinematic-divider {
+        margin-top: 19px;
+    }
+
+
+    .cinematic-status {
+        margin-top: 11px;
+        font-size: 6px;
+    }
+
+
+    .cinematic-bottom-meta {
+        font-size: 5.5px;
     }
 
 }
+
+
+/* =========================================================
+   SHORT MOBILE SCREENS
+========================================================= */
+
+@media (max-height: 700px) and (max-width: 700px) {
+
+    .cinematic-content {
+        padding-top: 66px;
+    }
+
+
+    .cinematic-project-label {
+        margin-top: 4px;
+        margin-bottom: 11px;
+    }
+
+
+    .cinematic-top-line {
+        margin-bottom: 21px;
+    }
+
+
+    .cinematic-logo-ar {
+        margin-top: 13px;
+    }
+
+
+    .cinematic-scroll {
+        margin-top: 25px;
+    }
+
+
+    .cinematic-statement {
+        margin-top: 22px;
+    }
+
+
+    .cinematic-divider {
+        margin-top: 15px;
+    }
+
+
+    .cinematic-status {
+        margin-top: 8px;
+    }
+
+}
+
 
 
 /* =========================================================
