@@ -1434,7 +1434,7 @@
     z-index: -3;
 
     background-image:
-        url("images/production-background.png");
+        url("images/crew-background.png");
 
     background-size: cover;
     background-position: center;
@@ -2566,7 +2566,7 @@
     z-index: -3;
 
     background-image:
-        url("images/production-background.png");
+        url("images/crew-background.png");
 
     background-size: cover;
     background-position: center;
@@ -3500,7 +3500,7 @@
     z-index: -3;
 
     background:
-        url("images/production-background.png")
+        url("images/crew-background.png")
         center / cover
         no-repeat;
 }
@@ -5408,7 +5408,7 @@
 
     .oa-production-bg {
         background-image:
-            url("images/production-mobile-bg.png") !important;
+            url("images/crew-background.png") !important;
 
         background-size: cover !important;
         background-position: center top !important;

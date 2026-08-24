@@ -9154,7 +9154,7 @@ html[lang="en"]
     z-index: -10;
 
     background-image:
-        url("images/archive-bg.png");
+        url("images/crew-background.png");
 
     background-size: cover;
 
@@ -10186,7 +10186,7 @@ html[lang="en"]
     position: absolute;
     inset: 0;
 
-    background-image: url("images/mobile-bg.png");
+    background-image: url("images/crew-background.png");
 
     background-size: cover;
     background-position: center center;
@@ -14928,7 +14928,7 @@ html[lang="en"]
             rgba(5, 12, 20, 0.38),
             rgba(5, 12, 20, 0.58)
         ),
-        url("images/production-days-bg.png")
+        url("images/crew-background.png")
         center center / cover no-repeat !important;
 
     opacity: 1 !important;
@@ -14983,7 +14983,7 @@ html[lang="en"]
             rgba(5, 12, 20, .34),
             rgba(5, 12, 20, .58)
         ),
-        url("images/production-days-bg.png")
+        url("images/crew-background.png")
         center center / cover no-repeat !important;
 
     color: #F7EDE3 !important;
@@ -15669,7 +15669,7 @@ html[lang="en"]
             rgba(5, 12, 20, .34),
             rgba(5, 12, 20, .56)
         ),
-        url("images/production-days-bg.png")
+        url("images/crew-background.png")
         center center / cover no-repeat !important;
 
     color: #F7EDE3 !important;
@@ -16735,7 +16735,7 @@ html[lang="en"]
             rgba(5, 12, 20, .28),
             rgba(5, 12, 20, .52)
         ),
-        url("images/production-days-bg.png")
+        url("images/crew-background.png")
         center center / cover no-repeat !important;
 
     color: #F7EDE3 !important;
@@ -18055,4 +18055,1199 @@ html[lang="en"]
             170px !important;
     }
 
+}
+/* =========================================================
+   ON AIR — PRODUCTION DAYS
+   FINAL CINEMATIC OVERRIDE
+   NO GREEN / NO TEAL
+========================================================= */
+
+#production-days {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 120px 5vw 150px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(1,10,19,.30),
+            rgba(1,10,19,.58)
+        ),
+        url("images/crew-background.png")
+        center center / cover no-repeat;
+
+    isolation: isolate;
+}
+
+
+/* ---------------------------------------------------------
+   DARK CINEMATIC VEIL
+--------------------------------------------------------- */
+
+#production-days::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(17,37,72,.22),
+            transparent 52%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(1,10,19,.12),
+            rgba(1,10,19,.62)
+        );
+
+    pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   HEADING
+--------------------------------------------------------- */
+
+#production-days .production-days-heading {
+    position: relative;
+
+    width: min(1400px, 92%);
+
+    margin:
+        0 auto 70px;
+
+    direction: rtl;
+    text-align: right;
+}
+
+
+#production-days .section-kicker {
+    display: block;
+
+    margin-bottom: 15px;
+
+    color:
+        rgba(216,200,181,.62) !important;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: .18em;
+}
+
+
+#production-days .production-days-heading h2 {
+
+    margin: 0;
+
+    color:
+        #F3DFC2 !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(38px, 5vw, 70px);
+
+    font-weight: 700;
+
+    line-height: 1.15;
+}
+
+
+#production-days .production-days-heading p {
+
+    margin-top: 14px;
+
+    color:
+        rgba(216,200,181,.55) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: .04em;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+#production-days .production-days-content {
+
+    width:
+        min(1400px, 92%);
+
+    margin:
+        0 auto;
+}
+
+
+/* =========================================================
+   GRID
+   HORIZONTAL DAY ARCHIVE
+========================================================= */
+
+#production-days #productionDaysGrid {
+
+    display: flex;
+
+    flex-direction: row;
+
+    gap: 28px;
+
+    width: 100%;
+
+    padding:
+        35px 5px 70px;
+
+    overflow-x: auto;
+    overflow-y: visible;
+
+    scroll-behavior: smooth;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(216,200,181,.35)
+        transparent;
+}
+
+
+/* ---------------------------------------------------------
+   SCROLLBAR
+--------------------------------------------------------- */
+
+#production-days #productionDaysGrid::-webkit-scrollbar {
+    height: 4px;
+}
+
+#production-days #productionDaysGrid::-webkit-scrollbar-track {
+    background:
+        rgba(243,223,194,.04);
+}
+
+#production-days #productionDaysGrid::-webkit-scrollbar-thumb {
+    background:
+        rgba(216,200,181,.42);
+}
+
+
+/* =========================================================
+   DAY CARD
+========================================================= */
+
+#production-days .production-day-card {
+
+    position: relative;
+
+    flex:
+        0 0 430px;
+
+    width:
+        430px;
+
+    min-height:
+        560px;
+
+    padding:
+        30px;
+
+    overflow:
+        hidden;
+
+    background:
+        rgba(7,18,27,.30) !important;
+
+    border:
+        1px solid
+        rgba(216,200,181,.18) !important;
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.38);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+
+    transition:
+        transform .45s ease,
+        border-color .45s ease,
+        background .45s ease;
+
+    opacity:
+        1 !important;
+}
+
+
+/* ---------------------------------------------------------
+   CARD HOVER
+--------------------------------------------------------- */
+
+#production-days .production-day-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(216,200,181,.42) !important;
+
+    background:
+        rgba(7,18,27,.42) !important;
+}
+
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+#production-days .day-card-top {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr auto;
+
+    grid-template-areas:
+        "status number"
+        "date number";
+
+    align-items:
+        center;
+
+    gap:
+        5px 20px;
+
+    margin-bottom:
+        20px;
+
+    direction:
+        rtl;
+}
+
+
+/* ---------------------------------------------------------
+   NUMBER
+--------------------------------------------------------- */
+
+#production-days .day-number {
+
+    grid-area:
+        number;
+
+    color:
+        rgba(243,223,194,.20) !important;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        76px !important;
+
+    font-weight:
+        400;
+
+    line-height:
+        .85;
+}
+
+
+/* ---------------------------------------------------------
+   STATUS
+--------------------------------------------------------- */
+
+#production-days .day-status {
+
+    grid-area:
+        status;
+
+    justify-self:
+        start;
+
+    color:
+        #D8C8B5 !important;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        .14em;
+}
+
+
+/* ---------------------------------------------------------
+   DATE
+--------------------------------------------------------- */
+
+#production-days .day-date {
+
+    grid-area:
+        date;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    color:
+        rgba(216,200,181,.52) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        9px;
+}
+
+
+/* remove ugly icon color */
+
+#production-days .day-date-icon {
+
+    color:
+        #D8C8B5 !important;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+#production-days .day-title {
+
+    position:
+        relative !important;
+
+    top:
+        auto !important;
+
+    margin:
+        0 0 25px !important;
+
+    color:
+        #F3DFC2 !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        28px !important;
+
+    font-weight:
+        700 !important;
+
+    line-height:
+        1.3 !important;
+
+    text-align:
+        right;
+}
+
+
+/* =========================================================
+   IMAGES
+========================================================= */
+
+#production-days .day-images {
+
+    position:
+        relative !important;
+
+    top:
+        auto !important;
+
+    left:
+        auto !important;
+
+    right:
+        auto !important;
+
+    width:
+        100% !important;
+
+    min-height:
+        250px;
+
+    margin:
+        0 0 25px !important;
+
+    display:
+        block;
+
+    overflow:
+        visible !important;
+
+    transform:
+        none !important;
+
+    direction:
+        ltr;
+}
+
+
+/* ---------------------------------------------------------
+   PHOTO FRAME
+--------------------------------------------------------- */
+
+#production-days .day-image-wrapper {
+
+    position:
+        relative;
+
+    width:
+        100% !important;
+
+    height:
+        235px !important;
+
+    padding:
+        8px !important;
+
+    background:
+        rgba(7,18,27,.58) !important;
+
+    border:
+        1px solid
+        rgba(216,200,181,.22) !important;
+
+    outline:
+        none !important;
+
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,.35) !important;
+
+    overflow:
+        hidden !important;
+
+    transform:
+        none !important;
+
+    transition:
+        transform .5s ease;
+}
+
+
+/* FIRST IMAGE */
+
+#production-days .day-photo-1 {
+
+    position:
+        relative !important;
+
+    z-index:
+        2;
+}
+
+
+/* SECOND IMAGE */
+
+#production-days .day-photo-2 {
+
+    position:
+        absolute !important;
+
+    top:
+        35px !important;
+
+    left:
+        35px !important;
+
+    width:
+        calc(100% - 35px) !important;
+
+    z-index:
+        3;
+
+    transform:
+        rotate(3deg) !important;
+}
+
+
+/* ---------------------------------------------------------
+   MULTIPLE PHOTO HOVER
+--------------------------------------------------------- */
+
+#production-days .production-day-card:hover
+.day-photo-1 {
+
+    transform:
+        rotate(-2deg)
+        translateY(-5px) !important;
+}
+
+
+#production-days .production-day-card:hover
+.day-photo-2 {
+
+    transform:
+        rotate(4deg)
+        translate(5px,-7px) !important;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+#production-days .day-image {
+
+    display:
+        block;
+
+    width:
+        100% !important;
+
+    height:
+        100% !important;
+
+    object-fit:
+        cover;
+
+    filter:
+        brightness(.72)
+        contrast(1.08)
+        saturate(.65);
+
+    transform:
+        scale(1.01) !important;
+}
+
+
+/* =========================================================
+   REMOVE OLD GREEN FRAME
+========================================================= */
+
+#production-days .day-image-wrapper::before {
+
+    content:
+        "REC  •  24 FPS" !important;
+
+    color:
+        rgba(243,223,194,.70) !important;
+
+    background:
+        rgba(1,10,19,.70) !important;
+
+    border:
+        1px solid
+        rgba(216,200,181,.20) !important;
+
+}
+
+
+/* absolutely no teal outline */
+
+#production-days .day-image-wrapper,
+#production-days .day-image-wrapper:hover {
+
+    outline:
+        none !important;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+#production-days .day-description {
+
+    position:
+        relative !important;
+
+    top:
+        auto !important;
+
+    margin:
+        0 0 20px !important;
+
+    color:
+        rgba(216,200,181,.68) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        11px !important;
+
+    line-height:
+        1.95 !important;
+
+    text-align:
+        right;
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+#production-days .day-events {
+
+    position:
+        relative !important;
+
+    top:
+        auto !important;
+
+    margin:
+        0 !important;
+
+    padding:
+        0 !important;
+
+    list-style:
+        none;
+
+    direction:
+        rtl;
+
+    text-align:
+        right;
+}
+
+
+#production-days .day-events li {
+
+    position:
+        relative;
+
+    padding:
+        7px 18px 7px 0;
+
+    color:
+        rgba(216,200,181,.52) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        9px;
+
+    border-bottom:
+        1px solid
+        rgba(216,200,181,.07);
+}
+
+
+#production-days .day-events li::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    right:
+        0;
+
+    top:
+        14px;
+
+    width:
+        5px;
+
+    height:
+        5px;
+
+    border-radius:
+        50%;
+
+    background:
+        #D92832 !important;
+
+    box-shadow:
+        0 0 8px
+        rgba(217,40,50,.30);
+}
+
+
+/* =========================================================
+   LOCKED DAYS
+========================================================= */
+
+#production-days .production-day-card.locked {
+
+    opacity:
+        .38 !important;
+
+    background:
+        rgba(7,18,27,.20) !important;
+}
+
+
+#production-days .production-day-card.locked:hover {
+
+    transform:
+        none;
+
+    border-color:
+        rgba(216,200,181,.18) !important;
+}
+
+
+/* ---------------------------------------------------------
+   LOCKED NUMBER
+--------------------------------------------------------- */
+
+#production-days .production-day-card.locked
+.day-number {
+
+    color:
+        rgba(243,223,194,.10) !important;
+}
+
+
+/* ---------------------------------------------------------
+   LOCKED BOX
+--------------------------------------------------------- */
+
+#production-days .locked-content {
+
+    width:
+        100% !important;
+
+    margin-top:
+        100px;
+
+    padding:
+        40px 20px !important;
+
+    background:
+        rgba(7,18,27,.18) !important;
+
+    border:
+        1px solid
+        rgba(216,200,181,.10) !important;
+
+    box-shadow:
+        none !important;
+
+    color:
+        rgba(216,200,181,.40) !important;
+
+    text-align:
+        center;
+}
+
+
+#production-days .lock-icon {
+
+    color:
+        #D8C8B5 !important;
+
+    filter:
+        grayscale(1);
+
+    margin-bottom:
+        12px;
+}
+
+
+/* =========================================================
+   REMOVE ALL GREEN / TEAL FROM THIS SECTION
+========================================================= */
+
+#production-days,
+#production-days * {
+
+    --teal:
+        #D8C8B5 !important;
+
+    --green:
+        #D8C8B5 !important;
+
+    --accent:
+        #D8C8B5 !important;
+}
+
+
+#production-days [style*="#4E8484"],
+#production-days [style*="#4e8484"],
+#production-days [style*="rgb(78, 132, 132)"] {
+
+    color:
+        #D8C8B5 !important;
+
+    background-color:
+        transparent !important;
+
+    border-color:
+        rgba(216,200,181,.20) !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    #production-days {
+
+        padding:
+            90px 18px 110px;
+    }
+
+
+    #production-days .production-days-heading {
+
+        width:
+            100%;
+
+        margin-bottom:
+            45px;
+    }
+
+
+    #production-days .production-days-heading h2 {
+
+        font-size:
+            38px !important;
+    }
+
+
+    #production-days .production-days-content {
+
+        width:
+            100%;
+    }
+
+
+    #production-days #productionDaysGrid {
+
+        gap:
+            16px;
+
+        padding:
+            20px 2px 50px;
+    }
+
+
+    #production-days .production-day-card {
+
+        flex:
+            0 0 310px;
+
+        width:
+            310px;
+
+        min-height:
+            500px;
+
+        padding:
+            22px;
+    }
+
+
+    #production-days .day-number {
+
+        font-size:
+            58px !important;
+    }
+
+
+    #production-days .day-title {
+
+        font-size:
+            23px !important;
+    }
+
+
+    #production-days .day-images {
+
+        min-height:
+            210px;
+    }
+
+
+    #production-days .day-image-wrapper {
+
+        height:
+            195px !important;
+    }
+
+
+    #production-days .day-photo-2 {
+
+        top:
+            28px !important;
+
+        left:
+            28px !important;
+
+        width:
+            calc(100% - 28px) !important;
+    }
+
+
+    #production-days .day-description {
+
+        font-size:
+            10px !important;
+    }
+
+
+    #production-days .day-events li {
+
+        font-size:
+            8px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 430px) {
+
+    #production-days .production-day-card {
+
+        flex:
+            0 0 285px;
+
+        width:
+            285px;
+    }
+
+}
+/* =========================================================
+   PRODUCTION DAYS — FINAL COLORS
+   NAVY / CREAM / BEIGE ONLY
+========================================================= */
+
+#production-days {
+    --days-navy: #112548;
+    --days-cream: #F7EDE3;
+    --days-beige: #E1D7CC;
+
+    --days-glass: rgba(17, 37, 72, 0.18);
+    --days-glass-hover: rgba(17, 37, 72, 0.28);
+    --days-border: rgba(247, 237, 227, 0.20);
+}
+
+
+/* =========================================================
+   REMOVE GREEN + RED
+========================================================= */
+
+#production-days,
+#production-days * {
+    --teal: #112548 !important;
+    --green: #112548 !important;
+    --accent: #112548 !important;
+}
+
+
+/* أي عناصر كانت حمراء */
+#production-days .day-events li::before,
+#production-days .status-dot,
+#production-days .oa-days-timeline-dot,
+#production-days .recording-dot {
+    background: #112548 !important;
+    border-color: #F7EDE3 !important;
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   TRANSPARENT CARDS
+========================================================= */
+
+#production-days .production-day-card {
+
+    background:
+        rgba(17, 37, 72, 0.16) !important;
+
+    background-color:
+        rgba(17, 37, 72, 0.16) !important;
+
+    border:
+        1px solid rgba(247, 237, 227, 0.18) !important;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.22) !important;
+
+    backdrop-filter:
+        blur(3px) !important;
+
+    -webkit-backdrop-filter:
+        blur(3px) !important;
+}
+
+
+#production-days .production-day-card:hover {
+
+    background:
+        rgba(17, 37, 72, 0.23) !important;
+
+    border-color:
+        rgba(247, 237, 227, 0.32) !important;
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.28) !important;
+}
+
+
+/* =========================================================
+   IMAGE FRAME — TRANSPARENT
+========================================================= */
+
+#production-days .day-image-wrapper {
+
+    background:
+        rgba(17, 37, 72, 0.12) !important;
+
+    border:
+        1px solid rgba(247, 237, 227, 0.20) !important;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25) !important;
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+#production-days .day-number {
+
+    color:
+        rgba(247, 237, 227, 0.20) !important;
+}
+
+
+#production-days .day-title {
+
+    color:
+        #F7EDE3 !important;
+}
+
+
+#production-days .day-status {
+
+    color:
+        #E1D7CC !important;
+}
+
+
+#production-days .day-date {
+
+    color:
+        rgba(225, 215, 204, 0.62) !important;
+}
+
+
+#production-days .day-description {
+
+    color:
+        rgba(247, 237, 227, 0.68) !important;
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+#production-days .day-events li {
+
+    color:
+        rgba(225, 215, 204, 0.60) !important;
+
+    border-bottom:
+        1px solid rgba(247, 237, 227, 0.07) !important;
+}
+
+
+#production-days .day-events li::before {
+
+    background:
+        #112548 !important;
+
+    border:
+        1px solid #E1D7CC !important;
+
+    box-shadow:
+        none !important;
+}
+
+
+/* =========================================================
+   LOCKED CARD
+========================================================= */
+
+#production-days .production-day-card.locked {
+
+    background:
+        rgba(17, 37, 72, 0.08) !important;
+
+    border-color:
+        rgba(247, 237, 227, 0.10) !important;
+}
+
+
+/* =========================================================
+   DATE / ICONS
+========================================================= */
+
+#production-days .day-date-icon,
+#production-days .lock-icon {
+
+    color:
+        #E1D7CC !important;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+#production-days #productionDaysGrid {
+
+    scrollbar-color:
+        rgba(225, 215, 204, 0.40)
+        transparent !important;
+}
+
+
+#production-days #productionDaysGrid::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(225, 215, 204, 0.40) !important;
 }
