@@ -667,3 +667,119 @@ window.addEventListener(
 console.log(
     "ON AIR — Production JS loaded successfully."
 );
+/* =========================================================
+   ON AIR — COMING SOON FILES
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const comingSoonMessage =
+        document.getElementById("oaComingSoon");
+
+    if (!comingSoonMessage) return;
+
+
+    const comingSoonItems =
+        document.querySelectorAll(
+            ".oa-file-row:not(.secret)"
+        );
+
+
+    comingSoonItems.forEach((item) => {
+
+        const state =
+            item.querySelector(".oa-file-state");
+
+        if (!state) return;
+
+
+        const text =
+            state.getAttribute("data-ar");
+
+
+        if (text !== "قريبًا") return;
+
+
+        item.style.cursor = "pointer";
+
+
+        item.addEventListener("click", (event) => {
+
+            event.preventDefault();
+
+            comingSoonMessage.classList.add("show");
+
+
+            clearTimeout(
+                item._comingSoonTimer
+            );
+
+
+            item._comingSoonTimer =
+                setTimeout(() => {
+
+                    comingSoonMessage.classList.remove(
+                        "show"
+                    );
+
+                }, 3000);
+
+        });
+
+    });
+
+
+    /* =========================
+       PRODUCTION STATUS
+    ========================= */
+
+    const comingSoonStages =
+        document.querySelectorAll(
+            ".oa-status-row:not(.clickable)"
+        );
+
+
+    comingSoonStages.forEach((item) => {
+
+        const state =
+            item.querySelector(".oa-status-state");
+
+        if (!state) return;
+
+
+        const text =
+            state.getAttribute("data-ar");
+
+
+        if (text !== "قريبًا") return;
+
+
+        item.style.cursor = "pointer";
+
+
+        item.addEventListener("click", (event) => {
+
+            event.preventDefault();
+
+            comingSoonMessage.classList.add("show");
+
+
+            clearTimeout(
+                item._comingSoonTimer
+            );
+
+
+            item._comingSoonTimer =
+                setTimeout(() => {
+
+                    comingSoonMessage.classList.remove(
+                        "show"
+                    );
+
+                }, 3000);
+
+        });
+
+    });
+
+});
