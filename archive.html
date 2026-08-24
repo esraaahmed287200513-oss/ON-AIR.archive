@@ -1134,6 +1134,344 @@
 
 </section>
 
+
+<!-- =========================================================
+     ON AIR — PRODUCTION DAYS
+     CINEMATIC PRODUCTION DIARY
+========================================================= -->
+
+<section
+    class="oa-days"
+    id="production-days"
+    dir="rtl"
+>
+
+    <!-- ATMOSPHERE -->
+    <div class="oa-days-bg"></div>
+    <div class="oa-days-vignette"></div>
+    <div class="oa-days-grid"></div>
+    <div class="oa-days-grain"></div>
+
+
+    <!-- CAMERA CORNERS -->
+    <span class="oa-days-corner oa-days-tl"></span>
+    <span class="oa-days-corner oa-days-tr"></span>
+    <span class="oa-days-corner oa-days-bl"></span>
+    <span class="oa-days-corner oa-days-br"></span>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="oa-days-header">
+
+        <div class="oa-days-header-line">
+
+            <div class="oa-days-rec">
+                <span></span>
+                REC
+            </div>
+
+            <div class="oa-days-tech">
+                PRODUCTION DIARY
+                <b>/</b>
+                FRAME 003
+            </div>
+
+            <div class="oa-days-count">
+                <strong id="oaDaysCurrent">
+                    01
+                </strong>
+                <span>/</span>
+                <span id="oaDaysTotal">
+                    06
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="oa-days-heading">
+
+            <span class="oa-days-kicker">
+                ● يوميات الإنتاج
+            </span>
+
+            <h2>
+                الأيام اللي صنعت الحكاية.
+            </h2>
+
+            <p>
+                كل يوم له أثر.
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         FEATURED DAY
+    ====================================================== -->
+
+    <main class="oa-days-featured">
+
+
+        <!-- IMAGE SIDE -->
+
+        <div class="oa-days-media">
+
+            <div class="oa-days-main-image">
+
+                <img
+                    id="oaDaysMainImage"
+                    src=""
+                    alt=""
+                >
+
+                <div class="oa-days-image-overlay"></div>
+
+                <div class="oa-days-image-corners">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </div>
+
+
+                <div class="oa-days-image-rec">
+                    <span></span>
+                    REC
+                </div>
+
+
+                <div class="oa-days-image-frame">
+
+                    FRAME
+
+                    <strong id="oaDaysFrame">
+                        001
+                    </strong>
+
+                </div>
+
+
+                <div class="oa-days-image-brand">
+                    ON AIR / بِالعَافيَه
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO SELECTOR -->
+
+            <div class="oa-days-gallery">
+
+                <button
+                    type="button"
+                    class="oa-days-photo-arrow"
+                    id="oaDaysPhotoPrev"
+                    aria-label="Previous photo"
+                >
+                    ←
+                </button>
+
+
+                <div
+                    class="oa-days-thumbs"
+                    id="oaDaysThumbs"
+                ></div>
+
+
+                <button
+                    type="button"
+                    class="oa-days-photo-arrow"
+                    id="oaDaysPhotoNext"
+                    aria-label="Next photo"
+                >
+                    →
+                </button>
+
+
+                <span
+                    class="oa-days-photo-counter"
+                    id="oaDaysPhotoCounter"
+                >
+                    01 / 02
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- INFO SIDE -->
+
+        <aside class="oa-days-info">
+
+            <div class="oa-days-info-top">
+
+                <span>
+                    PRODUCTION DAY
+                </span>
+
+                <strong id="oaDaysStatus">
+                    OPEN
+                </strong>
+
+            </div>
+
+
+            <div class="oa-days-number-label">
+                DAY
+            </div>
+
+
+            <div
+                class="oa-days-number"
+                id="oaDaysNumber"
+            >
+                01
+            </div>
+
+
+            <h3 id="oaDaysTitle">
+                اليوم الأول
+            </h3>
+
+
+            <div class="oa-days-date">
+
+                <span>◷</span>
+
+                <strong id="oaDaysDate">
+                    29 يونيو 2026
+                </strong>
+
+            </div>
+
+
+            <div class="oa-days-divider"></div>
+
+
+            <div class="oa-days-note">
+
+                <span>
+                    NOTE
+                </span>
+
+                <p id="oaDaysDescription">
+                    أول خطوة في طريق الحكاية.
+                </p>
+
+            </div>
+
+
+            <div class="oa-days-log">
+
+                <span>
+                    PRODUCTION LOG
+                </span>
+
+                <ul id="oaDaysEvents"></ul>
+
+            </div>
+
+
+            <div class="oa-days-info-footer">
+
+                <span>
+                    CAM / A
+                </span>
+
+                <span>
+                    ARCHIVE
+                </span>
+
+                <span id="oaDaysIndex">
+                    01 / 06
+                </span>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+
+    <!-- =====================================================
+         DAY TIMELINE
+    ====================================================== -->
+
+    <section class="oa-days-timeline">
+
+        <div class="oa-days-timeline-head">
+
+            <div>
+
+                <span>
+                    PRODUCTION TIMELINE
+                </span>
+
+                <small>
+                    اختاري يوم عشان تشوفي تفاصيله
+                </small>
+
+            </div>
+
+
+            <div class="oa-days-day-arrows">
+
+                <button
+                    type="button"
+                    id="oaDaysPrev"
+                    aria-label="Previous day"
+                >
+                    ←
+                </button>
+
+                <button
+                    type="button"
+                    id="oaDaysNext"
+                    aria-label="Next day"
+                >
+                    →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="oa-days-track"
+            id="oaDaysTrack"
+        ></div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="oa-days-footer">
+
+        <span>
+            ON AIR / PRODUCTION ARCHIVE
+        </span>
+
+        <span>
+            EVERY DAY LEAVES A FRAME
+        </span>
+
+        <span>
+            00:00:03:24
+        </span>
+
+    </footer>
+
+</section>
+
 <!-- =========================================================
      ON AIR — TEAM IDENTITY / CREW
      REBUILT FROM ZERO
@@ -1654,71 +1992,6 @@
 </section>
 
 
-
-    
-<!-- =====================================================
-     PRODUCTION DAYS ARCHIVE
-===================================================== -->
-
-<section
-    class="production-days-section"
-    id="production-days"
-    data-section="production-diary"
->
-
-    <!-- ================================================
-         SECTION HEADING
-    ================================================= -->
-
-    <div class="production-days-heading">
-
-        <span
-            class="section-kicker"
-            data-ar="● يوميات الإنتاج"
-            data-en="● PRODUCTION DIARY"
-        >
-            ● يوميات الإنتاج
-        </span>
-
-
-        <h2
-            data-ar="الأيام اللي صنعت الحكاية."
-            data-en="THE DAYS THAT MADE THE STORY."
-        >
-            الأيام اللي صنعت الحكاية.
-        </h2>
-
-
-        <p
-            data-ar="كل يوم له أثر."
-            data-en="EVERY DAY LEAVES A MARK."
-        >
-            كل يوم له أثر.
-        </p>
-
-    </div>
-
-
-    <!-- ================================================
-         PRODUCTION DAYS
-         JavaScript renders the days here
-    ================================================= -->
-
-    <div
-        class="production-days-content"
-        dir="inherit"
-    >
-
-        <div
-            id="productionDaysGrid"
-            class="production-days-grid"
-        >
-        </div>
-
-    </div>
-
-
-</section>
 
 
 

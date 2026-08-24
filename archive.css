@@ -12965,3 +12965,5094 @@ html[lang="en"]
         font-size: 6.5px !important;
     }
 }
+/* =========================================================
+   ON AIR — NEW PRODUCTION DAYS
+   COMPLETE OVERRIDE / FROM SCRATCH
+========================================================= */
+
+.oa-days {
+    --days-navy: #112548;
+    --days-teal: #4EB484;
+    --days-cream: #F7EDE3;
+    --days-beige: #E1D7CC;
+    --days-gray: #6D6D6D;
+    --days-dark: #050C14;
+    --days-red: #D92832;
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    padding:
+        clamp(85px, 9vw, 135px)
+        clamp(20px, 6vw, 90px)
+        65px;
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    background:
+        #050C14;
+
+    color:
+        var(--days-cream);
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.oa-days-bg {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -5;
+
+    background:
+        radial-gradient(
+            circle at 72% 35%,
+            rgba(78,180,132,.09),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 20% 70%,
+            rgba(17,37,72,.60),
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #07111D,
+            #050C14 55%,
+            #0A1825
+        );
+}
+
+
+.oa-days-vignette {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -4;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 25%,
+            rgba(0,0,0,.70) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+.oa-days-grid {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -3;
+
+    opacity: .30;
+
+    background-image:
+        linear-gradient(
+            rgba(78,180,132,.045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(78,180,132,.045) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        36px 36px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent,
+            black 15%,
+            black 85%,
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+.oa-days-grain {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -2;
+
+    opacity: .08;
+
+    pointer-events: none;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+
+    mix-blend-mode:
+        screen;
+}
+
+
+/* =========================================================
+   CORNERS
+========================================================= */
+
+.oa-days-corner {
+    position: absolute;
+
+    width: 42px;
+    height: 42px;
+
+    z-index: 4;
+
+    opacity: .55;
+
+    pointer-events: none;
+}
+
+
+.oa-days-tl {
+    top: 35px;
+    left: 35px;
+
+    border-top:
+        1px solid
+        rgba(247,237,227,.45);
+
+    border-left:
+        1px solid
+        rgba(247,237,227,.45);
+}
+
+
+.oa-days-tr {
+    top: 35px;
+    right: 35px;
+
+    border-top:
+        1px solid
+        rgba(247,237,227,.45);
+
+    border-right:
+        1px solid
+        rgba(247,237,227,.45);
+}
+
+
+.oa-days-bl {
+    bottom: 35px;
+    left: 35px;
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.45);
+
+    border-left:
+        1px solid
+        rgba(247,237,227,.45);
+}
+
+
+.oa-days-br {
+    bottom: 35px;
+    right: 35px;
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.45);
+
+    border-right:
+        1px solid
+        rgba(247,237,227,.45);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.oa-days-header {
+    position: relative;
+
+    width:
+        min(1250px, 100%);
+
+    margin:
+        0 auto
+        clamp(45px, 6vw, 80px);
+
+    z-index: 5;
+}
+
+
+.oa-days-header-line {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    direction: ltr;
+
+    padding-bottom: 17px;
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.12);
+
+    color:
+        rgba(247,237,227,.43);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .18em;
+}
+
+
+.oa-days-rec {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color:
+        rgba(247,237,227,.68);
+}
+
+
+.oa-days-rec span,
+.oa-days-image-rec span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background:
+        var(--days-red);
+
+    box-shadow:
+        0 0 12px
+        rgba(217,40,50,.55);
+
+    animation:
+        oaDaysRec 1.4s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes oaDaysRec {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .3;
+    }
+
+}
+
+
+.oa-days-tech {
+    display: flex;
+
+    gap: 12px;
+
+    align-items: center;
+}
+
+
+.oa-days-tech b {
+    color:
+        rgba(247,237,227,.18);
+}
+
+
+.oa-days-count {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+
+.oa-days-count strong {
+    color:
+        var(--days-teal);
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.oa-days-heading {
+    margin-top: 34px;
+
+    text-align: right;
+
+    direction: rtl;
+}
+
+
+.oa-days-kicker {
+    display: inline-flex;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+
+    color:
+        var(--days-teal);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: .15em;
+}
+
+
+.oa-days-heading h2 {
+    margin: 0;
+
+    color:
+        var(--days-cream);
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(38px, 5.4vw, 78px);
+
+    font-weight: 700;
+
+    line-height: 1.05;
+
+    letter-spacing:
+        -.04em;
+}
+
+
+.oa-days-heading p {
+    margin:
+        14px 0 0;
+
+    color:
+        rgba(225,215,204,.55);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(11px, 1vw, 14px);
+}
+
+
+/* =========================================================
+   FEATURED AREA
+========================================================= */
+
+.oa-days-featured {
+    position: relative;
+
+    z-index: 5;
+
+    width:
+        min(1250px, 100%);
+
+    margin:
+        0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(310px, .65fr);
+
+    gap:
+        clamp(25px, 4vw, 70px);
+
+    align-items: stretch;
+
+    direction: ltr;
+}
+
+
+/* =========================================================
+   MEDIA
+========================================================= */
+
+.oa-days-media {
+    min-width: 0;
+
+    direction: ltr;
+}
+
+
+.oa-days-main-image {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio:
+        16 / 10;
+
+    overflow: hidden;
+
+    background:
+        #07111D;
+
+    border:
+        1px solid
+        rgba(247,237,227,.18);
+
+    box-shadow:
+        0 35px 90px
+        rgba(0,0,0,.48);
+}
+
+
+.oa-days-main-image::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    z-index: 4;
+
+    border:
+        1px solid
+        rgba(247,237,227,.08);
+
+    pointer-events: none;
+}
+
+
+.oa-days-main-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    filter:
+        saturate(.82)
+        contrast(1.05)
+        brightness(.82);
+
+    transform:
+        scale(1.015);
+
+    transition:
+        opacity .28s ease,
+        transform 1.2s
+        cubic-bezier(.16,1,.3,1),
+        filter .7s ease;
+}
+
+
+.oa-days-main-image:hover img {
+    transform:
+        scale(1.045);
+
+    filter:
+        saturate(.94)
+        contrast(1.07)
+        brightness(.90);
+}
+
+
+.oa-days-image-changing {
+    opacity: 0 !important;
+}
+
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
+
+.oa-days-image-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,12,20,.04),
+            transparent 42%,
+            rgba(5,12,20,.65)
+        );
+}
+
+
+/* =========================================================
+   IMAGE CORNERS
+========================================================= */
+
+.oa-days-image-corners {
+    position: absolute;
+
+    inset: 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+.oa-days-image-corners i {
+    position: absolute;
+
+    width: 24px;
+    height: 24px;
+
+    border-color:
+        rgba(247,237,227,.55);
+
+    border-style: solid;
+}
+
+
+.oa-days-image-corners i:nth-child(1) {
+    top: 0;
+    left: 0;
+
+    border-width:
+        1px 0 0 1px;
+}
+
+
+.oa-days-image-corners i:nth-child(2) {
+    top: 0;
+    right: 0;
+
+    border-width:
+        1px 1px 0 0;
+}
+
+
+.oa-days-image-corners i:nth-child(3) {
+    bottom: 0;
+    left: 0;
+
+    border-width:
+        0 0 1px 1px;
+}
+
+
+.oa-days-image-corners i:nth-child(4) {
+    bottom: 0;
+    right: 0;
+
+    border-width:
+        0 1px 1px 0;
+}
+
+
+/* =========================================================
+   IMAGE META
+========================================================= */
+
+.oa-days-image-rec {
+    position: absolute;
+
+    top: 22px;
+    left: 25px;
+
+    z-index: 6;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color:
+        rgba(247,237,227,.72);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .12em;
+}
+
+
+.oa-days-image-frame {
+    position: absolute;
+
+    bottom: 21px;
+    left: 25px;
+
+    z-index: 6;
+
+    color:
+        rgba(247,237,227,.55);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .15em;
+}
+
+
+.oa-days-image-frame strong {
+    color:
+        var(--days-teal);
+
+    font-weight: 400;
+}
+
+
+.oa-days-image-brand {
+    position: absolute;
+
+    right: 24px;
+    bottom: 21px;
+
+    z-index: 6;
+
+    color:
+        rgba(247,237,227,.38);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 6px;
+
+    letter-spacing: .10em;
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.oa-days-gallery {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    min-height: 72px;
+
+    padding:
+        9px 0;
+
+    direction: ltr;
+}
+
+
+.oa-days-thumbs {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    flex: 1;
+
+    min-width: 0;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+}
+
+
+.oa-days-thumbs::-webkit-scrollbar {
+    display: none;
+}
+
+
+.oa-days-thumb {
+    position: relative;
+
+    flex:
+        0 0 82px;
+
+    width: 82px;
+
+    height: 55px;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        rgba(247,237,227,.13);
+
+    background:
+        #050C14;
+
+    opacity: .48;
+
+    cursor: pointer;
+
+    transition:
+        .25s ease;
+}
+
+
+.oa-days-thumb:hover {
+    opacity: .80;
+
+    transform:
+        translateY(-2px);
+}
+
+
+.oa-days-thumb.active {
+    opacity: 1;
+
+    border-color:
+        var(--days-teal);
+
+    box-shadow:
+        0 0 0 1px
+        rgba(78,180,132,.14),
+        0 0 18px
+        rgba(78,180,132,.12);
+}
+
+
+.oa-days-thumb img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter:
+        saturate(.65)
+        brightness(.68);
+
+    transition:
+        .3s ease;
+}
+
+
+.oa-days-thumb.active img {
+    filter:
+        saturate(.9)
+        brightness(.9);
+}
+
+
+.oa-days-thumb span {
+    position: absolute;
+
+    right: 5px;
+    bottom: 4px;
+
+    color:
+        rgba(247,237,227,.80);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 5px;
+
+    text-shadow:
+        0 1px 5px #000;
+}
+
+
+.oa-days-photo-arrow {
+    flex:
+        0 0 31px;
+
+    width: 31px;
+    height: 31px;
+
+    border:
+        1px solid
+        rgba(247,237,227,.14);
+
+    background:
+        rgba(17,37,72,.45);
+
+    color:
+        rgba(247,237,227,.68);
+
+    cursor: pointer;
+
+    transition:
+        .25s ease;
+}
+
+
+.oa-days-photo-arrow:hover:not(:disabled) {
+    border-color:
+        rgba(78,180,132,.55);
+
+    color:
+        var(--days-teal);
+}
+
+
+.oa-days-photo-arrow:disabled {
+    opacity: .18;
+
+    cursor: default;
+}
+
+
+.oa-days-photo-counter {
+    min-width: 38px;
+
+    color:
+        rgba(247,237,227,.35);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 6px;
+
+    text-align: center;
+}
+
+
+.oa-days-gallery-empty {
+    flex: 1;
+
+    text-align: center;
+
+    color:
+        rgba(247,237,227,.25);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 6px;
+
+    letter-spacing: .16em;
+}
+
+
+/* =========================================================
+   INFO PANEL
+========================================================= */
+
+.oa-days-info {
+    position: relative;
+
+    min-width: 0;
+
+    padding:
+        28px 30px 24px;
+
+    direction: rtl;
+
+    border:
+        1px solid
+        rgba(247,237,227,.14);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,37,72,.48),
+            rgba(5,12,20,.74)
+        );
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.28);
+
+    backdrop-filter:
+        blur(10px);
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.oa-days-info::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 10px;
+
+    border:
+        1px solid
+        rgba(247,237,227,.055);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   INFO TOP
+========================================================= */
+
+.oa-days-info-top {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    direction: ltr;
+
+    color:
+        rgba(247,237,227,.35);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 6px;
+
+    letter-spacing: .14em;
+}
+
+
+.oa-days-info-top strong {
+    color:
+        var(--days-teal);
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   NUMBER
+========================================================= */
+
+.oa-days-number-label {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 40px;
+
+    color:
+        rgba(247,237,227,.28);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .20em;
+
+    direction: ltr;
+}
+
+
+.oa-days-number {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: -4px;
+
+    color:
+        rgba(247,237,227,.13);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        clamp(75px, 8vw, 125px);
+
+    line-height: .82;
+
+    letter-spacing: -.10em;
+}
+
+
+.oa-days-info h3 {
+    position: relative;
+
+    z-index: 2;
+
+    margin:
+        22px 0 0;
+
+    color:
+        var(--days-cream);
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(26px, 3vw, 42px);
+
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+
+.oa-days-date {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 12px;
+
+    color:
+        rgba(225,215,204,.58);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 9px;
+}
+
+
+.oa-days-date span {
+    color:
+        var(--days-teal);
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.oa-days-divider {
+    position: relative;
+
+    z-index: 2;
+
+    width: 45px;
+
+    height: 1px;
+
+    margin:
+        25px 0;
+
+    background:
+        var(--days-teal);
+
+    opacity: .45;
+}
+
+
+/* =========================================================
+   NOTE
+========================================================= */
+
+.oa-days-note,
+.oa-days-log {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.oa-days-note > span,
+.oa-days-log > span {
+    color:
+        rgba(247,237,227,.30);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 6px;
+
+    letter-spacing: .18em;
+
+    direction: ltr;
+}
+
+
+.oa-days-note p {
+    margin:
+        8px 0 0;
+
+    color:
+        rgba(247,237,227,.68);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 10px;
+
+    line-height: 1.9;
+}
+
+
+.oa-days-log {
+    margin-top: 22px;
+}
+
+
+.oa-days-log ul {
+    margin:
+        9px 0 0;
+
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.oa-days-log li {
+    position: relative;
+
+    padding:
+        5px 14px 5px 0;
+
+    color:
+        rgba(225,215,204,.48);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 8px;
+}
+
+
+.oa-days-log li::before {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    top: 11px;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background:
+        var(--days-teal);
+}
+
+
+/* =========================================================
+   INFO FOOTER
+========================================================= */
+
+.oa-days-info-footer {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    direction: ltr;
+
+    margin-top: auto;
+
+    padding-top: 17px;
+
+    border-top:
+        1px solid
+        rgba(247,237,227,.09);
+
+    color:
+        rgba(247,237,227,.25);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 5px;
+
+    letter-spacing: .12em;
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.oa-days-timeline {
+    position: relative;
+
+    z-index: 5;
+
+    width:
+        min(1250px, 100%);
+
+    margin:
+        clamp(50px, 7vw, 90px)
+        auto 0;
+}
+
+
+.oa-days-timeline-head {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    padding-bottom: 15px;
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.11);
+
+    direction: ltr;
+}
+
+
+.oa-days-timeline-head > div:first-child {
+    direction: ltr;
+}
+
+
+.oa-days-timeline-head span {
+    display: block;
+
+    color:
+        rgba(247,237,227,.40);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .16em;
+}
+
+
+.oa-days-timeline-head small {
+    display: block;
+
+    margin-top: 6px;
+
+    color:
+        rgba(225,215,204,.35);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 8px;
+}
+
+
+.oa-days-day-arrows {
+    display: flex;
+
+    gap: 6px;
+}
+
+
+.oa-days-day-arrows button {
+    width: 31px;
+    height: 28px;
+
+    border:
+        1px solid
+        rgba(247,237,227,.12);
+
+    background:
+        transparent;
+
+    color:
+        rgba(247,237,227,.50);
+
+    cursor: pointer;
+
+    transition:
+        .25s ease;
+}
+
+
+.oa-days-day-arrows button:hover {
+    color:
+        var(--days-teal);
+
+    border-color:
+        rgba(78,180,132,.45);
+}
+
+
+/* =========================================================
+   TIMELINE TRACK
+========================================================= */
+
+.oa-days-track {
+    position: relative;
+
+    display: flex;
+
+    gap: 0;
+
+    overflow-x: auto;
+
+    padding:
+        28px 0 14px;
+
+    scrollbar-width: none;
+}
+
+
+.oa-days-track::-webkit-scrollbar {
+    display: none;
+}
+
+
+.oa-days-track::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    top: 48px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(78,180,132,.45),
+            rgba(78,180,132,.18),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   TIMELINE ITEM
+========================================================= */
+
+.oa-days-timeline-item {
+    position: relative;
+
+    flex:
+        0 0 190px;
+
+    min-height: 150px;
+
+    padding:
+        0 16px 12px;
+
+    border: 0;
+
+    background:
+        transparent;
+
+    color:
+        var(--days-cream);
+
+    cursor: pointer;
+
+    text-align: right;
+
+    direction: rtl;
+
+    opacity: .48;
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease;
+}
+
+
+.oa-days-timeline-item:hover {
+    opacity: .78;
+
+    transform:
+        translateY(-3px);
+}
+
+
+.oa-days-timeline-item.active {
+    opacity: 1;
+}
+
+
+/* timeline number */
+
+.oa-days-timeline-number {
+    position: absolute;
+
+    top: 0;
+    right: 16px;
+
+    color:
+        rgba(247,237,227,.18);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 22px;
+
+    transition:
+        .3s ease;
+}
+
+
+.oa-days-timeline-item.active
+.oa-days-timeline-number {
+    color:
+        var(--days-teal);
+}
+
+
+/* dot */
+
+.oa-days-timeline-dot {
+    position: absolute;
+
+    top: 43px;
+    right: 24px;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background:
+        var(--days-dark);
+
+    border:
+        1px solid
+        rgba(247,237,227,.50);
+
+    box-shadow:
+        0 0 0 4px
+        #050C14;
+
+    z-index: 3;
+}
+
+
+.oa-days-timeline-item.active
+.oa-days-timeline-dot {
+    background:
+        var(--days-teal);
+
+    border-color:
+        var(--days-teal);
+
+    box-shadow:
+        0 0 0 4px
+        #050C14,
+        0 0 16px
+        rgba(78,180,132,.50);
+}
+
+
+/* copy */
+
+.oa-days-timeline-copy {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding-top: 72px;
+
+    padding-right: 0;
+}
+
+
+.oa-days-timeline-copy small {
+    color:
+        rgba(247,237,227,.30);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 5px;
+
+    letter-spacing: .15em;
+
+    direction: ltr;
+}
+
+
+.oa-days-timeline-copy strong {
+    color:
+        var(--days-cream);
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+
+.oa-days-timeline-copy em {
+    color:
+        rgba(225,215,204,.32);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 7px;
+
+    font-style: normal;
+}
+
+
+/* thumbnail */
+
+.oa-days-timeline-image {
+    position: absolute;
+
+    left: 16px;
+    top: 0;
+
+    width: 58px;
+    height: 40px;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        rgba(247,237,227,.10);
+
+    opacity: .55;
+}
+
+
+.oa-days-timeline-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    filter:
+        saturate(.55)
+        brightness(.60);
+}
+
+
+.oa-days-timeline-item.active
+.oa-days-timeline-image {
+    opacity: .90;
+
+    border-color:
+        rgba(78,180,132,.45);
+}
+
+
+/* locked */
+
+.oa-days-timeline-item.locked {
+    cursor: default;
+
+    opacity: .18;
+}
+
+
+.oa-days-timeline-item.locked:hover {
+    transform: none;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.oa-days-footer {
+    position: relative;
+
+    z-index: 5;
+
+    width:
+        min(1250px, 100%);
+
+    margin:
+        35px auto 0;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid
+        rgba(247,237,227,.08);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    direction: ltr;
+
+    color:
+        rgba(247,237,227,.20);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 5px;
+
+    letter-spacing: .14em;
+}
+
+
+/* =========================================================
+   FEATURED TRANSITION
+========================================================= */
+
+.oa-days-changing {
+    opacity: .25;
+
+    transform:
+        translateY(7px);
+
+    transition:
+        opacity .18s ease,
+        transform .18s ease;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .oa-days {
+        padding:
+            78px
+            16px
+            45px;
+    }
+
+
+    .oa-days-corner {
+        width: 28px;
+        height: 28px;
+    }
+
+
+    .oa-days-tl {
+        top: 22px;
+        left: 20px;
+    }
+
+
+    .oa-days-tr {
+        top: 22px;
+        right: 20px;
+    }
+
+
+    .oa-days-bl {
+        bottom: 22px;
+        left: 20px;
+    }
+
+
+    .oa-days-br {
+        bottom: 22px;
+        right: 20px;
+    }
+
+
+    .oa-days-tech {
+        display: none;
+    }
+
+
+    .oa-days-header {
+        margin-bottom:
+            38px;
+    }
+
+
+    .oa-days-heading {
+        margin-top: 24px;
+    }
+
+
+    .oa-days-heading h2 {
+        font-size:
+            clamp(34px, 10vw, 50px);
+    }
+
+
+    .oa-days-featured {
+        grid-template-columns:
+            1fr;
+
+        gap: 0;
+    }
+
+
+    .oa-days-main-image {
+        aspect-ratio:
+            4 / 3;
+    }
+
+
+    .oa-days-info {
+        min-height:
+            500px;
+
+        padding:
+            26px 22px 20px;
+    }
+
+
+    .oa-days-number {
+        font-size: 82px;
+    }
+
+
+    .oa-days-gallery {
+        min-height: 65px;
+    }
+
+
+    .oa-days-thumb {
+        flex-basis: 68px;
+
+        width: 68px;
+
+        height: 47px;
+    }
+
+
+    .oa-days-photo-counter {
+        display: none;
+    }
+
+
+    .oa-days-timeline {
+        margin-top: 55px;
+    }
+
+
+    .oa-days-track {
+        margin:
+            0 -16px;
+
+        padding:
+            28px 16px 14px;
+    }
+
+
+    .oa-days-timeline-item {
+        flex-basis:
+            155px;
+    }
+
+
+    .oa-days-footer {
+        gap: 10px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        line-height: 1.7;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .oa-days-header-line {
+        font-size: 6px;
+    }
+
+
+    .oa-days-count {
+        gap: 4px;
+    }
+
+
+    .oa-days-main-image {
+        aspect-ratio:
+            1 / .82;
+    }
+
+
+    .oa-days-image-brand {
+        display: none;
+    }
+
+
+    .oa-days-info {
+        min-height:
+            470px;
+    }
+
+
+    .oa-days-number-label {
+        margin-top: 32px;
+    }
+
+
+    .oa-days-number {
+        font-size: 72px;
+    }
+
+
+    .oa-days-info h3 {
+        font-size: 28px;
+    }
+
+
+    .oa-days-log li {
+        font-size: 7px;
+    }
+
+
+    .oa-days-timeline-item {
+        flex-basis:
+            145px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .oa-days-rec span,
+    .oa-days-image-rec span {
+        animation: none;
+    }
+
+    .oa-days-main-image img,
+    .oa-days-thumb,
+    .oa-days-timeline-item {
+        transition: none;
+    }
+
+}
+/* =========================================================
+   PRODUCTION DAYS — BACKGROUND
+========================================================= */
+
+.oa-days {
+    position: relative;
+    overflow: hidden;
+    background: transparent !important;
+}
+
+.oa-days-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5, 12, 20, 0.38),
+            rgba(5, 12, 20, 0.58)
+        ),
+        url("images/production-days-bg.png")
+        center center / cover no-repeat !important;
+
+    opacity: 1 !important;
+}
+
+.oa-days-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 20%,
+            rgba(5, 12, 20, 0.38) 100%
+        ) !important;
+}
+
+
+/* المحتوى فوق الخلفية */
+
+.oa-days > *:not(.oa-days-bg):not(.oa-days-vignette) {
+    position: relative;
+    z-index: 2;
+}
+.oa-days-info {
+    background: rgba(7, 17, 29, 0.34) !important;
+
+    border: 1px solid rgba(247, 237, 227, 0.18) !important;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.22) !important;
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+/* =========================================================
+   ON AIR — PRODUCTION DAYS
+   FINAL VISUAL OVERRIDE
+   NO GREEN / NO TEAL
+========================================================= */
+
+.production-days-section {
+    position: relative !important;
+    overflow: hidden !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5, 12, 20, .34),
+            rgba(5, 12, 20, .58)
+        ),
+        url("images/production-days-bg.png")
+        center center / cover no-repeat !important;
+
+    color: #F7EDE3 !important;
+}
+
+
+/* طبقة السينما فوق الخلفية */
+
+.production-days-section::before {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 12, 20, .28),
+            transparent 20%,
+            transparent 80%,
+            rgba(5, 12, 20, .28)
+        ) !important;
+
+    opacity: 1 !important;
+}
+
+
+/* إزالة الـ vignette الأسود الزيادة */
+
+.production-days-section::after {
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 30%,
+            rgba(5, 12, 20, .38) 100%
+        ) !important;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.production-days-heading {
+    position: relative;
+    z-index: 5;
+
+    width: min(1380px, 90%) !important;
+
+    margin:
+        0 auto 75px !important;
+
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+
+.production-days-heading .section-kicker {
+    color: #D8C8B5 !important;
+}
+
+
+.production-days-heading h2 {
+    color: #F7EDE3 !important;
+}
+
+
+.production-days-heading p {
+    color:
+        rgba(225, 215, 204, .68) !important;
+}
+
+
+/* =========================================================
+   TIMELINE — BIG HORIZONTAL
+========================================================= */
+
+.production-days-grid {
+    position: relative !important;
+
+    width:
+        min(1380px, 92%) !important;
+
+    margin:
+        0 auto !important;
+
+    display:
+        flex !important;
+
+    flex-direction:
+        row !important;
+
+    align-items:
+        flex-start !important;
+
+    gap:
+        0 !important;
+
+    overflow-x:
+        auto !important;
+
+    overflow-y:
+        hidden !important;
+
+    padding:
+        35px 20px 55px !important;
+
+    scroll-behavior:
+        smooth;
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        rgba(216, 200, 181, .45)
+        transparent;
+}
+
+
+/* الخط الأفقي */
+
+.production-days-grid::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    top: 92px !important;
+
+    left: 20px !important;
+    right: 20px !important;
+
+    width: auto !important;
+    height: 1px !important;
+
+    transform: none !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(216, 200, 181, .55),
+            rgba(216, 200, 181, .55),
+            transparent
+        ) !important;
+
+    box-shadow:
+        0 0 14px
+        rgba(216, 200, 181, .08) !important;
+
+    z-index: 1 !important;
+}
+
+
+/* =========================================================
+   DAY — TIMELINE ITEM
+========================================================= */
+
+.production-day-card {
+    position: relative !important;
+
+    flex:
+        0 0 225px !important;
+
+    width:
+        225px !important;
+
+    height:
+        205px !important;
+
+    min-height:
+        205px !important;
+
+    margin:
+        0 !important;
+
+    padding:
+        0 18px !important;
+
+    opacity:
+        1 !important;
+
+    transform:
+        none !important;
+
+    filter:
+        none !important;
+
+    overflow:
+        visible !important;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform .35s ease,
+        opacity .35s ease;
+}
+
+
+/* =========================================================
+   DAY NODE
+========================================================= */
+
+.production-day-card::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    top:
+        53px !important;
+
+    left:
+        50% !important;
+
+    width:
+        12px !important;
+
+    height:
+        12px !important;
+
+    transform:
+        translateX(-50%) !important;
+
+    border:
+        1px solid #D8C8B5 !important;
+
+    border-radius:
+        50% !important;
+
+    background:
+        #112548 !important;
+
+    box-shadow:
+        0 0 0 5px rgba(5,12,20,.72),
+        0 0 0 6px rgba(216,200,181,.20) !important;
+
+    z-index:
+        20 !important;
+}
+
+
+/* اليوم المفتوح */
+
+.production-day-card:not(.locked)::after {
+    content: "" !important;
+
+    position: absolute;
+
+    top: 56px;
+    left: 50%;
+
+    width: 6px;
+    height: 6px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: #D92832;
+
+    box-shadow:
+        0 0 12px rgba(217,40,50,.45);
+
+    z-index: 21;
+}
+
+
+/* =========================================================
+   NUMBER
+========================================================= */
+
+.production-day-card .day-number {
+    position: absolute !important;
+
+    top:
+        0 !important;
+
+    right:
+        18px !important;
+
+    left:
+        auto !important;
+
+    color:
+        rgba(247,237,227,.22) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        34px !important;
+
+    line-height:
+        1 !important;
+
+    letter-spacing:
+        -.08em !important;
+}
+
+
+.production-day-card.is-visible .day-number {
+    color:
+        rgba(247,237,227,.38) !important;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.production-day-card .day-status {
+    position: absolute !important;
+
+    top:
+        4px !important;
+
+    left:
+        18px !important;
+
+    right:
+        auto !important;
+
+    color:
+        #D8C8B5 !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        8px !important;
+
+    letter-spacing:
+        .12em !important;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.production-day-card .day-date {
+    position: absolute !important;
+
+    top:
+        78px !important;
+
+    left:
+        18px !important;
+
+    right:
+        18px !important;
+
+    justify-content:
+        center !important;
+
+    color:
+        rgba(225,215,204,.60) !important;
+
+    font-size:
+        8px !important;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.production-day-card .day-title {
+    position: absolute !important;
+
+    top:
+        108px !important;
+
+    left:
+        0 !important;
+
+    right:
+        0 !important;
+
+    width:
+        100% !important;
+
+    margin:
+        0 !important;
+
+    text-align:
+        center !important;
+
+    color:
+        #F7EDE3 !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        17px !important;
+
+    font-weight:
+        700 !important;
+
+    line-height:
+        1.4 !important;
+}
+
+
+/* =========================================================
+   IMAGES — TIMELINE THUMB
+========================================================= */
+
+.production-day-card .day-images {
+    position: absolute !important;
+
+    top:
+        0 !important;
+
+    left:
+        50% !important;
+
+    right:
+        auto !important;
+
+    width:
+        76px !important;
+
+    min-height:
+        52px !important;
+
+    height:
+        52px !important;
+
+    padding:
+        0 !important;
+
+    margin:
+        0 !important;
+
+    transform:
+        translateX(-50%) !important;
+
+    background:
+        transparent !important;
+
+    border:
+        1px solid
+        rgba(216,200,181,.22) !important;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.28) !important;
+
+    overflow:
+        visible !important;
+
+    z-index:
+        10 !important;
+}
+
+
+/* الصور نفسها */
+
+.production-day-card .day-image-wrapper {
+    position: absolute !important;
+
+    width:
+        76px !important;
+
+    height:
+        52px !important;
+
+    padding:
+        0 !important;
+
+    background:
+        rgba(17,37,72,.18) !important;
+
+    border:
+        1px solid
+        rgba(216,200,181,.22) !important;
+
+    box-shadow:
+        none !important;
+
+    transform:
+        none !important;
+
+    overflow:
+        hidden !important;
+}
+
+
+/* لو اليوم فيه صورتين */
+
+.production-day-card .day-image-wrapper:nth-child(2) {
+    top:
+        7px !important;
+
+    left:
+        7px !important;
+
+    transform:
+        rotate(3deg) !important;
+
+    z-index:
+        1 !important;
+}
+
+
+.production-day-card .day-image-wrapper:nth-child(1) {
+    top:
+        0 !important;
+
+    left:
+        0 !important;
+
+    transform:
+        rotate(-2deg) !important;
+
+    z-index:
+        2 !important;
+}
+
+
+.production-day-card .day-image {
+    width:
+        100% !important;
+
+    height:
+        100% !important;
+
+    object-fit:
+        cover !important;
+
+    filter:
+        saturate(.65)
+        contrast(1.04)
+        brightness(.72) !important;
+}
+
+
+/* نخفي الكتابة داخل thumbnail */
+
+.production-day-card .day-images::before,
+.production-day-card .day-image-frame {
+    display:
+        none !important;
+}
+
+
+/* =========================================================
+   DESCRIPTION — HIDDEN FROM TIMELINE
+========================================================= */
+
+.production-day-card .day-description {
+    display:
+        none !important;
+}
+
+
+/* =========================================================
+   LOCKED
+========================================================= */
+
+.production-day-card.locked {
+    opacity:
+        .42 !important;
+
+    cursor:
+        default !important;
+}
+
+
+.production-day-card.locked::after {
+    display:
+        none !important;
+}
+
+
+.production-day-card.locked .day-status {
+    color:
+        #6D6D6D !important;
+}
+
+
+.production-day-card.locked .day-number {
+    color:
+        rgba(247,237,227,.10) !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .production-days-heading {
+        width:
+            calc(100% - 36px) !important;
+
+        margin-bottom:
+            55px !important;
+    }
+
+
+    .production-days-heading h2 {
+        font-size:
+            42px !important;
+    }
+
+
+    .production-days-grid {
+        width:
+            100% !important;
+
+        padding:
+            30px 18px 45px !important;
+    }
+
+
+    .production-days-grid::before {
+        top:
+            86px !important;
+
+        left:
+            18px !important;
+
+        right:
+            18px !important;
+    }
+
+
+    .production-day-card {
+        flex-basis:
+            190px !important;
+
+        width:
+            190px !important;
+
+        height:
+            190px !important;
+
+        min-height:
+            190px !important;
+    }
+
+
+    .production-day-card .day-images,
+    .production-day-card .day-image-wrapper {
+        width:
+            68px !important;
+
+        height:
+            48px !important;
+    }
+
+
+    .production-day-card .day-title {
+        font-size:
+            15px !important;
+    }
+
+
+    .production-day-card .day-number {
+        font-size:
+            28px !important;
+    }
+}
+/* =========================================================
+   ON AIR — PRODUCTION DAYS
+   NEW CINEMATIC TIMELINE
+   NO GREEN / NO TEAL
+========================================================= */
+
+.production-days-section {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    padding: 100px 0 80px !important;
+    overflow: hidden !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5, 12, 20, .34),
+            rgba(5, 12, 20, .56)
+        ),
+        url("images/production-days-bg.png")
+        center center / cover no-repeat !important;
+
+    color: #F7EDE3 !important;
+    isolation: isolate;
+}
+
+
+/* طبقة سينمائية */
+
+.production-days-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 30%,
+            rgba(216, 200, 181, .07),
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(5, 12, 20, .05),
+            rgba(5, 12, 20, .48)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.production-days-heading {
+    position: relative !important;
+    z-index: 5;
+
+    width: min(1400px, 90%) !important;
+    margin: 0 auto 55px !important;
+
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+.production-days-heading .section-kicker {
+    color: #D8C8B5 !important;
+}
+
+.production-days-heading h2 {
+    margin: 12px 0 5px !important;
+
+    color: #F7EDE3 !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        clamp(34px, 4vw, 58px) !important;
+
+    font-weight: 700 !important;
+}
+
+.production-days-heading p {
+    color:
+        rgba(225, 215, 204, .62) !important;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.production-days-content {
+    position: relative !important;
+    z-index: 3;
+
+    width:
+        min(1400px, 92%) !important;
+
+    margin:
+        0 auto !important;
+}
+
+
+/* =========================================================
+   GRID RESET
+========================================================= */
+
+.production-days-grid {
+    position: relative !important;
+
+    width: 100% !important;
+
+    display: block !important;
+
+    overflow: visible !important;
+
+    padding: 0 !important;
+
+    margin: 0 !important;
+
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   TOP AREA
+========================================================= */
+
+.pd-top {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.55fr)
+        minmax(330px, .72fr);
+
+    gap: 42px;
+
+    align-items: stretch;
+
+    direction: ltr;
+
+    margin-bottom: 55px;
+}
+
+
+/* =========================================================
+   MAIN PHOTO
+========================================================= */
+
+.pd-gallery {
+    position: relative;
+
+    min-height: 430px;
+
+    background:
+        rgba(7, 17, 29, .18);
+
+    border:
+        1px solid
+        rgba(247, 237, 227, .22);
+
+    box-shadow:
+        0 35px 80px
+        rgba(0, 0, 0, .38);
+
+    overflow: hidden;
+
+    backdrop-filter:
+        blur(3px);
+
+    -webkit-backdrop-filter:
+        blur(3px);
+}
+
+
+.pd-gallery::before {
+    content: "REC";
+
+    position: absolute;
+
+    top: 20px;
+    left: 22px;
+
+    z-index: 10;
+
+    color: #F7EDE3;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: .15em;
+}
+
+
+.pd-gallery::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 4;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,12,20,.05),
+            transparent 50%,
+            rgba(5,12,20,.42)
+        );
+}
+
+
+.pd-main-image {
+    width: 100%;
+    height: 100%;
+
+    min-height: 430px;
+
+    object-fit: cover;
+
+    display: block;
+
+    filter:
+        brightness(.72)
+        contrast(1.06)
+        saturate(.72);
+
+    transition:
+        opacity .35s ease,
+        transform .8s cubic-bezier(.16,1,.3,1);
+}
+
+
+.pd-gallery:hover .pd-main-image {
+    transform: scale(1.015);
+}
+
+
+/* =========================================================
+   PHOTO CONTROLS
+========================================================= */
+
+.pd-gallery-meta {
+    position: absolute;
+
+    left: 24px;
+    right: 24px;
+    bottom: 20px;
+
+    z-index: 12;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    direction: ltr;
+
+    color:
+        rgba(247,237,227,.60);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .12em;
+}
+
+
+.pd-thumbs {
+    position: absolute;
+
+    left: 25px;
+    bottom: 58px;
+
+    z-index: 15;
+
+    display: flex;
+
+    gap: 10px;
+
+    direction: ltr;
+}
+
+
+.pd-thumb {
+    width: 92px;
+    height: 58px;
+
+    padding: 0;
+
+    border:
+        1px solid
+        rgba(247,237,227,.20);
+
+    background:
+        rgba(5,12,20,.42);
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    opacity: .55;
+
+    transition:
+        opacity .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
+}
+
+
+.pd-thumb:hover {
+    opacity: .85;
+
+    transform:
+        translateY(-3px);
+}
+
+
+.pd-thumb.active {
+    opacity: 1;
+
+    border-color:
+        #D8C8B5;
+}
+
+
+.pd-thumb img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter:
+        brightness(.70)
+        saturate(.65);
+}
+
+
+/* =========================================================
+   DAY INFORMATION — TRANSPARENT
+========================================================= */
+
+.pd-info {
+    position: relative;
+
+    min-height: 430px;
+
+    padding:
+        30px 32px;
+
+    direction: rtl;
+    text-align: right;
+
+    background:
+        rgba(7, 17, 29, .28) !important;
+
+    border:
+        1px solid
+        rgba(247, 237, 227, .20);
+
+    box-shadow:
+        0 30px 70px
+        rgba(0,0,0,.25);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    overflow: hidden;
+}
+
+
+.pd-info::before {
+    content: "";
+
+    position: absolute;
+    inset: 10px;
+
+    border:
+        1px solid
+        rgba(247,237,227,.045);
+
+    pointer-events: none;
+}
+
+
+.pd-info-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    direction: ltr;
+
+    color:
+        rgba(247,237,227,.62);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: .12em;
+}
+
+
+.pd-status {
+    color:
+        #D8C8B5 !important;
+}
+
+
+.pd-number {
+    margin-top: 55px;
+
+    color:
+        rgba(247,237,227,.18);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        clamp(90px, 9vw, 135px);
+
+    line-height: .8;
+
+    direction: ltr;
+
+    text-align: left;
+}
+
+
+.pd-title {
+    position: relative;
+
+    margin-top: 12px;
+
+    color:
+        #F7EDE3 !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        clamp(30px, 3vw, 48px);
+
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+.pd-date {
+    margin-top: 12px;
+
+    color:
+        rgba(225,215,204,.68);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 10px;
+}
+
+
+.pd-divider {
+    width: 100%;
+    height: 1px;
+
+    margin: 25px 0;
+
+    background:
+        rgba(216,200,181,.24);
+}
+
+
+.pd-note-label,
+.pd-log-label {
+    color:
+        rgba(216,200,181,.55);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .14em;
+
+    direction: ltr;
+}
+
+
+.pd-description {
+    margin-top: 12px;
+
+    color:
+        rgba(247,237,227,.78);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 12px;
+
+    line-height: 2;
+}
+
+
+.pd-events {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+    margin-top: 15px;
+
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.pd-events li {
+    color:
+        rgba(225,215,204,.70);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 10px;
+}
+
+
+.pd-events li::before {
+    content: "•";
+
+    display: inline-block;
+
+    margin-left: 8px;
+
+    color:
+        #D8C8B5 !important;
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.pd-timeline {
+    position: relative;
+
+    width: 100%;
+
+    padding:
+        30px 0 25px;
+
+    border-top:
+        1px solid
+        rgba(247,237,227,.12);
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.12);
+
+    direction: rtl;
+}
+
+
+.pd-timeline-head {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+
+    direction: rtl;
+}
+
+
+.pd-timeline-label {
+    color:
+        #D8C8B5;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: .16em;
+
+    direction: ltr;
+}
+
+
+.pd-timeline-sub {
+    margin-top: 7px;
+
+    color:
+        rgba(225,215,204,.55);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   TIMELINE SCROLLER
+========================================================= */
+
+.pd-timeline-track {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: row;
+
+    gap: 14px;
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    padding:
+        25px 4px 20px;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(216,200,181,.35)
+        transparent;
+}
+
+
+.pd-timeline-track::before {
+    content: "";
+
+    position: absolute;
+
+    top: 45px;
+
+    left: 15px;
+    right: 15px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(216,200,181,.55),
+            rgba(216,200,181,.55),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   TIMELINE DAY CARD
+========================================================= */
+
+.pd-day {
+    position: relative;
+
+    flex:
+        0 0 205px;
+
+    width: 205px;
+
+    height: 185px;
+
+    padding:
+        20px 16px 16px;
+
+    background:
+        rgba(7,17,29,.25);
+
+    border:
+        1px solid
+        rgba(247,237,227,.16);
+
+    cursor: pointer;
+
+    transition:
+        border-color .3s ease,
+        background .3s ease,
+        transform .3s ease,
+        opacity .3s ease;
+
+    direction: rtl;
+}
+
+
+.pd-day:hover {
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(216,200,181,.42);
+
+    background:
+        rgba(17,37,72,.30);
+}
+
+
+.pd-day.active {
+    border-color:
+        rgba(216,200,181,.72);
+
+    background:
+        rgba(17,37,72,.36);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.22);
+}
+
+
+/* الخط الصغير فوق الكارت */
+
+.pd-day::before {
+    content: "";
+
+    position: absolute;
+
+    top: -25px;
+
+    right: 50%;
+
+    width: 1px;
+    height: 25px;
+
+    background:
+        rgba(216,200,181,.38);
+}
+
+
+/* نقطة اليوم */
+
+.pd-day::after {
+    content: "";
+
+    position: absolute;
+
+    top: -31px;
+
+    right: calc(50% - 5px);
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background:
+        #112548;
+
+    border:
+        1px solid
+        rgba(216,200,181,.75);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(5,12,20,.72);
+}
+
+
+.pd-day.active::after {
+    background:
+        #D92832;
+
+    border-color:
+        #D8C8B5;
+
+    box-shadow:
+        0 0 0 4px rgba(5,12,20,.72),
+        0 0 14px rgba(217,40,50,.35);
+}
+
+
+/* =========================================================
+   DAY CARD CONTENT
+========================================================= */
+
+.pd-day-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    direction: ltr;
+
+    color:
+        rgba(247,237,227,.38);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+}
+
+
+.pd-day-number {
+    font-size: 26px;
+
+    color:
+        rgba(247,237,227,.45);
+}
+
+
+.pd-day-status {
+    color:
+        rgba(216,200,181,.60);
+}
+
+
+.pd-day-image {
+    width: 100%;
+    height: 58px;
+
+    margin-top: 10px;
+
+    object-fit: cover;
+
+    border:
+        1px solid
+        rgba(247,237,227,.14);
+
+    filter:
+        brightness(.68)
+        saturate(.60);
+}
+
+
+.pd-day-title {
+    margin-top: 10px;
+
+    color:
+        #F7EDE3;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 700;
+}
+
+
+.pd-day-date {
+    margin-top: 5px;
+
+    color:
+        rgba(225,215,204,.55);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   LOCKED
+========================================================= */
+
+.pd-day.locked {
+    opacity: .42;
+
+    cursor: default;
+}
+
+
+.pd-day.locked:hover {
+    transform: none;
+
+    border-color:
+        rgba(247,237,227,.16);
+
+    background:
+        rgba(7,17,29,.25);
+}
+
+
+.pd-day.locked .pd-day-image {
+    display: none;
+}
+
+
+/* =========================================================
+   ARROWS
+========================================================= */
+
+.pd-timeline-arrows {
+    display: flex;
+
+    gap: 8px;
+
+    direction: ltr;
+}
+
+
+.pd-arrow {
+    width: 48px;
+    height: 42px;
+
+    border:
+        1px solid
+        rgba(247,237,227,.20);
+
+    background:
+        rgba(7,17,29,.28);
+
+    color:
+        #D8C8B5;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition:
+        background .25s ease,
+        border-color .25s ease;
+}
+
+
+.pd-arrow:hover {
+    background:
+        rgba(17,37,72,.45);
+
+    border-color:
+        rgba(216,200,181,.55);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .production-days-section {
+        padding:
+            75px 0 60px !important;
+    }
+
+    .production-days-heading {
+        width:
+            calc(100% - 32px) !important;
+
+        margin-bottom:
+            40px !important;
+    }
+
+    .production-days-heading h2 {
+        font-size:
+            34px !important;
+    }
+
+    .pd-top {
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        gap:
+            20px;
+    }
+
+    .pd-gallery {
+        min-height:
+            290px;
+    }
+
+    .pd-main-image {
+        min-height:
+            290px;
+    }
+
+    .pd-info {
+        min-height:
+            390px;
+
+        padding:
+            25px 22px;
+    }
+
+    .pd-number {
+        margin-top:
+            35px;
+
+        font-size:
+            85px;
+    }
+
+    .pd-title {
+        font-size:
+            31px;
+    }
+
+    .pd-day {
+        flex-basis:
+            175px;
+
+        width:
+            175px;
+
+        height:
+            165px;
+    }
+
+    .pd-day-image {
+        height:
+            50px;
+    }
+
+    .pd-day-title {
+        font-size:
+            14px;
+    }
+}
+/* =========================================================
+   ON AIR — PRODUCTION DAYS
+   FINAL OVERRIDE
+   BUILT FOR oa-days SYSTEM
+   NO GREEN / NO TEAL
+========================================================= */
+
+
+/* =========================================================
+   SECTION + BACKGROUND
+========================================================= */
+
+#production-days.production-days-section {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+
+    padding:
+        110px 0 95px !important;
+
+    overflow: hidden !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5, 12, 20, .28),
+            rgba(5, 12, 20, .52)
+        ),
+        url("images/production-days-bg.png")
+        center center / cover no-repeat !important;
+
+    color: #F7EDE3 !important;
+}
+
+
+/* cinematic overlay */
+
+#production-days.production-days-section::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(17, 37, 72, .10) 0%,
+            rgba(5, 12, 20, .42) 100%
+        ) !important;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+#production-days .production-days-heading {
+    position: relative !important;
+    z-index: 5;
+
+    width:
+        min(1400px, 90%) !important;
+
+    margin:
+        0 auto 65px !important;
+
+    text-align:
+        right !important;
+
+    direction:
+        rtl !important;
+}
+
+
+#production-days .section-kicker {
+    color:
+        #D8C8B5 !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        9px !important;
+
+    letter-spacing:
+        .12em !important;
+}
+
+
+#production-days .production-days-heading h2 {
+    margin:
+        12px 0 8px !important;
+
+    color:
+        #F7EDE3 !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        clamp(38px, 4vw, 60px) !important;
+
+    font-weight:
+        700 !important;
+}
+
+
+#production-days .production-days-heading p {
+    color:
+        rgba(225, 215, 204, .58) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        11px !important;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+#production-days .production-days-content {
+    position: relative !important;
+    z-index: 3;
+
+    width:
+        min(1400px, 92%) !important;
+
+    margin:
+        0 auto !important;
+}
+
+
+/* =========================================================
+   FEATURED DAY
+   THE LARGE CARD ABOVE
+========================================================= */
+
+#production-days .oa-days-featured {
+    position: relative !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(360px, .72fr) !important;
+
+    gap:
+        35px !important;
+
+    width:
+        100% !important;
+
+    min-height:
+        540px !important;
+
+    margin:
+        0 auto 75px !important;
+
+    padding:
+        0 !important;
+
+    background:
+        transparent !important;
+
+    border:
+        0 !important;
+
+    box-shadow:
+        none !important;
+
+    direction:
+        ltr !important;
+
+    transition:
+        opacity .25s ease,
+        transform .25s ease !important;
+}
+
+
+/* =========================================================
+   FEATURED IMAGE
+========================================================= */
+
+#production-days .oa-days-featured-image,
+#production-days .oa-days-image-wrap,
+#production-days .oa-days-media {
+    position: relative !important;
+
+    width:
+        100% !important;
+
+    min-height:
+        540px !important;
+
+    overflow:
+        hidden !important;
+
+    background:
+        rgba(7, 17, 29, .18) !important;
+
+    border:
+        1px solid
+        rgba(247, 237, 227, .16) !important;
+
+    box-shadow:
+        0 35px 80px
+        rgba(0,0,0,.30) !important;
+}
+
+
+/* main image */
+
+#production-days #oaDaysMainImage {
+    display:
+        block !important;
+
+    width:
+        100% !important;
+
+    height:
+        540px !important;
+
+    object-fit:
+        cover !important;
+
+    opacity:
+        1 !important;
+
+    filter:
+        brightness(.70)
+        contrast(1.05)
+        saturate(.62) !important;
+
+    transition:
+        opacity .28s ease,
+        transform .8s ease !important;
+}
+
+
+#production-days #oaDaysMainImage.oa-days-image-changing {
+    opacity:
+        .15 !important;
+
+    transform:
+        scale(1.02) !important;
+}
+
+
+/* =========================================================
+   FEATURED INFO CARD
+   TRANSPARENT — IMPORTANT
+========================================================= */
+
+#production-days .oa-days-info,
+#production-days .oa-days-details,
+#production-days .oa-days-featured-info {
+
+    background:
+        rgba(7, 17, 29, .18) !important;
+
+    background-color:
+        rgba(7, 17, 29, .18) !important;
+
+    border:
+        1px solid
+        rgba(247, 237, 227, .15) !important;
+
+    box-shadow:
+        none !important;
+
+    backdrop-filter:
+        blur(5px) !important;
+
+    -webkit-backdrop-filter:
+        blur(5px) !important;
+
+    opacity:
+        1 !important;
+}
+
+
+/* لو الكارت نفسه هو oa-days-featured-info */
+
+#production-days .oa-days-featured-info {
+    min-height:
+        540px !important;
+
+    padding:
+        38px !important;
+
+    direction:
+        rtl !important;
+
+    text-align:
+        right !important;
+}
+
+
+/* =========================================================
+   TEXT COLORS
+========================================================= */
+
+#production-days #oaDaysNumber,
+#production-days .oa-days-number {
+
+    color:
+        rgba(247, 237, 227, .20) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        clamp(90px, 9vw, 145px) !important;
+
+    line-height:
+        .82 !important;
+}
+
+
+#production-days #oaDaysTitle,
+#production-days .oa-days-title {
+
+    color:
+        #F7EDE3 !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        clamp(34px, 4vw, 58px) !important;
+
+    font-weight:
+        700 !important;
+
+    line-height:
+        1.2 !important;
+}
+
+
+#production-days #oaDaysStatus,
+#production-days .oa-days-status {
+
+    color:
+        #D8C8B5 !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        9px !important;
+
+    letter-spacing:
+        .10em !important;
+}
+
+
+#production-days #oaDaysDate,
+#production-days .oa-days-date {
+
+    color:
+        rgba(225, 215, 204, .62) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        10px !important;
+}
+
+
+#production-days #oaDaysDescription,
+#production-days .oa-days-description {
+
+    color:
+        rgba(247, 237, 227, .72) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        12px !important;
+
+    line-height:
+        2 !important;
+}
+
+
+/* =========================================================
+   PRODUCTION LOG
+========================================================= */
+
+#production-days #oaDaysEvents,
+#production-days .oa-days-events {
+
+    list-style:
+        none !important;
+
+    padding:
+        0 !important;
+
+    margin:
+        15px 0 0 !important;
+}
+
+
+#production-days #oaDaysEvents li {
+
+    color:
+        rgba(225, 215, 204, .66) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        10px !important;
+
+    padding:
+        5px 0 !important;
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.06) !important;
+}
+
+
+#production-days #oaDaysEvents li::before {
+
+    content:
+        "—" !important;
+
+    color:
+        #D8C8B5 !important;
+
+    margin-left:
+        8px !important;
+}
+
+
+/* =========================================================
+   GALLERY THUMBNAILS
+   SUPPORT MULTIPLE PHOTOS
+========================================================= */
+
+#production-days #oaDaysThumbs {
+
+    display:
+        flex !important;
+
+    flex-wrap:
+        wrap !important;
+
+    gap:
+        10px !important;
+
+    direction:
+        ltr !important;
+
+    margin-top:
+        14px !important;
+}
+
+
+#production-days .oa-days-thumb {
+
+    position:
+        relative !important;
+
+    width:
+        78px !important;
+
+    height:
+        56px !important;
+
+    padding:
+        0 !important;
+
+    overflow:
+        hidden !important;
+
+    background:
+        rgba(7,17,29,.30) !important;
+
+    border:
+        1px solid
+        rgba(247,237,227,.16) !important;
+
+    opacity:
+        .48 !important;
+
+    cursor:
+        pointer !important;
+
+    transition:
+        opacity .25s ease,
+        border-color .25s ease,
+        transform .25s ease !important;
+}
+
+
+#production-days .oa-days-thumb:hover {
+
+    opacity:
+        .82 !important;
+
+    transform:
+        translateY(-3px) !important;
+}
+
+
+#production-days .oa-days-thumb.active {
+
+    opacity:
+        1 !important;
+
+    border-color:
+        #D8C8B5 !important;
+}
+
+
+#production-days .oa-days-thumb img {
+
+    width:
+        100% !important;
+
+    height:
+        100% !important;
+
+    object-fit:
+        cover !important;
+
+    filter:
+        brightness(.70)
+        saturate(.60) !important;
+}
+
+
+#production-days .oa-days-thumb span {
+
+    position:
+        absolute !important;
+
+    bottom:
+        4px !important;
+
+    left:
+        5px !important;
+
+    color:
+        #F7EDE3 !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        7px !important;
+}
+
+
+/* =========================================================
+   EMPTY GALLERY
+========================================================= */
+
+#production-days .oa-days-gallery-empty {
+
+    display:
+        flex !important;
+
+    align-items:
+        center !important;
+
+    justify-content:
+        center !important;
+
+    width:
+        100% !important;
+
+    height:
+        100% !important;
+
+    min-height:
+        100px !important;
+
+    color:
+        rgba(225,215,204,.35) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        9px !important;
+}
+
+
+/* =========================================================
+   TIMELINE — THIS IS THE BIG CHANGE
+========================================================= */
+
+#production-days #oaDaysTrack {
+
+    position:
+        relative !important;
+
+    display:
+        flex !important;
+
+    flex-direction:
+        row !important;
+
+    align-items:
+        flex-start !important;
+
+    gap:
+        18px !important;
+
+    width:
+        100% !important;
+
+    height:
+        265px !important;
+
+    padding:
+        58px 12px 20px !important;
+
+    margin:
+        0 !important;
+
+    overflow-x:
+        auto !important;
+
+    overflow-y:
+        hidden !important;
+
+    direction:
+        rtl !important;
+
+    scroll-behavior:
+        smooth !important;
+
+    scrollbar-width:
+        thin !important;
+
+    scrollbar-color:
+        rgba(216,200,181,.35)
+        transparent !important;
+}
+
+
+/* BIG HORIZONTAL LINE */
+
+#production-days #oaDaysTrack::before {
+
+    content:
+        "" !important;
+
+    position:
+        absolute !important;
+
+    top:
+        67px !important;
+
+    left:
+        12px !important;
+
+    right:
+        12px !important;
+
+    height:
+        1px !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(216,200,181,.50) 12%,
+            rgba(216,200,181,.50) 88%,
+            transparent 100%
+        ) !important;
+
+    pointer-events:
+        none !important;
+
+    z-index:
+        0 !important;
+}
+
+
+/* =========================================================
+   TIMELINE ITEM
+========================================================= */
+
+#production-days .oa-days-timeline-item {
+
+    position:
+        relative !important;
+
+    flex:
+        0 0 245px !important;
+
+    width:
+        245px !important;
+
+    height:
+        185px !important;
+
+    min-width:
+        245px !important;
+
+    padding:
+        20px 18px !important;
+
+    margin:
+        0 !important;
+
+    box-sizing:
+        border-box !important;
+
+    background:
+        rgba(7,17,29,.20) !important;
+
+    border:
+        1px solid
+        rgba(247,237,227,.12) !important;
+
+    color:
+        #F7EDE3 !important;
+
+    text-align:
+        right !important;
+
+    direction:
+        rtl !important;
+
+    cursor:
+        pointer !important;
+
+    transition:
+        transform .30s ease,
+        border-color .30s ease,
+        background .30s ease,
+        opacity .30s ease !important;
+
+    z-index:
+        2 !important;
+}
+
+
+/* HOVER */
+
+#production-days .oa-days-timeline-item:hover {
+
+    transform:
+        translateY(-7px) !important;
+
+    border-color:
+        rgba(216,200,181,.40) !important;
+
+    background:
+        rgba(17,37,72,.30) !important;
+}
+
+
+/* ACTIVE */
+
+#production-days .oa-days-timeline-item.active {
+
+    border-color:
+        rgba(216,200,181,.75) !important;
+
+    background:
+        rgba(17,37,72,.38) !important;
+
+    box-shadow:
+        0 18px 40px
+        rgba(0,0,0,.22) !important;
+}
+
+
+/* =========================================================
+   TIMELINE NUMBER
+========================================================= */
+
+#production-days .oa-days-timeline-number {
+
+    display:
+        block !important;
+
+    color:
+        rgba(247,237,227,.24) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        32px !important;
+
+    line-height:
+        1 !important;
+}
+
+
+#production-days .oa-days-timeline-item.active
+.oa-days-timeline-number {
+
+    color:
+        rgba(247,237,227,.58) !important;
+}
+
+
+/* =========================================================
+   TIMELINE IMAGE
+========================================================= */
+
+#production-days .oa-days-timeline-image {
+
+    display:
+        block !important;
+
+    width:
+        100% !important;
+
+    height:
+        58px !important;
+
+    margin:
+        12px 0 10px !important;
+
+    overflow:
+        hidden !important;
+
+    border:
+        1px solid
+        rgba(247,237,227,.15) !important;
+
+    background:
+        rgba(7,17,29,.30) !important;
+}
+
+
+#production-days .oa-days-timeline-image img {
+
+    width:
+        100% !important;
+
+    height:
+        100% !important;
+
+    object-fit:
+        cover !important;
+
+    display:
+        block !important;
+
+    filter:
+        brightness(.64)
+        saturate(.55) !important;
+
+    transition:
+        transform .5s ease !important;
+}
+
+
+#production-days .oa-days-timeline-item:hover
+.oa-days-timeline-image img {
+
+    transform:
+        scale(1.04) !important;
+}
+
+
+/* =========================================================
+   TIMELINE COPY
+========================================================= */
+
+#production-days .oa-days-timeline-copy {
+
+    display:
+        flex !important;
+
+    flex-direction:
+        column !important;
+
+    gap:
+        3px !important;
+}
+
+
+#production-days .oa-days-timeline-copy small {
+
+    color:
+        rgba(216,200,181,.52) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        7px !important;
+
+    letter-spacing:
+        .10em !important;
+}
+
+
+#production-days .oa-days-timeline-copy strong {
+
+    color:
+        #F7EDE3 !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        15px !important;
+
+    font-weight:
+        700 !important;
+}
+
+
+#production-days .oa-days-timeline-copy em {
+
+    color:
+        rgba(225,215,204,.46) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        8px !important;
+
+    font-style:
+        normal !important;
+}
+
+
+/* =========================================================
+   TIMELINE DOT
+========================================================= */
+
+#production-days .oa-days-timeline-dot {
+
+    position:
+        absolute !important;
+
+    top:
+        -12px !important;
+
+    right:
+        50% !important;
+
+    width:
+        12px !important;
+
+    height:
+        12px !important;
+
+    transform:
+        translateX(50%) !important;
+
+    border-radius:
+        50% !important;
+
+    background:
+        #112548 !important;
+
+    border:
+        1px solid
+        #D8C8B5 !important;
+
+    box-shadow:
+        0 0 0 5px
+        rgba(5,12,20,.78) !important;
+
+    z-index:
+        5 !important;
+}
+
+
+/* ACTIVE DOT = RED */
+#production-days .oa-days-timeline-item.active
+.oa-days-timeline-dot {
+
+    background:
+        #D92832 !important;
+
+    border-color:
+        #F7EDE3 !important;
+
+    box-shadow:
+        0 0 0 5px
+        rgba(5,12,20,.78),
+        0 0 14px
+        rgba(217,40,50,.35) !important;
+}
+
+
+/* =========================================================
+   LOCKED DAYS
+========================================================= */
+
+#production-days .oa-days-timeline-item.locked {
+
+    opacity:
+        .30 !important;
+
+    cursor:
+        default !important;
+}
+
+
+#production-days .oa-days-timeline-item.locked:hover {
+
+    transform:
+        none !important;
+
+    border-color:
+        rgba(247,237,227,.12) !important;
+
+    background:
+        rgba(7,17,29,.20) !important;
+}
+
+
+/* =========================================================
+   NAVIGATION BUTTONS
+========================================================= */
+
+#production-days #oaDaysPrev,
+#production-days #oaDaysNext {
+
+    width:
+        48px !important;
+
+    height:
+        42px !important;
+
+    border:
+        1px solid
+        rgba(247,237,227,.18) !important;
+
+    background:
+        rgba(7,17,29,.28) !important;
+
+    color:
+        #D8C8B5 !important;
+
+    cursor:
+        pointer !important;
+}
+
+
+#production-days #oaDaysPrev:hover,
+#production-days #oaDaysNext:hover {
+
+    border-color:
+        rgba(216,200,181,.55) !important;
+
+    background:
+        rgba(17,37,72,.35) !important;
+}
+
+
+/* =========================================================
+   PHOTO COUNTER
+========================================================= */
+
+#production-days #oaDaysPhotoCounter {
+
+    color:
+        rgba(225,215,204,.55) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        8px !important;
+}
+
+
+/* =========================================================
+   FORCE REMOVE OLD GREEN
+========================================================= */
+
+/* أي أخضر قديم جوه القسم يتلغي */
+
+#production-days,
+#production-days *,
+#production-days *::before,
+#production-days *::after {
+
+    --teal:
+        #D8C8B5 !important;
+
+    --green:
+        #D8C8B5 !important;
+
+    --accent:
+        #D8C8B5 !important;
+}
+
+
+/* العناصر اللي كانت بتاخد teal */
+
+#production-days .active,
+#production-days .open,
+#production-days .open-status,
+#production-days .now-status,
+#production-days .status-dot,
+#production-days .oa-days-status {
+
+    color:
+        #D8C8B5 !important;
+}
+
+
+#production-days .status-dot,
+#production-days .open-status i,
+#production-days .now-status i {
+
+    background:
+        #D92832 !important;
+
+    border-color:
+        #D92832 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    #production-days.production-days-section {
+
+        padding:
+            80px 0 65px !important;
+    }
+
+
+    #production-days .production-days-heading {
+
+        width:
+            calc(100% - 32px) !important;
+
+        margin-bottom:
+            45px !important;
+    }
+
+
+    #production-days .production-days-heading h2 {
+
+        font-size:
+            34px !important;
+    }
+
+
+    #production-days .oa-days-featured {
+
+        display:
+            flex !important;
+
+        flex-direction:
+            column !important;
+
+        gap:
+            18px !important;
+
+        min-height:
+            auto !important;
+
+        margin-bottom:
+            55px !important;
+    }
+
+
+    #production-days .oa-days-featured-image,
+    #production-days .oa-days-image-wrap,
+    #production-days .oa-days-media {
+
+        min-height:
+            300px !important;
+
+        height:
+            300px !important;
+    }
+
+
+    #production-days #oaDaysMainImage {
+
+        height:
+            300px !important;
+    }
+
+
+    #production-days .oa-days-featured-info {
+
+        min-height:
+            390px !important;
+
+        padding:
+            25px !important;
+    }
+
+
+    #production-days #oaDaysNumber {
+
+        font-size:
+            80px !important;
+    }
+
+
+    #production-days #oaDaysTitle {
+
+        font-size:
+            32px !important;
+    }
+
+
+    #production-days #oaDaysTrack {
+
+        height:
+            225px !important;
+
+        padding:
+            48px 8px 15px !important;
+
+        gap:
+            12px !important;
+    }
+
+
+    #production-days #oaDaysTrack::before {
+
+        top:
+            57px !important;
+    }
+
+
+    #production-days .oa-days-timeline-item {
+
+        flex:
+            0 0 185px !important;
+
+        width:
+            185px !important;
+
+        min-width:
+            185px !important;
+
+        height:
+            155px !important;
+
+        padding:
+            15px !important;
+    }
+
+
+    #production-days .oa-days-timeline-image {
+
+        height:
+            48px !important;
+    }
+
+
+    #production-days .oa-days-timeline-copy strong {
+
+        font-size:
+            14px !important;
+    }
+
+
+    #production-days .oa-days-timeline-number {
+
+        font-size:
+            25px !important;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    #production-days .production-days-content {
+
+        width:
+            calc(100% - 24px) !important;
+    }
+
+
+    #production-days .oa-days-featured-info {
+
+        padding:
+            22px !important;
+    }
+
+
+    #production-days .oa-days-thumb {
+
+        width:
+            68px !important;
+
+        height:
+            50px !important;
+    }
+
+
+    #production-days .oa-days-timeline-item {
+
+        flex:
+            0 0 170px !important;
+
+        width:
+            170px !important;
+
+        min-width:
+            170px !important;
+    }
+
+}

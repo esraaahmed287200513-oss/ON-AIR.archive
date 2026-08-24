@@ -975,12 +975,16 @@ console.log(
 );
 
 
-/* =====================================================
-   ON AIR — PRODUCTION DAYS ARCHIVE
-   CINEMATIC DIARY — AR / EN
-===================================================== */
+/* =========================================================
+   ON AIR — PRODUCTION DAYS
+   NEW CINEMATIC ARCHIVE SYSTEM
+========================================================= */
 
 const productionDays = [
+
+    /* =====================================================
+       DAY 01
+    ====================================================== */
 
     {
         number: "01",
@@ -1023,6 +1027,10 @@ const productionDays = [
     },
 
 
+    /* =====================================================
+       DAY 02
+    ====================================================== */
+
     {
         number: "02",
 
@@ -1061,6 +1069,10 @@ const productionDays = [
     },
 
 
+    /* =====================================================
+       DAY 03
+    ====================================================== */
+
     {
         number: "03",
 
@@ -1072,7 +1084,7 @@ const productionDays = [
         statusAr: "مفتوح",
         statusEn: "OPEN",
 
-        dateAr: "قريباً",
+        dateAr: "قريبًا",
         dateEn: "COMING SOON",
 
         images: [
@@ -1099,6 +1111,10 @@ const productionDays = [
     },
 
 
+    /* =====================================================
+       DAY 04
+    ====================================================== */
+
     {
         number: "04",
 
@@ -1123,6 +1139,10 @@ const productionDays = [
     },
 
 
+    /* =====================================================
+       DAY 05
+    ====================================================== */
+
     {
         number: "05",
 
@@ -1146,6 +1166,10 @@ const productionDays = [
         eventsEn: []
     },
 
+
+    /* =====================================================
+       DAY 06
+    ====================================================== */
 
     {
         number: "06",
@@ -1173,386 +1197,872 @@ const productionDays = [
 ];
 
 
-/* =====================================================
-   RENDER PRODUCTION DAYS
-===================================================== */
+/* =========================================================
+   STATE
+========================================================= */
 
-function renderProductionDays() {
+let oaActiveDay = 0;
+let oaActivePhoto = 0;
 
-    const grid =
-        document.getElementById(
-            "productionDaysGrid"
-        );
 
-    if (!grid) return;
+/* =========================================================
+   LANGUAGE
+========================================================= */
 
+function oaDaysLanguage() {
 
-    const language =
-        document.documentElement.lang === "en"
-            ? "en"
-            : "ar";
-
-
-    /* -----------------------------------------------
-       CLEAR CURRENT DAYS
-    ----------------------------------------------- */
-
-    grid.innerHTML = "";
-
-
-    productionDays.forEach(function (day, dayIndex) {
-
-        const card =
-            document.createElement("article");
-
-
-        card.className =
-            "production-day-card " +
-            (day.status === "locked"
-                ? "locked"
-                : "");
-
-
-        card.dataset.day =
-            day.number;
-
-
-        /* =================================================
-           LANGUAGE DATA
-        ================================================= */
-
-        const title =
-            language === "en"
-                ? day.titleEn
-                : day.titleAr;
-
-
-        const status =
-            language === "en"
-                ? day.statusEn
-                : day.statusAr;
-
-
-        const date =
-            language === "en"
-                ? day.dateEn
-                : day.dateAr;
-
-
-        const description =
-            language === "en"
-                ? day.descriptionEn
-                : day.descriptionAr;
-
-
-        const events =
-            language === "en"
-                ? day.eventsEn
-                : day.eventsAr;
-
-
-        /* =================================================
-           LOCKED DAYS
-        ================================================= */
-
-        if (day.status === "locked") {
-
-            card.innerHTML = `
-
-                <div class="day-card-top">
-
-                    <span class="day-status">
-                        ${status}
-                    </span>
-
-                    <span class="day-number">
-                        ${day.number}
-                    </span>
-
-                </div>
-
-
-                <h3 class="day-title">
-                    ${title}
-                </h3>
-
-
-                <div class="locked-content">
-
-                    <div class="lock-icon">
-                        🔒
-                    </div>
-
-                    <span>
-                        ${
-                            language === "en"
-                                ? "COMING SOON"
-                                : "قريبًا"
-                        }
-                    </span>
-
-                </div>
-
-            `;
-
-        }
-
-
-        /* =================================================
-           OPEN DAYS
-        ================================================= */
-
-        else {
-
-            /* ---------------------------------------------
-               EVENTS
-            --------------------------------------------- */
-
-            const eventsHTML =
-                events
-                    .map(function (event) {
-
-                        return `
-                            <li>
-                                ${event}
-                            </li>
-                        `;
-
-                    })
-                    .join("");
-
-
-            /* ---------------------------------------------
-               IMAGES
-               EVERY IMAGE IS RENDERED
-            --------------------------------------------- */
-
-            const imagesHTML =
-                day.images
-                    .map(function (image, imageIndex) {
-
-                        return `
-
-                            <div
-                                class="
-                                    day-image-wrapper
-                                    day-photo-${imageIndex + 1}
-                                "
-                            >
-
-                                <img
-                                    class="day-image"
-                                    src="${image}"
-                                    alt="${title}"
-                                    loading="lazy"
-                                >
-
-
-                                <div class="day-image-frame">
-
-                                    <span>
-                                        ON AIR | بِالعَافيَه
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        `;
-
-                    })
-                    .join("");
-
-
-            /* ---------------------------------------------
-               CARD
-            --------------------------------------------- */
-
-            card.innerHTML = `
-
-                <div class="day-card-top">
-
-                    <span class="day-status">
-                        ${status}
-                    </span>
-
-
-                    <span class="day-number">
-                        ${day.number}
-                    </span>
-
-
-                    <div class="day-date">
-
-                        <span class="day-date-icon">
-                            ▣
-                        </span>
-
-                        <span>
-                            ${date}
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <h3 class="day-title">
-                    ${title}
-                </h3>
-
-
-                <div class="day-images">
-
-                    ${imagesHTML}
-
-                </div>
-
-
-                <p class="day-description">
-                    ${description}
-                </p>
-
-
-                <ul class="day-events">
-
-                    ${eventsHTML}
-
-                </ul>
-
-            `;
-
-        }
-
-
-        /* =================================================
-           ADD CARD
-        ================================================= */
-
-        grid.appendChild(card);
-
-
-        /* =================================================
-           CINEMATIC STAGGER
-        ================================================= */
-
-        card.style.setProperty(
-            "--day-index",
-            dayIndex
-        );
-
-    });
-
-
-    /* =====================================================
-       REINITIALIZE SCROLL REVEAL
-    ===================================================== */
-
-    initProductionDayReveal();
+    return document.documentElement.lang === "en"
+        ? "en"
+        : "ar";
 
 }
 
 
-/* =====================================================
-   PRODUCTION DAYS — SCROLL REVEAL
-   ONE DAY AT A TIME
-===================================================== */
+/* =========================================================
+   RENDER FEATURED DAY
+========================================================= */
 
-function initProductionDayReveal() {
+function renderOADay(
+    dayIndex,
+    photoIndex = 0
+) {
 
-    const cards =
-        document.querySelectorAll(
-            ".production-day-card"
+    const day =
+        productionDays[dayIndex];
+
+    if (!day) return;
+
+
+    const lang =
+        oaDaysLanguage();
+
+
+    const title =
+        lang === "en"
+            ? day.titleEn
+            : day.titleAr;
+
+
+    const status =
+        lang === "en"
+            ? day.statusEn
+            : day.statusAr;
+
+
+    const date =
+        lang === "en"
+            ? day.dateEn
+            : day.dateAr;
+
+
+    const description =
+        lang === "en"
+            ? day.descriptionEn
+            : day.descriptionAr;
+
+
+    const events =
+        lang === "en"
+            ? day.eventsEn
+            : day.eventsAr;
+
+
+    oaActiveDay =
+        dayIndex;
+
+
+    oaActivePhoto =
+        day.images.length
+            ? Math.min(
+                photoIndex,
+                day.images.length - 1
+            )
+            : 0;
+
+
+    /* =====================================================
+       IMAGE
+    ====================================================== */
+
+    const mainImage =
+        document.getElementById(
+            "oaDaysMainImage"
         );
 
 
-    if (!cards.length) return;
+    if (mainImage) {
+
+        mainImage.classList.add(
+            "oa-days-image-changing"
+        );
 
 
-    /* -----------------------------------------------
-       REDUCED MOTION
-    ----------------------------------------------- */
+        setTimeout(() => {
 
-    if (
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches
-    ) {
+            if (day.images.length) {
 
-        cards.forEach(function (card) {
+                mainImage.src =
+                    day.images[
+                        oaActivePhoto
+                    ];
 
-            card.classList.add(
-                "is-visible"
+                mainImage.alt =
+                    title;
+
+                mainImage.classList.remove(
+                    "oa-days-image-changing"
+                );
+
+            }
+
+        }, 180);
+
+    }
+
+
+    /* =====================================================
+       TEXT
+    ====================================================== */
+
+    document.getElementById(
+        "oaDaysCurrent"
+    ).textContent =
+        day.number;
+
+
+    document.getElementById(
+        "oaDaysNumber"
+    ).textContent =
+        day.number;
+
+
+    document.getElementById(
+        "oaDaysTitle"
+    ).textContent =
+        title;
+
+
+    document.getElementById(
+        "oaDaysStatus"
+    ).textContent =
+        status;
+
+
+    document.getElementById(
+        "oaDaysDate"
+    ).textContent =
+        date ||
+        (
+            lang === "en"
+                ? "COMING SOON"
+                : "قريبًا"
+        );
+
+
+    document.getElementById(
+        "oaDaysDescription"
+    ).textContent =
+        description ||
+        (
+            lang === "en"
+                ? "Details will be added to the archive soon."
+                : "تفاصيل اليوم هتظهر هنا لما يحين وقته."
+        );
+
+
+    document.getElementById(
+        "oaDaysIndex"
+    ).textContent =
+        `${day.number} / ${String(
+            productionDays.length
+        ).padStart(2, "0")}`;
+
+
+    document.getElementById(
+        "oaDaysTotal"
+    ).textContent =
+        String(
+            productionDays.length
+        ).padStart(2, "0");
+
+
+    document.getElementById(
+        "oaDaysFrame"
+    ).textContent =
+        String(
+            oaActivePhoto + 1
+        ).padStart(3, "0");
+
+
+    /* =====================================================
+       EVENTS
+    ====================================================== */
+
+    const eventsContainer =
+        document.getElementById(
+            "oaDaysEvents"
+        );
+
+
+    eventsContainer.innerHTML = "";
+
+
+    events.forEach(
+        event => {
+
+            const li =
+                document.createElement(
+                    "li"
+                );
+
+            li.textContent =
+                event;
+
+            eventsContainer.appendChild(
+                li
             );
 
-        });
+        }
+    );
+
+
+    /* =====================================================
+       GALLERY
+    ====================================================== */
+
+    renderOAGallery(day);
+
+
+    /* =====================================================
+       TIMELINE
+    ====================================================== */
+
+    renderOATimelineState();
+
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+function renderOAGallery(day) {
+
+    const thumbs =
+        document.getElementById(
+            "oaDaysThumbs"
+        );
+
+
+    const counter =
+        document.getElementById(
+            "oaDaysPhotoCounter"
+        );
+
+
+    const prev =
+        document.getElementById(
+            "oaDaysPhotoPrev"
+        );
+
+
+    const next =
+        document.getElementById(
+            "oaDaysPhotoNext"
+        );
+
+
+    thumbs.innerHTML = "";
+
+
+    /* NO PHOTOS */
+
+    if (!day.images.length) {
+
+        thumbs.innerHTML = `
+            <div class="oa-days-gallery-empty">
+                COMING SOON
+            </div>
+        `;
+
+        counter.textContent =
+            "00 / 00";
+
+        prev.disabled = true;
+        next.disabled = true;
 
         return;
 
     }
 
 
-    /* -----------------------------------------------
-       OBSERVER
-    ----------------------------------------------- */
+    prev.disabled =
+        day.images.length <= 1;
 
-    const observer =
-        new IntersectionObserver(
+    next.disabled =
+        day.images.length <= 1;
 
-            function (entries) {
 
-                entries.forEach(
-                    function (entry) {
+    day.images.forEach(
+        (image, index) => {
 
-                        if (
-                            !entry.isIntersecting
-                        ) {
-                            return;
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "oa-days-thumb";
+
+
+            if (
+                index ===
+                oaActivePhoto
+            ) {
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            button.innerHTML = `
+
+                <img
+                    src="${image}"
+                    alt=""
+                    loading="lazy"
+                >
+
+                <span>
+                    ${String(
+                        index + 1
+                    ).padStart(2, "0")}
+                </span>
+
+            `;
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    changeOAPhoto(
+                        index
+                    );
+
+                }
+            );
+
+
+            thumbs.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    counter.textContent =
+        `${String(
+            oaActivePhoto + 1
+        ).padStart(2, "0")} / ${String(
+            day.images.length
+        ).padStart(2, "0")}`;
+
+}
+
+
+/* =========================================================
+   CHANGE PHOTO
+========================================================= */
+
+function changeOAPhoto(
+    photoIndex
+) {
+
+    const day =
+        productionDays[
+            oaActiveDay
+        ];
+
+
+    if (
+        !day ||
+        !day.images.length
+    ) {
+
+        return;
+
+    }
+
+
+    oaActivePhoto =
+        photoIndex;
+
+
+    const image =
+        document.getElementById(
+            "oaDaysMainImage"
+        );
+
+
+    image.classList.add(
+        "oa-days-image-changing"
+    );
+
+
+    setTimeout(() => {
+
+        image.src =
+            day.images[
+                oaActivePhoto
+            ];
+
+        image.classList.remove(
+            "oa-days-image-changing"
+        );
+
+    }, 150);
+
+
+    document.getElementById(
+        "oaDaysFrame"
+    ).textContent =
+        String(
+            oaActivePhoto + 1
+        ).padStart(3, "0");
+
+
+    renderOAGallery(day);
+
+}
+
+
+/* =========================================================
+   PHOTO ARROWS
+========================================================= */
+
+function initOAPhotoControls() {
+
+    document.getElementById(
+        "oaDaysPhotoPrev"
+    ).addEventListener(
+        "click",
+        () => {
+
+            const day =
+                productionDays[
+                    oaActiveDay
+                ];
+
+
+            if (
+                !day ||
+                day.images.length < 2
+            ) return;
+
+
+            oaActivePhoto--;
+
+            if (
+                oaActivePhoto < 0
+            ) {
+
+                oaActivePhoto =
+                    day.images.length - 1;
+
+            }
+
+
+            changeOAPhoto(
+                oaActivePhoto
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "oaDaysPhotoNext"
+    ).addEventListener(
+        "click",
+        () => {
+
+            const day =
+                productionDays[
+                    oaActiveDay
+                ];
+
+
+            if (
+                !day ||
+                day.images.length < 2
+            ) return;
+
+
+            oaActivePhoto++;
+
+            if (
+                oaActivePhoto >=
+                day.images.length
+            ) {
+
+                oaActivePhoto = 0;
+
+            }
+
+
+            changeOAPhoto(
+                oaActivePhoto
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+function renderOATimeline() {
+
+    const track =
+        document.getElementById(
+            "oaDaysTrack"
+        );
+
+
+    track.innerHTML = "";
+
+
+    const lang =
+        oaDaysLanguage();
+
+
+    productionDays.forEach(
+        (day, index) => {
+
+            const item =
+                document.createElement(
+                    "button"
+                );
+
+
+            item.type =
+                "button";
+
+
+            item.className =
+                "oa-days-timeline-item";
+
+
+            if (
+                day.status === "locked"
+            ) {
+
+                item.classList.add(
+                    "locked"
+                );
+
+            }
+
+
+            item.dataset.index =
+                index;
+
+
+            const title =
+                lang === "en"
+                    ? day.titleEn
+                    : day.titleAr;
+
+
+            const date =
+                lang === "en"
+                    ? day.dateEn
+                    : day.dateAr;
+
+
+            const image =
+                day.images.length
+                    ? `
+                        <span class="oa-days-timeline-image">
+                            <img
+                                src="${day.images[0]}"
+                                alt=""
+                                loading="lazy"
+                            >
+                        </span>
+                    `
+                    : "";
+
+
+            item.innerHTML = `
+
+                ${image}
+
+                <span class="oa-days-timeline-number">
+                    ${day.number}
+                </span>
+
+                <span class="oa-days-timeline-copy">
+
+                    <small>
+                        DAY ${day.number}
+                    </small>
+
+                    <strong>
+                        ${title}
+                    </strong>
+
+                    <em>
+                        ${
+                            date ||
+                            (
+                                lang === "en"
+                                    ? "COMING SOON"
+                                    : "قريبًا"
+                            )
                         }
+                    </em>
+
+                </span>
+
+                <span class="oa-days-timeline-dot"></span>
+
+            `;
 
 
-                        entry.target.classList.add(
-                            "is-visible"
-                        );
+            if (
+                day.status !== "locked"
+            ) {
 
+                item.addEventListener(
+                    "click",
+                    () => {
 
-                        observer.unobserve(
-                            entry.target
+                        selectOADay(
+                            index
                         );
 
                     }
                 );
 
-            },
-
-            {
-                threshold: 0.18,
-
-                rootMargin:
-                    "0px 0px -12% 0px"
             }
 
-        );
+
+            track.appendChild(
+                item
+            );
+
+        }
+    );
 
 
-    cards.forEach(function (card) {
-
-        observer.observe(card);
-
-    });
+    renderOATimelineState();
 
 }
 
 
-/* =====================================================
-   INITIALIZE PRODUCTION DAYS
-===================================================== */
+/* =========================================================
+   TIMELINE ACTIVE STATE
+========================================================= */
+
+function renderOATimelineState() {
+
+    document
+        .querySelectorAll(
+            ".oa-days-timeline-item"
+        )
+        .forEach(
+            (item, index) => {
+
+                item.classList.toggle(
+                    "active",
+                    index === oaActiveDay
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   SELECT DAY
+========================================================= */
+
+function selectOADay(
+    index
+) {
+
+    const day =
+        productionDays[index];
+
+
+    if (
+        !day ||
+        day.status === "locked"
+    ) {
+
+        return;
+
+    }
+
+
+    const featured =
+        document.querySelector(
+            ".oa-days-featured"
+        );
+
+
+    featured.classList.add(
+        "oa-days-changing"
+    );
+
+
+    setTimeout(() => {
+
+        oaActivePhoto = 0;
+
+
+        renderOADay(
+            index,
+            0
+        );
+
+
+        featured.classList.remove(
+            "oa-days-changing"
+        );
+
+    }, 180);
+
+
+    const selected =
+        document.querySelector(
+            `.oa-days-timeline-item[data-index="${index}"]`
+        );
+
+
+    if (selected) {
+
+        selected.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center"
+        });
+
+    }
+
+}
+
+
+/* =========================================================
+   DAY NAVIGATION
+========================================================= */
+
+function initOADayNavigation() {
+
+    document.getElementById(
+        "oaDaysPrev"
+    ).addEventListener(
+        "click",
+        () => {
+
+            let index =
+                oaActiveDay - 1;
+
+
+            while (
+                index >= 0 &&
+                productionDays[index].status ===
+                "locked"
+            ) {
+
+                index--;
+
+            }
+
+
+            if (index >= 0) {
+
+                selectOADay(
+                    index
+                );
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "oaDaysNext"
+    ).addEventListener(
+        "click",
+        () => {
+
+            let index =
+                oaActiveDay + 1;
+
+
+            while (
+                index <
+                productionDays.length &&
+                productionDays[index].status ===
+                "locked"
+            ) {
+
+                index++;
+
+            }
+
+
+            if (
+                index <
+                productionDays.length
+            ) {
+
+                selectOADay(
+                    index
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   INIT
+========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
+    () => {
 
-        renderProductionDays();
+        renderOATimeline();
+
+        renderOADay(
+            0,
+            0
+        );
+
+        initOAPhotoControls();
+
+        initOADayNavigation();
 
     }
 );
