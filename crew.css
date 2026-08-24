@@ -2119,20 +2119,76 @@
         font-size: 5px !important;
     }
 }
+
 /* =========================================================
    MOBILE TEAM BACKGROUND
-   ========================================================= */
+   SHOW FULL LEFT + RIGHT FILM STRIPS
+========================================================= */
 
 @media (max-width: 700px) {
 
     .onair-team-bg {
+        position: absolute !important;
+        inset: 0 !important;
+
         background-image: url("images/crew-background-mobile.png") !important;
 
-        background-size: cover !important;
+        /* إظهار الصورة كاملة من الطرفين */
+        background-size: 100% 100% !important;
+
         background-position: center top !important;
         background-repeat: no-repeat !important;
 
+        /* منع أي تكبير يقص الأطراف */
         transform: none !important;
     }
 
+}
+/* =========================================================
+   MOBILE CREW CARDS
+   SMALLER + MORE SIDE SPACE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .onair-crew-grid {
+        width: calc(100% - 70px) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        gap: 9px !important;
+    }
+
+    .onair-member {
+        height: 132px !important;
+        padding: 7px 4px 6px !important;
+    }
+
+    .member-icon {
+        width: 36px !important;
+        height: 36px !important;
+    }
+
+    .member-icon svg {
+        width: 28px !important;
+        height: 28px !important;
+    }
+
+    .member-info h3 {
+        font-size: 11.5px !important;
+    }
+
+    .member-info span {
+        font-size: 7.5px !important;
+    }
+
+    .member-info small {
+        font-size: 5.5px !important;
+    }
+
+    .member-number {
+        top: 6px !important;
+        right: 6px !important;
+        font-size: 8.5px !important;
+    }
 }
