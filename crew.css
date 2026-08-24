@@ -2146,13 +2146,18 @@
 }
 /* =========================================================
    MOBILE CREW CARDS
-   SMALLER + MORE SIDE SPACE
+   CARDS INSIDE SIDE FILM STRIPS
 ========================================================= */
 
 @media (max-width: 700px) {
 
     .onair-crew-grid {
-        width: calc(100% - 70px) !important;
+        position: relative !important;
+        z-index: 5 !important;
+
+        /* الكروت تدخل ناحية الشريطين */
+        width: calc(100% - 20px) !important;
+
         margin-left: auto !important;
         margin-right: auto !important;
 
@@ -2160,6 +2165,9 @@
     }
 
     .onair-member {
+        position: relative !important;
+        z-index: 6 !important;
+
         height: 132px !important;
         padding: 7px 4px 6px !important;
     }
