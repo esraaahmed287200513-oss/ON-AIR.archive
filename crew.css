@@ -2119,3 +2119,20 @@
         font-size: 5px !important;
     }
 }
+/* =========================================================
+   MOBILE TEAM BACKGROUND
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .onair-team-bg {
+        background-image: url("images/crew-background-mobile.png") !important;
+
+        background-size: cover !important;
+        background-position: center top !important;
+        background-repeat: no-repeat !important;
+
+        transform: none !important;
+    }
+
+}
