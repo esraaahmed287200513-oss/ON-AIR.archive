@@ -1661,96 +1661,19 @@
 
 }
 /* =========================================================
-   LOGO — MOVE ONLY THE LOGO INTO THE GOLDEN LIGHT
-   Background remains completely unchanged
+   ON AIR — FINAL TEAM SECTION
+   MOBILE + LOGO + SIDE FILM STRIPS
 ========================================================= */
 
-.onair-identity {
-    position: relative;
-    z-index: 10;
-
-    width: min(1400px, calc(100% - 80px));
-    margin: 0 auto;
-
-    /* نرجع المساحة الأصلية */
-    padding-top: 65px;
-
-    text-align: center;
-}
-
-/* اللوجو فقط ينزل */
-.onair-logo-light {
-    position: relative;
-    z-index: 20;
-
-    transform: translateY(150px);
-}
-
-/* نخلي الجملة وباقي العناصر تنزل طبيعي
-   بعد مكان اللوجو الجديد */
-.onair-identity-line {
-    position: relative;
-    z-index: 20;
-
-    transform: translateY(150px);
-}
-
-/* الفيلم ستريب ينزل مع المحتوى الطبيعي */
-.onair-film-strip {
-    position: relative;
-    z-index: 15;
-
-    margin-top: 189px;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .onair-identity {
-        padding-top: 62px;
-    }
-
-    .onair-logo-light {
-        transform: translateY(90px);
-    }
-
-    .onair-identity-line {
-        transform: translateY(90px);
-    }
-
-    .onair-film-strip {
-        margin-top: 129px;
-    }
-}
-/* =========================================================
-   REMOVE THE CENTER FILM STRIP ONLY
-========================================================= */
-
-.onair-film-strip {
-    display: none !important;
-}
-/* =========================================================
-   FINAL TEAM IDENTITY FIX
-   - Remove center film strip
-   - Put logo in the golden light
-   - Keep tagline directly underneath
-   - Keep TEAM IDENTITY and cards below normally
-   - DO NOT change background size
-========================================================= */
-
-/* Remove ONLY the horizontal film strip */
+/* إزالة الشريط الأفقي الأوسط فقط */
 .onair-film-strip {
     display: none !important;
 }
 
 
-/* ---------------------------------------------------------
-   LOGO AREA
---------------------------------------------------------- */
+/* =========================================================
+   LOGO — DESKTOP
+========================================================= */
 
 .onair-identity {
     position: relative;
@@ -1759,17 +1682,11 @@
     width: min(1400px, calc(100% - 80px));
     margin: 0 auto;
 
-    /*
-       المساحة الأصلية تفضل زي ما هي
-       عشان الخلفية ما تتاكلش
-    */
-    padding-top: 65px;
+    padding-top: 145px;
 
     text-align: center;
 }
 
-
-/* اللوجو نفسه */
 .onair-logo-light {
     position: relative;
     z-index: 20;
@@ -1783,15 +1700,9 @@
     align-items: center;
     justify-content: center;
 
-    /*
-       تحريك بصري فقط
-       بدون تغيير حجم الخلفية
-    */
     transform: translateY(95px);
 }
 
-
-/* صورة اللوجو */
 .onair-logo-light img {
     width: 280px;
     height: auto;
@@ -1799,8 +1710,6 @@
     display: block;
 }
 
-
-/* الجملة تتحرك مع اللوجو */
 .onair-identity-line {
     position: relative;
     z-index: 20;
@@ -1811,157 +1720,77 @@
 }
 
 
-/* ---------------------------------------------------------
-   TEAM IDENTITY HEADING
---------------------------------------------------------- */
-
-/*
-   ننزّل عنوان TEAM IDENTITY نفسه
-   عشان ما يدخلش فوق اللوجو والجملة
-*/
+/* =========================================================
+   TEAM TITLE — DESKTOP
+========================================================= */
 
 .onair-crew-heading {
     position: relative;
     z-index: 20;
 
+    width: min(1440px, calc(100% - 70px));
+
+    margin: 0 auto;
+
     padding-top: 120px;
+
+    text-align: center;
 }
 
 
-/* ---------------------------------------------------------
-   DESKTOP
---------------------------------------------------------- */
-
-@media (min-width: 1100px) {
-
-    .onair-logo-light {
-        transform: translateY(95px);
-    }
-
-    .onair-identity-line {
-        transform: translateY(95px);
-    }
-
-    .onair-crew-heading {
-        padding-top: 120px;
-    }
-}
-
-
-/* ---------------------------------------------------------
-   TABLET
---------------------------------------------------------- */
-
-@media (max-width: 950px) {
-
-    .onair-logo-light {
-        transform: translateY(70px);
-    }
-
-    .onair-identity-line {
-        transform: translateY(70px);
-    }
-
-    .onair-crew-heading {
-        padding-top: 95px;
-    }
-}
-
-
-/* ---------------------------------------------------------
-   MOBILE
---------------------------------------------------------- */
-
-@media (max-width: 700px) {
-
-    .onair-logo-light {
-        transform: translateY(55px);
-    }
-
-    .onair-identity-line {
-        transform: translateY(55px);
-    }
-
-    .onair-crew-heading {
-        padding-top: 80px;
-    }
-}
 /* =========================================================
-   KEEP ALL TEAM CONTENT INSIDE THE TWO SIDE FILM STRIPS
+   KEEP CONTENT BETWEEN SIDE FILM STRIPS
 ========================================================= */
 
-/* منطقة المحتوى بالكامل */
-.onair-team-stage > *:not(.onair-team-bg) {
-    max-width: calc(100% - 340px);
+.onair-crew-grid {
+    width: min(1050px, calc(100% - 340px));
+
     margin-left: auto;
     margin-right: auto;
 }
 
 
-/* اللوجو */
-.onair-identity {
-    width: 100%;
-    max-width: 1050px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-
-/* عنوان TEAM IDENTITY والكلام */
-.onair-crew-heading {
-    width: 100%;
-    max-width: 1050px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-
-/* كروت التيم */
-.onair-crew-grid {
-    width: 100%;
-    max-width: 1050px !important;
-
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-
 /* =========================================================
    TABLET
 ========================================================= */
 
-@media (max-width: 1000px) {
+@media (max-width: 950px) {
 
-    .onair-team-stage > *:not(.onair-team-bg) {
-        max-width: calc(100% - 250px);
+    .onair-identity {
+        width: calc(100% - 40px);
+
+        padding-top: 80px;
     }
 
-    .onair-identity,
-    .onair-crew-heading,
+    .onair-logo-light {
+        width: 270px;
+        height: 160px;
+
+        transform: translateY(60px);
+    }
+
+    .onair-logo-light img {
+        width: 230px;
+    }
+
+    .onair-identity-line {
+        transform: translateY(60px);
+    }
+
+    .onair-crew-heading {
+        width: calc(100% - 35px);
+
+        padding-top: 85px;
+    }
+
     .onair-crew-grid {
-        max-width: 720px !important;
+        width: calc(100% - 100px);
     }
 }
 
 
 /* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .onair-team-stage > *:not(.onair-team-bg) {
-        max-width: calc(100% - 40px);
-    }
-
-    .onair-identity,
-    .onair-crew-heading,
-    .onair-crew-grid {
-        max-width: 100% !important;
-    }
-}
-/* =========================================================
-   ON AIR — MOBILE FINAL FIX
+   MOBILE — FINAL
 ========================================================= */
 
 @media (max-width: 700px) {
@@ -1973,100 +1802,125 @@
     .onair-team-stage {
         width: 100%;
         min-height: 100vh;
+
         overflow-x: hidden;
     }
 
 
     /* -----------------------------------------
-       LOGO
-       بدون transform مبالغ فيه
+       BACKGROUND
+       لا نغيّر حجمها أو نقصّها
     ----------------------------------------- */
 
-    .onair-identity {
-        width: 100% !important;
-        max-width: none !important;
+    .onair-team-bg {
+        position: absolute;
 
-        margin: 0 auto !important;
+        inset: 0;
 
-        padding-top: 70px !important;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
 
-        text-align: center;
-    }
-
-
-    .onair-logo-light {
-        width: 190px !important;
-        height: 135px !important;
-
-        margin: 0 auto !important;
-
-        transform: none !important;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-
-    .onair-logo-light img {
-        width: 175px !important;
-        max-width: 175px !important;
-
-        height: auto !important;
-
-        transform: none !important;
-
-        display: block;
-    }
-
-
-    /* الإضاءة خلف اللوجو */
-
-    .onair-logo-light::before {
-        width: 280px !important;
-        height: 180px !important;
-
-        filter: blur(24px);
+        transform: scale(1.015);
     }
 
 
     /* -----------------------------------------
-       TAGLINE
+       LOGO
+    ----------------------------------------- */
+
+    .onair-identity {
+        width: 100% !important;
+
+        margin: 0 auto !important;
+
+        padding-top: 78px !important;
+
+        text-align: center;
+    }
+
+    .onair-logo-light {
+        width: 220px !important;
+        height: 145px !important;
+
+        margin: 0 auto !important;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        transform: none !important;
+    }
+
+    .onair-logo-light img {
+        width: 190px !important;
+        max-width: 190px !important;
+
+        height: auto !important;
+
+        transform: none !important;
+    }
+
+
+    /* -----------------------------------------
+       LOGO LIGHT
+    ----------------------------------------- */
+
+    .onair-logo-light::before {
+        width: 300px !important;
+        height: 180px !important;
+
+        left: 50%;
+        top: 50%;
+
+        transform:
+            translate(-50%, -50%);
+
+        filter: blur(25px);
+    }
+
+
+    /* -----------------------------------------
+       SLOGAN
     ----------------------------------------- */
 
     .onair-identity-line {
-        width: calc(100% - 45px) !important;
+        width: calc(100% - 40px) !important;
 
-        margin: 8px auto 0 !important;
+        margin: 0 auto !important;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
 
         gap: 7px;
 
         transform: none !important;
     }
 
-
     .onair-identity-line span {
         width: 28px !important;
-    }
 
+        flex: 0 0 28px;
+    }
 
     .onair-identity-line strong {
         font-size: 9px !important;
 
         white-space: nowrap;
 
-        letter-spacing: 0;
+        letter-spacing: 0 !important;
     }
 
 
     /* -----------------------------------------
-       TEAM IDENTITY TITLE
+       TEAM IDENTITY
     ----------------------------------------- */
 
     .onair-crew-heading {
-        width: calc(100% - 30px) !important;
-
-        max-width: none !important;
+        width: calc(100% - 28px) !important;
 
         margin: 0 auto !important;
 
@@ -2075,54 +1929,50 @@
         text-align: center;
     }
 
-
     .onair-section-number {
-        font-size: 11px;
+        font-size: 10px !important;
     }
-
 
     .onair-section-label {
-        font-size: 8px;
+        font-size: 8px !important;
+
+        margin-top: 2px;
     }
 
-
     .onair-crew-heading h2 {
-        margin-top: 7px;
+        margin: 7px 0 0 !important;
 
-        font-size: 25px !important;
+        font-size: 24px !important;
 
-        line-height: 1.35;
+        line-height: 1.35 !important;
 
         white-space: nowrap;
     }
 
-
     .onair-crew-heading p {
-        margin-top: 5px;
+        margin: 5px 0 8px !important;
 
         font-size: 10px !important;
 
-        line-height: 1.6;
+        line-height: 1.6 !important;
     }
 
-
     .onair-heading-line {
-        width: 32px;
-        height: 3px;
+        width: 34px !important;
 
-        margin-top: 8px;
+        height: 3px !important;
+
+        margin: 0 auto;
     }
 
 
     /* -----------------------------------------
        CREW CARDS
-       2 أعمدة ثابتة ومنظمة
+       عمودين
     ----------------------------------------- */
 
     .onair-crew-grid {
         width: calc(100% - 22px) !important;
-
-        max-width: none !important;
 
         margin: 14px auto 0 !important;
 
@@ -2134,7 +1984,6 @@
         gap: 9px !important;
     }
 
-
     .onair-member {
         width: 100% !important;
 
@@ -2142,7 +1991,7 @@
 
         min-width: 0;
 
-        padding: 9px 6px 7px !important;
+        padding: 8px 5px 7px !important;
 
         border-radius: 9px;
     }
@@ -2164,84 +2013,60 @@
         width: 40px !important;
         height: 40px !important;
 
-        margin-top: 2px;
+        margin-top: 1px;
     }
-
 
     .member-icon svg {
-        width: 31px !important;
-        height: 31px !important;
+        width: 30px !important;
+        height: 30px !important;
     }
 
 
-    /* اسم الشخص */
+    /* النص */
 
     .member-info {
         width: 100%;
 
-        margin-top: 2px;
+        margin-top: 1px;
     }
-
 
     .member-info h3 {
         font-size: 12px !important;
 
-        line-height: 1.4;
+        line-height: 1.4 !important;
 
         white-space: nowrap;
     }
-
-
-    /* الدور بالعربي */
 
     .member-info span {
-        margin-top: 3px;
-
         font-size: 8px !important;
 
-        line-height: 1.5;
+        line-height: 1.45 !important;
 
         white-space: nowrap;
     }
 
-
-    /* الدور بالإنجليزي */
-
     .member-info small {
-        margin-top: 4px;
-
         font-size: 5.7px !important;
 
-        line-height: 1.25;
+        line-height: 1.25 !important;
 
         white-space: nowrap;
     }
 
 
     /* -----------------------------------------
-       BOTTOM STATEMENT
+       BOTTOM
     ----------------------------------------- */
 
     .onair-bottom-statement {
         width: calc(100% - 30px) !important;
 
-        margin: 18px auto 25px !important;
+        margin: 18px auto 22px !important;
 
         gap: 7px;
 
         font-size: 8px !important;
-    }
-
-
-    .onair-bottom-statement b {
-        font-size: 7px !important;
-
-        margin-inline: 3px;
-    }
-
-
-    .onair-bottom-statement > span {
-        max-width: 55px;
     }
 }
 
@@ -2253,53 +2078,44 @@
 @media (max-width: 400px) {
 
     .onair-identity {
-        padding-top: 62px !important;
+        padding-top: 65px !important;
     }
-
 
     .onair-logo-light {
-        width: 175px !important;
-        height: 125px !important;
+        width: 200px !important;
+        height: 130px !important;
     }
-
 
     .onair-logo-light img {
-        width: 160px !important;
-        max-width: 160px !important;
+        width: 175px !important;
+        max-width: 175px !important;
     }
-
 
     .onair-identity-line strong {
         font-size: 8px !important;
     }
 
-
     .onair-crew-heading {
         padding-top: 32px !important;
     }
-
 
     .onair-crew-heading h2 {
         font-size: 22px !important;
     }
 
-
     .onair-member {
         height: 132px !important;
     }
-
 
     .member-info h3 {
         font-size: 11px !important;
     }
 
-
     .member-info span {
         font-size: 7px !important;
     }
 
-
     .member-info small {
-        font-size: 5.2px !important;
+        font-size: 5px !important;
     }
 }
