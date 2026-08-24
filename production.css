@@ -5400,174 +5400,79 @@
     }
 }
 /* =========================================================
-   ON AIR — PRODUCTION STATUS
-   FINAL STATUS DESIGN
+   ON AIR — PRODUCTION MOBILE BACKGROUND
+   MOBILE ONLY
 ========================================================= */
 
+@media (max-width: 800px) {
 
+    .oa-production-bg {
+        background-image:
+            url("images/production-mobile-bg.png") !important;
+
+        background-size: cover !important;
+        background-position: center top !important;
+        background-repeat: no-repeat !important;
+
+        transform: none !important;
+        animation: none !important;
+    }
+
+}
 /* =========================================================
-   OPEN — IDEA + SCRIPT
-   TEXT = CREAM
-   DOT = GOLD
+   ON AIR — GLASS TABLE TRANSPARENCY FINAL
+   DESKTOP + MOBILE
 ========================================================= */
 
-.status-action.open-action,
-.production-status-item.idea .status-action {
-    color: #F7EDE3 !important;
+/* الجدولين نفس الشفافية */
+.oa-production-table {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(17, 37, 72, .035),
+            rgba(7, 17, 29, .015)
+        ) !important;
 
-    background: transparent !important;
+    backdrop-filter:
+        blur(3px)
+        saturate(105%);
 
-    border: none !important;
+    -webkit-backdrop-filter:
+        blur(3px)
+        saturate(105%);
 
-    padding: 2px 0 !important;
-
-    min-width: auto !important;
-
-    font-family:
-        "Cairo",
-        sans-serif;
-
-    font-size: 12px !important;
-
-    font-weight: 600;
-}
-
-
-.status-action.open-action:hover,
-.production-status-item.idea .status-action:hover {
-    color: #F7EDE3 !important;
-
-    background: transparent !important;
-
-    border: none !important;
-}
-
-
-/* GOLD DOT */
-
-.idea-light,
-.open-light {
-    width: 8px !important;
-    height: 8px !important;
-
-    flex: 0 0 8px !important;
-
-    border-radius: 50%;
-
-    background: #C7A86A !important;
+    border:
+        1px solid
+        rgba(247, 237, 227, .24);
 
     box-shadow:
-        0 0 6px rgba(199,168,106,.95),
-        0 0 15px rgba(199,168,106,.45);
+        inset 0 1px 0 rgba(247, 237, 227, .045),
+        0 25px 70px rgba(0, 0, 0, .12);
 }
 
 
-/* =========================================================
-   IDEA + SCRIPT STATE
-========================================================= */
-
-.production-status-item.idea .status-state,
-.production-status-item.script .status-state {
-
-    color: #F7EDE3 !important;
-
-    border: none !important;
-
+/* هيدر الجدول شفاف برضه */
+.oa-table-header {
     background: transparent !important;
 
-    min-width: auto !important;
-
-    gap: 8px;
+    border-bottom:
+        1px solid
+        rgba(247, 237, 227, .16);
 }
 
 
-/* =========================================================
-   NOW — CAST
-   TEXT = RED
-   DOT = RED / PULSING
-========================================================= */
-
-.now-state {
-    color: #D92832 !important;
-
-    border: none !important;
-
+/* الصفوف نفسها متاخدش خلفية */
+.oa-file-row,
+.oa-status-row {
     background: transparent !important;
-
-    min-width: auto !important;
-
-    gap: 8px;
-
-    font-family:
-        "Cairo",
-        sans-serif;
-
-    font-size: 12px !important;
-
-    font-weight: 600;
 }
 
 
-.now-light {
-    width: 8px;
-    height: 8px;
-
-    flex: 0 0 8px;
-
-    border-radius: 50%;
-
-    background: #D92832;
-
-    animation:
-        oaCastPulse 1.15s ease-in-out infinite;
-}
-
-
-@keyframes oaCastPulse {
-
-    0%,
-    100% {
-        opacity: .3;
-
-        box-shadow:
-            0 0 0
-            rgba(217,40,50,0);
-    }
-
-    50% {
-        opacity: 1;
-
-        box-shadow:
-            0 0 7px
-            rgba(217,40,50,.95),
-
-            0 0 17px
-            rgba(217,40,50,.5);
-    }
-}
-
-
-/* =========================================================
-   SOON
-========================================================= */
-
-.status-state {
-    font-size: 12px !important;
-}
-
-
-.production-status-item.locked .status-state {
-    font-size: 12px !important;
-}
-
-
-/* =========================================================
-   REMOVE OLD LOCK ICON
-========================================================= */
-
-.production-status-item.locked
-.status-lock {
-    display: none;
+/* الـ hover بس يدي إحساس زجاج خفيف */
+.oa-file-row:hover,
+.oa-status-row:hover {
+    background:
+        rgba(247, 237, 227, .025) !important;
 }
 
 
@@ -5575,28 +5480,217 @@
    MOBILE
 ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
 
-    .status-action.open-action,
-    .production-status-item.idea .status-action {
-        font-size: 11px !important;
+    .oa-production-table {
+        background:
+            linear-gradient(
+                135deg,
+                rgba(17, 37, 72, .025),
+                rgba(7, 17, 29, .01)
+            ) !important;
+
+        backdrop-filter:
+            blur(2px)
+            saturate(103%);
+
+        -webkit-backdrop-filter:
+            blur(2px)
+            saturate(103%);
+
+        border-color:
+            rgba(247, 237, 227, .22);
+
+        box-shadow:
+            inset 0 1px 0 rgba(247, 237, 227, .04),
+            0 20px 55px rgba(0, 0, 0, .10);
     }
 
-    .now-state {
-        font-size: 11px !important;
+    .oa-table-header {
+        background: transparent !important;
     }
 
-    .idea-light,
-    .open-light,
-    .now-light {
-        width: 7px !important;
-        height: 7px !important;
+    .oa-file-row,
+    .oa-status-row {
+        background: transparent !important;
+    }
+}
+/* =========================================================
+   MOBILE — PRODUCTION STATUS FIRST
+   مراحل الإنتاج فوق ملفات المشروع
+========================================================= */
 
-        flex-basis: 7px !important;
+@media (max-width: 850px) {
+
+    .production-layout {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        grid-template-areas:
+            "status"
+            "deliverables";
+
+        gap: 14px;
     }
 
-    .status-state {
-        font-size: 10px !important;
+    /* مراحل الإنتاج */
+    .production-status-panel {
+        grid-area: status;
     }
 
+    /* ملفات المشروع */
+    .deliverables-panel {
+        grid-area: deliverables;
+    }
+}
+/* =========================================================
+   MOBILE — PRODUCTION STAGES FIRST
+   مراحل الإنتاج فوق ملفات المشروع
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .oa-production-tables {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* مراحل الإنتاج أولاً */
+    .oa-status-table {
+        order: 1;
+    }
+
+    /* ملفات المشروع بعدها */
+    .oa-files-table {
+        order: 2;
+    }
+
+}
+/* =========================================================
+   OPEN / NOW STATUS DOTS
+========================================================= */
+
+/* كلمة فتح + النقطة الذهبية */
+.open-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.open-action::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background: #C9A86A;
+
+    box-shadow:
+        0 0 6px rgba(201, 168, 106, 0.55);
+}
+
+
+/* كلمة الآن + النقطة الحمرا */
+.now-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.now-status::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background: #D92832;
+
+    box-shadow:
+        0 0 5px rgba(217, 40, 50, 0.7);
+
+    animation: nowRedPulse 1.3s ease-in-out infinite;
+}
+
+
+/* النبض الأحمر */
+@keyframes nowRedPulse {
+
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: scale(0.85);
+        box-shadow:
+            0 0 3px rgba(217, 40, 50, 0.35);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+        box-shadow:
+            0 0 9px rgba(217, 40, 50, 0.85),
+            0 0 15px rgba(217, 40, 50, 0.3);
+    }
+}
+/* =========================================================
+   OPEN / NOW — STATUS DOTS
+========================================================= */
+
+/* فتح — نقطة ذهبية */
+.oa-status-live.open-status i {
+    display: inline-block !important;
+    width: 6px !important;
+    height: 6px !important;
+    min-width: 6px !important;
+    min-height: 6px !important;
+
+    margin-left: 7px !important;
+
+    border-radius: 50% !important;
+
+    background: #D8B45A !important;
+
+    box-shadow:
+        0 0 6px rgba(216, 180, 90, 0.75) !important;
+
+    opacity: 1 !important;
+}
+
+
+/* الآن — نقطة حمراء بتنور وتطفي */
+.oa-status-live.now-status i {
+    display: inline-block !important;
+    width: 6px !important;
+    height: 6px !important;
+    min-width: 6px !important;
+    min-height: 6px !important;
+
+    margin-left: 7px !important;
+
+    border-radius: 50% !important;
+
+    background: #D92832 !important;
+
+    animation: oaNowLight 1.2s ease-in-out infinite !important;
+}
+
+
+@keyframes oaNowLight {
+
+    0%,
+    100% {
+        opacity: .3;
+        box-shadow: 0 0 2px rgba(217, 40, 50, .25);
+        transform: scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow:
+            0 0 7px rgba(217, 40, 50, .9),
+            0 0 14px rgba(217, 40, 50, .35);
+        transform: scale(1.15);
+    }
 }
