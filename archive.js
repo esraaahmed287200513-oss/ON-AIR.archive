@@ -322,19 +322,13 @@ function initArchiveReveal() {
 function initArchiveParallax() {
 
     const archive =
-        document.querySelector(
-            ".archive-page"
-        );
+        document.querySelector(".archive-page");
 
     const background =
-        document.querySelector(
-            ".archive-background"
-        );
+        document.querySelector(".archive-background");
 
     const grid =
-        document.querySelector(
-            ".archive-grid"
-        );
+        document.querySelector(".archive-grid");
 
 
     if (!archive) {
@@ -342,53 +336,70 @@ function initArchiveParallax() {
     }
 
 
-    /* -------------------------------------------------
-       DESKTOP ONLY
-    ------------------------------------------------- */
+    /*
+     * Mobile / touch:
+     * NO PARALLAX.
+     * The cinematic background stays static.
+     */
 
-    const desktopQuery =
+    const desktop =
         window.matchMedia(
             "(hover: hover) and (pointer: fine)"
-        );
+        ).matches;
 
 
-    if (!desktopQuery.matches) {
+    if (!desktop) {
+
+        if (background) {
+            background.style.transform =
+                "translate3d(0,0,0) scale(1.02)";
+        }
+
+        if (grid) {
+            grid.style.transform =
+                "translate3d(0,0,0)";
+        }
+
         return;
     }
 
 
-    let animationFrame = null;
+    /*
+     * Desktop:
+     * Animate ONLY while the pointer is moving.
+     * There is NO permanent RAF loop.
+     */
 
-    let mouseX = 0;
-    let mouseY = 0;
+    let targetX = 0;
+    let targetY = 0;
 
     let currentX = 0;
     let currentY = 0;
 
+    let frame = null;
 
-    /* -------------------------------------------------
-       UPDATE PARALLAX
-    ------------------------------------------------- */
 
-    function updateParallax() {
+
+    function animate() {
+
+        frame = null;
+
 
         currentX +=
-            (mouseX - currentX) * 0.08;
+            (targetX - currentX) * 0.10;
 
         currentY +=
-            (mouseY - currentY) * 0.08;
+            (targetY - currentY) * 0.10;
 
 
         if (background) {
 
             background.style.transform =
-                `
-                translate(
+                `translate3d(
                     ${currentX * 8}px,
-                    ${currentY * 8}px
-                )
-                scale(1.025)
-                `;
+                    ${currentY * 8}px,
+                    0
+                ) scale(1.02)`;
 
         }
 
@@ -396,127 +407,75 @@ function initArchiveParallax() {
         if (grid) {
 
             grid.style.transform =
-                `
-                translate(
+                `translate3d(
                     ${currentX * 3}px,
-                    ${currentY * 3}px
-                )
-                `;
+                    ${currentY * 3}px,
+                    0
+                )`;
 
         }
 
 
-        animationFrame =
+        const stillMoving =
+            Math.abs(targetX - currentX) > 0.001 ||
+            Math.abs(targetY - currentY) > 0.001;
+
+
+        if (stillMoving) {
+
+            frame =
+                requestAnimationFrame(
+                    animate
+                );
+
+        }
+
+    }
+
+
+    function wakeAnimation() {
+
+        if (frame) {
+            return;
+        }
+
+        frame =
             requestAnimationFrame(
-                updateParallax
+                animate
             );
 
     }
 
 
-    /* -------------------------------------------------
-       MOUSE MOVE
-    ------------------------------------------------- */
-
     archive.addEventListener(
         "mousemove",
         event => {
 
-            mouseX =
+            targetX =
                 (event.clientX /
                     window.innerWidth) - 0.5;
 
-            mouseY =
+            targetY =
                 (event.clientY /
                     window.innerHeight) - 0.5;
 
+            wakeAnimation();
+
+        },
+        {
+            passive: true
         }
     );
 
-
-    /* -------------------------------------------------
-       MOUSE LEAVE
-    ------------------------------------------------- */
 
     archive.addEventListener(
         "mouseleave",
         () => {
 
-            mouseX = 0;
-            mouseY = 0;
+            targetX = 0;
+            targetY = 0;
 
-        }
-    );
-
-
-    /* -------------------------------------------------
-       START
-    ------------------------------------------------- */
-
-    animationFrame =
-        requestAnimationFrame(
-            updateParallax
-        );
-
-
-    /* -------------------------------------------------
-       CLEANUP ON PAGE HIDDEN
-    ------------------------------------------------- */
-
-    document.addEventListener(
-        "visibilitychange",
-        () => {
-
-            if (
-                document.hidden &&
-                animationFrame
-            ) {
-
-                cancelAnimationFrame(
-                    animationFrame
-                );
-
-                animationFrame = null;
-
-            } else if (
-                !document.hidden &&
-                !animationFrame
-            ) {
-
-                animationFrame =
-                    requestAnimationFrame(
-                        updateParallax
-                    );
-
-            }
-
-        }
-    );
-
-
-    /* -------------------------------------------------
-       MOBILE / RESIZE
-    ------------------------------------------------- */
-
-    window.addEventListener(
-        "resize",
-        () => {
-
-            if (
-                window.innerWidth <= 700
-            ) {
-
-                if (background) {
-                    background.style.transform =
-                        "translate(0, 0) scale(1)";
-                }
-
-                if (grid) {
-                    grid.style.transform =
-                        "translate(0, 0)";
-                }
-
-            }
+            wakeAnimation();
 
         },
         {
