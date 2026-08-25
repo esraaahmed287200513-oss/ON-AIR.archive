@@ -1,0 +1,1970 @@
+/* =========================================================
+   ON AIR — PRODUCTION DAYS
+   DAYS.CSS
+   FINAL RESPONSIVE OVERRIDE
+   ---------------------------------------------------------
+   IMPORTANT:
+   This file controls ONLY #production-days
+   Do not change HTML / JS.
+   ========================================================= */
+
+
+/* =========================================================
+   01 — VARIABLES
+   ========================================================= */
+
+#production-days {
+    --days-navy: #112548;
+    --days-deep: #050C14;
+    --days-dark: #07111D;
+
+    --days-cream: #F7EDE3;
+    --days-beige: #D8C8B5;
+    --days-gray: #6D6D6D;
+
+    --days-red: #D92832;
+
+    position: relative !important;
+
+    width: 100% !important;
+    min-height: auto !important;
+
+    box-sizing: border-box !important;
+
+    padding:
+        95px
+        clamp(18px, 5vw, 72px)
+        80px !important;
+
+    overflow: hidden !important;
+
+    color: var(--days-cream) !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5, 12, 20, .30),
+            rgba(5, 12, 20, .58)
+        ),
+        url("images/crew-background.png")
+        center center / cover no-repeat !important;
+
+    isolation: isolate !important;
+}
+
+/* =========================================================
+   DAYS — FULL BACKGROUND
+   ========================================================= */
+
+#production-days {
+    position: relative !important;
+    isolation: isolate !important;
+
+    /*
+       مهم:
+       الخلفية تمتد مع طول القسم كله
+       ولا يتم قصها بسبب cover
+    */
+    background:
+        #050C14 !important;
+
+    overflow: hidden !important;
+}
+
+
+/* الخلفية الأصلية للقسم */
+
+#production-days .oa-days-bg {
+    position: absolute !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    z-index: -5 !important;
+
+    background:
+        url("images/crew-background.png")
+        center top / 100% auto
+        repeat-y !important;
+
+    opacity: 1 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* طبقة شفافية فوق الخلفية */
+
+#production-days .oa-days-vignette {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    z-index: -4 !important;
+
+    pointer-events: none !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5, 12, 20, .18) 0%,
+            rgba(5, 12, 20, .30) 45%,
+            rgba(5, 12, 20, .48) 100%
+        ) !important;
+}
+
+
+/* Texture grid */
+
+#production-days .oa-days-grid {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    z-index: -3 !important;
+
+    opacity: .08 !important;
+
+    pointer-events: none !important;
+
+    background-size: 42px 42px !important;
+}
+
+
+/* Grain */
+
+#production-days .oa-days-grain {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    z-index: -2 !important;
+
+    opacity: .025 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* =========================================================
+   DESKTOP BACKGROUND
+   ========================================================= */
+
+@media (min-width: 851px) {
+
+    #production-days .oa-days-bg {
+        /*
+           الصورة الأصلية تظهر كاملة بالعرض
+           من غير zoom أو crop
+        */
+        background-size: 100% auto !important;
+        background-position: center top !important;
+        background-repeat: repeat-y !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE BACKGROUND
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    #production-days .oa-days-bg {
+        /*
+           على الموبايل نستخدم عرض الشاشة
+           بدل cover عشان الخلفية متتقصش
+        */
+        background-size: auto 100% !important;
+
+        background-position:
+            center top !important;
+
+        background-repeat: repeat-y !important;
+    }
+
+}
+
+
+
+/* =========================================================
+   03 — CAMERA CORNERS
+   ========================================================= */
+
+#production-days .oa-days-corner {
+    position: absolute !important;
+
+    width: 34px !important;
+    height: 34px !important;
+
+    opacity: .40 !important;
+
+    pointer-events: none !important;
+
+    z-index: 5 !important;
+}
+
+#production-days .oa-days-tl {
+    top: 24px !important;
+    left: 24px !important;
+}
+
+#production-days .oa-days-tr {
+    top: 24px !important;
+    right: 24px !important;
+}
+
+#production-days .oa-days-bl {
+    bottom: 24px !important;
+    left: 24px !important;
+}
+
+#production-days .oa-days-br {
+    bottom: 24px !important;
+    right: 24px !important;
+}
+
+
+/* =========================================================
+   04 — HEADER
+   ========================================================= */
+
+#production-days .oa-days-header {
+    position: relative !important;
+    z-index: 5 !important;
+
+    width: min(1380px, 100%) !important;
+
+    margin:
+        0 auto
+        45px !important;
+}
+
+#production-days .oa-days-header-line {
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    width: 100% !important;
+
+    padding-bottom: 13px !important;
+
+    direction: ltr !important;
+
+    border-bottom:
+        1px solid
+        rgba(247, 237, 227, .10) !important;
+}
+
+
+/* REC */
+
+#production-days .oa-days-rec {
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 7px !important;
+
+    color:
+        rgba(247, 237, 227, .58) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 9px !important;
+}
+
+#production-days .oa-days-rec span {
+    width: 7px !important;
+    height: 7px !important;
+
+    border-radius: 50% !important;
+
+    background:
+        var(--days-red) !important;
+
+    box-shadow:
+        0 0 9px
+        rgba(217, 40, 50, .45) !important;
+}
+
+
+/* technical */
+
+#production-days .oa-days-tech {
+    color:
+        rgba(247, 237, 227, .30) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 8px !important;
+
+    letter-spacing: .08em !important;
+}
+
+#production-days .oa-days-tech b {
+    margin: 0 7px !important;
+
+    color:
+        rgba(247, 237, 227, .16) !important;
+}
+
+
+/* counter */
+
+#production-days .oa-days-count {
+    color:
+        rgba(247, 237, 227, .25) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 8px !important;
+}
+
+#production-days .oa-days-count strong {
+    color:
+        var(--days-cream) !important;
+}
+
+
+/* =========================================================
+   05 — SECTION TITLE
+   ========================================================= */
+
+#production-days .oa-days-heading {
+    width: 100% !important;
+
+    margin-top: 32px !important;
+
+    direction: rtl !important;
+
+    text-align: right !important;
+}
+
+#production-days .oa-days-kicker {
+    display: block !important;
+
+    margin-bottom: 11px !important;
+
+    color:
+        rgba(216, 200, 181, .58) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 9px !important;
+
+    letter-spacing: .08em !important;
+}
+
+#production-days .oa-days-heading h2 {
+    margin: 0 !important;
+
+    color:
+        var(--days-cream) !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        clamp(36px, 4.5vw, 62px) !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.1 !important;
+
+    letter-spacing: -.035em !important;
+}
+
+#production-days .oa-days-heading p {
+    margin:
+        9px 0 0 !important;
+
+    color:
+        rgba(225, 215, 204, .48) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size: 10px !important;
+}
+
+
+/* =========================================================
+   06 — MAIN FEATURED AREA
+   ========================================================= */
+
+#production-days .oa-days-featured {
+    position: relative !important;
+
+    display: grid !important;
+
+    /*
+       الصورة ناحية الشمال
+       المعلومات ناحية اليمين
+    */
+
+    grid-template-columns:
+        minmax(0, 1.55fr)
+        minmax(350px, .72fr) !important;
+
+    gap:
+        clamp(28px, 3vw, 44px) !important;
+
+    width: min(1380px, 100%) !important;
+
+    min-height: auto !important;
+
+    margin:
+        0 auto 65px !important;
+
+    padding: 0 !important;
+
+    direction: ltr !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   07 — IMAGE SIDE
+   ========================================================= */
+
+#production-days .oa-days-media {
+    position: relative !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: flex-start !important;
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    min-height: auto !important;
+
+    height: auto !important;
+
+    overflow: visible !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   08 — MAIN IMAGE
+   ========================================================= */
+
+/*
+   THIS IS THE IMPORTANT PART.
+
+   الصورة أصغر من مساحة الـleft panel
+   ومتمركزة في النص.
+*/
+
+#production-days .oa-days-main-image {
+    position: relative !important;
+
+    display: block !important;
+
+    width: 92% !important;
+
+    max-width: 1050px !important;
+
+    height: auto !important;
+
+    aspect-ratio: 16 / 9 !important;
+
+    min-height: 0 !important;
+
+    margin:
+        0 auto !important;
+
+    overflow: hidden !important;
+
+    background:
+        rgba(7, 17, 29, .25) !important;
+
+    border:
+        1px solid
+        rgba(247, 237, 227, .17) !important;
+
+    box-shadow:
+        0 28px 70px
+        rgba(0, 0, 0, .34) !important;
+}
+
+
+/*
+   منع الـCSS القديم من إجبار الصورة على 540px
+*/
+
+#production-days #oaDaysMainImage {
+    display: block !important;
+
+    width: 100% !important;
+
+    height: 100% !important;
+
+    min-height: 0 !important;
+
+    max-height: none !important;
+
+    object-fit: cover !important;
+
+    object-position: center !important;
+
+    opacity: 1 !important;
+
+    filter:
+        brightness(.70)
+        contrast(1.04)
+        saturate(.62) !important;
+
+    transition:
+        opacity .28s ease,
+        transform .7s ease !important;
+}
+
+
+/* image transition */
+
+#production-days #oaDaysMainImage.oa-days-image-changing {
+    opacity: .15 !important;
+
+    transform: scale(1.015) !important;
+}
+
+
+/* =========================================================
+   09 — IMAGE OVERLAY
+   ========================================================= */
+
+#production-days .oa-days-image-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+
+    z-index: 2 !important;
+
+    pointer-events: none !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5, 12, 20, .04),
+            rgba(5, 12, 20, .20)
+        ) !important;
+}
+
+
+/* image corners */
+
+#production-days .oa-days-image-corners {
+    position: absolute !important;
+    inset: 0 !important;
+
+    z-index: 4 !important;
+
+    pointer-events: none !important;
+}
+
+#production-days .oa-days-image-corners i {
+    position: absolute !important;
+
+    width: 28px !important;
+    height: 28px !important;
+
+    border-color:
+        rgba(247, 237, 227, .35) !important;
+}
+
+#production-days .oa-days-image-rec {
+    position: absolute !important;
+
+    top: 17px !important;
+    left: 18px !important;
+
+    z-index: 5 !important;
+
+    color:
+        rgba(247, 237, 227, .68) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 7px !important;
+}
+
+#production-days .oa-days-image-rec span {
+    display: inline-block !important;
+
+    width: 6px !important;
+    height: 6px !important;
+
+    margin-right: 5px !important;
+
+    border-radius: 50% !important;
+
+    background:
+        var(--days-red) !important;
+}
+
+
+#production-days .oa-days-image-frame {
+    position: absolute !important;
+
+    left: 18px !important;
+    bottom: 17px !important;
+
+    z-index: 5 !important;
+
+    color:
+        rgba(247, 237, 227, .42) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 7px !important;
+}
+
+#production-days .oa-days-image-frame strong {
+    color:
+        rgba(247, 237, 227, .70) !important;
+}
+
+
+#production-days .oa-days-image-brand {
+    position: absolute !important;
+
+    right: 18px !important;
+    bottom: 17px !important;
+
+    z-index: 5 !important;
+
+    color:
+        rgba(247, 237, 227, .32) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 6px !important;
+}
+
+
+/* =========================================================
+   10 — PHOTO SELECTOR
+   ========================================================= */
+
+#production-days .oa-days-gallery {
+    display: flex !important;
+
+    align-items: center !important;
+
+    width: 92% !important;
+
+    min-height: 64px !important;
+
+    margin:
+        7px auto 0 !important;
+
+    gap: 9px !important;
+
+    direction: ltr !important;
+
+    overflow: visible !important;
+}
+
+
+#production-days .oa-days-thumbs {
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 8px !important;
+
+    flex: 0 1 auto !important;
+
+    min-width: 0 !important;
+
+    direction: ltr !important;
+}
+
+
+#production-days .oa-days-thumb {
+    position: relative !important;
+
+    flex:
+        0 0 78px !important;
+
+    width: 78px !important;
+    height: 54px !important;
+
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    background:
+        rgba(7, 17, 29, .30) !important;
+
+    border:
+        1px solid
+        rgba(247, 237, 227, .14) !important;
+
+    opacity: .48 !important;
+
+    cursor: pointer !important;
+
+    transition:
+        opacity .25s ease,
+        border-color .25s ease,
+        transform .25s ease !important;
+}
+
+#production-days .oa-days-thumb:hover {
+    opacity: .80 !important;
+
+    transform:
+        translateY(-2px) !important;
+}
+
+#production-days .oa-days-thumb.active {
+    opacity: 1 !important;
+
+    border-color:
+        var(--days-beige) !important;
+}
+
+#production-days .oa-days-thumb img {
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+
+    filter:
+        brightness(.70)
+        saturate(.60) !important;
+}
+
+
+#production-days .oa-days-photo-arrow {
+    flex:
+        0 0 42px !important;
+
+    width: 42px !important;
+    height: 42px !important;
+
+    padding: 0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    background:
+        rgba(7, 17, 29, .24) !important;
+
+    border:
+        1px solid
+        rgba(247, 237, 227, .16) !important;
+
+    color:
+        rgba(247, 237, 227, .55) !important;
+
+    font-size: 17px !important;
+
+    cursor: pointer !important;
+}
+
+#production-days .oa-days-photo-arrow:hover {
+    color:
+        var(--days-cream) !important;
+
+    border-color:
+        rgba(216, 200, 181, .50) !important;
+
+    background:
+        rgba(17, 37, 72, .32) !important;
+}
+
+
+#production-days .oa-days-photo-counter {
+    margin-left: auto !important;
+
+    color:
+        rgba(225, 215, 204, .42) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 7px !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* =========================================================
+   11 — RIGHT INFORMATION PANEL
+   ========================================================= */
+
+#production-days .oa-days-info {
+    position: relative !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    min-height: 540px !important;
+
+    height: auto !important;
+
+    padding:
+        28px 30px 22px !important;
+
+    box-sizing: border-box !important;
+
+    direction: rtl !important;
+
+    text-align: right !important;
+
+    background:
+        rgba(7, 17, 29, .24) !important;
+
+    border:
+        1px solid
+        rgba(247, 237, 227, .15) !important;
+
+    box-shadow: none !important;
+
+    backdrop-filter:
+        blur(5px) !important;
+
+    -webkit-backdrop-filter:
+        blur(5px) !important;
+}
+
+
+/* top row */
+
+#production-days .oa-days-info-top {
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    width: 100% !important;
+
+    padding-bottom: 14px !important;
+
+    direction: ltr !important;
+
+    border-bottom:
+        1px solid
+        rgba(247, 237, 227, .07) !important;
+}
+
+#production-days .oa-days-info-top span {
+    color:
+        rgba(247, 237, 227, .30) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 7px !important;
+}
+
+#production-days .oa-days-info-top strong {
+    color:
+        var(--days-beige) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 8px !important;
+
+    letter-spacing: .08em !important;
+}
+
+
+/* DAY */
+
+#production-days .oa-days-number-label {
+    margin-top: 30px !important;
+
+    color:
+        rgba(247, 237, 227, .25) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 8px !important;
+}
+
+#production-days .oa-days-number {
+    margin-top: -3px !important;
+
+    color:
+        rgba(247, 237, 227, .16) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        clamp(82px, 8vw, 125px) !important;
+
+    line-height: .82 !important;
+}
+
+
+/* TITLE */
+
+#production-days #oaDaysTitle {
+    margin:
+        17px 0 0 !important;
+
+    color:
+        var(--days-cream) !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        clamp(30px, 3vw, 48px) !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.12 !important;
+}
+
+
+/* DATE */
+
+#production-days .oa-days-date {
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 6px !important;
+
+    margin-top: 12px !important;
+
+    color:
+        rgba(225, 215, 204, .55) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size: 9px !important;
+}
+
+#production-days .oa-days-date span {
+    color:
+        var(--days-beige) !important;
+}
+
+
+/* divider */
+
+#production-days .oa-days-divider {
+    width: 42px !important;
+
+    height: 1px !important;
+
+    margin:
+        23px 0 20px !important;
+
+    background:
+        var(--days-beige) !important;
+
+    opacity: .32 !important;
+}
+
+
+/* =========================================================
+   12 — NOTE
+   ========================================================= */
+
+#production-days .oa-days-note > span,
+#production-days .oa-days-log > span {
+    display: block !important;
+
+    color:
+        rgba(247, 237, 227, .25) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 7px !important;
+
+    letter-spacing: .08em !important;
+}
+
+#production-days #oaDaysDescription {
+    margin:
+        10px 0 0 !important;
+
+    color:
+        rgba(247, 237, 227, .68) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size: 10px !important;
+
+    line-height: 2 !important;
+}
+
+
+/* =========================================================
+   13 — PRODUCTION LOG
+   ========================================================= */
+
+#production-days .oa-days-log {
+    margin-top: 24px !important;
+}
+
+#production-days #oaDaysEvents {
+    list-style: none !important;
+
+    margin:
+        12px 0 0 !important;
+
+    padding: 0 !important;
+}
+
+#production-days #oaDaysEvents li {
+    display: block !important;
+
+    padding:
+        9px 0 !important;
+
+    color:
+        rgba(225, 215, 204, .62) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size: 9px !important;
+
+    line-height: 1.5 !important;
+
+    border-bottom:
+        1px solid
+        rgba(247, 237, 227, .06) !important;
+}
+
+#production-days #oaDaysEvents li::before {
+    content: "—" !important;
+
+    margin-left: 7px !important;
+
+    color:
+        var(--days-beige) !important;
+}
+
+
+/* footer inside panel */
+
+#production-days .oa-days-info-footer {
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    gap: 10px !important;
+
+    margin-top: auto !important;
+
+    padding-top: 14px !important;
+
+    color:
+        rgba(247, 237, 227, .22) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 6px !important;
+
+    border-top:
+        1px solid
+        rgba(247, 237, 227, .07) !important;
+
+    direction: ltr !important;
+}
+
+
+/* =========================================================
+   14 — TIMELINE
+   ========================================================= */
+
+#production-days .oa-days-timeline {
+    width: min(1380px, 100%) !important;
+
+    margin:
+        0 auto !important;
+}
+
+#production-days .oa-days-timeline-head {
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    width: 100% !important;
+
+    padding-bottom: 13px !important;
+
+    border-bottom:
+        1px solid
+        rgba(247, 237, 227, .09) !important;
+}
+
+#production-days .oa-days-timeline-head > div:first-child {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    gap: 5px !important;
+
+    direction: rtl !important;
+
+    text-align: right !important;
+}
+
+#production-days .oa-days-timeline-head span {
+    color:
+        rgba(247, 237, 227, .35) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 7px !important;
+
+    letter-spacing: .08em !important;
+}
+
+#production-days .oa-days-timeline-head small {
+    color:
+        rgba(225, 215, 204, .32) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size: 8px !important;
+}
+
+
+/* timeline arrows */
+
+#production-days .oa-days-day-arrows {
+    display: flex !important;
+
+    gap: 7px !important;
+
+    direction: ltr !important;
+}
+
+#production-days #oaDaysPrev,
+#production-days #oaDaysNext {
+    width: 42px !important;
+    height: 38px !important;
+
+    padding: 0 !important;
+
+    border:
+        1px solid
+        rgba(247, 237, 227, .15) !important;
+
+    background:
+        rgba(7, 17, 29, .24) !important;
+
+    color:
+        rgba(247, 237, 227, .52) !important;
+
+    cursor: pointer !important;
+}
+
+#production-days #oaDaysPrev:hover,
+#production-days #oaDaysNext:hover {
+    color:
+        var(--days-cream) !important;
+
+    border-color:
+        rgba(216, 200, 181, .48) !important;
+
+    background:
+        rgba(17, 37, 72, .30) !important;
+}
+
+
+/* =========================================================
+   15 — TIMELINE TRACK
+   ========================================================= */
+
+#production-days #oaDaysTrack {
+    position: relative !important;
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    align-items: flex-start !important;
+
+    gap: 16px !important;
+
+    width: 100% !important;
+
+    height: 235px !important;
+
+    margin: 0 !important;
+
+    padding:
+        50px 10px 15px !important;
+
+    box-sizing: border-box !important;
+
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    direction: rtl !important;
+
+    scroll-behavior: smooth !important;
+
+    scrollbar-width: thin !important;
+
+    scrollbar-color:
+        rgba(216, 200, 181, .30)
+        transparent !important;
+}
+
+#production-days #oaDaysTrack::-webkit-scrollbar {
+    height: 3px !important;
+}
+
+#production-days #oaDaysTrack::-webkit-scrollbar-thumb {
+    background:
+        rgba(216, 200, 181, .30) !important;
+}
+
+
+/* timeline line */
+
+#production-days #oaDaysTrack::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    top: 59px !important;
+
+    left: 10px !important;
+    right: 10px !important;
+
+    height: 1px !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(216, 200, 181, .35),
+            rgba(216, 200, 181, .35),
+            transparent
+        ) !important;
+
+    pointer-events: none !important;
+
+    z-index: 0 !important;
+}
+
+
+/* =========================================================
+   16 — TIMELINE ITEMS
+   ========================================================= */
+
+#production-days .oa-days-timeline-item {
+    position: relative !important;
+
+    flex:
+        0 0 225px !important;
+
+    width: 225px !important;
+
+    min-width: 225px !important;
+
+    height: 165px !important;
+
+    box-sizing: border-box !important;
+
+    padding:
+        17px !important;
+
+    margin: 0 !important;
+
+    background:
+        rgba(7, 17, 29, .18) !important;
+
+    border:
+        1px solid
+        rgba(247, 237, 227, .10) !important;
+
+    color:
+        var(--days-cream) !important;
+
+    direction: rtl !important;
+
+    text-align: right !important;
+
+    opacity: .55 !important;
+
+    cursor: pointer !important;
+
+    transition:
+        transform .28s ease,
+        border-color .28s ease,
+        background .28s ease,
+        opacity .28s ease !important;
+
+    z-index: 2 !important;
+}
+
+#production-days .oa-days-timeline-item:hover {
+    transform:
+        translateY(-5px) !important;
+
+    opacity: .82 !important;
+
+    border-color:
+        rgba(216, 200, 181, .35) !important;
+
+    background:
+        rgba(17, 37, 72, .24) !important;
+}
+
+#production-days .oa-days-timeline-item.active {
+    opacity: 1 !important;
+
+    border-color:
+        rgba(216, 200, 181, .60) !important;
+
+    background:
+        rgba(17, 37, 72, .28) !important;
+
+    box-shadow:
+        0 16px 35px
+        rgba(0, 0, 0, .20) !important;
+}
+
+
+/* timeline image */
+
+#production-days .oa-days-timeline-image {
+    display: block !important;
+
+    width: 100% !important;
+
+    height: 52px !important;
+
+    margin:
+        10px 0 8px !important;
+
+    overflow: hidden !important;
+
+    background:
+        rgba(7, 17, 29, .30) !important;
+
+    border:
+        1px solid
+        rgba(247, 237, 227, .12) !important;
+}
+
+#production-days .oa-days-timeline-image img {
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+
+    filter:
+        brightness(.64)
+        saturate(.55) !important;
+
+    transition:
+        transform .45s ease !important;
+}
+
+#production-days .oa-days-timeline-item:hover
+.oa-days-timeline-image img {
+    transform: scale(1.04) !important;
+}
+
+
+/* timeline text */
+
+#production-days .oa-days-timeline-copy {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    gap: 3px !important;
+}
+
+#production-days .oa-days-timeline-copy small {
+    color:
+        rgba(216, 200, 181, .50) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 6px !important;
+}
+
+#production-days .oa-days-timeline-copy strong {
+    color:
+        var(--days-cream) !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size: 14px !important;
+
+    font-weight: 700 !important;
+}
+
+#production-days .oa-days-timeline-copy em {
+    color:
+        rgba(225, 215, 204, .42) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+
+    font-size: 7px !important;
+
+    font-style: normal !important;
+}
+
+
+/* timeline dot */
+
+#production-days .oa-days-timeline-dot {
+    position: absolute !important;
+
+    top: -10px !important;
+
+    right: 50% !important;
+
+    width: 10px !important;
+    height: 10px !important;
+
+    transform:
+        translateX(50%) !important;
+
+    border-radius: 50% !important;
+
+    background:
+        var(--days-navy) !important;
+
+    border:
+        1px solid
+        var(--days-beige) !important;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(5, 12, 20, .80) !important;
+}
+
+#production-days .oa-days-timeline-item.active
+.oa-days-timeline-dot {
+    background:
+        var(--days-red) !important;
+
+    border-color:
+        var(--days-cream) !important;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(5, 12, 20, .80),
+        0 0 12px
+        rgba(217, 40, 50, .30) !important;
+}
+
+
+/* locked */
+
+#production-days .oa-days-timeline-item.locked {
+    opacity: .30 !important;
+
+    cursor: default !important;
+}
+
+#production-days .oa-days-timeline-item.locked:hover {
+    transform: none !important;
+
+    opacity: .30 !important;
+}
+
+
+/* =========================================================
+   17 — FOOTER
+   ========================================================= */
+
+#production-days .oa-days-footer {
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    width: min(1380px, 100%) !important;
+
+    margin:
+        28px auto 0 !important;
+
+    padding-top: 14px !important;
+
+    color:
+        rgba(247, 237, 227, .20) !important;
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size: 6px !important;
+
+    border-top:
+        1px solid
+        rgba(247, 237, 227, .07) !important;
+}
+
+
+/* =========================================================
+   18 — REMOVE OLD GREEN / TEAL
+   ========================================================= */
+
+#production-days,
+#production-days *,
+#production-days *::before,
+#production-days *::after {
+    --teal: var(--days-beige) !important;
+    --green: var(--days-beige) !important;
+    --accent: var(--days-beige) !important;
+}
+
+#production-days .active,
+#production-days .open,
+#production-days .open-status,
+#production-days .now-status {
+    color:
+        var(--days-beige) !important;
+}
+
+#production-days .open-status i,
+#production-days .now-status i,
+#production-days .status-dot {
+    background:
+        var(--days-red) !important;
+
+    border-color:
+        var(--days-red) !important;
+}
+
+
+/* =========================================================
+   19 — LAPTOP
+   ========================================================= */
+
+@media (max-width: 1100px) and (min-width: 851px) {
+
+    #production-days {
+        padding:
+            85px 28px 70px !important;
+    }
+
+    #production-days .oa-days-featured {
+        grid-template-columns:
+            minmax(0, 1.45fr)
+            minmax(300px, .72fr) !important;
+
+        gap: 24px !important;
+    }
+
+    #production-days .oa-days-main-image {
+        width: 94% !important;
+    }
+
+    #production-days .oa-days-gallery {
+        width: 94% !important;
+    }
+
+    #production-days .oa-days-info {
+        min-height: 500px !important;
+
+        padding:
+            25px 22px !important;
+    }
+
+    #production-days .oa-days-number {
+        font-size: 92px !important;
+    }
+
+    #production-days #oaDaysTitle {
+        font-size: 34px !important;
+    }
+}
+
+
+/* =========================================================
+   20 — MOBILE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    #production-days {
+        min-height: auto !important;
+
+        padding:
+            70px
+            16px
+            50px !important;
+    }
+
+
+    /* header */
+
+    #production-days .oa-days-header {
+        margin-bottom: 35px !important;
+    }
+
+    #production-days .oa-days-header-line {
+        padding-bottom: 11px !important;
+    }
+
+    #production-days .oa-days-tech {
+        display: none !important;
+    }
+
+    #production-days .oa-days-heading {
+        margin-top: 25px !important;
+    }
+
+    #production-days .oa-days-heading h2 {
+        font-size:
+            clamp(32px, 9vw, 44px) !important;
+    }
+
+
+    /* main area */
+
+    #production-days .oa-days-featured {
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        gap: 12px !important;
+
+        width: 100% !important;
+
+        min-height: auto !important;
+
+        margin-bottom: 48px !important;
+    }
+
+
+    /* media */
+
+    #production-days .oa-days-media {
+        width: 100% !important;
+
+        min-height: auto !important;
+
+        height: auto !important;
+    }
+
+
+    /*
+       الصورة أصغر من الشاشة شوية
+       لكن مش صغيرة زيادة.
+    */
+
+    #production-days .oa-days-main-image {
+        width: 94% !important;
+
+        max-width: none !important;
+
+        aspect-ratio: 16 / 10 !important;
+
+        height: auto !important;
+
+        min-height: 0 !important;
+
+        margin:
+            0 auto !important;
+    }
+
+
+    #production-days #oaDaysMainImage {
+        width: 100% !important;
+
+        height: 100% !important;
+    }
+
+
+    /* gallery */
+
+    #production-days .oa-days-gallery {
+        width: 94% !important;
+
+        min-height: 57px !important;
+
+        margin-top: 5px !important;
+
+        gap: 6px !important;
+    }
+
+    #production-days .oa-days-thumbs {
+        gap: 6px !important;
+
+        overflow: hidden !important;
+    }
+
+    #production-days .oa-days-thumb {
+        flex:
+            0 0 68px !important;
+
+        width: 68px !important;
+
+        height: 48px !important;
+    }
+
+    #production-days .oa-days-photo-arrow {
+        flex:
+            0 0 34px !important;
+
+        width: 34px !important;
+
+        height: 34px !important;
+
+        font-size: 14px !important;
+    }
+
+    #production-days .oa-days-photo-counter {
+        display: none !important;
+    }
+
+
+    /* info */
+
+    #production-days .oa-days-info {
+        width: 100% !important;
+
+        min-height: auto !important;
+
+        padding:
+            24px 20px 20px !important;
+    }
+
+    #production-days .oa-days-number-label {
+        margin-top: 23px !important;
+    }
+
+    #production-days .oa-days-number {
+        font-size:
+            76px !important;
+    }
+
+    #production-days #oaDaysTitle {
+        font-size:
+            30px !important;
+    }
+
+    #production-days #oaDaysDescription {
+        font-size:
+            10px !important;
+
+        line-height: 1.9 !important;
+    }
+
+
+    /* timeline */
+
+    #production-days .oa-days-timeline {
+        width: 100% !important;
+    }
+
+    #production-days #oaDaysTrack {
+        height: 205px !important;
+
+        padding:
+            45px 8px 12px !important;
+
+        gap: 10px !important;
+    }
+
+    #production-days #oaDaysTrack::before {
+        top: 54px !important;
+
+        left: 8px !important;
+        right: 8px !important;
+    }
+
+    #production-days .oa-days-timeline-item {
+        flex:
+            0 0 175px !important;
+
+        width: 175px !important;
+
+        min-width: 175px !important;
+
+        height: 145px !important;
+
+        padding: 13px !important;
+    }
+
+    #production-days .oa-days-timeline-image {
+        height: 45px !important;
+
+        margin:
+            9px 0 7px !important;
+    }
+
+    #production-days .oa-days-timeline-copy strong {
+        font-size: 13px !important;
+    }
+
+
+    /* footer */
+
+    #production-days .oa-days-footer {
+        flex-wrap: wrap !important;
+
+        justify-content: center !important;
+
+        gap: 8px 18px !important;
+
+        text-align: center !important;
+
+        line-height: 1.6 !important;
+    }
+}
+
+
+/* =========================================================
+   21 — SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    #production-days {
+        padding:
+            65px
+            12px
+            42px !important;
+    }
+
+
+    #production-days .oa-days-heading h2 {
+        font-size:
+            32px !important;
+    }
+
+
+    #production-days .oa-days-main-image {
+        width: 92% !important;
+
+        aspect-ratio: 4 / 3 !important;
+    }
+
+
+    #production-days .oa-days-gallery {
+        width: 92% !important;
+    }
+
+
+    #production-days .oa-days-info {
+        padding:
+            22px 18px 18px !important;
+    }
+
+
+    #production-days .oa-days-number {
+        font-size:
+            68px !important;
+    }
+
+
+    #production-days #oaDaysTitle {
+        font-size:
+            27px !important;
+    }
+
+
+    #production-days .oa-days-thumb {
+        flex:
+            0 0 62px !important;
+
+        width: 62px !important;
+
+        height: 44px !important;
+    }
+
+
+    #production-days .oa-days-timeline-item {
+        flex:
+            0 0 165px !important;
+
+        width: 165px !important;
+
+        min-width: 165px !important;
+    }
+}
