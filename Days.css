@@ -1968,3 +1968,1910 @@
         min-width: 165px !important;
     }
 }
+/* =========================================================
+   ON AIR — DAYS
+   CINEMATIC TREATMENT
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   01 — CINEMATIC ATMOSPHERE
+   --------------------------------------------------------- */
+
+#production-days {
+    position: relative !important;
+    isolation: isolate !important;
+
+    background-color: #050C14 !important;
+}
+
+
+/* طبقة إضاءة سينمائية */
+
+#production-days::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at 48% 38%,
+            rgba(78, 180, 132, .055) 0%,
+            transparent 42%
+        ),
+        radial-gradient(
+            ellipse at 50% 70%,
+            rgba(17, 37, 72, .22) 0%,
+            transparent 60%
+        );
+}
+
+
+/* Vignette */
+
+#production-days::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 20;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 48%,
+            rgba(0, 0, 0, .20) 76%,
+            rgba(0, 0, 0, .48) 100%
+        );
+
+    mix-blend-mode: multiply;
+}
+
+
+/* ---------------------------------------------------------
+   02 — FILM GRAIN
+   --------------------------------------------------------- */
+
+#production-days .oa-days-grain {
+    position: absolute !important;
+    inset: 0 !important;
+
+    z-index: 18 !important;
+
+    pointer-events: none !important;
+
+    opacity: .055 !important;
+
+    background-image:
+        url("images/noise.png") !important;
+
+    background-repeat: repeat !important;
+
+    background-size: 180px 180px !important;
+
+    mix-blend-mode: soft-light !important;
+}
+
+
+/* لو مفيش noise.png استخدمي النسخة دي */
+
+#production-days .oa-days-grain::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,.018) 0px,
+            rgba(255,255,255,.018) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    opacity: .35;
+}
+
+
+/* ---------------------------------------------------------
+   03 — SUBTLE SCANLINES
+   --------------------------------------------------------- */
+
+#production-days .oa-days-vignette::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .12;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 3px,
+            rgba(247,237,227,.025) 4px
+        );
+}
+
+
+/* ---------------------------------------------------------
+   04 — HEADER = CAMERA MONITOR
+   --------------------------------------------------------- */
+
+#production-days .oa-days-header {
+    position: relative !important;
+}
+
+
+/* خط سينمائي تحت الهيدر */
+
+#production-days .oa-days-header-line {
+    position: relative;
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.13) !important;
+}
+
+
+#production-days .oa-days-header-line::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -1px;
+    left: 0;
+
+    width: 110px;
+    height: 1px;
+
+    background:
+        #D8C8B5;
+
+    opacity: .45;
+}
+
+
+/* REC */
+
+#production-days .oa-days-rec span {
+    animation:
+        daysRecBlink 1.8s infinite ease-in-out;
+}
+
+
+@keyframes daysRecBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow:
+            0 0 7px
+            rgba(217,40,50,.35);
+    }
+
+    50% {
+        opacity: .35;
+        box-shadow: none;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   05 — TITLE
+   --------------------------------------------------------- */
+
+#production-days .oa-days-heading {
+    position: relative !important;
+}
+
+
+/* خط صغير زي marks الأفلام */
+
+#production-days .oa-days-heading::before {
+    content: "PRODUCTION DIARY";
+
+    display: block;
+
+    margin-bottom: 13px;
+
+    color:
+        rgba(247,237,227,.20);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .20em;
+
+    direction: ltr;
+
+    text-align: right;
+}
+
+
+/* العنوان */
+
+#production-days .oa-days-heading h2 {
+    text-shadow:
+        0 8px 28px
+        rgba(0,0,0,.28);
+}
+
+
+/* ---------------------------------------------------------
+   06 — IMAGE CINEMA FRAME
+   --------------------------------------------------------- */
+
+#production-days .oa-days-main-image {
+    position: relative !important;
+
+    background:
+        #07111D !important;
+
+    border:
+        1px solid
+        rgba(247,237,227,.20) !important;
+
+    box-shadow:
+        0 22px 55px rgba(0,0,0,.42),
+        0 0 0 1px rgba(255,255,255,.025) !important;
+
+    transform:
+        translateZ(0);
+
+    transition:
+        box-shadow .5s ease,
+        transform .5s ease !important;
+}
+
+
+/* الصورة نفسها */
+
+#production-days #oaDaysMainImage {
+    filter:
+        brightness(.68)
+        contrast(1.08)
+        saturate(.52) !important;
+
+    transform:
+        scale(1.005);
+
+    transition:
+        filter .6s ease,
+        transform .8s ease !important;
+}
+
+
+/* hover سينمائي خفيف */
+
+#production-days .oa-days-main-image:hover {
+    box-shadow:
+        0 28px 65px rgba(0,0,0,.48),
+        0 0 35px rgba(17,37,72,.16) !important;
+}
+
+
+#production-days .oa-days-main-image:hover
+#oaDaysMainImage {
+    filter:
+        brightness(.73)
+        contrast(1.06)
+        saturate(.60) !important;
+
+    transform:
+        scale(1.012);
+}
+
+
+/* ---------------------------------------------------------
+   07 — CINEMATIC IMAGE GRADIENT
+   --------------------------------------------------------- */
+
+#production-days .oa-days-image-overlay {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.08) 0%,
+            transparent 30%,
+            transparent 62%,
+            rgba(0,0,0,.42) 100%
+        ) !important;
+}
+
+
+/* ---------------------------------------------------------
+   08 — FRAME INFORMATION
+   --------------------------------------------------------- */
+
+#production-days .oa-days-image-rec,
+#production-days .oa-days-image-frame,
+#production-days .oa-days-image-brand {
+    text-shadow:
+        0 1px 5px
+        rgba(0,0,0,.7);
+}
+
+
+/* Frame number */
+
+#production-days .oa-days-image-frame {
+    letter-spacing: .08em;
+}
+
+
+/* ---------------------------------------------------------
+   09 — IMAGE CORNERS
+   --------------------------------------------------------- */
+
+#production-days .oa-days-image-corners i {
+    width: 34px !important;
+    height: 34px !important;
+
+    border-color:
+        rgba(247,237,227,.38) !important;
+
+    opacity: .75;
+}
+
+
+/* ---------------------------------------------------------
+   10 — MICROPHONE MARK
+   --------------------------------------------------------- */
+
+#production-days .oa-days-media::after {
+    content: "●";
+
+    position: absolute;
+
+    right: -15px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    color:
+        #D8C8B5;
+
+    font-size: 6px;
+
+    opacity: .38;
+}
+
+
+/* ---------------------------------------------------------
+   11 — THUMBNAILS
+   --------------------------------------------------------- */
+
+#production-days .oa-days-thumb {
+    background:
+        #07111D !important;
+
+    border:
+        1px solid
+        rgba(247,237,227,.12) !important;
+
+    filter:
+        grayscale(.15);
+}
+
+
+#production-days .oa-days-thumb.active {
+    border-color:
+        #D8C8B5 !important;
+
+    box-shadow:
+        0 0 0 1px
+        rgba(216,200,181,.15),
+        0 8px 18px
+        rgba(0,0,0,.25);
+}
+
+
+/* رقم الصورة */
+
+#production-days .oa-days-photo-counter {
+    letter-spacing: .12em;
+}
+
+
+/* ---------------------------------------------------------
+   12 — INFO PANEL
+   --------------------------------------------------------- */
+
+#production-days .oa-days-info {
+    position: relative !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(7,17,29,.72),
+            rgba(5,12,20,.88)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(247,237,227,.15) !important;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,.025),
+        0 20px 45px
+        rgba(0,0,0,.22) !important;
+}
+
+
+/* خط إضاءة على طرف الـpanel */
+
+#production-days .oa-days-info::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 1px;
+    height: 90px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(216,200,181,.55),
+            transparent
+        );
+}
+
+
+/* Day number */
+
+#production-days .oa-days-number {
+    color:
+        rgba(247,237,227,.12) !important;
+
+    text-shadow:
+        0 0 35px
+        rgba(247,237,227,.05);
+}
+
+
+/* ---------------------------------------------------------
+   13 — INFO DIVIDERS
+   --------------------------------------------------------- */
+
+#production-days .oa-days-divider {
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #D8C8B5,
+            transparent
+        ) !important;
+
+    opacity: .38 !important;
+}
+
+
+/* ---------------------------------------------------------
+   14 — TIMELINE CINEMA
+   --------------------------------------------------------- */
+
+#production-days .oa-days-timeline {
+    position: relative;
+}
+
+
+/* خط الفيلم */
+
+#production-days #oaDaysTrack::before {
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(216,200,181,.30),
+            rgba(216,200,181,.18),
+            transparent
+        ) !important;
+}
+
+
+/* Cards */
+
+#production-days .oa-days-timeline-item {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(7,17,29,.58),
+            rgba(5,12,20,.76)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(247,237,227,.10) !important;
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.16) !important;
+}
+
+
+/* active card */
+
+#production-days .oa-days-timeline-item.active {
+    border-color:
+        rgba(216,200,181,.50) !important;
+
+    box-shadow:
+        0 18px 38px
+        rgba(0,0,0,.30),
+        inset 0 1px 0
+        rgba(255,255,255,.025) !important;
+}
+
+
+/* ---------------------------------------------------------
+   15 — FILM FRAME NUMBERS
+   --------------------------------------------------------- */
+
+#production-days .oa-days-timeline-item::after {
+    content:
+        attr(data-day);
+
+    position: absolute;
+
+    left: 12px;
+    bottom: 10px;
+
+    color:
+        rgba(247,237,227,.15);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 6px;
+
+    letter-spacing: .12em;
+}
+
+
+/* ---------------------------------------------------------
+   16 — GOLD / BEIGE DETAILS ONLY
+   --------------------------------------------------------- */
+
+#production-days .oa-days-photo-arrow:hover,
+#production-days #oaDaysPrev:hover,
+#production-days #oaDaysNext:hover {
+    box-shadow:
+        0 0 18px
+        rgba(216,200,181,.08);
+}
+
+
+/* ---------------------------------------------------------
+   17 — MOBILE CINEMATIC
+   --------------------------------------------------------- */
+
+@media (max-width: 850px) {
+
+    #production-days::after {
+        background:
+            radial-gradient(
+                ellipse at center,
+                transparent 40%,
+                rgba(0,0,0,.25) 100%
+            );
+    }
+
+
+    #production-days .oa-days-main-image {
+        box-shadow:
+            0 18px 40px
+            rgba(0,0,0,.40) !important;
+    }
+
+
+    #production-days .oa-days-heading::before {
+        font-size: 6px;
+    }
+
+
+    #production-days .oa-days-info {
+        box-shadow:
+            0 16px 35px
+            rgba(0,0,0,.22) !important;
+    }
+
+
+    #production-days .oa-days-media::after {
+        display: none;
+    }
+}
+/* =========================================================
+   DAYS — FIT INSIDE FILM STRIPS
+   ========================================================= */
+
+#production-days {
+    width: 100% !important;
+    box-sizing: border-box !important;
+
+    /* ندخل المحتوى أكتر لجوه شريطي الفيلم */
+    padding-left: clamp(145px, 13vw, 205px) !important;
+    padding-right: clamp(145px, 13vw, 205px) !important;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   CONTENT WIDTH
+   ========================================================= */
+
+#production-days .oa-days-header,
+#production-days .oa-days-featured,
+#production-days .oa-days-timeline,
+#production-days .oa-days-footer {
+    width: 100% !important;
+    max-width: none !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+
+/* =========================================================
+   MAIN AREA
+   ========================================================= */
+
+#production-days .oa-days-featured {
+    display: grid !important;
+
+    /*
+       الصورة ناحية الشمال
+       المعلومات ناحية اليمين
+    */
+    grid-template-columns:
+        minmax(0, 1.55fr)
+        minmax(300px, .72fr) !important;
+
+    gap: clamp(24px, 2.5vw, 38px) !important;
+
+    width: 100% !important;
+}
+
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+#production-days .oa-days-media {
+    width: 100% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+
+    overflow: visible !important;
+}
+
+
+/*
+   تصغير الصورة نفسها
+*/
+
+#production-days .oa-days-main-image {
+    width: 88% !important;
+
+    max-width: 1000px !important;
+
+    aspect-ratio: 16 / 9 !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    margin:
+        0 auto !important;
+}
+
+
+/* الصورة داخل الـframe */
+
+#production-days #oaDaysMainImage {
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+}
+
+
+/* =========================================================
+   THUMBNAILS
+   ========================================================= */
+
+#production-days .oa-days-gallery {
+    width: 88% !important;
+
+    margin:
+        7px auto 0 !important;
+}
+
+
+/* =========================================================
+   RIGHT INFO PANEL
+   ========================================================= */
+
+#production-days .oa-days-info {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   TIMELINE
+   ========================================================= */
+
+#production-days .oa-days-timeline {
+    width: 100% !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+@media (max-width: 1100px) and (min-width: 851px) {
+
+    #production-days {
+        padding-left: 105px !important;
+        padding-right: 105px !important;
+    }
+
+    #production-days .oa-days-featured {
+        grid-template-columns:
+            minmax(0, 1.4fr)
+            minmax(285px, .72fr) !important;
+
+        gap: 22px !important;
+    }
+
+    #production-days .oa-days-main-image {
+        width: 90% !important;
+    }
+
+    #production-days .oa-days-gallery {
+        width: 90% !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    #production-days {
+        /*
+           في الموبايل الشريطين بيبقوا أضيق،
+           فمانعملش padding ضخم.
+        */
+        padding-left: 32px !important;
+        padding-right: 32px !important;
+
+        overflow: hidden !important;
+    }
+
+
+    #production-days .oa-days-featured {
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        width: 100% !important;
+
+        gap: 14px !important;
+    }
+
+
+    /* الصورة أصغر شوية من عرض المساحة */
+
+    #production-days .oa-days-main-image {
+        width: 92% !important;
+
+        max-width: none !important;
+
+        aspect-ratio: 16 / 10 !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+
+    #production-days .oa-days-gallery {
+        width: 92% !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+
+    #production-days .oa-days-info {
+        width: 100% !important;
+    }
+
+
+    #production-days .oa-days-timeline {
+        width: 100% !important;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    #production-days {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+
+
+    #production-days .oa-days-main-image {
+        width: 91% !important;
+
+        aspect-ratio: 4 / 3 !important;
+    }
+
+
+    #production-days .oa-days-gallery {
+        width: 91% !important;
+    }
+}
+/* =========================================================
+   DAYS — CINEMATIC DAY CARD
+   FINAL VISUAL OVERRIDE
+   ========================================================= */
+
+#production-days .oa-days-info {
+    position: relative !important;
+    overflow: hidden !important;
+
+    padding: 25px 27px 20px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(7,17,29,.72),
+            rgba(5,12,20,.88)
+        ) !important;
+
+    border:
+        1px solid rgba(247,237,227,.16) !important;
+
+    box-shadow:
+        0 24px 60px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.025) !important;
+
+    transition:
+        border-color .4s ease,
+        box-shadow .4s ease !important;
+}
+
+
+/* cinematic light sweep */
+
+#production-days .oa-days-info::before {
+    content: "";
+
+    position: absolute;
+    top: -20%;
+    left: -45%;
+
+    width: 70%;
+    height: 150%;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(78,180,132,.035),
+            transparent
+        );
+
+    transform: rotate(12deg);
+
+    transition:
+        left .8s cubic-bezier(.2,.7,.2,1);
+}
+
+
+/* hover على الكارت كله */
+
+#production-days .oa-days-info:hover {
+    border-color:
+        rgba(247,237,227,.25) !important;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.38),
+        inset 0 1px 0 rgba(255,255,255,.035) !important;
+}
+
+#production-days .oa-days-info:hover::before {
+    left: 110%;
+}
+
+
+/* =========================================================
+   TOP TECHNICAL BAR
+   ========================================================= */
+
+#production-days .oa-days-info-top {
+    position: relative;
+    z-index: 2;
+
+    padding-bottom: 11px !important;
+
+    border-bottom:
+        1px solid rgba(247,237,227,.10) !important;
+}
+
+
+/* =========================================================
+   DAY NUMBER
+   ========================================================= */
+
+#production-days .oa-days-number-label {
+    margin-top: 24px !important;
+
+    color:
+        rgba(247,237,227,.30) !important;
+
+    font-size: 7px !important;
+
+    letter-spacing: .22em !important;
+}
+
+
+/* الرقم الكبير — أصغر */
+
+#production-days .oa-days-number {
+    margin-top: 1px !important;
+
+    font-size:
+        clamp(72px, 6.2vw, 105px) !important;
+
+    line-height: .78 !important;
+
+    color:
+        rgba(247,237,227,.105) !important;
+
+    letter-spacing:
+        -.10em !important;
+
+    transition:
+        transform .5s cubic-bezier(.2,.7,.2,1),
+        color .4s ease !important;
+
+    transform-origin: right center;
+}
+
+
+/* حركة الرقم */
+
+#production-days .oa-days-info:hover .oa-days-number {
+    transform:
+        translateX(-7px)
+        scale(1.025);
+
+    color:
+        rgba(247,237,227,.15) !important;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+#production-days #oaDaysTitle {
+    position: relative;
+    z-index: 2;
+
+    margin:
+        13px 0 0 !important;
+
+    font-size:
+        clamp(25px, 2.35vw, 37px) !important;
+
+    font-weight:
+        800 !important;
+
+    line-height:
+        1.08 !important;
+
+    letter-spacing:
+        -.04em !important;
+
+    color:
+        #F7EDE3 !important;
+
+    text-shadow:
+        0 7px 24px rgba(0,0,0,.35) !important;
+
+    transition:
+        transform .45s cubic-bezier(.2,.7,.2,1),
+        text-shadow .45s ease !important;
+}
+
+
+/* حركة العنوان */
+
+#production-days .oa-days-info:hover #oaDaysTitle {
+    transform:
+        translateX(-5px);
+
+    text-shadow:
+        0 10px 30px rgba(0,0,0,.48) !important;
+}
+
+
+/* خط صغير تحت العنوان */
+
+#production-days #oaDaysTitle::after {
+    content: "";
+
+    display: block;
+
+    width: 32px;
+    height: 1px;
+
+    margin-top: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(247,237,227,.50),
+            transparent
+        );
+
+    transition:
+        width .45s ease;
+}
+
+
+#production-days .oa-days-info:hover #oaDaysTitle::after {
+    width: 62px;
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+#production-days .oa-days-date {
+    position: relative;
+    z-index: 2;
+
+    margin-top: 8px !important;
+
+    font-size: 8px !important;
+
+    color:
+        rgba(225,215,204,.48) !important;
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+#production-days .oa-days-divider {
+    width: 45px !important;
+
+    margin:
+        18px 0 17px !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(216,200,181,.50),
+            transparent
+        ) !important;
+
+    opacity: .6 !important;
+}
+
+
+/* =========================================================
+   NOTE
+   ========================================================= */
+
+#production-days .oa-days-note {
+    position: relative;
+    z-index: 2;
+
+    padding:
+        12px 14px 13px !important;
+
+    border-right:
+        1px solid rgba(216,200,181,.28);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(17,37,72,.16),
+            transparent
+        );
+
+    transition:
+        transform .4s cubic-bezier(.2,.7,.2,1),
+        border-color .4s ease,
+        background .4s ease;
+}
+
+
+/* حركة الـNOTE */
+
+#production-days .oa-days-note:hover {
+    transform:
+        translateX(-5px);
+
+    border-right-color:
+        rgba(216,200,181,.65);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(17,37,72,.27),
+            transparent
+        );
+}
+
+
+/* NOTE label */
+
+#production-days .oa-days-note > span {
+    font-size:
+        6px !important;
+
+    letter-spacing:
+        .20em !important;
+
+    color:
+        rgba(247,237,227,.28) !important;
+}
+
+
+/* الكلام نفسه أصغر */
+
+#production-days #oaDaysDescription {
+    margin-top:
+        7px !important;
+
+    max-width:
+        94% !important;
+
+    color:
+        rgba(247,237,227,.70) !important;
+
+    font-size:
+        clamp(9px, .75vw, 11px) !important;
+
+    line-height:
+        1.85 !important;
+
+    transition:
+        color .35s ease;
+}
+
+
+#production-days .oa-days-note:hover
+#oaDaysDescription {
+    color:
+        rgba(247,237,227,.86) !important;
+}
+
+
+/* =========================================================
+   PRODUCTION LOG
+   ========================================================= */
+
+#production-days .oa-days-log {
+    position: relative;
+    z-index: 2;
+
+    margin-top:
+        17px !important;
+}
+
+
+/* LOG label */
+
+#production-days .oa-days-log > span {
+    font-size:
+        6px !important;
+
+    letter-spacing:
+        .20em !important;
+}
+
+
+/* log rows */
+
+#production-days #oaDaysEvents li {
+    position: relative;
+
+    padding:
+        7px 13px 7px 0 !important;
+
+    color:
+        rgba(225,215,204,.55) !important;
+
+    font-size:
+        8px !important;
+
+    line-height:
+        1.45 !important;
+
+    border-bottom:
+        1px solid rgba(247,237,227,.055) !important;
+
+    transition:
+        transform .3s ease,
+        color .3s ease,
+        padding-right .3s ease,
+        border-color .3s ease;
+}
+
+
+/* نقطة سينمائية بدل الشرطة */
+
+#production-days #oaDaysEvents li::before {
+    content: "" !important;
+
+    position: absolute;
+
+    right: 0;
+    top: 50%;
+
+    width: 3px;
+    height: 3px;
+
+    margin: 0 !important;
+
+    border-radius: 50%;
+
+    background:
+        rgba(216,200,181,.55);
+
+    transform:
+        translateY(-50%);
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+
+/* hover على كل event */
+
+#production-days #oaDaysEvents li:hover {
+    transform:
+        translateX(-5px);
+
+    padding-right:
+        18px !important;
+
+    color:
+        #F7EDE3 !important;
+
+    border-color:
+        rgba(216,200,181,.18) !important;
+}
+
+
+#production-days #oaDaysEvents li:hover::before {
+    background:
+        #D8C8B5;
+
+    box-shadow:
+        0 0 8px rgba(216,200,181,.55);
+
+    transform:
+        translateY(-50%)
+        scale(1.5);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+#production-days .oa-days-info-footer {
+    position: relative;
+    z-index: 2;
+
+    margin-top:
+        auto !important;
+
+    opacity: .65;
+
+    transition:
+        opacity .3s ease;
+}
+
+
+#production-days .oa-days-info:hover
+.oa-days-info-footer {
+    opacity: .9;
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 851px) {
+
+    #production-days .oa-days-info {
+        min-height:
+            540px !important;
+    }
+
+    #production-days #oaDaysTitle {
+        max-width:
+            100% !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    #production-days .oa-days-info {
+        min-height:
+            auto !important;
+
+        padding:
+            20px 18px 18px !important;
+    }
+
+
+    #production-days .oa-days-number-label {
+        margin-top:
+            20px !important;
+
+        font-size:
+            6px !important;
+    }
+
+
+    #production-days .oa-days-number {
+        font-size:
+            clamp(66px, 20vw, 88px) !important;
+    }
+
+
+    #production-days #oaDaysTitle {
+        margin-top:
+            12px !important;
+
+        font-size:
+            clamp(26px, 8vw, 34px) !important;
+
+        line-height:
+            1.1 !important;
+    }
+
+
+    #production-days .oa-days-date {
+        font-size:
+            7px !important;
+    }
+
+
+    #production-days .oa-days-note {
+        padding:
+            11px 12px !important;
+    }
+
+
+    #production-days #oaDaysDescription {
+        max-width:
+            100% !important;
+
+        font-size:
+            10px !important;
+
+        line-height:
+            1.9 !important;
+    }
+
+
+    #production-days #oaDaysEvents li {
+        font-size:
+            9px !important;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    #production-days .oa-days-info {
+        padding:
+            18px 15px 16px !important;
+    }
+
+
+    #production-days .oa-days-number {
+        font-size:
+            70px !important;
+    }
+
+
+    #production-days #oaDaysTitle {
+        font-size:
+            29px !important;
+    }
+
+
+    #production-days #oaDaysDescription {
+        font-size:
+            9.5px !important;
+    }
+
+}
+/* =========================================================
+   DAYS — FINAL SIZE BALANCE
+   كلام أكبر + الكارت أقصر
+   ========================================================= */
+
+/* الكارت نفسه */
+#production-days .oa-days-info {
+    min-height: 0 !important;
+    height: auto !important;
+
+    padding: 24px 26px 20px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+
+/* الرقم 04 */
+#production-days .oa-days-number {
+    font-size: clamp(82px, 7vw, 112px) !important;
+    line-height: .78 !important;
+}
+
+
+/* عنوان اليوم الأول */
+#production-days #oaDaysTitle {
+    font-size: clamp(32px, 3vw, 44px) !important;
+    line-height: 1.15 !important;
+
+    margin-top: 14px !important;
+}
+
+
+/* التاريخ */
+#production-days .oa-days-date {
+    font-size: 10px !important;
+    margin-top: 10px !important;
+}
+
+
+/* الخط */
+#production-days .oa-days-divider {
+    width: 55px !important;
+    margin: 16px 0 15px !important;
+}
+
+
+/* كلمة NOTE */
+#production-days .oa-days-note > span {
+    font-size: 8px !important;
+}
+
+
+/* الكلام الأساسي */
+#production-days #oaDaysDescription {
+    max-width: 100% !important;
+
+    font-size: clamp(12px, 1vw, 15px) !important;
+
+    line-height: 1.9 !important;
+
+    margin-top: 8px !important;
+
+    color: rgba(247,237,227,.78) !important;
+}
+
+
+/* Production Log */
+#production-days .oa-days-log {
+    margin-top: 18px !important;
+}
+
+
+/* كلمة Production Log */
+#production-days .oa-days-log > span {
+    font-size: 8px !important;
+}
+
+
+/* السطور */
+#production-days #oaDaysEvents li {
+    font-size: 11px !important;
+
+    line-height: 1.5 !important;
+
+    padding: 9px 15px 9px 0 !important;
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 851px) {
+
+    #production-days .oa-days-info {
+        min-height: 500px !important;
+        max-height: 560px !important;
+    }
+
+    #production-days #oaDaysTitle {
+        font-size: clamp(34px, 2.7vw, 43px) !important;
+    }
+
+    #production-days #oaDaysDescription {
+        font-size: 13px !important;
+        max-width: 96% !important;
+    }
+}
+
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+@media (max-width: 1100px) and (min-width: 851px) {
+
+    #production-days .oa-days-info {
+        min-height: 460px !important;
+        max-height: 520px !important;
+
+        padding: 21px 23px 18px !important;
+    }
+
+    #production-days .oa-days-number {
+        font-size: 82px !important;
+    }
+
+    #production-days #oaDaysTitle {
+        font-size: 32px !important;
+    }
+
+    #production-days #oaDaysDescription {
+        font-size: 11px !important;
+        line-height: 1.8 !important;
+    }
+
+    #production-days #oaDaysEvents li {
+        font-size: 9.5px !important;
+        padding: 7px 13px 7px 0 !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    #production-days .oa-days-info {
+        min-height: 0 !important;
+        max-height: none !important;
+
+        padding: 22px 20px 20px !important;
+    }
+
+    #production-days .oa-days-number {
+        font-size: 78px !important;
+    }
+
+    #production-days #oaDaysTitle {
+        font-size: 32px !important;
+        line-height: 1.15 !important;
+    }
+
+    #production-days .oa-days-date {
+        font-size: 9px !important;
+    }
+
+    #production-days #oaDaysDescription {
+        font-size: 13px !important;
+        line-height: 1.9 !important;
+    }
+
+    #production-days #oaDaysEvents li {
+        font-size: 11px !important;
+        padding: 9px 14px 9px 0 !important;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    #production-days .oa-days-info {
+        padding: 19px 16px 17px !important;
+    }
+
+    #production-days .oa-days-number {
+        font-size: 70px !important;
+    }
+
+    #production-days #oaDaysTitle {
+        font-size: 29px !important;
+    }
+
+    #production-days #oaDaysDescription {
+        font-size: 12px !important;
+        line-height: 1.85 !important;
+    }
+
+    #production-days #oaDaysEvents li {
+        font-size: 10px !important;
+    }
+}
+/* =========================================================
+   DAYS — FIX CUT TEXT / INFO CARD
+   ========================================================= */
+
+/* الكارت يسمح للمحتوى كله يظهر */
+#production-days .oa-days-info {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    box-sizing: border-box !important;
+
+    padding: 24px 25px 22px !important;
+}
+
+
+/* منع أي عنصر داخلي من قص الكلام */
+#production-days .oa-days-info *,
+#production-days .oa-days-note,
+#production-days .oa-days-log,
+#production-days #oaDaysDescription,
+#production-days #oaDaysEvents {
+    max-height: none !important;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+#production-days #oaDaysTitle {
+    font-size: clamp(32px, 2.7vw, 43px) !important;
+    line-height: 1.2 !important;
+
+    white-space: normal !important;
+    overflow: visible !important;
+
+    margin-bottom: 0 !important;
+}
+
+
+/* =========================================================
+   DESCRIPTION — DON'T CUT ARABIC TEXT
+   ========================================================= */
+
+#production-days #oaDaysDescription {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    height: auto !important;
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+
+    font-size: 13px !important;
+    line-height: 2 !important;
+
+    padding-bottom: 2px !important;
+}
+
+
+/* =========================================================
+   NOTE
+   ========================================================= */
+
+#production-days .oa-days-note {
+    height: auto !important;
+    min-height: 0 !important;
+
+    overflow: visible !important;
+
+    margin-top: 0 !important;
+    padding-bottom: 5px !important;
+}
+
+
+/* =========================================================
+   PRODUCTION LOG
+   ========================================================= */
+
+#production-days .oa-days-log {
+    height: auto !important;
+    min-height: 0 !important;
+
+    overflow: visible !important;
+
+    margin-top: 20px !important;
+}
+
+
+/* اللوج كله يظهر */
+#production-days #oaDaysEvents {
+    display: block !important;
+
+    height: auto !important;
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* كل سطر */
+#production-days #oaDaysEvents li {
+    display: block !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    white-space: normal !important;
+
+    font-size: 10.5px !important;
+    line-height: 1.7 !important;
+
+    padding: 9px 15px 9px 0 !important;
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 851px) {
+
+    #production-days .oa-days-info {
+        width: 100% !important;
+
+        /* مفيش ارتفاع إجباري */
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+
+        padding: 25px 27px 22px !important;
+    }
+
+    #production-days #oaDaysDescription {
+        font-size: 13px !important;
+        line-height: 2 !important;
+    }
+
+    #production-days #oaDaysEvents li {
+        font-size: 10.5px !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    #production-days .oa-days-info {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+
+        overflow: visible !important;
+
+        padding: 22px 19px 20px !important;
+    }
+
+    #production-days #oaDaysDescription {
+        font-size: 13px !important;
+        line-height: 2 !important;
+
+        height: auto !important;
+        max-height: none !important;
+    }
+
+    #production-days #oaDaysEvents li {
+        font-size: 10.5px !important;
+        line-height: 1.8 !important;
+
+        padding-top: 9px !important;
+        padding-bottom: 9px !important;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    #production-days .oa-days-info {
+        padding: 20px 16px 18px !important;
+    }
+
+    #production-days #oaDaysDescription {
+        font-size: 12px !important;
+        line-height: 1.9 !important;
+    }
+
+    #production-days #oaDaysEvents li {
+        font-size: 10px !important;
+    }
+}
