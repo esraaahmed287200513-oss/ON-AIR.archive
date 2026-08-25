@@ -330,16 +330,11 @@ function initArchiveParallax() {
     const grid =
         document.querySelector(".archive-grid");
 
-
-    if (!archive) {
-        return;
-    }
-
+    if (!archive) return;
 
     /*
-     * Mobile / touch:
-     * NO PARALLAX.
-     * The cinematic background stays static.
+     * Desktop only.
+     * Mobile/touch = static background.
      */
 
     const desktop =
@@ -347,7 +342,7 @@ function initArchiveParallax() {
             "(hover: hover) and (pointer: fine)"
         ).matches;
 
-
+        
     if (!desktop) {
 
         if (background) {
@@ -364,20 +359,14 @@ function initArchiveParallax() {
     }
 
 
-    /*
-     * Desktop:
-     * Animate ONLY while the pointer is moving.
-     * There is NO permanent RAF loop.
-     */
-
     let targetX = 0;
     let targetY = 0;
 
     let currentX = 0;
     let currentY = 0;
 
+ 
     let frame = null;
-
 
 
     function animate() {
@@ -391,59 +380,44 @@ function initArchiveParallax() {
         currentY +=
             (targetY - currentY) * 0.10;
 
-
-        if (background) {
-
+            if (background) {
             background.style.transform =
                 `translate3d(
                     ${currentX * 8}px,
                     ${currentY * 8}px,
                     0
-                ) scale(1.02)`;
-
+  
+                    ) scale(1.02)`;
         }
 
 
         if (grid) {
-
+ 
             grid.style.transform =
                 `translate3d(
                     ${currentX * 3}px,
                     ${currentY * 3}px,
                     0
                 )`;
+    
+            }
 
-        }
-
-
-        const stillMoving =
+        const moving =
             Math.abs(targetX - currentX) > 0.001 ||
             Math.abs(targetY - currentY) > 0.001;
 
-
-        if (stillMoving) {
-
+        if (moving) {
             frame =
-                requestAnimationFrame(
-                    animate
-                );
-
+                requestAnimationFrame(animate);
         }
-
     }
 
+    function wake() {
 
-    function wakeAnimation() {
-
-        if (frame) {
-            return;
-        }
+        if (frame) return;
 
         frame =
-            requestAnimationFrame(
-                animate
-            );
-
+            requestAnimationFrame(animate);
     }
 
 
@@ -459,8 +433,7 @@ function initArchiveParallax() {
                 (event.clientY /
                     window.innerHeight) - 0.5;
 
-            wakeAnimation();
-
+            wake();
         },
         {
             passive: true
@@ -475,15 +448,16 @@ function initArchiveParallax() {
             targetX = 0;
             targetY = 0;
 
-            wakeAnimation();
-
+            wake();
         },
         {
             passive: true
         }
+  
     );
-
 }
+
+
 
 
 /* =====================================================
