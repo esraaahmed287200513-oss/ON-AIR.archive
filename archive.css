@@ -19251,3 +19251,136 @@ html[lang="en"]
     background:
         rgba(225, 215, 204, 0.40) !important;
 }
+/* =========================================================
+   PRODUCTION DAYS — TIMELINE CLEANUP
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   REMOVE THE HORIZONTAL LINE UNDER THE DOTS
+--------------------------------------------------------- */
+
+#production-days #oaDaysTrack::before {
+    display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   REMOVE THE HORIZONTAL SCROLLBAR
+   Keep horizontal scrolling / touch scrolling working.
+--------------------------------------------------------- */
+
+#production-days #oaDaysTrack {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+#production-days #oaDaysTrack::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   LOCKED DAYS — STILL CLICKABLE
+--------------------------------------------------------- */
+
+#production-days .oa-days-timeline-item.locked {
+    opacity: .32 !important;
+    cursor: pointer !important;
+}
+
+#production-days .oa-days-timeline-item.locked:hover {
+    opacity: .55 !important;
+
+    transform:
+        translateY(-4px) !important;
+
+    border-color:
+        rgba(247,237,227,.22) !important;
+
+    background:
+        rgba(17,37,72,.18) !important;
+}
+
+
+/* ---------------------------------------------------------
+   LOCKED DAY IMAGE
+--------------------------------------------------------- */
+
+#production-days
+.oa-days-timeline-item.locked
+.oa-days-timeline-image {
+    opacity: .30 !important;
+    filter:
+        grayscale(.25)
+        brightness(.45) !important;
+}
+
+
+/* ---------------------------------------------------------
+   LOCKED DAY DOT
+--------------------------------------------------------- */
+
+#production-days
+.oa-days-timeline-item.locked
+.oa-days-timeline-dot {
+    background:
+        #112548 !important;
+
+    border-color:
+        rgba(247,237,227,.45) !important;
+
+    box-shadow:
+        0 0 0 5px
+        rgba(5,12,20,.78) !important;
+}
+
+
+/* ---------------------------------------------------------
+   DO NOT TURN LOCKED DAYS RED
+--------------------------------------------------------- */
+
+#production-days
+.oa-days-timeline-item.locked.active
+.oa-days-timeline-dot {
+    background:
+        #112548 !important;
+
+    box-shadow:
+        0 0 0 5px
+        rgba(5,12,20,.78) !important;
+}
+
+
+/* ---------------------------------------------------------
+   LOCKED STATUS
+--------------------------------------------------------- */
+
+#production-days
+.oa-days-timeline-item.locked
+.oa-days-timeline-copy em {
+
+    color:
+        rgba(225,215,204,.42) !important;
+
+    font-family:
+        "Cairo",
+        sans-serif !important;
+}
+
+
+/* ---------------------------------------------------------
+   CINEMATIC CLICK FEEL
+--------------------------------------------------------- */
+
+#production-days
+.oa-days-timeline-item.locked:active {
+
+    transform:
+        scale(.985) !important;
+
+    opacity:
+        .72 !important;
+}

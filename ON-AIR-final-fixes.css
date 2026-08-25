@@ -1,0 +1,1774 @@
+/* =========================================================
+   ON AIR — PRODUCTION DAYS
+   CLEAN CINEMATIC / NO CARDS
+========================================================= */
+
+.oa-days {
+    --days-blue: #112548;
+    --days-dark: #050C14;
+    --days-dark-2: #07111D;
+    --days-cream: #F7EDE3;
+    --days-beige: #E1D7CC;
+
+    position: relative !important;
+    overflow: hidden !important;
+
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.oa-days-bg {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,12,20,.42),
+            rgba(5,12,20,.72)
+        ),
+        url("images/crew-background.png")
+        center center / cover no-repeat !important;
+
+    opacity: 1 !important;
+}
+
+.oa-days-vignette {
+    z-index: 1 !important;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 20%,
+            rgba(5,12,20,.62) 100%
+        ) !important;
+}
+
+.oa-days-grid {
+    opacity: .08 !important;
+}
+
+.oa-days-grain {
+    opacity: .13 !important;
+}
+
+
+/* كل المحتوى فوق الخلفية */
+
+.oa-days > *:not(.oa-days-bg):not(.oa-days-vignette) {
+    position: relative;
+    z-index: 3;
+}
+
+
+/* =========================================================
+   REMOVE OLD BOX EFFECTS
+========================================================= */
+
+.oa-days-featured,
+.oa-days-media,
+.oa-days-main-image,
+.oa-days-info,
+.oa-days-timeline,
+.oa-days-track,
+.oa-days-timeline-item {
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.oa-days-header {
+    width:
+        min(1380px, calc(100% - 70px)) !important;
+
+    margin:
+        0 auto 55px !important;
+}
+
+.oa-days-header-line {
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.12) !important;
+}
+
+.oa-days-kicker {
+    color:
+        rgba(225,215,204,.55) !important;
+}
+
+.oa-days-heading h2 {
+    color:
+        var(--days-cream) !important;
+}
+
+.oa-days-heading p {
+    color:
+        rgba(225,215,204,.50) !important;
+}
+
+
+/* =========================================================
+   MAIN FEATURED
+   IMAGE + TEXT
+   NO CARDS
+========================================================= */
+
+.oa-days-featured {
+    width:
+        min(1380px, calc(100% - 70px)) !important;
+
+    margin:
+        0 auto !important;
+
+    display:
+        grid !important;
+
+    grid-template-columns:
+        minmax(0, 1.55fr)
+        minmax(320px, .75fr) !important;
+
+    gap:
+        clamp(35px, 5vw, 80px) !important;
+
+    align-items:
+        stretch !important;
+
+    direction:
+        ltr !important;
+
+    background:
+        transparent !important;
+
+    border:
+        0 !important;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.oa-days-media {
+    position:
+        relative !important;
+
+    min-width:
+        0 !important;
+
+    background:
+        transparent !important;
+
+    border:
+        0 !important;
+}
+
+
+/* الصورة نفسها */
+
+.oa-days-main-image {
+    position:
+        relative !important;
+
+    width:
+        100% !important;
+
+    aspect-ratio:
+        16 / 9 !important;
+
+    overflow:
+        hidden !important;
+
+    background:
+        transparent !important;
+
+    border:
+        0 !important;
+
+    box-shadow:
+        none !important;
+}
+
+
+/* إزالة الإطار الداخلي */
+
+.oa-days-main-image::before {
+    display:
+        none !important;
+}
+
+
+/* الصورة */
+
+.oa-days-main-image img {
+    width:
+        100% !important;
+
+    height:
+        100% !important;
+
+    object-fit:
+        cover !important;
+
+    filter:
+        brightness(.72)
+        contrast(1.05)
+        saturate(.68) !important;
+
+    transform:
+        scale(1.01) !important;
+
+    transition:
+        transform 1s cubic-bezier(.16,1,.3,1),
+        filter .6s ease !important;
+}
+
+.oa-days-main-image:hover img {
+    transform:
+        scale(1.025) !important;
+
+    filter:
+        brightness(.80)
+        contrast(1.06)
+        saturate(.78) !important;
+}
+
+
+/* تدرج سينمائي فوق الصورة */
+
+.oa-days-image-overlay {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,12,20,.02),
+            transparent 45%,
+            rgba(5,12,20,.58) 100%
+        ) !important;
+}
+
+
+/* =========================================================
+   IMAGE CORNERS
+========================================================= */
+
+.oa-days-image-corners {
+    inset:
+        18px !important;
+
+    opacity:
+        .48 !important;
+}
+
+
+/* =========================================================
+   IMAGE TECH
+========================================================= */
+
+.oa-days-image-rec,
+.oa-days-image-frame,
+.oa-days-image-brand {
+    text-shadow:
+        0 3px 12px
+        rgba(0,0,0,.65) !important;
+}
+
+
+/* أزرق بدل الأخضر */
+
+.oa-days-image-frame strong {
+    color:
+        var(--days-blue) !important;
+}
+
+
+/* =========================================================
+   PHOTO THUMBS
+========================================================= */
+
+.oa-days-gallery {
+    min-height:
+        64px !important;
+
+    padding:
+        9px 0 !important;
+
+    background:
+        transparent !important;
+
+    border:
+        0 !important;
+}
+
+.oa-days-thumb {
+    border:
+        1px solid
+        rgba(247,237,227,.14) !important;
+
+    background:
+        transparent !important;
+}
+
+.oa-days-thumb.active {
+    border-color:
+        var(--days-blue) !important;
+
+    box-shadow:
+        0 0 14px
+        rgba(17,37,72,.38) !important;
+}
+
+.oa-days-photo-arrow {
+    background:
+        transparent !important;
+
+    border-color:
+        rgba(247,237,227,.14) !important;
+}
+
+.oa-days-photo-arrow:hover:not(:disabled) {
+    color:
+        var(--days-cream) !important;
+
+    border-color:
+        var(--days-blue) !important;
+
+    background:
+        rgba(17,37,72,.20) !important;
+}
+
+
+/* =========================================================
+   INFO
+   COMPLETELY FLOATING ON BACKGROUND
+========================================================= */
+
+.oa-days-info {
+    position:
+        relative !important;
+
+    min-width:
+        0 !important;
+
+    padding:
+        18px 0 20px !important;
+
+    direction:
+        rtl !important;
+
+    text-align:
+        right !important;
+
+    display:
+        flex !important;
+
+    flex-direction:
+        column !important;
+
+    justify-content:
+        flex-start !important;
+
+    background:
+        transparent !important;
+
+    border:
+        0 !important;
+
+    box-shadow:
+        none !important;
+
+    backdrop-filter:
+        none !important;
+
+    -webkit-backdrop-filter:
+        none !important;
+}
+
+
+/* قتل الإطار الداخلي */
+
+.oa-days-info::before,
+.oa-days-info::after {
+    display:
+        none !important;
+}
+
+
+/* =========================================================
+   INFO TOP
+========================================================= */
+
+.oa-days-info-top {
+    position:
+        relative !important;
+
+    z-index:
+        2 !important;
+
+    display:
+        flex !important;
+
+    justify-content:
+        space-between !important;
+
+    align-items:
+        center !important;
+
+    padding-bottom:
+        14px !important;
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.10) !important;
+
+    color:
+        rgba(225,215,204,.38) !important;
+}
+
+.oa-days-info-top strong {
+    color:
+        var(--days-blue) !important;
+}
+
+
+/* =========================================================
+   DAY NUMBER
+========================================================= */
+
+.oa-days-number-label {
+    margin-top:
+        32px !important;
+
+    color:
+        rgba(225,215,204,.30) !important;
+}
+
+.oa-days-number {
+    margin-top:
+        -4px !important;
+
+    color:
+        rgba(247,237,227,.075) !important;
+
+    font-size:
+        clamp(95px, 10vw, 150px) !important;
+
+    line-height:
+        .78 !important;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.oa-days-info h3 {
+    margin:
+        18px 0 0 !important;
+
+    color:
+        var(--days-cream) !important;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif !important;
+
+    font-size:
+        clamp(32px, 3.3vw, 52px) !important;
+
+    font-weight:
+        800 !important;
+
+    line-height:
+        1.15 !important;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.oa-days-date {
+    margin-top:
+        12px !important;
+
+    color:
+        rgba(225,215,204,.55) !important;
+}
+
+.oa-days-date span {
+    color:
+        var(--days-blue) !important;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.oa-days-divider {
+    width:
+        70px !important;
+
+    height:
+        1px !important;
+
+    margin:
+        28px 0 !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--days-blue),
+            transparent
+        ) !important;
+
+    opacity:
+        .8 !important;
+}
+
+
+/* =========================================================
+   NOTE
+========================================================= */
+
+.oa-days-note,
+.oa-days-log {
+    background:
+        transparent !important;
+
+    border:
+        0 !important;
+
+    box-shadow:
+        none !important;
+}
+
+.oa-days-note > span,
+.oa-days-log > span {
+    color:
+        rgba(225,215,204,.30) !important;
+}
+
+.oa-days-note p {
+    color:
+        rgba(247,237,227,.70) !important;
+
+    font-size:
+        11px !important;
+
+    line-height:
+        2 !important;
+}
+
+
+/* =========================================================
+   PRODUCTION LOG
+========================================================= */
+
+.oa-days-log {
+    margin-top:
+        22px !important;
+}
+
+.oa-days-log li {
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.07) !important;
+
+    color:
+        rgba(225,215,204,.55) !important;
+}
+
+.oa-days-log li::before {
+    background:
+        var(--days-blue) !important;
+}
+
+
+/* =========================================================
+   TIMELINE
+   NO BOXES
+========================================================= */
+
+.oa-days-timeline {
+    width:
+        min(1380px, calc(100% - 70px)) !important;
+
+    margin:
+        65px auto 0 !important;
+
+    background:
+        transparent !important;
+
+    border:
+        0 !important;
+}
+
+
+/* timeline header */
+
+.oa-days-timeline-head {
+    padding-bottom:
+        14px !important;
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.09) !important;
+}
+
+.oa-days-timeline-head span {
+    color:
+        rgba(225,215,204,.36) !important;
+}
+
+.oa-days-timeline-head small {
+    color:
+        rgba(225,215,204,.30) !important;
+}
+
+
+/* arrows */
+
+.oa-days-day-arrows button {
+    background:
+        transparent !important;
+
+    border:
+        1px solid
+        rgba(247,237,227,.12) !important;
+}
+
+.oa-days-day-arrows button:hover {
+    background:
+        rgba(17,37,72,.22) !important;
+
+    border-color:
+        var(--days-blue) !important;
+}
+
+
+/* =========================================================
+   TIMELINE TRACK
+========================================================= */
+
+.oa-days-track {
+    position:
+        relative !important;
+
+    display:
+        grid !important;
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr)) !important;
+
+    gap:
+        0 !important;
+
+    width:
+        100% !important;
+
+    padding:
+        45px 0 10px !important;
+
+    overflow:
+        visible !important;
+
+    background:
+        transparent !important;
+
+    direction:
+        rtl !important;
+}
+
+
+/* الخط */
+
+.oa-days-track::before {
+    content:
+        "" !important;
+
+    position:
+        absolute !important;
+
+    top:
+        20px !important;
+
+    left:
+        0 !important;
+
+    right:
+        0 !important;
+
+    height:
+        1px !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(17,37,72,.90),
+            rgba(247,237,227,.22),
+            rgba(17,37,72,.90),
+            transparent
+        ) !important;
+}
+
+
+/* =========================================================
+   TIMELINE ITEM
+========================================================= */
+
+.oa-days-timeline-item {
+    position:
+        relative !important;
+
+    width:
+        100% !important;
+
+    min-width:
+        0 !important;
+
+    min-height:
+        150px !important;
+
+    padding:
+        0 14px !important;
+
+    background:
+        transparent !important;
+
+    border:
+        0 !important;
+
+    box-shadow:
+        none !important;
+
+    opacity:
+        .42 !important;
+
+    transform:
+        none !important;
+
+    text-align:
+        right !important;
+}
+
+.oa-days-timeline-item:hover {
+    background:
+        transparent !important;
+
+    border:
+        0 !important;
+
+    transform:
+        translateY(-3px) !important;
+
+    opacity:
+        .78 !important;
+}
+
+.oa-days-timeline-item.active {
+    opacity:
+        1 !important;
+}
+
+
+/* =========================================================
+   TIMELINE DOT
+========================================================= */
+
+.oa-days-timeline-item::before {
+    content:
+        "" !important;
+
+    position:
+        absolute !important;
+
+    top:
+        -30px !important;
+
+    right:
+        50% !important;
+
+    width:
+        9px !important;
+
+    height:
+        9px !important;
+
+    transform:
+        translateX(50%) !important;
+
+    border:
+        1px solid
+        rgba(247,237,227,.48) !important;
+
+    border-radius:
+        50% !important;
+
+    background:
+        var(--days-dark) !important;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(5,12,20,.80) !important;
+}
+
+.oa-days-timeline-item.active::before {
+    background:
+        var(--days-blue) !important;
+
+    border-color:
+        var(--days-cream) !important;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(5,12,20,.80),
+        0 0 15px
+        rgba(17,37,72,.80) !important;
+}
+
+
+/* =========================================================
+   TIMELINE IMAGE
+========================================================= */
+
+.oa-days-timeline-image {
+    position:
+        relative !important;
+
+    left:
+        auto !important;
+
+    top:
+        auto !important;
+
+    width:
+        100% !important;
+
+    height:
+        58px !important;
+
+    margin-bottom:
+        12px !important;
+
+    border:
+        0 !important;
+
+    opacity:
+        .45 !important;
+
+    overflow:
+        hidden !important;
+}
+
+.oa-days-timeline-image img {
+    width:
+        100% !important;
+
+    height:
+        100% !important;
+
+    object-fit:
+        cover !important;
+
+    filter:
+        brightness(.58)
+        saturate(.50) !important;
+}
+
+.oa-days-timeline-item.active
+.oa-days-timeline-image {
+    opacity:
+        .90 !important;
+}
+
+
+/* =========================================================
+   TIMELINE NUMBER
+========================================================= */
+
+.oa-days-timeline-number {
+    position:
+        absolute !important;
+
+    top:
+        68px !important;
+
+    right:
+        20px !important;
+
+    color:
+        rgba(247,237,227,.18) !important;
+
+    font-size:
+        30px !important;
+}
+
+.oa-days-timeline-item.active
+.oa-days-timeline-number {
+    color:
+        rgba(247,237,227,.78) !important;
+}
+
+
+/* =========================================================
+   TIMELINE TEXT
+========================================================= */
+
+.oa-days-timeline-copy {
+    padding-top:
+        12px !important;
+
+    gap:
+        4px !important;
+}
+
+.oa-days-timeline-copy small {
+    color:
+        rgba(225,215,204,.28) !important;
+}
+
+.oa-days-timeline-copy strong {
+    color:
+        rgba(247,237,227,.72) !important;
+
+    font-size:
+        14px !important;
+}
+
+.oa-days-timeline-item.active
+.oa-days-timeline-copy strong {
+    color:
+        var(--days-cream) !important;
+}
+
+.oa-days-timeline-copy em {
+    color:
+        rgba(225,215,204,.30) !important;
+}
+
+
+/* =========================================================
+   LOCKED
+========================================================= */
+
+.oa-days-timeline-item.locked {
+    opacity:
+        .18 !important;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.oa-days-footer {
+    width:
+        min(1380px, calc(100% - 70px)) !important;
+
+    margin:
+        28px auto 0 !important;
+
+    border-top:
+        1px solid
+        rgba(247,237,227,.08) !important;
+}
+
+
+/* =========================================================
+   ENGLISH
+========================================================= */
+
+html[lang="en"] .oa-days {
+    direction:
+        ltr !important;
+}
+
+html[lang="en"] .oa-days-info {
+    direction:
+        ltr !important;
+
+    text-align:
+        left !important;
+}
+
+html[lang="en"] .oa-days-featured {
+    direction:
+        ltr !important;
+}
+
+html[lang="en"] .oa-days-track {
+    direction:
+        ltr !important;
+}
+
+html[lang="en"] .oa-days-timeline-item {
+    text-align:
+        left !important;
+}
+
+
+/* =========================================================
+   KILL GREEN / TEAL IN PRODUCTION DAYS
+========================================================= */
+
+.oa-days,
+.oa-days * {
+    --days-teal:
+        #112548 !important;
+}
+
+.oa-days .oa-days-info-top strong,
+.oa-days .oa-days-date span,
+.oa-days .oa-days-log li::before,
+.oa-days .oa-days-image-frame strong,
+.oa-days .oa-days-timeline-item.active
+.oa-days-timeline-number {
+    color:
+        #112548 !important;
+}
+
+.oa-days .oa-days-log li::before {
+    background:
+        #112548 !important;
+}
+
+.oa-days .oa-days-thumb.active,
+.oa-days .oa-days-photo-arrow:hover:not(:disabled),
+.oa-days .oa-days-day-arrows button:hover {
+    border-color:
+        #112548 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .oa-days-header,
+    .oa-days-featured,
+    .oa-days-timeline,
+    .oa-days-footer {
+        width:
+            calc(100% - 32px) !important;
+    }
+
+    .oa-days-featured {
+        grid-template-columns:
+            1fr !important;
+
+        gap:
+            28px !important;
+    }
+
+    .oa-days-info {
+        padding:
+            5px 0 10px !important;
+    }
+
+    .oa-days-number {
+        font-size:
+            90px !important;
+    }
+
+    .oa-days-track {
+        display:
+            flex !important;
+
+        overflow-x:
+            auto !important;
+
+        padding:
+            45px 0 12px !important;
+
+        scrollbar-width:
+            none !important;
+    }
+
+    .oa-days-track::-webkit-scrollbar {
+        display:
+            none !important;
+    }
+
+    .oa-days-timeline-item {
+        flex:
+            0 0 170px !important;
+
+        min-width:
+            170px !important;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .oa-days-header,
+    .oa-days-featured,
+    .oa-days-timeline,
+    .oa-days-footer {
+        width:
+            calc(100% - 22px) !important;
+    }
+
+    .oa-days-heading h2 {
+        font-size:
+            34px !important;
+    }
+
+    .oa-days-main-image {
+        aspect-ratio:
+            4 / 3 !important;
+    }
+
+    .oa-days-info h3 {
+        font-size:
+            32px !important;
+    }
+
+    .oa-days-timeline-item {
+        flex-basis:
+            145px !important;
+
+        min-width:
+            145px !important;
+    }
+}
+/* =========================================================
+   ON AIR — PRODUCTION DAYS
+   FINAL VISUAL FIX
+   BLUE CINEMATIC PALETTE
+   NO GREEN / NO TEAL
+========================================================= */
+
+:root {
+    --oa-blue: #112548;
+    --oa-cream: #F7EDE3;
+    --oa-beige: #E1D7CC;
+    --oa-dark: #050C14;
+}
+
+
+/* =========================================================
+   1. BACKGROUND
+   خلي الخلفية باينة أكتر وما تتاكلش
+========================================================= */
+
+.production-days-section {
+    position: relative !important;
+    overflow: hidden !important;
+
+    background-color: var(--oa-dark) !important;
+
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(5, 12, 20, .20),
+            rgba(5, 12, 20, .48)
+        ),
+        url("images/crew-background.png") !important;
+
+    /*
+       بدل cover اللي بيقص أجزاء من الصورة
+       نخلي الخلفية أهدى وأصغر
+    */
+    background-size:
+        100% auto !important;
+
+    background-position:
+        center top !important;
+
+    background-repeat:
+        no-repeat !important;
+}
+
+
+/* طبقة سينمائية خفيفة فقط */
+
+.production-days-section::before {
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(17, 37, 72, .18),
+            transparent 62%
+        ),
+        linear-gradient(
+            180deg,
+            transparent 20%,
+            rgba(5, 12, 20, .38) 100%
+        ) !important;
+
+    opacity: 1 !important;
+}
+
+
+/* =========================================================
+   2. CONTENT WIDTH
+========================================================= */
+
+.production-days-content {
+    width:
+        min(1320px, 88%) !important;
+
+    margin:
+        0 auto !important;
+}
+
+
+/* =========================================================
+   3. MAIN TOP AREA
+   الصورة + المعلومات
+========================================================= */
+
+.pd-top {
+    grid-template-columns:
+        minmax(0, 1.55fr)
+        minmax(280px, .58fr) !important;
+
+    gap:
+        28px !important;
+
+    align-items:
+        center !important;
+
+    margin-bottom:
+        40px !important;
+}
+
+
+/* =========================================================
+   4. MAIN IMAGE
+   نصغر الصورة شوية
+========================================================= */
+
+.pd-gallery {
+    min-height:
+        365px !important;
+
+    height:
+        365px !important;
+
+    background:
+        rgba(5, 12, 20, .18) !important;
+
+    border:
+        1px solid
+        rgba(17, 37, 72, .72) !important;
+
+    box-shadow:
+        0 25px 60px
+        rgba(0, 0, 0, .32) !important;
+
+    backdrop-filter:
+        blur(2px) !important;
+
+    -webkit-backdrop-filter:
+        blur(2px) !important;
+}
+
+
+.pd-main-image {
+    min-height:
+        365px !important;
+
+    height:
+        365px !important;
+
+    object-fit:
+        cover !important;
+
+    /*
+       الصورة نفسها أصغر بصريًا
+       من غير ما نبوظ الـcontainer
+    */
+    transform:
+        scale(.96) !important;
+
+    filter:
+        brightness(.72)
+        contrast(1.04)
+        saturate(.68) !important;
+}
+
+
+/* نوقف تكبير الصورة المبالغ فيه */
+
+.pd-gallery:hover .pd-main-image {
+    transform:
+        scale(.97) !important;
+}
+
+
+/* =========================================================
+   5. REMOVE HEAVY FRAME FEEL
+========================================================= */
+
+.pd-gallery::after {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,12,20,.02),
+            transparent 58%,
+            rgba(5,12,20,.38)
+        ) !important;
+}
+
+
+/* =========================================================
+   6. THUMBNAILS
+   الجزء اللي تحت الصورة أصغر وأنضف
+========================================================= */
+
+.pd-thumbs {
+    left:
+        20px !important;
+
+    bottom:
+        18px !important;
+
+    gap:
+        7px !important;
+}
+
+
+.pd-thumb {
+    width:
+        70px !important;
+
+    height:
+        44px !important;
+
+    border:
+        1px solid
+        rgba(247,237,227,.18) !important;
+
+    background:
+        rgba(5,12,20,.48) !important;
+
+    opacity:
+        .55 !important;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.22) !important;
+}
+
+
+.pd-thumb:hover {
+    opacity:
+        .90 !important;
+
+    transform:
+        translateY(-2px) !important;
+
+    border-color:
+        rgba(17,37,72,.90) !important;
+}
+
+
+/* الصورة المختارة */
+
+.pd-thumb.active {
+    opacity:
+        1 !important;
+
+    border:
+        1px solid
+        var(--oa-blue) !important;
+
+    box-shadow:
+        0 0 0 1px
+        rgba(17,37,72,.25),
+        0 8px 22px
+        rgba(0,0,0,.25) !important;
+}
+
+
+/* =========================================================
+   7. GALLERY META
+========================================================= */
+
+.pd-gallery-meta {
+    left:
+        20px !important;
+
+    right:
+        20px !important;
+
+    bottom:
+        16px !important;
+
+    color:
+        rgba(247,237,227,.52) !important;
+}
+
+
+/* =========================================================
+   8. INFO PANEL
+   نشيل إحساس "المربع"
+========================================================= */
+
+.pd-info {
+    min-height:
+        365px !important;
+
+    height:
+        365px !important;
+
+    padding:
+        24px 22px !important;
+
+    background:
+        transparent !important;
+
+    border:
+        none !important;
+
+    box-shadow:
+        none !important;
+
+    backdrop-filter:
+        none !important;
+
+    -webkit-backdrop-filter:
+        none !important;
+
+    overflow:
+        visible !important;
+}
+
+
+/* نشيل المربع الداخلي */
+
+.pd-info::before {
+    display:
+        none !important;
+}
+
+
+/* =========================================================
+   9. INFO TOP
+========================================================= */
+
+.pd-info-top {
+    color:
+        rgba(225,215,204,.55) !important;
+}
+
+
+/* الحالة */
+
+.pd-status {
+    color:
+        var(--oa-beige) !important;
+}
+
+
+/* =========================================================
+   10. DAY NUMBER
+========================================================= */
+
+.pd-number {
+    margin-top:
+        35px !important;
+
+    color:
+        rgba(247,237,227,.10) !important;
+
+    font-size:
+        clamp(75px, 8vw, 115px) !important;
+
+    line-height:
+        .78 !important;
+}
+
+
+/* =========================================================
+   11. TITLE
+========================================================= */
+
+.pd-title {
+    margin-top:
+        8px !important;
+
+    color:
+        var(--oa-cream) !important;
+
+    font-size:
+        clamp(28px, 2.8vw, 44px) !important;
+
+    font-weight:
+        700 !important;
+
+    line-height:
+        1.2 !important;
+}
+
+
+/* =========================================================
+   12. DATE
+========================================================= */
+
+.pd-date {
+    margin-top:
+        9px !important;
+
+    color:
+        rgba(225,215,204,.60) !important;
+}
+
+
+/* =========================================================
+   13. DIVIDER
+========================================================= */
+
+.pd-divider {
+    width:
+        70% !important;
+
+    margin:
+        20px 0 !important;
+
+    background:
+        rgba(17,37,72,.55) !important;
+}
+
+
+/* =========================================================
+   14. NOTE / LOG
+========================================================= */
+
+.pd-note-label,
+.pd-log-label {
+    color:
+        rgba(225,215,204,.45) !important;
+}
+
+
+.pd-description {
+    margin-top:
+        10px !important;
+
+    color:
+        rgba(247,237,227,.70) !important;
+
+    font-size:
+        11px !important;
+
+    line-height:
+        1.9 !important;
+}
+
+
+.pd-events {
+    gap:
+        7px !important;
+
+    margin-top:
+        12px !important;
+}
+
+
+.pd-events li {
+    color:
+        rgba(225,215,204,.64) !important;
+
+    font-size:
+        9px !important;
+}
+
+
+/* النقاط أزرق */
+
+.pd-events li::before {
+    color:
+        var(--oa-blue) !important;
+}
+
+
+/* =========================================================
+   15. NO GREEN ANYWHERE INSIDE THIS SECTION
+========================================================= */
+
+.production-days-section
+* {
+    --green: transparent;
+}
+
+
+/* أي teal قديم */
+
+.production-days-section
+.oa-days,
+.production-days-section
+.oa-days-info,
+.production-days-section
+.day-status {
+    color:
+        var(--oa-cream) !important;
+}
+
+
+/* =========================================================
+   16. MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .production-days-section {
+        background-size:
+            auto 100% !important;
+
+        background-position:
+            center top !important;
+    }
+
+
+    .production-days-content {
+        width:
+            calc(100% - 28px) !important;
+    }
+
+
+    .pd-top {
+        grid-template-columns:
+            1fr !important;
+
+        gap:
+            18px !important;
+    }
+
+
+    .pd-gallery {
+        height:
+            280px !important;
+
+        min-height:
+            280px !important;
+    }
+
+
+    .pd-main-image {
+        height:
+            280px !important;
+
+        min-height:
+            280px !important;
+
+        transform:
+            scale(.97) !important;
+    }
+
+
+    .pd-gallery:hover .pd-main-image {
+        transform:
+            scale(.98) !important;
+    }
+
+
+    .pd-thumbs {
+        left:
+            14px !important;
+
+        bottom:
+            14px !important;
+
+        gap:
+            6px !important;
+    }
+
+
+    .pd-thumb {
+        width:
+            58px !important;
+
+        height:
+            38px !important;
+    }
+
+
+    .pd-info {
+        height:
+            auto !important;
+
+        min-height:
+            0 !important;
+
+        padding:
+            12px 8px 20px !important;
+
+        text-align:
+            right !important;
+    }
+
+
+    .pd-number {
+        margin-top:
+            20px !important;
+
+        font-size:
+            70px !important;
+    }
+
+
+    .pd-title {
+        font-size:
+            30px !important;
+    }
+
+
+    .pd-description {
+        font-size:
+            11px !important;
+
+        line-height:
+            1.8 !important;
+    }
+
+
+    .pd-divider {
+        width:
+            55% !important;
+    }
+}
+/* =========================================================
+   ON AIR FINAL PALETTE
+========================================================= */
+
+#production-days,
+#production-days * {
+    --primary-blue: #112548 !important;
+    --oa-blue: #112548 !important;
+    --primary-teal: #112548 !important;
+}
+
+/* منع الأخضر/التركواز في السكشن */
+
+#production-days .active,
+#production-days .current,
+#production-days .selected {
+    border-color: #112548 !important;
+    color: #F7EDE3 !important;
+}
+
+/* أي accent أخضر قديم */
+
+#production-days [style*="green"],
+#production-days [style*="#4EB484"],
+#production-days [style*="rgb(78, 180, 132)"] {
+    color: #112548 !important;
+    border-color: #112548 !important;
+    background-color: transparent !important;
+}

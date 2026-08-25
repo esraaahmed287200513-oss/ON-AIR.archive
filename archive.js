@@ -1079,10 +1079,10 @@ const productionDays = [
         titleAr: "اليوم الثالث",
         titleEn: "DAY THREE",
 
-        status: "open",
+        status: "locked",
 
-        statusAr: "مفتوح",
-        statusEn: "OPEN",
+        statusAr: "قريبًا",
+        statusEn: "COMING SOON",
 
         dateAr: "قريبًا",
         dateEn: "COMING SOON",
@@ -1765,19 +1765,45 @@ function renderOATimeline() {
                 "oa-days-timeline-item";
 
 
-            if (
-                day.status === "locked"
-            ) {
+             if (day.status === "locked") {
 
-                item.classList.add(
-                    "locked"
+    item.addEventListener(
+        "click",
+        () => {
+
+            const lang = oaDaysLanguage();
+
+            if (lang === "en") {
+
+                showArchiveMessage(
+                    "COMING SOON",
+                    "We’re just getting started… this day hasn’t arrived yet."
+                );
+
+            } else {
+
+                showArchiveMessage(
+                    "قريبًا",
+                    "لسه بنبدأ… اليوم ده لسه ما وصلش."
                 );
 
             }
 
+        }
+    );
 
-            item.dataset.index =
-                index;
+} else {
+
+    item.addEventListener(
+        "click",
+        () => {
+
+            selectOADay(index);
+
+        }
+    );
+
+}
 
 
             const title =
