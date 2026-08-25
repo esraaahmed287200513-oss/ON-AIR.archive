@@ -2137,3 +2137,233 @@
             rgba(217, 40, 50, 0.3);
     }
 }
+/* =========================================================
+   ON AIR — PRODUCTION
+   MOBILE PERFORMANCE MODE
+   Keeps the cinematic look without GPU-heavy effects
+========================================================= */
+
+@media (max-width: 800px) {
+
+    /* -----------------------------------------------------
+       01 — STOP BACKGROUND ANIMATION
+    ----------------------------------------------------- */
+
+    .oa-production-bg {
+        animation: none !important;
+
+        transform: scale(1.015) !important;
+
+        filter:
+            brightness(.72)
+            contrast(1.04)
+            saturate(.85) !important;
+
+        will-change: auto !important;
+    }
+
+
+    /* -----------------------------------------------------
+       02 — REMOVE HEAVY FILM GRAIN
+    ----------------------------------------------------- */
+
+    .oa-production .oa-production-overlay::after {
+        display: none !important;
+
+        animation: none !important;
+    }
+
+
+    /* -----------------------------------------------------
+       03 — KEEP ATMOSPHERE BUT MAKE IT STATIC
+    ----------------------------------------------------- */
+
+    .oa-production::before,
+    .oa-production::after {
+        animation: none !important;
+        transform: none !important;
+    }
+
+
+    /* -----------------------------------------------------
+       04 — REMOVE BACKDROP BLUR
+       This is one of the biggest mobile GPU costs.
+    ----------------------------------------------------- */
+
+    .oa-production-table {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(17,37,72,.22),
+                rgba(7,17,29,.18)
+            ) !important;
+
+        box-shadow:
+            0 14px 35px
+            rgba(0,0,0,.22) !important;
+    }
+
+
+    /* -----------------------------------------------------
+       05 — REMOVE MOVING GLASS SWEEP
+    ----------------------------------------------------- */
+
+    .oa-production-table::after {
+        display: none !important;
+        animation: none !important;
+    }
+
+
+    /* -----------------------------------------------------
+       06 — REMOVE ROW TRANSFORM ANIMATIONS
+    ----------------------------------------------------- */
+
+    .oa-file-row,
+    .oa-status-row {
+        transition:
+            background .15s ease !important;
+
+        transform: none !important;
+    }
+
+
+    .oa-file-row:hover {
+        transform: none !important;
+    }
+
+
+    /* -----------------------------------------------------
+       07 — KEEP SIMPLE HOVER ONLY
+       Mostly irrelevant on touch devices,
+       but harmless on hybrid devices.
+    ----------------------------------------------------- */
+
+    .oa-file-row:hover,
+    .oa-status-row:hover {
+        background:
+            rgba(17,37,72,.10) !important;
+    }
+
+
+    /* -----------------------------------------------------
+       08 — LIGHTER STATUS GLOW
+    ----------------------------------------------------- */
+
+    .oa-status-live.open-status i {
+        box-shadow:
+            0 0 4px
+            rgba(199,168,106,.55) !important;
+    }
+
+
+    /* -----------------------------------------------------
+       09 — LIGHTER REC GLOW
+    ----------------------------------------------------- */
+
+    .oa-status-live.now-status i {
+        animation:
+            oaMobileRecordingLight 1.8s ease-in-out infinite !important;
+    }
+
+
+    @keyframes oaMobileRecordingLight {
+
+        0%,
+        100% {
+            opacity: .55;
+            box-shadow:
+                0 0 0
+                rgba(217,40,50,0);
+        }
+
+        50% {
+            opacity: 1;
+            box-shadow:
+                0 0 5px
+                rgba(217,40,50,.55);
+        }
+
+    }
+
+
+    /* -----------------------------------------------------
+       10 — LIGHTER CORNERS
+    ----------------------------------------------------- */
+
+    .oa-prod-corner {
+        opacity: .45 !important;
+    }
+
+
+    /* -----------------------------------------------------
+       11 — REMOVE EXPENSIVE TEXT SHADOW
+    ----------------------------------------------------- */
+
+    .oa-production-header h2 {
+        text-shadow:
+            0 3px 12px
+            rgba(0,0,0,.25) !important;
+    }
+
+
+    /* -----------------------------------------------------
+       12 — SIMPLER COMING SOON MESSAGE
+    ----------------------------------------------------- */
+
+    .oa-coming-soon-message {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+
+        box-shadow:
+            0 12px 30px
+            rgba(0,0,0,.28) !important;
+    }
+
+}
+
+
+/* =========================================================
+   TOUCH DEVICES — HARD PERFORMANCE CUT
+   ========================================================= */
+
+@media
+(max-width: 800px)
+and (hover: none)
+and (pointer: coarse) {
+
+    .oa-production-bg {
+        animation: none !important;
+        filter:
+            brightness(.74)
+            contrast(1.02)
+            saturate(.88) !important;
+    }
+
+
+    .oa-production-table,
+    .oa-production-table::before,
+    .oa-production-table::after,
+    .oa-production-overlay,
+    .oa-production-overlay::after {
+        animation: none !important;
+    }
+
+
+    .oa-file-row,
+    .oa-status-row,
+    .oa-production-table {
+        will-change: auto !important;
+    }
+
+
+    /* Kill all hover effects on actual touch */
+    .oa-file-row:hover,
+    .oa-status-row:hover {
+        background: transparent !important;
+        transform: none !important;
+    }
+
+}
