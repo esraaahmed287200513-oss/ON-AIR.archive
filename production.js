@@ -7,19 +7,6 @@
 
 
 /* =====================================================
-   DOM READY
-===================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    initProductionJournal();
-    initDeliverables();
-    initDeliverableStatus();
-
-});
-
-
-/* =====================================================
    PRODUCTION JOURNAL
 ===================================================== */
 
@@ -36,78 +23,57 @@ function initProductionJournal() {
     }
 
 
-    productionDays.forEach(day => {
+    productionDays.forEach(
+        day => {
 
-        const button =
-            day.querySelector(
-                ".day-header"
+            const button =
+                day.querySelector(
+                    ".day-header"
+                );
+
+
+            if (!button) {
+                return;
+            }
+
+
+            /* -------------------------------------------------
+               ACCESSIBILITY
+            ------------------------------------------------- */
+
+            button.setAttribute(
+                "role",
+                "button"
             );
 
 
-        if (!button) {
-            return;
-        }
+            button.setAttribute(
+                "tabindex",
+                "0"
+            );
 
 
-        /* -------------------------------------------------
-           ACCESSIBILITY
-        ------------------------------------------------- */
-
-        button.setAttribute(
-            "role",
-            "button"
-        );
-
-
-        button.setAttribute(
-            "tabindex",
-            "0"
-        );
-
-
-        const isInitiallyOpen =
-            day.classList.contains("open");
-
-
-        button.setAttribute(
-            "aria-expanded",
-            isInitiallyOpen
-                ? "true"
-                : "false"
-        );
-
-
-        /* -------------------------------------------------
-           CLICK
-        ------------------------------------------------- */
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                toggleProductionDay(
-                    day,
-                    productionDays
+            const isInitiallyOpen =
+                day.classList.contains(
+                    "open"
                 );
 
-            }
-        );
+
+            button.setAttribute(
+                "aria-expanded",
+                isInitiallyOpen
+                    ? "true"
+                    : "false"
+            );
 
 
-        /* -------------------------------------------------
-           KEYBOARD
-        ------------------------------------------------- */
+            /* -------------------------------------------------
+               CLICK
+            ------------------------------------------------- */
 
-        button.addEventListener(
-            "keydown",
-            event => {
-
-                if (
-                    event.key === "Enter" ||
-                    event.key === " "
-                ) {
-
-                    event.preventDefault();
+            button.addEventListener(
+                "click",
+                () => {
 
                     toggleProductionDay(
                         day,
@@ -115,11 +81,37 @@ function initProductionJournal() {
                     );
 
                 }
+            );
 
-            }
-        );
 
-    });
+            /* -------------------------------------------------
+               KEYBOARD
+            ------------------------------------------------- */
+
+            button.addEventListener(
+                "keydown",
+                event => {
+
+                    if (
+                        event.key === "Enter" ||
+                        event.key === " "
+                    ) {
+
+                        event.preventDefault();
+
+
+                        toggleProductionDay(
+                            day,
+                            productionDays
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
 
 }
 
@@ -139,38 +131,79 @@ function toggleProductionDay(
         );
 
 
-    /* -------------------------------------------------
-       CLOSE ALL
-    ------------------------------------------------- */
+    /*
+     * اقفل الأيام المفتوحة فقط.
+     * مفيش داعي لتغيير الـ DOM لو الحالة
+     * بالفعل false.
+     */
 
-    allDays.forEach(day => {
+    allDays.forEach(
+        day => {
 
-        day.classList.remove(
-            "open"
-        );
+            if (
+                day === selectedDay &&
+                !isOpen
+            ) {
+
+                return;
+
+            }
 
 
-        const button =
-            day.querySelector(
-                ".day-header"
+            if (
+                !day.classList.contains(
+                    "open"
+                )
+            ) {
+
+                const button =
+                    day.querySelector(
+                        ".day-header"
+                    );
+
+
+                if (button) {
+
+                    button.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+
+
+                return;
+
+            }
+
+
+            day.classList.remove(
+                "open"
             );
 
 
-        if (button) {
+            const button =
+                day.querySelector(
+                    ".day-header"
+                );
 
-            button.setAttribute(
-                "aria-expanded",
-                "false"
-            );
+
+            if (button) {
+
+                button.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
 
         }
+    );
 
-    });
 
-
-    /* -------------------------------------------------
-       OPEN SELECTED
-    ------------------------------------------------- */
+    /*
+     * افتح اليوم المختار.
+     */
 
     if (!isOpen) {
 
@@ -211,40 +244,48 @@ function initDeliverables() {
         );
 
 
-    deliverableLinks.forEach(link => {
-
-        link.addEventListener(
-            "click",
-            event => {
-
-                const href =
-                    link.getAttribute(
-                        "href"
-                    );
+    if (!deliverableLinks.length) {
+        return;
+    }
 
 
-                /* -------------------------------------------------
-                   EMPTY / PLACEHOLDER LINK
-                ------------------------------------------------- */
+    deliverableLinks.forEach(
+        link => {
 
-                if (
-                    !href ||
-                    href === "#" ||
-                    href.trim() === ""
-                ) {
+            link.addEventListener(
+                "click",
+                event => {
 
-                    event.preventDefault();
+                    const href =
+                        link.getAttribute(
+                            "href"
+                        );
 
-                    handleLockedDeliverable(
-                        link
-                    );
+
+                    /*
+                     * EMPTY / PLACEHOLDER LINK
+                     */
+
+                    if (
+                        !href ||
+                        href === "#" ||
+                        href.trim() === ""
+                    ) {
+
+                        event.preventDefault();
+
+
+                        handleLockedDeliverable(
+                            link
+                        );
+
+                    }
 
                 }
+            );
 
-            }
-        );
-
-    });
+        }
+    );
 
 }
 
@@ -265,7 +306,8 @@ function handleLockedDeliverable(
 
     if (
         item &&
-        item.dataset.status === "available"
+        item.dataset.status ===
+        "available"
     ) {
 
         return;
@@ -298,137 +340,86 @@ function initDeliverableStatus() {
     }
 
 
-    deliverables.forEach(item => {
+    deliverables.forEach(
+        item => {
 
-        const status =
-            item.getAttribute(
-                "data-status"
+            const status =
+                item.getAttribute(
+                    "data-status"
+                );
+
+
+            /*
+             * REMOVE OLD STATES
+             */
+
+            item.classList.remove(
+                "locked",
+                "coming-soon",
+                "available"
             );
 
 
-        /* -------------------------------------------------
-           REMOVE OLD STATES
-        ------------------------------------------------- */
+            /*
+             * APPLY CURRENT STATE
+             */
 
-        item.classList.remove(
-            "locked",
-            "coming-soon",
-            "available"
-        );
+            switch (status) {
 
+                case "locked":
 
-        /* -------------------------------------------------
-           APPLY CURRENT STATE
-        ------------------------------------------------- */
-
-        switch (status) {
-
-            case "locked":
-
-                item.classList.add(
-                    "locked"
-                );
-
-                item.setAttribute(
-                    "aria-disabled",
-                    "true"
-                );
-
-                break;
+                    item.classList.add(
+                        "locked"
+                    );
 
 
-            case "coming-soon":
+                    item.setAttribute(
+                        "aria-disabled",
+                        "true"
+                    );
 
-                item.classList.add(
-                    "coming-soon"
-                );
-
-                item.setAttribute(
-                    "aria-disabled",
-                    "true"
-                );
-
-                break;
+                    break;
 
 
-            case "available":
+                case "coming-soon":
 
-                item.classList.add(
-                    "available"
-                );
-
-                item.removeAttribute(
-                    "aria-disabled"
-                );
-
-                break;
+                    item.classList.add(
+                        "coming-soon"
+                    );
 
 
-            default:
+                    item.setAttribute(
+                        "aria-disabled",
+                        "true"
+                    );
 
-                break;
+                    break;
+
+
+                case "available":
+
+                    item.classList.add(
+                        "available"
+                    );
+
+
+                    item.removeAttribute(
+                        "aria-disabled"
+                    );
+
+                    break;
+
+
+                default:
+
+                    break;
+
+            }
 
         }
-
-    });
+    );
 
 }
-
-
-/* =====================================================
-   DELIVERABLE INTERACTION
-===================================================== */
-
-document.addEventListener(
-    "click",
-    event => {
-
-        const item =
-            event.target.closest(
-                ".deliverable-item"
-            );
-
-
-        if (!item) {
-            return;
-        }
-
-
-        const status =
-            item.getAttribute(
-                "data-status"
-            );
-
-
-        if (
-            status === "locked" ||
-            status === "coming-soon"
-        ) {
-
-            event.preventDefault();
-
-
-            const title =
-                status === "coming-soon"
-                    ? "COMING SOON"
-                    : "LOCKED";
-
-
-            const message =
-                status === "coming-soon"
-                    ? "هذا الملف سيكون متاحًا قريبًا."
-                    : "هذا الملف غير متاح حاليًا.";
-
-
-            showProductionNotification(
-                title,
-                message
-            );
-
-        }
-
-    }
-);
 
 
 /* =====================================================
@@ -446,9 +437,9 @@ function showProductionNotification(
         );
 
 
-    /* -------------------------------------------------
-       CREATE NOTIFICATION
-    ------------------------------------------------- */
+    /*
+     * CREATE ON FIRST USE ONLY
+     */
 
     if (!notification) {
 
@@ -477,9 +468,9 @@ function showProductionNotification(
     }
 
 
-    /* -------------------------------------------------
-       CONTENT
-    ------------------------------------------------- */
+    /*
+     * CONTENT
+     */
 
     const titleElement =
         notification.querySelector(
@@ -509,27 +500,29 @@ function showProductionNotification(
     }
 
 
-    /* -------------------------------------------------
-       SHOW
-    ------------------------------------------------- */
+    /*
+     * SHOW
+     */
 
     notification.classList.remove(
         "is-visible"
     );
 
 
-    requestAnimationFrame(() => {
+    requestAnimationFrame(
+        () => {
 
-        notification.classList.add(
-            "is-visible"
-        );
+            notification.classList.add(
+                "is-visible"
+            );
 
-    });
+        }
+    );
 
 
-    /* -------------------------------------------------
-       AUTO HIDE
-    ------------------------------------------------- */
+    /*
+     * AUTO HIDE
+     */
 
     clearTimeout(
         notification._hideTimer
@@ -537,16 +530,95 @@ function showProductionNotification(
 
 
     notification._hideTimer =
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            notification.classList.remove(
-                "is-visible"
-            );
+                notification.classList.remove(
+                    "is-visible"
+                );
 
-        }, 3200);
+            },
+            3200
+        );
 
 }
 
+
+/* =====================================================
+   DELIVERABLE INTERACTION
+===================================================== */
+
+function initDeliverableInteraction() {
+
+    /*
+     * Event delegation:
+     * listener واحد بدل listener لكل item.
+     */
+
+    document.addEventListener(
+        "click",
+        handleDeliverableClick
+    );
+
+}
+
+
+/* =====================================================
+   DELIVERABLE CLICK HANDLER
+===================================================== */
+
+function handleDeliverableClick(
+    event
+) {
+
+    const item =
+        event.target.closest(
+            ".deliverable-item"
+        );
+
+
+    if (!item) {
+        return;
+    }
+
+
+    const status =
+        item.getAttribute(
+            "data-status"
+        );
+
+
+    if (
+        status !== "locked" &&
+        status !== "coming-soon"
+    ) {
+
+        return;
+
+    }
+
+
+    event.preventDefault();
+
+
+    const title =
+        status === "coming-soon"
+            ? "COMING SOON"
+            : "LOCKED";
+
+
+    const message =
+        status === "coming-soon"
+            ? "هذا الملف سيكون متاحًا قريبًا."
+            : "هذا الملف غير متاح حاليًا.";
+
+
+    showProductionNotification(
+        title,
+        message
+    );
+
+}
 
 
 /* =====================================================
@@ -560,14 +632,15 @@ function initProductionReveal() {
             "#productionSection"
         );
 
+
     if (!section) {
         return;
     }
 
 
-    /* -------------------------------------------------
-       REDUCED MOTION
-    ------------------------------------------------- */
+    /*
+     * REDUCED MOTION
+     */
 
     if (
         window.matchMedia(
@@ -579,45 +652,77 @@ function initProductionReveal() {
             "production-scroll-hidden"
         );
 
+
         section.classList.add(
             "production-visible"
         );
 
+
         return;
+
     }
 
 
-    /* -------------------------------------------------
-       OBSERVER
-    ------------------------------------------------- */
+    /*
+     * لو IntersectionObserver
+     * غير متاح، نعرض القسم مباشرة.
+     */
+
+    if (
+        !("IntersectionObserver" in window)
+    ) {
+
+        section.classList.remove(
+            "production-scroll-hidden"
+        );
+
+
+        section.classList.add(
+            "production-visible"
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+     * OBSERVER
+     */
 
     const observer =
         new IntersectionObserver(
             entries => {
 
-                entries.forEach(entry => {
+                entries.forEach(
+                    entry => {
 
-                    if (
-                        !entry.isIntersecting
-                    ) {
-                        return;
+                        if (
+                            !entry.isIntersecting
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        section.classList.remove(
+                            "production-scroll-hidden"
+                        );
+
+
+                        section.classList.add(
+                            "production-visible"
+                        );
+
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
                     }
-
-
-                    section.classList.remove(
-                        "production-scroll-hidden"
-                    );
-
-                    section.classList.add(
-                        "production-visible"
-                    );
-
-
-                    observer.unobserve(
-                        section
-                    );
-
-                });
+                );
 
             },
             {
@@ -629,55 +734,33 @@ function initProductionReveal() {
         );
 
 
-    observer.observe(section);
+    observer.observe(
+        section
+    );
 
 }
 
 
 /* =====================================================
-   INITIALIZE
+   COMING SOON FILES
 ===================================================== */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    initProductionReveal
-);
-
-
-/* =====================================================
-   PRODUCTION PAGE READY
-===================================================== */
-
-window.addEventListener(
-    "load",
-    () => {
-
-        document.body.classList.add(
-            "production-ready"
-        );
-
-    }
-);
-
-
-/* =====================================================
-   DEBUG
-===================================================== */
-
-console.log(
-    "ON AIR — Production JS loaded successfully."
-);
-/* =========================================================
-   ON AIR — COMING SOON FILES
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
+function initComingSoonFiles() {
 
     const comingSoonMessage =
-        document.getElementById("oaComingSoon");
+        document.getElementById(
+            "oaComingSoon"
+        );
 
-    if (!comingSoonMessage) return;
 
+    if (!comingSoonMessage) {
+        return;
+    }
+
+
+    /*
+     * FILES
+     */
 
     const comingSoonItems =
         document.querySelectorAll(
@@ -685,53 +768,61 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    comingSoonItems.forEach((item) => {
+    comingSoonItems.forEach(
+        item => {
 
-        const state =
-            item.querySelector(".oa-file-state");
-
-        if (!state) return;
-
-
-        const text =
-            state.getAttribute("data-ar");
+            const state =
+                item.querySelector(
+                    ".oa-file-state"
+                );
 
 
-        if (text !== "قريبًا") return;
+            if (!state) {
+                return;
+            }
 
 
-        item.style.cursor = "pointer";
+            const text =
+                state.getAttribute(
+                    "data-ar"
+                );
 
 
-        item.addEventListener("click", (event) => {
+            if (
+                text !== "قريبًا"
+            ) {
 
-            event.preventDefault();
+                return;
 
-            comingSoonMessage.classList.add("show");
-
-
-            clearTimeout(
-                item._comingSoonTimer
-            );
+            }
 
 
-            item._comingSoonTimer =
-                setTimeout(() => {
+            item.style.cursor =
+                "pointer";
 
-                    comingSoonMessage.classList.remove(
-                        "show"
+
+            item.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+
+                    showComingSoonMessage(
+                        comingSoonMessage,
+                        item
                     );
 
-                }, 3000);
+                }
+            );
 
-        });
+        }
+    );
 
-    });
 
-
-    /* =========================
-       PRODUCTION STATUS
-    ========================= */
+    /*
+     * PRODUCTION STATUS
+     */
 
     const comingSoonStages =
         document.querySelectorAll(
@@ -739,47 +830,148 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    comingSoonStages.forEach((item) => {
+    comingSoonStages.forEach(
+        item => {
 
-        const state =
-            item.querySelector(".oa-status-state");
-
-        if (!state) return;
-
-
-        const text =
-            state.getAttribute("data-ar");
+            const state =
+                item.querySelector(
+                    ".oa-status-state"
+                );
 
 
-        if (text !== "قريبًا") return;
+            if (!state) {
+                return;
+            }
 
 
-        item.style.cursor = "pointer";
+            const text =
+                state.getAttribute(
+                    "data-ar"
+                );
 
 
-        item.addEventListener("click", (event) => {
+            if (
+                text !== "قريبًا"
+            ) {
 
-            event.preventDefault();
+                return;
 
-            comingSoonMessage.classList.add("show");
-
-
-            clearTimeout(
-                item._comingSoonTimer
-            );
+            }
 
 
-            item._comingSoonTimer =
-                setTimeout(() => {
+            item.style.cursor =
+                "pointer";
 
-                    comingSoonMessage.classList.remove(
-                        "show"
+
+            item.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+
+                    showComingSoonMessage(
+                        comingSoonMessage,
+                        item
                     );
 
-                }, 3000);
+                }
+            );
 
-        });
+        }
+    );
 
-    });
+}
 
-});
+
+/* =====================================================
+   COMING SOON MESSAGE
+===================================================== */
+
+function showComingSoonMessage(
+    messageElement,
+    sourceElement
+) {
+
+    messageElement.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        sourceElement._comingSoonTimer
+    );
+
+
+    sourceElement._comingSoonTimer =
+        setTimeout(
+            () => {
+
+                messageElement.classList.remove(
+                    "show"
+                );
+
+            },
+            3000
+        );
+
+}
+
+
+/* =====================================================
+   PRODUCTION READY
+===================================================== */
+
+function initProductionReady() {
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            document.body.classList.add(
+                "production-ready"
+            );
+
+        },
+        {
+            once: true
+        }
+    );
+
+}
+
+
+/* =====================================================
+   INITIALIZE PRODUCTION
+===================================================== */
+
+function initProduction() {
+
+    initProductionJournal();
+
+    initDeliverables();
+
+    initDeliverableStatus();
+
+    initDeliverableInteraction();
+
+    initProductionReveal();
+
+    initComingSoonFiles();
+
+    initProductionReady();
+
+}
+
+
+/* =====================================================
+   SINGLE DOM READY
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initProduction,
+    {
+        once: true
+    }
+);

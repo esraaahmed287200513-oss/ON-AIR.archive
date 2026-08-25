@@ -5,6 +5,7 @@
 
 "use strict";
 
+
 /* =========================================================
    SUPABASE
 ========================================================= */
@@ -27,6 +28,7 @@ const stickySupabase =
 ========================================================= */
 
 const MAX_MESSAGE_LENGTH = 180;
+
 const MAX_NAME_LENGTH = 40;
 
 const NOTE_COLORS = [
@@ -47,70 +49,217 @@ const ROTATIONS = [
     2.8
 ];
 
+const DEFAULT_POSITIONS = [
+    ["7%", "18%"],
+    ["29%", "10%"],
+    ["52%", "23%"],
+    ["76%", "13%"],
+
+    ["18%", "58%"],
+    ["43%", "68%"],
+    ["68%", "55%"],
+    ["86%", "72%"]
+];
+
+const STORAGE_KEY =
+    "onairStickyPositions";
+
 
 /* =========================================================
    DOM
 ========================================================= */
 
 const section =
-    document.getElementById("leaveMarkSection");
+    document.getElementById(
+        "leaveMarkSection"
+    );
 
 const notesContainer =
-    document.getElementById("stickyNotesContainer");
+    document.getElementById(
+        "stickyNotesContainer"
+    );
 
 const emptyState =
-    document.getElementById("stickyWallEmpty");
+    document.getElementById(
+        "stickyWallEmpty"
+    );
 
 const formPanel =
-    document.getElementById("leaveNotePanel");
+    document.getElementById(
+        "leaveNotePanel"
+    );
 
 const openButton =
-    document.getElementById("leaveNoteButton");
+    document.getElementById(
+        "leaveNoteButton"
+    );
 
 const closeButton =
-    document.getElementById("closeNotePanel");
+    document.getElementById(
+        "closeNotePanel"
+    );
 
 const form =
-    document.getElementById("stickyNoteForm");
+    document.getElementById(
+        "stickyNoteForm"
+    );
 
 const nameInput =
-    document.getElementById("stickyName");
+    document.getElementById(
+        "stickyName"
+    );
 
 const messageInput =
-    document.getElementById("stickyMessage");
+    document.getElementById(
+        "stickyMessage"
+    );
 
 const colorInput =
-    document.getElementById("stickyColor");
+    document.getElementById(
+        "stickyColor"
+    );
 
 const submitButton =
-    document.getElementById("stickySubmit");
+    document.getElementById(
+        "stickySubmit"
+    );
 
 const statusElement =
-    document.getElementById("stickyFormStatus");
+    document.getElementById(
+        "stickyFormStatus"
+    );
 
 const counter =
-    document.getElementById("stickyCounter");
+    document.getElementById(
+        "stickyCounter"
+    );
 
 const honeypot =
-    document.getElementById("stickyWebsite");
+    document.getElementById(
+        "stickyWebsite"
+    );
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let savedPositions = {};
+
+let languageObserver = null;
+
+let sectionObserver = null;
+
+let stickyChannel = null;
+
+
+/* =========================================================
+   LOAD SAVED POSITIONS ONCE
+========================================================= */
+
+function loadSavedPositions() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                STORAGE_KEY
+            );
+
+
+        if (!saved) {
+
+            savedPositions = {};
+
+            return;
+
+        }
+
+
+        const parsed =
+            JSON.parse(saved);
+
+
+        if (
+            parsed &&
+            typeof parsed === "object"
+        ) {
+
+            savedPositions =
+                parsed;
+
+        } else {
+
+            savedPositions = {};
+
+        }
+
+    } catch {
+
+        savedPositions = {};
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE ALL POSITIONS
+========================================================= */
+
+function persistPositions() {
+
+    try {
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(
+                savedPositions
+            )
+        );
+
+    } catch {
+
+        /*
+         * localStorage ممكن يكون مقفول
+         * في بعض المتصفحات.
+         */
+
+    }
+
+}
 
 
 /* =========================================================
    STATUS
 ========================================================= */
 
-function showStatus(message, type = "") {
+function showStatus(
+    message,
+    type = ""
+) {
 
-    if (!statusElement) return;
+    if (!statusElement) {
+        return;
+    }
 
-    statusElement.textContent = message;
+
+    statusElement.textContent =
+        message;
+
 
     statusElement.className =
         "sticky-form-status";
 
+
     if (type) {
-        statusElement.classList.add(type);
+
+        statusElement.classList.add(
+            type
+        );
+
     }
+
 }
 
 
@@ -120,10 +269,19 @@ function showStatus(message, type = "") {
 
 function updateCounter() {
 
-    if (!messageInput || !counter) return;
+    if (
+        !messageInput ||
+        !counter
+    ) {
+
+        return;
+
+    }
+
 
     counter.textContent =
         `${messageInput.value.length}/${MAX_MESSAGE_LENGTH}`;
+
 }
 
 
@@ -135,29 +293,56 @@ function getCurrentLanguage() {
 
     const lang =
         document.documentElement
-            .getAttribute("lang") || "ar";
+            .getAttribute("lang") ||
+        "ar";
 
-    return lang.toLowerCase().startsWith("en")
+
+    return lang
+        .toLowerCase()
+        .startsWith("en")
         ? "en"
         : "ar";
+
 }
 
+
+/* =========================================================
+   UPDATE STICKY LANGUAGE
+========================================================= */
 
 function updateStickyLanguage() {
 
     const language =
         getCurrentLanguage();
 
-    document
-        .querySelectorAll(
+
+    const elements =
+        document.querySelectorAll(
             "#leaveMarkSection [data-ar][data-en]"
-        )
-        .forEach(element => {
+        );
 
-            element.textContent =
-                element.dataset[language];
 
-        });
+    elements.forEach(
+        element => {
+
+            const value =
+                element.dataset[
+                    language
+                ];
+
+
+            if (
+                value !== undefined
+            ) {
+
+                element.textContent =
+                    value;
+
+            }
+
+        }
+    );
+
 
     if (section) {
 
@@ -165,22 +350,49 @@ function updateStickyLanguage() {
             language === "ar"
                 ? "rtl"
                 : "ltr";
+
     }
+
 }
 
 
-const languageObserver =
-    new MutationObserver(
-        updateStickyLanguage
+/* =========================================================
+   LANGUAGE OBSERVER
+========================================================= */
+
+function initLanguageObserver() {
+
+    if (!document.documentElement) {
+        return;
+    }
+
+
+    if (
+        !("MutationObserver" in window)
+    ) {
+
+        return;
+
+    }
+
+
+    languageObserver =
+        new MutationObserver(
+            updateStickyLanguage
+        );
+
+
+    languageObserver.observe(
+        document.documentElement,
+        {
+            attributes: true,
+            attributeFilter: [
+                "lang"
+            ]
+        }
     );
 
-languageObserver.observe(
-    document.documentElement,
-    {
-        attributes: true,
-        attributeFilter: ["lang"]
-    }
-);
+}
 
 
 /* =========================================================
@@ -188,40 +400,104 @@ languageObserver.observe(
    لا تظهر في أول فتح الموقع
 ========================================================= */
 
-if (section) {
+function initSectionReveal() {
+
+    if (!section) {
+        return;
+    }
+
 
     section.classList.add(
         "sticky-section-hidden"
     );
 
-    const sectionObserver =
+
+    /*
+     * Reduced motion
+     */
+
+    if (
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+
+        section.classList.add(
+            "is-visible"
+        );
+
+        section.classList.remove(
+            "sticky-section-hidden"
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Fallback
+     */
+
+    if (
+        !("IntersectionObserver" in window)
+    ) {
+
+        section.classList.add(
+            "is-visible"
+        );
+
+        section.classList.remove(
+            "sticky-section-hidden"
+        );
+
+        return;
+
+    }
+
+
+    sectionObserver =
         new IntersectionObserver(
             entries => {
 
-                entries.forEach(entry => {
+                entries.forEach(
+                    entry => {
 
-                    if (!entry.isIntersecting)
-                        return;
+                        if (
+                            !entry.isIntersecting
+                        ) {
 
-                    section.classList.add(
-                        "is-visible"
-                    );
+                            return;
 
-                    sectionObserver.unobserve(
-                        section
-                    );
+                        }
 
-                });
+
+                        section.classList.add(
+                            "is-visible"
+                        );
+
+
+                        sectionObserver.unobserve(
+                            section
+                        );
+
+                    }
+                );
 
             },
             {
                 threshold: 0.08,
+
                 rootMargin:
                     "0px 0px -80px 0px"
             }
         );
 
-    sectionObserver.observe(section);
+
+    sectionObserver.observe(
+        section
+    );
+
 }
 
 
@@ -231,18 +507,35 @@ if (section) {
 
 function openNotePanel() {
 
-    if (!formPanel) return;
+    if (!formPanel) {
+        return;
+    }
 
-    formPanel.classList.add("is-open");
+
+    formPanel.classList.add(
+        "is-open"
+    );
+
 
     formPanel.setAttribute(
         "aria-hidden",
         "false"
     );
 
-    setTimeout(() => {
-        nameInput?.focus();
-    }, 250);
+
+    window.setTimeout(
+        () => {
+
+            if (nameInput) {
+
+                nameInput.focus();
+
+            }
+
+        },
+        250
+    );
+
 }
 
 
@@ -252,111 +545,113 @@ function openNotePanel() {
 
 function closeNotePanel() {
 
-    if (!formPanel) return;
+    if (!formPanel) {
+        return;
+    }
 
-    formPanel.classList.remove("is-open");
+
+    formPanel.classList.remove(
+        "is-open"
+    );
+
 
     formPanel.setAttribute(
         "aria-hidden",
         "true"
     );
+
 }
 
 
-openButton?.addEventListener(
-    "click",
-    openNotePanel
-);
+/* =========================================================
+   FORM EVENTS
+========================================================= */
 
-closeButton?.addEventListener(
-    "click",
-    closeNotePanel
-);
+function initFormEvents() {
 
+    if (openButton) {
 
-formPanel?.addEventListener(
-    "click",
-    event => {
-
-        if (
-            event.target === formPanel
-        ) {
-            closeNotePanel();
-        }
+        openButton.addEventListener(
+            "click",
+            openNotePanel
+        );
 
     }
-);
 
 
-document.addEventListener(
-    "keydown",
-    event => {
+    if (closeButton) {
 
-        if (event.key === "Escape") {
-            closeNotePanel();
-        }
+        closeButton.addEventListener(
+            "click",
+            closeNotePanel
+        );
 
     }
-);
+
+
+    if (formPanel) {
+
+        formPanel.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target ===
+                    formPanel
+                ) {
+
+                    closeNotePanel();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key !==
+                "Escape"
+            ) {
+
+                return;
+
+            }
+
+
+            closeNotePanel();
+
+        }
+    );
+
+}
 
 
 /* =========================================================
    ESCAPE HTML
 ========================================================= */
 
-function escapeHTML(value) {
+function escapeHTML(
+    value
+) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     div.textContent =
         value ?? "";
 
+
     return div.innerHTML;
-}
 
-
-/* =========================================================
-   POSITIONS
-========================================================= */
-
-function getSavedPositions() {
-
-    try {
-
-        return JSON.parse(
-            localStorage.getItem(
-                "onairStickyPositions"
-            ) || "{}"
-        );
-
-    } catch {
-
-        return {};
-
-    }
-}
-
-
-function savePosition(note, id) {
-
-    const saved =
-        getSavedPositions();
-
-    saved[id] = {
-
-        left:
-            note.style.left,
-
-        top:
-            note.style.top
-
-    };
-
-    localStorage.setItem(
-        "onairStickyPositions",
-        JSON.stringify(saved)
-    );
 }
 
 
@@ -369,65 +664,67 @@ function createStickyNote(
     index
 ) {
 
-    if (!notesContainer)
+    if (!notesContainer) {
         return null;
+    }
+
 
     const note =
-        document.createElement("article");
+        document.createElement(
+            "article"
+        );
+
 
     const color =
-        NOTE_COLORS.includes(data.color)
+        NOTE_COLORS.includes(
+            data.color
+        )
             ? data.color
             : "navy";
+
 
     note.className =
         `onair-sticky-note sticky-note-${color}`;
 
+
     note.dataset.id =
         data.id;
 
+
+    /*
+     * Position
+     */
+
     const saved =
-        getSavedPositions();
+        savedPositions[
+            data.id
+        ];
 
-    const defaultPositions = [
 
-        ["7%", "18%"],
-        ["29%", "10%"],
-        ["52%", "23%"],
-        ["76%", "13%"],
+    const defaultPosition =
+        DEFAULT_POSITIONS[
+            index %
+            DEFAULT_POSITIONS.length
+        ];
 
-        ["18%", "58%"],
-        ["43%", "68%"],
-        ["68%", "55%"],
-        ["86%", "72%"]
-
-    ];
 
     const position =
-        saved[data.id]
-            ? saved[data.id]
-            : {
+        saved || {
+            left:
+                defaultPosition[0],
 
-                left:
-                    defaultPositions[
-                        index %
-                        defaultPositions.length
-                    ][0],
-
-                top:
-                    defaultPositions[
-                        index %
-                        defaultPositions.length
-                    ][1]
-
-            };
+            top:
+                defaultPosition[1]
+        };
 
 
     note.style.left =
         position.left;
 
+
     note.style.top =
         position.top;
+
 
     note.style.setProperty(
         "--r",
@@ -437,209 +734,496 @@ function createStickyNote(
     );
 
 
-    note.innerHTML = `
+    /*
+     * Content
+     */
 
-        <div class="sticky-pin"></div>
-
-        <div class="sticky-paper-content">
-
-            <p>
-                ${escapeHTML(data.message)}
-            </p>
-
-        </div>
-
-        <div class="sticky-author">
-
-            — ${escapeHTML(data.name)}
-
-        </div>
-
-    `;
+    const pin =
+        document.createElement(
+            "div"
+        );
 
 
-    note.style.opacity = "0";
+    pin.className =
+        "sticky-pin";
 
 
-    notesContainer.appendChild(note);
+    const paper =
+        document.createElement(
+            "div"
+        );
 
 
-    requestAnimationFrame(() => {
+    paper.className =
+        "sticky-paper-content";
 
-        setTimeout(() => {
 
-            note.classList.add(
-                "is-visible"
+    const message =
+        document.createElement(
+            "p"
+        );
+
+
+    message.textContent =
+        data.message || "";
+
+
+    paper.appendChild(
+        message
+    );
+
+
+    const author =
+        document.createElement(
+            "div"
+        );
+
+
+    author.className =
+        "sticky-author";
+
+
+    author.textContent =
+        `— ${data.name || ""}`;
+
+
+    note.appendChild(
+        pin
+    );
+
+
+    note.appendChild(
+        paper
+    );
+
+
+    note.appendChild(
+        author
+    );
+
+
+    /*
+     * Initial state
+     */
+
+    note.style.opacity =
+        "0";
+
+
+    notesContainer.appendChild(
+        note
+    );
+
+
+    /*
+     * Reveal
+     */
+
+    requestAnimationFrame(
+        () => {
+
+            const delay =
+                index * 80;
+
+
+            window.setTimeout(
+                () => {
+
+                    note.classList.add(
+                        "is-visible"
+                    );
+
+                },
+                delay
             );
 
-        }, index * 80);
+        }
+    );
 
-    });
 
+    /*
+     * Drag
+     */
 
     makeDraggable(
         note,
         data.id
     );
 
+
     return note;
+
 }
 
 
 /* =========================================================
-   DRAG — DESKTOP MOUSE
+   DRAG
+   DESKTOP POINTER ONLY
 ========================================================= */
 
-function makeDraggable(note, id) {
+function makeDraggable(
+    note,
+    id
+) {
 
-    let dragging = false;
+    if (
+        !note ||
+        !notesContainer
+    ) {
 
-    let startX = 0;
-    let startY = 0;
+        return;
 
-    let startLeft = 0;
-    let startTop = 0;
-
-
-    note.addEventListener(
-        "pointerdown",
-        event => {
-
-            /*
-             * الموبايل لا يسحب النوتة.
-             * ده مقصود عشان الـ scroll ما يعلقش.
-             */
-
-            if (
-                event.pointerType === "touch"
-            ) {
-                return;
-            }
+    }
 
 
-            if (
-                event.button !== undefined &&
-                event.button !== 0
-            ) {
-                return;
-            }
+    let dragging =
+        false;
 
 
-            dragging = true;
+    let pointerId =
+        null;
 
-            note.classList.add(
-                "is-dragging"
+
+    let startX =
+        0;
+
+
+    let startY =
+        0;
+
+
+    let startLeft =
+        0;
+
+
+    let startTop =
+        0;
+
+
+    let containerWidth =
+        0;
+
+
+    let containerHeight =
+        0;
+
+
+    let noteWidth =
+        0;
+
+
+    let noteHeight =
+        0;
+
+
+    let pendingX =
+        0;
+
+
+    let pendingY =
+        0;
+
+
+    let dragFrame =
+        null;
+
+
+    /*
+     * APPLY DRAG POSITION
+     */
+
+    function updateDragPosition() {
+
+        dragFrame =
+            null;
+
+
+        if (!dragging) {
+            return;
+        }
+
+
+        let left =
+            startLeft +
+            (
+                pendingX -
+                startX
             );
+
+
+        let top =
+            startTop +
+            (
+                pendingY -
+                startY
+            );
+
+
+        const maxLeft =
+            Math.max(
+                0,
+                containerWidth -
+                noteWidth
+            );
+
+
+        const maxTop =
+            Math.max(
+                0,
+                containerHeight -
+                noteHeight
+            );
+
+
+        left =
+            Math.max(
+                0,
+                Math.min(
+                    left,
+                    maxLeft
+                )
+            );
+
+
+        top =
+            Math.max(
+                0,
+                Math.min(
+                    top,
+                    maxTop
+                )
+            );
+
+
+        /*
+         * DOM write فقط داخل RAF
+         */
+
+        if (containerWidth > 0) {
+
+            note.style.left =
+                `${(
+                    left /
+                    containerWidth
+                ) * 100}%`;
+
+        }
+
+
+        if (containerHeight > 0) {
+
+            note.style.top =
+                `${(
+                    top /
+                    containerHeight
+                ) * 100}%`;
+
+        }
+
+    }
+
+
+    /*
+     * POINTER DOWN
+     */
+
+    function handlePointerDown(
+        event
+    ) {
+
+        /*
+         * الموبايل لا يسحب النوتة.
+         * ده مقصود عشان الـ scroll ما يعلقش.
+         */
+
+        if (
+            event.pointerType ===
+            "touch"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.button !== undefined &&
+            event.button !== 0
+        ) {
+
+            return;
+
+        }
+
+
+        const containerRect =
+            notesContainer
+                .getBoundingClientRect();
+
+
+        const noteRect =
+            note.getBoundingClientRect();
+
+
+        dragging =
+            true;
+
+
+        pointerId =
+            event.pointerId;
+
+
+        startX =
+            event.clientX;
+
+
+        startY =
+            event.clientY;
+
+
+        startLeft =
+            noteRect.left -
+            containerRect.left;
+
+
+        startTop =
+            noteRect.top -
+            containerRect.top;
+
+
+        containerWidth =
+            containerRect.width;
+
+
+        containerHeight =
+            containerRect.height;
+
+
+        noteWidth =
+            noteRect.width;
+
+
+        noteHeight =
+            noteRect.height;
+
+
+        pendingX =
+            event.clientX;
+
+
+        pendingY =
+            event.clientY;
+
+
+        note.classList.add(
+            "is-dragging"
+        );
+
+
+        try {
 
             note.setPointerCapture(
                 event.pointerId
             );
 
-
-            const containerRect =
-                notesContainer
-                    .getBoundingClientRect();
-
-            const noteRect =
-                note.getBoundingClientRect();
+        } catch {}
 
 
-            startX =
-                event.clientX;
+        event.preventDefault();
 
-            startY =
-                event.clientY;
+    }
 
 
-            startLeft =
-                noteRect.left -
-                containerRect.left;
+    /*
+     * POINTER MOVE
+     */
 
-            startTop =
-                noteRect.top -
-                containerRect.top;
+    function handlePointerMove(
+        event
+    ) {
 
+        if (
+            !dragging ||
+            event.pointerId !== pointerId
+        ) {
 
-            event.preventDefault();
-
-        }
-    );
-
-
-    note.addEventListener(
-        "pointermove",
-        event => {
-
-            if (!dragging)
-                return;
-
-
-            const rect =
-                notesContainer
-                    .getBoundingClientRect();
-
-
-            let left =
-                startLeft +
-                (
-                    event.clientX -
-                    startX
-                );
-
-
-            let top =
-                startTop +
-                (
-                    event.clientY -
-                    startY
-                );
-
-
-            const maxLeft =
-                rect.width -
-                note.offsetWidth;
-
-            const maxTop =
-                rect.height -
-                note.offsetHeight;
-
-
-            left =
-                Math.max(
-                    0,
-                    Math.min(
-                        left,
-                        maxLeft
-                    )
-                );
-
-
-            top =
-                Math.max(
-                    0,
-                    Math.min(
-                        top,
-                        maxTop
-                    )
-                );
-
-
-            note.style.left =
-                `${(left / rect.width) * 100}%`;
-
-            note.style.top =
-                `${(top / rect.height) * 100}%`;
-
-        }
-    );
-
-
-    function stopDragging(event) {
-
-        if (!dragging)
             return;
 
-        dragging = false;
+        }
+
+
+        pendingX =
+            event.clientX;
+
+
+        pendingY =
+            event.clientY;
+
+
+        /*
+         * RAF يمنع عشرات/مئات
+         * عمليات DOM في الثانية.
+         */
+
+        if (
+            dragFrame === null
+        ) {
+
+            dragFrame =
+                requestAnimationFrame(
+                    updateDragPosition
+                );
+
+        }
+
+    }
+
+
+    /*
+     * STOP DRAG
+     */
+
+    function stopDragging(
+        event
+    ) {
+
+        if (
+            !dragging ||
+            event.pointerId !== pointerId
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+         * آخر position
+         */
+
+        pendingX =
+            event.clientX;
+
+
+        pendingY =
+            event.clientY;
+
+
+        if (
+            dragFrame === null
+        ) {
+
+            dragFrame =
+                requestAnimationFrame(
+                    updateDragPosition
+                );
+
+        }
+
+
+        dragging =
+            false;
+
 
         note.classList.remove(
             "is-dragging"
@@ -655,12 +1239,95 @@ function makeDraggable(note, id) {
         } catch {}
 
 
-        savePosition(
-            note,
-            id
+        /*
+         * حفظ آخر مكان
+         */
+
+        window.setTimeout(
+            () => {
+
+                savePosition(
+                    note,
+                    id
+                );
+
+            },
+            0
         );
 
+
+        pointerId =
+            null;
+
     }
+
+
+    /*
+     * CANCEL
+     */
+
+    function cancelDragging(
+        event
+    ) {
+
+        if (
+            !dragging ||
+            event.pointerId !== pointerId
+        ) {
+
+            return;
+
+        }
+
+
+        dragging =
+            false;
+
+
+        note.classList.remove(
+            "is-dragging"
+        );
+
+
+        if (
+            dragFrame !== null
+        ) {
+
+            cancelAnimationFrame(
+                dragFrame
+            );
+
+            dragFrame =
+                null;
+
+        }
+
+
+        try {
+
+            note.releasePointerCapture(
+                event.pointerId
+            );
+
+        } catch {}
+
+
+        pointerId =
+            null;
+
+    }
+
+
+    note.addEventListener(
+        "pointerdown",
+        handlePointerDown
+    );
+
+
+    note.addEventListener(
+        "pointermove",
+        handlePointerMove
+    );
 
 
     note.addEventListener(
@@ -668,10 +1335,47 @@ function makeDraggable(note, id) {
         stopDragging
     );
 
+
     note.addEventListener(
         "pointercancel",
-        stopDragging
+        cancelDragging
     );
+
+}
+
+
+/* =========================================================
+   SAVE POSITION
+========================================================= */
+
+function savePosition(
+    note,
+    id
+) {
+
+    if (
+        !note ||
+        !id
+    ) {
+
+        return;
+
+    }
+
+
+    savedPositions[id] = {
+
+        left:
+            note.style.left,
+
+        top:
+            note.style.top
+
+    };
+
+
+    persistPositions();
+
 }
 
 
@@ -679,32 +1383,71 @@ function makeDraggable(note, id) {
    RENDER
 ========================================================= */
 
-function renderNotes(notes) {
+function renderNotes(
+    notes
+) {
 
-    if (!notesContainer)
+    if (!notesContainer) {
         return;
+    }
 
 
-    notesContainer.innerHTML = "";
+    /*
+     * Clear old notes
+     */
 
+    notesContainer.replaceChildren();
+
+
+    /*
+     * EMPTY
+     */
 
     if (
         !notes ||
         !notes.length
     ) {
 
-        emptyState?.classList.remove(
-            "is-hidden"
-        );
+        if (emptyState) {
+
+            emptyState.classList.remove(
+                "is-hidden"
+            );
+
+        }
+
 
         return;
+
     }
 
 
-    emptyState?.classList.add(
-        "is-hidden"
-    );
+    /*
+     * HAS NOTES
+     */
 
+    if (emptyState) {
+
+        emptyState.classList.add(
+            "is-hidden"
+        );
+
+    }
+
+
+    /*
+     * Create notes
+     */
+
+    const fragment =
+        document.createDocumentFragment();
+
+
+    /*
+     * createStickyNote يحتاج
+     * notesContainer فعليًا للإضافة،
+     * لذلك نستخدمه مباشرة.
+     */
 
     notes.forEach(
         (note, index) => {
@@ -716,6 +1459,7 @@ function renderNotes(notes) {
 
         }
     );
+
 }
 
 
@@ -725,8 +1469,9 @@ function renderNotes(notes) {
 
 async function loadStickyNotes() {
 
-    if (!notesContainer)
+    if (!notesContainer) {
         return;
+    }
 
 
     try {
@@ -753,8 +1498,9 @@ async function loadStickyNotes() {
                 .limit(60);
 
 
-        if (error)
+        if (error) {
             throw error;
+        }
 
 
         renderNotes(
@@ -769,9 +1515,11 @@ async function loadStickyNotes() {
             error
         );
 
+
         renderNotes([]);
 
     }
+
 }
 
 
@@ -780,28 +1528,45 @@ async function loadStickyNotes() {
    الرسالة تدخل Supabase كـ approved:false
 ========================================================= */
 
-async function submitStickyNote(event) {
+async function submitStickyNote(
+    event
+) {
 
     event.preventDefault();
 
+
+    /*
+     * Honeypot
+     */
 
     if (
         honeypot &&
         honeypot.value.trim() !== ""
     ) {
+
         return;
+
     }
 
 
     const name =
-        nameInput?.value.trim() || "";
+        nameInput?.value.trim() ||
+        "";
+
 
     const message =
-        messageInput?.value.trim() || "";
+        messageInput?.value.trim() ||
+        "";
+
 
     const color =
-        colorInput?.value || "navy";
+        colorInput?.value ||
+        "navy";
 
+
+    /*
+     * NAME
+     */
 
     if (!name) {
 
@@ -810,11 +1575,18 @@ async function submitStickyNote(event) {
             "error"
         );
 
+
         nameInput?.focus();
 
+
         return;
+
     }
 
+
+    /*
+     * MESSAGE
+     */
 
     if (!message) {
 
@@ -823,11 +1595,18 @@ async function submitStickyNote(event) {
             "error"
         );
 
+
         messageInput?.focus();
 
+
         return;
+
     }
 
+
+    /*
+     * NAME LENGTH
+     */
 
     if (
         name.length >
@@ -839,9 +1618,15 @@ async function submitStickyNote(event) {
             "error"
         );
 
+
         return;
+
     }
 
+
+    /*
+     * MESSAGE LENGTH
+     */
 
     if (
         message.length >
@@ -853,12 +1638,20 @@ async function submitStickyNote(event) {
             "error"
         );
 
+
         return;
+
     }
 
 
+    /*
+     * COLOR
+     */
+
     if (
-        !NOTE_COLORS.includes(color)
+        !NOTE_COLORS.includes(
+            color
+        )
     ) {
 
         showStatus(
@@ -866,16 +1659,24 @@ async function submitStickyNote(event) {
             "error"
         );
 
+
+        return;
+
+    }
+
+
+    if (!submitButton) {
         return;
     }
 
 
-    if (!submitButton)
-        return;
-
+    /*
+     * LOCK SUBMIT
+     */
 
     submitButton.disabled =
         true;
+
 
     submitButton.classList.add(
         "is-loading"
@@ -889,38 +1690,63 @@ async function submitStickyNote(event) {
 
     try {
 
-        const { error } = await stickySupabase
-    .from("sticky_notes")
-    .insert({
-        name: name.slice(0, MAX_NAME_LENGTH),
-        message: message.slice(0, MAX_MESSAGE_LENGTH),
-        color: color,
-        approved: false
-    });
+        const {
+            error
+        } =
+            await stickySupabase
+                .from("sticky_notes")
+                .insert({
+                    name:
+                        name.slice(
+                            0,
+                            MAX_NAME_LENGTH
+                        ),
 
-     if (error) {
-         console.error(
-             "SUPABASE INSERT ERROR:",
-             error
-         );
+                    message:
+                        message.slice(
+                            0,
+                            MAX_MESSAGE_LENGTH
+                        ),
 
-       throw error;
-     }
+                    color:
+                        color,
+
+                    approved:
+                        false
+                });
 
 
-      console.log(
-    "NOTE WAITING FOR APPROVAL"
-);    
-   
+        if (error) {
+
+            console.error(
+                "SUPABASE INSERT ERROR:",
+                error
+            );
+
+
+            throw error;
+
+        }
+
+
+        /*
+         * RESET FORM
+         */
 
         form?.reset();
 
 
         if (colorInput) {
+
             colorInput.value =
                 "navy";
+
         }
 
+
+        /*
+         * RESET COLOR UI
+         */
 
         document
             .querySelectorAll(
@@ -942,6 +1768,10 @@ async function submitStickyNote(event) {
         updateCounter();
 
 
+        /*
+         * SUCCESS
+         */
+
         showStatus(
             getCurrentLanguage() === "en"
                 ? "Your message was received and is waiting for approval."
@@ -950,7 +1780,11 @@ async function submitStickyNote(event) {
         );
 
 
-        setTimeout(
+        /*
+         * CLOSE PANEL
+         */
+
+        window.setTimeout(
             closeNotePanel,
             1800
         );
@@ -977,11 +1811,13 @@ async function submitStickyNote(event) {
         submitButton.disabled =
             false;
 
+
         submitButton.classList.remove(
             "is-loading"
         );
 
     }
+
 }
 
 
@@ -989,21 +1825,39 @@ async function submitStickyNote(event) {
    FORM SUBMIT
 ========================================================= */
 
-form?.addEventListener(
-    "submit",
-    submitStickyNote
-);
+function initSubmit() {
+
+    if (!form) {
+        return;
+    }
+
+
+    form.addEventListener(
+        "submit",
+        submitStickyNote
+    );
+
+}
 
 
 /* =========================================================
    COLOR PICKER
 ========================================================= */
 
-document
-    .querySelectorAll(
-        ".sticky-color-option"
-    )
-    .forEach(
+function initColorPicker() {
+
+    const buttons =
+        document.querySelectorAll(
+            ".sticky-color-option"
+        );
+
+
+    if (!buttons.length) {
+        return;
+    }
+
+
+    buttons.forEach(
         button => {
 
             button.addEventListener(
@@ -1019,28 +1873,30 @@ document
                             color
                         )
                     ) {
+
                         return;
+
                     }
 
 
-                    colorInput.value =
-                        color;
+                    if (colorInput) {
+
+                        colorInput.value =
+                            color;
+
+                    }
 
 
-                    document
-                        .querySelectorAll(
-                            ".sticky-color-option"
-                        )
-                        .forEach(
-                            item => {
+                    buttons.forEach(
+                        item => {
 
-                                item.classList.toggle(
-                                    "is-selected",
-                                    item === button
-                                );
+                            item.classList.toggle(
+                                "is-selected",
+                                item === button
+                            );
 
-                            }
-                        );
+                        }
+                    );
 
                 }
             );
@@ -1048,63 +1904,154 @@ document
         }
     );
 
+}
+
 
 /* =========================================================
    REALTIME
 ========================================================= */
 
-stickySupabase
-    .channel(
-        "approved-sticky-notes"
-    )
-    .on(
-        "postgres_changes",
-        {
-            event: "INSERT",
-            schema: "public",
-            table: "sticky_notes"
-        },
-        payload => {
+function initRealtime() {
 
-            if (
-                payload.new?.approved === true
-            ) {
+    stickyChannel =
+        stickySupabase
+            .channel(
+                "approved-sticky-notes"
+            )
+            .on(
+                "postgres_changes",
+                {
+                    event:
+                        "INSERT",
 
-                loadStickyNotes();
+                    schema:
+                        "public",
 
-            }
+                    table:
+                        "sticky_notes"
+                },
+                payload => {
 
-        }
-    )
-    .on(
-        "postgres_changes",
-        {
-            event: "UPDATE",
-            schema: "public",
-            table: "sticky_notes"
-        },
-        () => {
+                    if (
+                        payload.new?.approved ===
+                        true
+                    ) {
 
-            loadStickyNotes();
+                        loadStickyNotes();
 
-        }
-    )
-    .subscribe();
+                    }
+
+                }
+            )
+            .on(
+                "postgres_changes",
+                {
+                    event:
+                        "UPDATE",
+
+                    schema:
+                        "public",
+
+                    table:
+                        "sticky_notes"
+                },
+                payload => {
+
+                    /*
+                     * نعيد التحميل فقط لو حالة
+                     * approval اتغيرت أو النوتة
+                     * نفسها بقت approved.
+                     */
+
+                    if (
+                        payload.new?.approved ===
+                        true ||
+                        payload.old?.approved ===
+                        true
+                    ) {
+
+                        loadStickyNotes();
+
+                    }
+
+                }
+            )
+            .subscribe();
+
+}
 
 
 /* =========================================================
-   INIT
+   INITIALIZATION
+========================================================= */
+
+function initStickyNotes() {
+
+    /*
+     * Positions
+     */
+
+    loadSavedPositions();
+
+
+    /*
+     * UI
+     */
+
+    updateCounter();
+
+    updateStickyLanguage();
+
+
+    /*
+     * Section
+     */
+
+    initSectionReveal();
+
+
+    /*
+     * Language
+     */
+
+    initLanguageObserver();
+
+
+    /*
+     * Form
+     */
+
+    initFormEvents();
+
+    initSubmit();
+
+    initColorPicker();
+
+
+    /*
+     * Data
+     */
+
+    loadStickyNotes();
+
+
+    /*
+     * Realtime
+     */
+
+    initRealtime();
+
+}
+
+
+/* =========================================================
+   SINGLE DOM READY
 ========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
-    () => {
-
-        updateCounter();
-
-        updateStickyLanguage();
-
-        loadStickyNotes();
-
+    initStickyNotes,
+    {
+        once: true
     }
 );

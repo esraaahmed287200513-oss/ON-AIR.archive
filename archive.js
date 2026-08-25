@@ -42,16 +42,22 @@ function updateLanguageContent(language) {
 
     elements.forEach(element => {
 
-        const arabicText = element.getAttribute("data-ar");
-        const englishText = element.getAttribute("data-en");
+        const arabicText =
+            element.getAttribute("data-ar");
+
+        const englishText =
+            element.getAttribute("data-en");
+
 
         if (language === "ar") {
 
-            element.textContent = arabicText;
+            element.textContent =
+                arabicText;
 
         } else {
 
-            element.textContent = englishText;
+            element.textContent =
+                englishText;
 
         }
 
@@ -66,74 +72,74 @@ function updateLanguageContent(language) {
 
 function setLanguage(language) {
 
-    if (language !== "ar" && language !== "en") {
+    if (
+        language !== "ar" &&
+        language !== "en"
+    ) {
+
         language = "ar";
+
     }
 
 
-    /* HTML LANGUAGE */
+    document.documentElement.lang =
+        language;
 
-    document.documentElement.lang = language;
-
-
-    /* HTML DIRECTION */
 
     document.documentElement.dir =
-        language === "ar" ? "rtl" : "ltr";
+        language === "ar"
+            ? "rtl"
+            : "ltr";
 
 
-    /* BODY STATE */
+    document.body.classList.toggle(
+        "lang-en",
+        language === "en"
+    );
 
-    document.body.setAttribute(
-        "data-language",
+
+    document.body.classList.toggle(
+        "lang-ar",
+        language === "ar"
+    );
+
+
+    updateLanguageContent(
         language
     );
 
 
-    /* UPDATE TEXT */
-
-    updateLanguageContent(language);
-      
-    /* UPDATE PRODUCTION DAYS */
-
-if (typeof renderProductionDays === "function") {
-    renderProductionDays();
-}
-
-    /* UPDATE BUTTONS */
-
     languageButtons.forEach(button => {
 
-        const isActive =
-            button.dataset.lang === language;
+        const active =
+            button.dataset.lang ===
+            language;
+
 
         button.classList.toggle(
             "active",
-            isActive
+            active
         );
+
 
         button.setAttribute(
             "aria-pressed",
-            isActive ? "true" : "false"
+            String(active)
         );
 
     });
 
 
-    /* SAVE LANGUAGE */
-
     try {
 
         localStorage.setItem(
-            "onAirLanguage",
+            "onair-language",
             language
         );
 
     } catch (error) {
 
-        console.warn(
-            "ON AIR: Could not save language preference."
-        );
+        /* Storage unavailable */
 
     }
 
@@ -151,44 +157,15 @@ function initLanguage() {
     }
 
 
-    languageButtons.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
-                event.stopPropagation();
-
-                const language =
-                    button.dataset.lang;
-
-                setLanguage(language);
-
-            }
-        );
-
-    });
-
-
     let savedLanguage = "ar";
 
 
     try {
 
-        const storedLanguage =
+        savedLanguage =
             localStorage.getItem(
-                "onAirLanguage"
-            );
-
-        if (
-            storedLanguage === "ar" ||
-            storedLanguage === "en"
-        ) {
-
-            savedLanguage = storedLanguage;
-
-        }
+                "onair-language"
+            ) || "ar";
 
     } catch (error) {
 
@@ -197,61 +174,45 @@ function initLanguage() {
     }
 
 
-    setLanguage(savedLanguage);
+    setLanguage(
+        savedLanguage
+    );
+
+
+    languageButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                setLanguage(
+                    button.dataset.lang
+                );
+
+            }
+        );
+
+    });
 
 }
 
 
 /* =====================================================
-   ARCHIVE REVEAL SYSTEM
+   ARCHIVE REVEAL
 ===================================================== */
 
 function initArchiveReveal() {
 
-    const revealElements = document.querySelectorAll(
-        [
-            ".archive-label",
-            ".archive-file",
-            ".archive-logo",
-            ".archive-line",
-            ".archive-intro-label",
-            ".archive-intro-title",
-            ".archive-intro-line",
-            ".archive-intro-description",
-            ".archive-meta",
-            ".team-identity-logo",
-            ".team-identity-label",
-            ".team-identity-title",
-            ".team-identity-line",
-            ".team-identity-footer",
-            ".production-header",
-            ".production-panel",
-            ".production-footer"
-        ].join(",")
-    );
+    const elements =
+        document.querySelectorAll(
+            ".reveal, .archive-reveal, [data-reveal]"
+        );
 
 
-    if (!revealElements.length) {
+    if (!elements.length) {
         return;
     }
 
-
-    /* -------------------------------------------------
-       INITIAL STATE
-    ------------------------------------------------- */
-
-    revealElements.forEach(element => {
-
-        element.classList.add(
-            "archive-reveal"
-        );
-
-    });
-
-
-    /* -------------------------------------------------
-       REDUCED MOTION
-    ------------------------------------------------- */
 
     if (
         window.matchMedia(
@@ -259,10 +220,12 @@ function initArchiveReveal() {
         ).matches
     ) {
 
-        revealElements.forEach(element => {
+        elements.forEach(element => {
 
             element.classList.add(
-                "archive-visible"
+                "visible",
+                "is-visible",
+                "revealed"
             );
 
         });
@@ -272,9 +235,24 @@ function initArchiveReveal() {
     }
 
 
-    /* -------------------------------------------------
-       INTERSECTION OBSERVER
-    ------------------------------------------------- */
+    if (
+        !("IntersectionObserver" in window)
+    ) {
+
+        elements.forEach(element => {
+
+            element.classList.add(
+                "visible",
+                "is-visible",
+                "revealed"
+            );
+
+        });
+
+        return;
+
+    }
+
 
     const observer =
         new IntersectionObserver(
@@ -282,13 +260,19 @@ function initArchiveReveal() {
 
                 entries.forEach(entry => {
 
-                    if (!entry.isIntersecting) {
+                    if (
+                        !entry.isIntersecting
+                    ) {
+
                         return;
+
                     }
 
 
                     entry.target.classList.add(
-                        "archive-visible"
+                        "visible",
+                        "is-visible",
+                        "revealed"
                     );
 
 
@@ -300,15 +284,18 @@ function initArchiveReveal() {
 
             },
             {
-                threshold: 0.12,
-                rootMargin: "0px 0px -8% 0px"
+                threshold: 0.08,
+                rootMargin:
+                    "0px 0px -40px 0px"
             }
         );
 
 
-    revealElements.forEach(element => {
+    elements.forEach(element => {
 
-        observer.observe(element);
+        observer.observe(
+            element
+        );
 
     });
 
@@ -316,46 +303,52 @@ function initArchiveReveal() {
 
 
 /* =====================================================
-   CINEMATIC ARCHIVE PARALLAX
+   ARCHIVE PARALLAX
 ===================================================== */
 
 function initArchiveParallax() {
 
-    const archive =
-        document.querySelector(".archive-page");
-
     const background =
-        document.querySelector(".archive-background");
+        document.querySelector(
+            ".archive-background"
+        );
+
 
     const grid =
-        document.querySelector(".archive-grid");
+        document.querySelector(
+            ".archive-grid"
+        );
 
-    if (!archive) return;
 
-    /*
-     * Desktop only.
-     * Mobile/touch = static background.
-     */
-
-    const desktop =
-        window.matchMedia(
-            "(hover: hover) and (pointer: fine)"
-        ).matches;
-
-        
-    if (!desktop) {
-
-        if (background) {
-            background.style.transform =
-                "translate3d(0,0,0) scale(1.02)";
-        }
-
-        if (grid) {
-            grid.style.transform =
-                "translate3d(0,0,0)";
-        }
+    if (
+        !background &&
+        !grid
+    ) {
 
         return;
+
+    }
+
+
+    if (
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        window.matchMedia(
+            "(pointer: coarse)"
+        ).matches
+    ) {
+
+        return;
+
     }
 
 
@@ -365,7 +358,6 @@ function initArchiveParallax() {
     let currentX = 0;
     let currentY = 0;
 
- 
     let frame = null;
 
 
@@ -375,65 +367,98 @@ function initArchiveParallax() {
 
 
         currentX +=
-            (targetX - currentX) * 0.10;
+            (targetX - currentX) *
+            0.08;
+
 
         currentY +=
-            (targetY - currentY) * 0.10;
+            (targetY - currentY) *
+            0.08;
 
-            if (background) {
+
+        if (background) {
+
             background.style.transform =
-                `translate3d(
-                    ${currentX * 8}px,
-                    ${currentY * 8}px,
-                    0
-  
-                    ) scale(1.02)`;
+                `translate3d(${currentX}px, ${currentY}px, 0)`;
+
         }
 
 
         if (grid) {
- 
+
             grid.style.transform =
-                `translate3d(
-                    ${currentX * 3}px,
-                    ${currentY * 3}px,
-                    0
-                )`;
-    
-            }
+                `translate3d(${currentX * 0.35}px, ${currentY * 0.35}px, 0)`;
 
-        const moving =
-            Math.abs(targetX - currentX) > 0.001 ||
-            Math.abs(targetY - currentY) > 0.001;
-
-        if (moving) {
-            frame =
-                requestAnimationFrame(animate);
         }
+
+
+        if (
+            Math.abs(
+                targetX - currentX
+            ) > 0.05 ||
+            Math.abs(
+                targetY - currentY
+            ) > 0.05
+        ) {
+
+            frame =
+                requestAnimationFrame(
+                    animate
+                );
+
+        }
+
     }
 
-    function wake() {
 
-        if (frame) return;
-
-        frame =
-            requestAnimationFrame(animate);
-    }
-
-
-    archive.addEventListener(
+    document.addEventListener(
         "mousemove",
         event => {
 
+            const width =
+                window.innerWidth;
+
+            const height =
+                window.innerHeight;
+
+
+            if (
+                !width ||
+                !height
+            ) {
+
+                return;
+
+            }
+
+
             targetX =
-                (event.clientX /
-                    window.innerWidth) - 0.5;
+                (
+                    event.clientX /
+                    width -
+                    0.5
+                ) * 8;
+
 
             targetY =
-                (event.clientY /
-                    window.innerHeight) - 0.5;
+                (
+                    event.clientY /
+                    height -
+                    0.5
+                ) * 8;
 
-            wake();
+
+            if (
+                frame === null
+            ) {
+
+                frame =
+                    requestAnimationFrame(
+                        animate
+                    );
+
+            }
+
         },
         {
             passive: true
@@ -441,23 +466,32 @@ function initArchiveParallax() {
     );
 
 
-    archive.addEventListener(
-        "mouseleave",
+    window.addEventListener(
+        "blur",
         () => {
 
             targetX = 0;
             targetY = 0;
 
-            wake();
+
+            if (
+                frame === null
+            ) {
+
+                frame =
+                    requestAnimationFrame(
+                        animate
+                    );
+
+            }
+
         },
         {
             passive: true
         }
-  
     );
+
 }
-
-
 
 
 /* =====================================================
@@ -466,103 +500,42 @@ function initArchiveParallax() {
 
 function initArchiveInteractions() {
 
-    /* -------------------------------------------------
-       PRESS KIT
-    ------------------------------------------------- */
-
-    const pressKit =
-        document.querySelector(
-            ".deliverable-link"
+    const elements =
+        document.querySelectorAll(
+            "a, button, [role='button']"
         );
 
 
-    if (pressKit) {
-
-        pressKit.addEventListener(
-            "click",
-            event => {
-
-                const href =
-                    pressKit.getAttribute("href");
-
-
-                /*
-                 * Don't allow "#" to jump
-                 * to the top of the page.
-                 */
-
-                if (
-                    !href ||
-                    href === "#"
-                ) {
-
-                    event.preventDefault();
-
-                    showArchiveMessage(
-                        "PRESS KIT",
-                        "ملف الصحافة سيكون متاحًا قريبًا."
-                    );
-
-                }
-
-            }
-        );
-
+    if (!elements.length) {
+        return;
     }
 
 
-    /* -------------------------------------------------
-       LOCKED DELIVERABLES
-    ------------------------------------------------- */
+    elements.forEach(element => {
 
-    const lockedItems =
-        document.querySelectorAll(
-            ".deliverable-item.locked"
-        );
-
-
-    lockedItems.forEach(item => {
-
-        item.setAttribute(
-            "tabindex",
-            "0"
-        );
-
-
-        item.setAttribute(
-            "role",
-            "button"
-        );
-
-
-        item.addEventListener(
-            "click",
-            () => {
-
-                showArchiveMessage(
-                    "LOCKED",
-                    "هذا الملف غير متاح حاليًا."
-                );
-
-            }
-        );
-
-
-        item.addEventListener(
+        element.addEventListener(
             "keydown",
             event => {
 
                 if (
-                    event.key === "Enter" ||
-                    event.key === " "
+                    event.key !== "Enter" &&
+                    event.key !== " "
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    element.getAttribute(
+                        "role"
+                    ) === "button"
                 ) {
 
                     event.preventDefault();
 
-                    showArchiveMessage(
-                        "LOCKED",
-                        "هذا الملف غير متاح حاليًا."
-                    );
+                    element.click();
 
                 }
 
@@ -570,115 +543,6 @@ function initArchiveInteractions() {
         );
 
     });
-
-}
-
-
-/* =====================================================
-   ARCHIVE MESSAGE
-===================================================== */
-
-function showArchiveMessage(
-    title,
-    message
-) {
-
-    let notification =
-        document.querySelector(
-            ".archive-notification"
-        );
-
-
-    /* -------------------------------------------------
-       CREATE
-    ------------------------------------------------- */
-
-    if (!notification) {
-
-        notification =
-            document.createElement(
-                "div"
-            );
-
-        notification.className =
-            "archive-notification";
-
-
-        notification.innerHTML = `
-            <div class="archive-notification-inner">
-                <span class="archive-notification-title"></span>
-                <span class="archive-notification-message"></span>
-            </div>
-        `;
-
-
-        document.body.appendChild(
-            notification
-        );
-
-    }
-
-
-    /* -------------------------------------------------
-       CONTENT
-    ------------------------------------------------- */
-
-    const titleElement =
-        notification.querySelector(
-            ".archive-notification-title"
-        );
-
-    const messageElement =
-        notification.querySelector(
-            ".archive-notification-message"
-        );
-
-
-    if (titleElement) {
-        titleElement.textContent = title;
-    }
-
-
-    if (messageElement) {
-        messageElement.textContent = message;
-    }
-
-
-    /* -------------------------------------------------
-       SHOW
-    ------------------------------------------------- */
-
-    notification.classList.remove(
-        "is-visible"
-    );
-
-
-    requestAnimationFrame(() => {
-
-        notification.classList.add(
-            "is-visible"
-        );
-
-    });
-
-
-    /* -------------------------------------------------
-       AUTO HIDE
-    ------------------------------------------------- */
-
-    clearTimeout(
-        notification._hideTimer
-    );
-
-
-    notification._hideTimer =
-        setTimeout(() => {
-
-            notification.classList.remove(
-                "is-visible"
-            );
-
-        }, 3200);
 
 }
 
@@ -689,124 +553,47 @@ function showArchiveMessage(
 
 function initReducedMotion() {
 
-    const motionQuery =
+    const mediaQuery =
         window.matchMedia(
             "(prefers-reduced-motion: reduce)"
         );
 
 
-    function updateMotion() {
+    function update() {
 
         document.documentElement.classList.toggle(
             "reduce-motion",
-            motionQuery.matches
+            mediaQuery.matches
         );
 
     }
 
 
-    updateMotion();
+    update();
 
 
     if (
-        typeof motionQuery.addEventListener ===
+        typeof mediaQuery.addEventListener ===
         "function"
     ) {
 
-        motionQuery.addEventListener(
+        mediaQuery.addEventListener(
             "change",
-            updateMotion
+            update
         );
 
-    } else {
+    } else if (
+        typeof mediaQuery.addListener ===
+        "function"
+    ) {
 
-        motionQuery.addListener(
-            updateMotion
+        mediaQuery.addListener(
+            update
         );
 
     }
 
 }
-
-
-/* =====================================================
-   PAGE LOADED
-===================================================== */
-
-window.addEventListener(
-    "load",
-    () => {
-
-        document.body.classList.add(
-            "page-loaded"
-        );
-
-    }
-);
-
-
-/* =====================================================
-   IMAGE LOAD HANDLING
-===================================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        const images =
-            document.querySelectorAll(
-                "img"
-            );
-
-
-        images.forEach(image => {
-
-            if (image.complete) {
-
-                image.classList.add(
-                    "image-loaded"
-                );
-
-                return;
-
-            }
-
-
-            image.addEventListener(
-                "load",
-                () => {
-
-                    image.classList.add(
-                        "image-loaded"
-                    );
-
-                },
-                {
-                    once: true
-                }
-            );
-
-
-            image.addEventListener(
-                "error",
-                () => {
-
-                    image.classList.add(
-                        "image-error"
-                    );
-
-                },
-                {
-                    once: true
-                }
-            );
-
-        });
-
-    }
-);
-
-
 /* =====================================================
    ARCHIVE SCROLL PROGRESS
 ===================================================== */
@@ -818,7 +605,6 @@ function initScrollProgress() {
             ".archive-page"
         );
 
-
     if (!archive) {
         return;
     }
@@ -829,8 +615,12 @@ function initScrollProgress() {
 
     function updateScrollState() {
 
+        ticking = false;
+
+
         const rect =
             archive.getBoundingClientRect();
+
 
         const viewportHeight =
             window.innerHeight;
@@ -861,9 +651,6 @@ function initScrollProgress() {
             progress.toFixed(4)
         );
 
-
-        ticking = false;
-
     }
 
 
@@ -871,15 +658,17 @@ function initScrollProgress() {
         "scroll",
         () => {
 
-            if (!ticking) {
-
-                requestAnimationFrame(
-                    updateScrollState
-                );
-
-                ticking = true;
-
+            if (ticking) {
+                return;
             }
+
+
+            ticking = true;
+
+
+            requestAnimationFrame(
+                updateScrollState
+            );
 
         },
         {
@@ -893,25 +682,77 @@ function initScrollProgress() {
 }
 
 
-document.addEventListener(
-    "DOMContentLoaded",
-    initScrollProgress
-);
+/* =====================================================
+   IMAGE LOAD HANDLING
+===================================================== */
+
+function initImageLoading() {
+
+    const images =
+        document.querySelectorAll(
+            "img"
+        );
+
+
+    if (!images.length) {
+        return;
+    }
+
+
+    images.forEach(
+        image => {
+
+            if (image.complete) {
+
+                image.classList.add(
+                    "image-loaded"
+                );
+
+                return;
+
+            }
+
+
+            image.addEventListener(
+                "load",
+                () => {
+
+                    image.classList.add(
+                        "image-loaded"
+                    );
+
+                },
+                {
+                    once: true,
+                    passive: true
+                }
+            );
+
+
+            image.addEventListener(
+                "error",
+                () => {
+
+                    image.classList.add(
+                        "image-error"
+                    );
+
+                },
+                {
+                    once: true,
+                    passive: true
+                }
+            );
+
+        }
+    );
+
+}
 
 
 /* =====================================================
-   DEBUG
-===================================================== */
-
-console.log(
-    "ON AIR — Archive JS loaded successfully."
-);
-
-
-/* =========================================================
    ON AIR — PRODUCTION DAYS
-   NEW CINEMATIC ARCHIVE SYSTEM
-========================================================= */
+===================================================== */
 
 const productionDays = [
 
@@ -1130,17 +971,18 @@ const productionDays = [
 ];
 
 
-/* =========================================================
-   STATE
-========================================================= */
+/* =====================================================
+   PRODUCTION DAYS STATE
+===================================================== */
 
 let oaActiveDay = 0;
+
 let oaActivePhoto = 0;
 
 
-/* =========================================================
-   LANGUAGE
-========================================================= */
+/* =====================================================
+   PRODUCTION DAYS LANGUAGE
+===================================================== */
 
 function oaDaysLanguage() {
 
@@ -1151,9 +993,9 @@ function oaDaysLanguage() {
 }
 
 
-/* =========================================================
+/* =====================================================
    RENDER FEATURED DAY
-========================================================= */
+===================================================== */
 
 function renderOADay(
     dayIndex,
@@ -1163,7 +1005,10 @@ function renderOADay(
     const day =
         productionDays[dayIndex];
 
-    if (!day) return;
+
+    if (!day) {
+        return;
+    }
 
 
     const lang =
@@ -1213,9 +1058,9 @@ function renderOADay(
             : 0;
 
 
-    /* =====================================================
-       IMAGE
-    ====================================================== */
+    /* =================================================
+       MAIN IMAGE
+    ================================================= */
 
     const mainImage =
         document.getElementById(
@@ -1230,106 +1075,179 @@ function renderOADay(
         );
 
 
-        setTimeout(() => {
+        /*
+         * نحفظ الـ timeout في العنصر نفسه
+         * عشان لو المستخدم ضغط بسرعة
+         * مانعملش عدة تغييرات متراكمة.
+         */
 
-            if (day.images.length) {
+        clearTimeout(
+            mainImage._oaImageTimer
+        );
 
-                mainImage.src =
-                    day.images[
-                        oaActivePhoto
-                    ];
 
-                mainImage.alt =
-                    title;
+        mainImage._oaImageTimer =
+            setTimeout(
+                () => {
 
-                mainImage.classList.remove(
-                    "oa-days-image-changing"
-                );
+                    if (!day.images.length) {
+                        return;
+                    }
 
-            }
 
-        }, 180);
+                    mainImage.src =
+                        day.images[
+                            oaActivePhoto
+                        ];
+
+
+                    mainImage.alt =
+                        title;
+
+
+                    mainImage.classList.remove(
+                        "oa-days-image-changing"
+                    );
+
+                },
+                120
+            );
 
     }
 
 
-    /* =====================================================
-       TEXT
-    ====================================================== */
+    /* =================================================
+       SAFE TEXT UPDATE
+    ================================================= */
 
-    document.getElementById(
-        "oaDaysCurrent"
-    ).textContent =
-        day.number;
-
-
-    document.getElementById(
-        "oaDaysNumber"
-    ).textContent =
-        day.number;
-
-
-    document.getElementById(
-        "oaDaysTitle"
-    ).textContent =
-        title;
-
-
-    document.getElementById(
-        "oaDaysStatus"
-    ).textContent =
-        status;
-
-
-    document.getElementById(
-        "oaDaysDate"
-    ).textContent =
-        date ||
-        (
-            lang === "en"
-                ? "COMING SOON"
-                : "قريبًا"
+    const current =
+        document.getElementById(
+            "oaDaysCurrent"
         );
 
+    if (current) {
+        current.textContent =
+            day.number;
+    }
 
-    document.getElementById(
-        "oaDaysDescription"
-    ).textContent =
-        description ||
-        (
-            lang === "en"
-                ? "Details will be added to the archive soon."
-                : "تفاصيل اليوم هتظهر هنا لما يحين وقته."
+
+    const number =
+        document.getElementById(
+            "oaDaysNumber"
         );
 
-
-    document.getElementById(
-        "oaDaysIndex"
-    ).textContent =
-        `${day.number} / ${String(
-            productionDays.length
-        ).padStart(2, "0")}`;
+    if (number) {
+        number.textContent =
+            day.number;
+    }
 
 
-    document.getElementById(
-        "oaDaysTotal"
-    ).textContent =
-        String(
-            productionDays.length
-        ).padStart(2, "0");
+    const titleElement =
+        document.getElementById(
+            "oaDaysTitle"
+        );
+
+    if (titleElement) {
+        titleElement.textContent =
+            title;
+    }
 
 
-    document.getElementById(
-        "oaDaysFrame"
-    ).textContent =
-        String(
-            oaActivePhoto + 1
-        ).padStart(3, "0");
+    const statusElement =
+        document.getElementById(
+            "oaDaysStatus"
+        );
+
+    if (statusElement) {
+        statusElement.textContent =
+            status;
+    }
 
 
-    /* =====================================================
+    const dateElement =
+        document.getElementById(
+            "oaDaysDate"
+        );
+
+    if (dateElement) {
+
+        dateElement.textContent =
+            date ||
+            (
+                lang === "en"
+                    ? "COMING SOON"
+                    : "قريبًا"
+            );
+
+    }
+
+
+    const descriptionElement =
+        document.getElementById(
+            "oaDaysDescription"
+        );
+
+    if (descriptionElement) {
+
+        descriptionElement.textContent =
+            description ||
+            (
+                lang === "en"
+                    ? "Details will be added to the archive soon."
+                    : "تفاصيل اليوم هتظهر هنا لما يحين وقته."
+            );
+
+    }
+
+
+    const indexElement =
+        document.getElementById(
+            "oaDaysIndex"
+        );
+
+    if (indexElement) {
+
+        indexElement.textContent =
+            `${day.number} / ${String(
+                productionDays.length
+            ).padStart(2, "0")}`;
+
+    }
+
+
+    const totalElement =
+        document.getElementById(
+            "oaDaysTotal"
+        );
+
+    if (totalElement) {
+
+        totalElement.textContent =
+            String(
+                productionDays.length
+            ).padStart(2, "0");
+
+    }
+
+
+    const frameElement =
+        document.getElementById(
+            "oaDaysFrame"
+        );
+
+    if (frameElement) {
+
+        frameElement.textContent =
+            String(
+                oaActivePhoto + 1
+            ).padStart(3, "0");
+
+    }
+
+
+    /* =================================================
        EVENTS
-    ====================================================== */
+    ================================================= */
 
     const eventsContainer =
         document.getElementById(
@@ -1337,107 +1255,106 @@ function renderOADay(
         );
 
 
-    eventsContainer.innerHTML = "";
+    if (eventsContainer) {
+
+        /*
+         * استخدام fragment يمنع repaint
+         * مع كل <li> يتم إضافته.
+         */
+
+        const fragment =
+            document.createDocumentFragment();
 
 
-    events.forEach(
-        event => {
+        events.forEach(
+            eventText => {
 
-            const li =
-                document.createElement(
-                    "li"
+                const li =
+                    document.createElement(
+                        "li"
+                    );
+
+
+                li.textContent =
+                    eventText;
+
+
+                fragment.appendChild(
+                    li
                 );
 
-            li.textContent =
-                event;
+            }
+        );
 
-            eventsContainer.appendChild(
-                li
-            );
 
-        }
+        eventsContainer.replaceChildren(
+            fragment
+        );
+
+    }
+
+
+    /* =================================================
+       GALLERY
+    ================================================= */
+
+    renderOAGallery(
+        day
     );
 
 
-    /* =====================================================
-       GALLERY
-    ====================================================== */
-
-    renderOAGallery(day);
-
-
-    /* =====================================================
-       TIMELINE
-    ====================================================== */
+    /* =================================================
+       TIMELINE STATE
+    ================================================= */
 
     renderOATimelineState();
 
 }
-
-
-/* =========================================================
-   GALLERY
-========================================================= */
+/* =====================================================
+   RENDER GALLERY
+===================================================== */
 
 function renderOAGallery(day) {
 
-    const thumbs =
+    const gallery =
         document.getElementById(
             "oaDaysThumbs"
         );
 
 
-    const counter =
-        document.getElementById(
-            "oaDaysPhotoCounter"
-        );
+    if (!gallery) {
+        return;
+    }
 
 
-    const prev =
-        document.getElementById(
-            "oaDaysPhotoPrev"
-        );
+    const images =
+        day.images || [];
 
 
-    const next =
-        document.getElementById(
-            "oaDaysPhotoNext"
-        );
+    /*
+     * لو مفيش صور
+     */
 
+    if (!images.length) {
 
-    thumbs.innerHTML = "";
-
-
-    /* NO PHOTOS */
-
-    if (!day.images.length) {
-
-        thumbs.innerHTML = `
-            <div class="oa-days-gallery-empty">
-                COMING SOON
-            </div>
-        `;
-
-        counter.textContent =
-            "00 / 00";
-
-        prev.disabled = true;
-        next.disabled = true;
+        gallery.replaceChildren();
 
         return;
 
     }
 
 
-    prev.disabled =
-        day.images.length <= 1;
+    /*
+     * نبني الـ thumbnails مرة واحدة
+     * باستخدام DocumentFragment.
+     */
 
-    next.disabled =
-        day.images.length <= 1;
+    const fragment =
+        document.createDocumentFragment();
 
 
-    day.images.forEach(
-        (image, index) => {
+    images.forEach(
+        (src, index) => {
 
             const button =
                 document.createElement(
@@ -1453,34 +1370,48 @@ function renderOAGallery(day) {
                 "oa-days-thumb";
 
 
-            if (
-                index ===
-                oaActivePhoto
-            ) {
+            button.dataset.index =
+                String(index);
 
-                button.classList.add(
-                    "active"
+
+            button.setAttribute(
+                "aria-label",
+                `Photo ${index + 1}`
+            );
+
+
+            const image =
+                document.createElement(
+                    "img"
                 );
 
-            }
+
+            image.src =
+                src;
 
 
-            button.innerHTML = `
+            image.alt =
+                "";
 
-                <img
-                    src="${image}"
-                    alt=""
-                    loading="lazy"
-                >
 
-                <span>
-                    ${String(
-                        index + 1
-                    ).padStart(2, "0")}
-                </span>
+            image.loading =
+                index === 0
+                    ? "eager"
+                    : "lazy";
 
-            `;
 
+            image.decoding =
+                "async";
+
+
+            button.appendChild(
+                image
+            );
+
+
+            /*
+             * listener واحد لكل thumbnail
+             */
 
             button.addEventListener(
                 "click",
@@ -1494,7 +1425,7 @@ function renderOAGallery(day) {
             );
 
 
-            thumbs.appendChild(
+            fragment.appendChild(
                 button
             );
 
@@ -1502,19 +1433,78 @@ function renderOAGallery(day) {
     );
 
 
-    counter.textContent =
-        `${String(
-            oaActivePhoto + 1
-        ).padStart(2, "0")} / ${String(
-            day.images.length
-        ).padStart(2, "0")}`;
+    gallery.replaceChildren(
+        fragment
+    );
+
+
+    updateOAGalleryState();
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   UPDATE GALLERY STATE
+===================================================== */
+
+function updateOAGalleryState() {
+
+    const thumbnails =
+        document.querySelectorAll(
+            "#oaDaysThumbs .oa-days-thumb"
+        );
+
+
+    thumbnails.forEach(
+        (thumbnail, index) => {
+
+            thumbnail.classList.toggle(
+                "active",
+                index === oaActivePhoto
+            );
+
+        }
+    );
+
+
+    const day =
+        productionDays[
+            oaActiveDay
+        ];
+
+
+    if (!day) {
+        return;
+    }
+
+
+    const counter =
+        document.getElementById(
+            "oaDaysPhotoCounter"
+        );
+
+
+    if (
+        counter &&
+        day.images &&
+        day.images.length
+    ) {
+
+        counter.textContent =
+            `${String(
+                oaActivePhoto + 1
+            ).padStart(2, "0")} / ${String(
+                day.images.length
+            ).padStart(2, "0")}`;
+
+    }
+
+}
+
+
+/* =====================================================
    CHANGE PHOTO
-========================================================= */
+===================================================== */
 
 function changeOAPhoto(
     photoIndex
@@ -1528,6 +1518,7 @@ function changeOAPhoto(
 
     if (
         !day ||
+        !day.images ||
         !day.images.length
     ) {
 
@@ -1536,14 +1527,30 @@ function changeOAPhoto(
     }
 
 
-    oaActivePhoto =
-        photoIndex;
-
-
     const image =
         document.getElementById(
             "oaDaysMainImage"
         );
+
+
+    if (!image) {
+        return;
+    }
+
+
+    oaActivePhoto =
+        Math.max(
+            0,
+            Math.min(
+                photoIndex,
+                day.images.length - 1
+            )
+        );
+
+
+    clearTimeout(
+        image._oaPhotoTimer
+    );
 
 
     image.classList.add(
@@ -1551,120 +1558,173 @@ function changeOAPhoto(
     );
 
 
-    setTimeout(() => {
+    image._oaPhotoTimer =
+        setTimeout(
+            () => {
 
-        image.src =
-            day.images[
-                oaActivePhoto
-            ];
+                image.src =
+                    day.images[
+                        oaActivePhoto
+                    ];
 
-        image.classList.remove(
-            "oa-days-image-changing"
+
+                image.alt =
+                    oaDaysLanguage() === "en"
+                        ? day.titleEn
+                        : day.titleAr;
+
+
+                image.classList.remove(
+                    "oa-days-image-changing"
+                );
+
+
+            },
+            120
         );
 
-    }, 150);
+
+    const frame =
+        document.getElementById(
+            "oaDaysFrame"
+        );
 
 
-    document.getElementById(
-        "oaDaysFrame"
-    ).textContent =
-        String(
-            oaActivePhoto + 1
-        ).padStart(3, "0");
+    if (frame) {
+
+        frame.textContent =
+            String(
+                oaActivePhoto + 1
+            ).padStart(
+                3,
+                "0"
+            );
+
+    }
 
 
-    renderOAGallery(day);
+    updateOAGalleryState();
 
 }
 
 
-/* =========================================================
-   PHOTO ARROWS
-========================================================= */
+/* =====================================================
+   PHOTO CONTROLS
+===================================================== */
 
 function initOAPhotoControls() {
 
-    document.getElementById(
-        "oaDaysPhotoPrev"
-    ).addEventListener(
-        "click",
-        () => {
-
-            const day =
-                productionDays[
-                    oaActiveDay
-                ];
+    const previous =
+        document.getElementById(
+            "oaDaysPhotoPrev"
+        );
 
 
-            if (
-                !day ||
-                day.images.length < 2
-            ) return;
+    const next =
+        document.getElementById(
+            "oaDaysPhotoNext"
+        );
 
 
-            oaActivePhoto--;
+    if (previous) {
 
-            if (
-                oaActivePhoto < 0
-            ) {
+        previous.addEventListener(
+            "click",
+            () => {
 
-                oaActivePhoto =
-                    day.images.length - 1;
-
-            }
-
-
-            changeOAPhoto(
-                oaActivePhoto
-            );
-
-        }
-    );
+                const day =
+                    productionDays[
+                        oaActiveDay
+                    ];
 
 
-    document.getElementById(
-        "oaDaysPhotoNext"
-    ).addEventListener(
-        "click",
-        () => {
+                if (
+                    !day ||
+                    !day.images ||
+                    day.images.length < 2
+                ) {
 
-            const day =
-                productionDays[
-                    oaActiveDay
-                ];
+                    return;
 
-
-            if (
-                !day ||
-                day.images.length < 2
-            ) return;
+                }
 
 
-            oaActivePhoto++;
+                let index =
+                    oaActivePhoto - 1;
 
-            if (
-                oaActivePhoto >=
-                day.images.length
-            ) {
 
-                oaActivePhoto = 0;
+                if (
+                    index < 0
+                ) {
+
+                    index =
+                        day.images.length - 1;
+
+                }
+
+
+                changeOAPhoto(
+                    index
+                );
 
             }
+        );
+
+    }
 
 
-            changeOAPhoto(
-                oaActivePhoto
-            );
+    if (next) {
 
-        }
-    );
+        next.addEventListener(
+            "click",
+            () => {
+
+                const day =
+                    productionDays[
+                        oaActiveDay
+                    ];
+
+
+                if (
+                    !day ||
+                    !day.images ||
+                    day.images.length < 2
+                ) {
+
+                    return;
+
+                }
+
+
+                let index =
+                    oaActivePhoto + 1;
+
+
+                if (
+                    index >=
+                    day.images.length
+                ) {
+
+                    index = 0;
+
+                }
+
+
+                changeOAPhoto(
+                    index
+                );
+
+            }
+        );
+
+    }
 
 }
 
 
-/* =========================================================
-   TIMELINE
-========================================================= */
+/* =====================================================
+   PRODUCTION TIMELINE
+===================================================== */
 
 function renderOATimeline() {
 
@@ -1674,11 +1734,17 @@ function renderOATimeline() {
         );
 
 
-    track.innerHTML = "";
+    if (!track) {
+        return;
+    }
 
 
     const lang =
         oaDaysLanguage();
+
+
+    const fragment =
+        document.createDocumentFragment();
 
 
     productionDays.forEach(
@@ -1698,132 +1764,235 @@ function renderOATimeline() {
                 "oa-days-timeline-item";
 
 
-             if (day.status === "locked") {
+            item.dataset.index =
+                String(index);
 
-    item.addEventListener(
-        "click",
-        () => {
 
-            const lang = oaDaysLanguage();
+            /*
+             * IMAGE
+             */
 
-            if (lang === "en") {
+            if (
+                day.images &&
+                day.images.length
+            ) {
 
-                showArchiveMessage(
-                    "COMING SOON",
-                    "We’re just getting started… this day hasn’t arrived yet."
+                const wrapper =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                wrapper.className =
+                    "oa-days-timeline-image";
+
+
+                const image =
+                    document.createElement(
+                        "img"
+                    );
+
+
+                image.src =
+                    day.images[0];
+
+
+                image.alt =
+                    "";
+
+
+                image.loading =
+                    "lazy";
+
+
+                image.decoding =
+                    "async";
+
+
+                wrapper.appendChild(
+                    image
                 );
 
-            } else {
 
-                showArchiveMessage(
-                    "قريبًا",
-                    "لسه بنبدأ… اليوم ده لسه ما وصلش."
+                item.appendChild(
+                    wrapper
                 );
 
             }
 
-        }
-    );
 
-} else {
+            /*
+             * NUMBER
+             */
 
-    item.addEventListener(
-        "click",
-        () => {
+            const number =
+                document.createElement(
+                    "span"
+                );
 
-            selectOADay(index);
 
-        }
-    );
+            number.className =
+                "oa-days-timeline-number";
 
-}
+
+            number.textContent =
+                day.number;
+
+
+            item.appendChild(
+                number
+            );
+
+
+            /*
+             * TEXT
+             */
+
+            const copy =
+                document.createElement(
+                    "span"
+                );
+
+
+            copy.className =
+                "oa-days-timeline-copy";
+
+
+            const label =
+                document.createElement(
+                    "small"
+                );
+
+
+            label.textContent =
+                `DAY ${day.number}`;
 
 
             const title =
+                document.createElement(
+                    "strong"
+                );
+
+
+            title.textContent =
                 lang === "en"
                     ? day.titleEn
                     : day.titleAr;
 
 
             const date =
-                lang === "en"
-                    ? day.dateEn
-                    : day.dateAr;
-
-
-            const image =
-                day.images.length
-                    ? `
-                        <span class="oa-days-timeline-image">
-                            <img
-                                src="${day.images[0]}"
-                                alt=""
-                                loading="lazy"
-                            >
-                        </span>
-                    `
-                    : "";
-
-
-            item.innerHTML = `
-
-                ${image}
-
-                <span class="oa-days-timeline-number">
-                    ${day.number}
-                </span>
-
-                <span class="oa-days-timeline-copy">
-
-                    <small>
-                        DAY ${day.number}
-                    </small>
-
-                    <strong>
-                        ${title}
-                    </strong>
-
-                    <em>
-                        ${
-                            date ||
-                            (
-                                lang === "en"
-                                    ? "COMING SOON"
-                                    : "قريبًا"
-                            )
-                        }
-                    </em>
-
-                </span>
-
-                <span class="oa-days-timeline-dot"></span>
-
-            `;
-
-
-            if (
-                day.status !== "locked"
-            ) {
-
-                item.addEventListener(
-                    "click",
-                    () => {
-
-                        selectOADay(
-                            index
-                        );
-
-                    }
+                document.createElement(
+                    "em"
                 );
 
-            }
+
+            date.textContent =
+                (
+                    lang === "en"
+                        ? day.dateEn
+                        : day.dateAr
+                ) ||
+                (
+                    lang === "en"
+                        ? "COMING SOON"
+                        : "قريبًا"
+                );
 
 
-            track.appendChild(
+            copy.appendChild(
+                label
+            );
+
+
+            copy.appendChild(
+                title
+            );
+
+
+            copy.appendChild(
+                date
+            );
+
+
+            item.appendChild(
+                copy
+            );
+
+
+            /*
+             * STATUS DOT
+             */
+
+            const dot =
+                document.createElement(
+                    "span"
+                );
+
+
+            dot.className =
+                "oa-days-timeline-dot";
+
+
+            item.appendChild(
+                dot
+            );
+
+
+            /*
+             * SINGLE EVENT LISTENER
+             */
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        day.status ===
+                        "locked"
+                    ) {
+
+                        const lang =
+                            oaDaysLanguage();
+
+
+                        showArchiveMessage(
+                            lang === "en"
+                                ? "COMING SOON"
+                                : "قريبًا",
+
+                            lang === "en"
+                                ? "We’re just getting started… this day hasn’t arrived yet."
+                                : "لسه بنبدأ… اليوم ده لسه ما وصلش."
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    selectOADay(
+                        index
+                    );
+
+                }
+            );
+
+
+            fragment.appendChild(
                 item
             );
 
         }
+    );
+
+
+    /*
+     * DOM update مرة واحدة
+     */
+
+    track.replaceChildren(
+        fragment
     );
 
 
@@ -1832,40 +2001,44 @@ function renderOATimeline() {
 }
 
 
-/* =========================================================
+/* =====================================================
    TIMELINE ACTIVE STATE
-========================================================= */
+===================================================== */
 
 function renderOATimelineState() {
 
-    document
-        .querySelectorAll(
+    const items =
+        document.querySelectorAll(
             ".oa-days-timeline-item"
-        )
-        .forEach(
-            (item, index) => {
-
-                item.classList.toggle(
-                    "active",
-                    index === oaActiveDay
-                );
-
-            }
         );
+
+
+    items.forEach(
+        (item, index) => {
+
+            item.classList.toggle(
+                "active",
+                index === oaActiveDay
+            );
+
+        }
+    );
 
 }
 
 
-/* =========================================================
-   SELECT DAY
-========================================================= */
+/* =====================================================
+   SELECT PRODUCTION DAY
+===================================================== */
 
 function selectOADay(
     index
 ) {
 
     const day =
-        productionDays[index];
+        productionDays[
+            index
+        ];
 
 
     if (
@@ -1878,10 +2051,43 @@ function selectOADay(
     }
 
 
+    /*
+     * مفيش داعي نعيد رسم نفس اليوم.
+     */
+
+    if (
+        index === oaActiveDay
+    ) {
+
+        return;
+
+    }
+
+
+    oaActiveDay =
+        index;
+
+
+    oaActivePhoto =
+        0;
+
+
     const featured =
         document.querySelector(
             ".oa-days-featured"
         );
+
+
+    if (!featured) {
+
+        renderOADay(
+            index,
+            0
+        );
+
+        return;
+
+    }
 
 
     featured.classList.add(
@@ -1889,22 +2095,29 @@ function selectOADay(
     );
 
 
-    setTimeout(() => {
+    clearTimeout(
+        featured._oaDayTimer
+    );
 
-        oaActivePhoto = 0;
+
+    featured._oaDayTimer =
+        setTimeout(
+            () => {
+
+                renderOADay(
+                    index,
+                    0
+                );
 
 
-        renderOADay(
-            index,
-            0
+                featured.classList.remove(
+                    "oa-days-changing"
+                );
+
+
+            },
+            160
         );
-
-
-        featured.classList.remove(
-            "oa-days-changing"
-        );
-
-    }, 180);
 
 
     const selected =
@@ -1916,8 +2129,15 @@ function selectOADay(
     if (selected) {
 
         selected.scrollIntoView({
-            behavior: "smooth",
+            behavior:
+                window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches
+                    ? "auto"
+                    : "smooth",
+
             block: "nearest",
+
             inline: "center"
         });
 
@@ -1926,77 +2146,252 @@ function selectOADay(
 }
 
 
-/* =========================================================
+/* =====================================================
    DAY NAVIGATION
-========================================================= */
+===================================================== */
 
 function initOADayNavigation() {
 
-    document.getElementById(
-        "oaDaysPrev"
-    ).addEventListener(
-        "click",
-        () => {
-
-            let index =
-                oaActiveDay - 1;
+    const previous =
+        document.getElementById(
+            "oaDaysPrev"
+        );
 
 
-            while (
-                index >= 0 &&
-                productionDays[index].status ===
-                "locked"
-            ) {
+    const next =
+        document.getElementById(
+            "oaDaysNext"
+        );
 
-                index--;
+
+    if (previous) {
+
+        previous.addEventListener(
+            "click",
+            () => {
+
+                let index =
+                    oaActiveDay - 1;
+
+
+                while (
+                    index >= 0 &&
+                    productionDays[index].status ===
+                    "locked"
+                ) {
+
+                    index--;
+
+                }
+
+
+                if (
+                    index >= 0
+                ) {
+
+                    selectOADay(
+                        index
+                    );
+
+                }
 
             }
+        );
+
+    }
 
 
-            if (index >= 0) {
+    if (next) {
 
-                selectOADay(
-                    index
-                );
+        next.addEventListener(
+            "click",
+            () => {
+
+                let index =
+                    oaActiveDay + 1;
+
+
+                while (
+                    index <
+                    productionDays.length &&
+                    productionDays[index].status ===
+                    "locked"
+                ) {
+
+                    index++;
+
+                }
+
+
+                if (
+                    index <
+                    productionDays.length
+                ) {
+
+                    selectOADay(
+                        index
+                    );
+
+                }
 
             }
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CREW
+===================================================== */
+
+function initCrew() {
+
+    const cards =
+        document.querySelectorAll(
+            ".crew-card"
+        );
+
+
+    if (!cards.length) {
+        return;
+    }
+
+
+    cards.forEach(
+        card => {
+
+            card.addEventListener(
+                "click",
+                event => {
+
+                    /*
+                     * روابط البورتفوليو تفضل روابط
+                     * عادية وما تقلبش الكارت.
+                     */
+
+                    if (
+                        event.target.closest(
+                            ".portfolio-link"
+                        )
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    card.classList.toggle(
+                        "is-flipped"
+                    );
+
+                }
+            );
 
         }
     );
 
 
-    document.getElementById(
-        "oaDaysNext"
-    ).addEventListener(
-        "click",
-        () => {
+    /*
+     * Crew reveal
+     */
 
-            let index =
-                oaActiveDay + 1;
-
-
-            while (
-                index <
-                productionDays.length &&
-                productionDays[index].status ===
-                "locked"
-            ) {
-
-                index++;
-
-            }
+    const reveal =
+        document.querySelectorAll(
+            ".crew-section .reveal"
+        );
 
 
-            if (
-                index <
-                productionDays.length
-            ) {
+    if (!reveal.length) {
+        return;
+    }
 
-                selectOADay(
-                    index
+
+    if (
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+
+        reveal.forEach(
+            element => {
+
+                element.classList.add(
+                    "visible"
                 );
 
             }
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !("IntersectionObserver" in window)
+    ) {
+
+        reveal.forEach(
+            element => {
+
+                element.classList.add(
+                    "visible"
+                );
+
+            }
+        );
+
+        return;
+
+    }
+
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(
+                    entry => {
+
+                        if (
+                            !entry.isIntersecting
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+                );
+
+            },
+            {
+                threshold: 0.12,
+
+                rootMargin:
+                    "0px 0px -70px 0px"
+            }
+        );
+
+
+    reveal.forEach(
+        element => {
+
+            observer.observe(
+                element
+            );
 
         }
     );
@@ -2004,1401 +2399,290 @@ function initOADayNavigation() {
 }
 
 
-/* =========================================================
-   INIT
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        renderOATimeline();
-
-        renderOADay(
-            0,
-            0
-        );
-
-        initOAPhotoControls();
-
-        initOADayNavigation();
-
-    }
-);
-
 /* =====================================================
-   ON AIR — CREW
+   CUSTOM MIC CURSOR
 ===================================================== */
 
+function initCustomMicCursor() {
 
-/* =====================================================
-   CREW CARD FLIP
-===================================================== */
-
-document.querySelectorAll(".crew-card").forEach((card) => {
-
-    card.addEventListener("click", (event) => {
-
-        /*
-         * لو المستخدم ضغط على Portfolio
-         * ما نقلبش الكارت.
-         */
-
-        if (
-            event.target.closest(".portfolio-link")
-        ) {
-            return;
-        }
-
-        card.classList.toggle("is-flipped");
-
-    });
-
-});
-
-
-/* =====================================================
-   CREW SCROLL REVEAL
-===================================================== */
-
-const crewRevealElements =
-    document.querySelectorAll(".crew-section .reveal");
-
-
-const crewObserver =
-    new IntersectionObserver(
-
-        (entries, observer) => {
-
-            entries.forEach((entry) => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add("visible");
-
-                    observer.unobserve(entry.target);
-
-                }
-
-            });
-
-        },
-
-        {
-            threshold: 0.12,
-
-            rootMargin:
-                "0px 0px -70px 0px"
-        }
-
-    );
-
-
-crewRevealElements.forEach((element) => {
-
-    crewObserver.observe(element);
-
-});
-document.addEventListener("DOMContentLoaded", () => {
-
-    const micCursor = document.getElementById("customMicCursor");
-
-    if (!micCursor) return;
-
-    /* حركة الميكروفون مع الماوس */
-    document.addEventListener("mousemove", (e) => {
-
-        micCursor.style.left = `${e.clientX}px`;
-        micCursor.style.top = `${e.clientY}px`;
-
-        micCursor.classList.remove("hidden");
-
-    });
-
-    /* إخفاء الميكروفون لما الماوس يخرج من الصفحة */
-    document.addEventListener("mouseleave", () => {
-
-        micCursor.classList.add("hidden");
-
-    });
-
-    document.addEventListener("mouseenter", () => {
-
-        micCursor.classList.remove("hidden");
-
-    });
-
-    /* تأثير عند الضغط */
-    document.addEventListener("mousedown", () => {
-
-        micCursor.classList.add("clicking");
-
-    });
-
-    document.addEventListener("mouseup", () => {
-
-        micCursor.classList.remove("clicking");
-
-    });
-
-    /* تكبير الميكروفون فوق العناصر القابلة للضغط */
-    const interactiveElements = document.querySelectorAll(
-        "a, button, input, textarea, select, .card, .archive-card"
-    );
-
-    interactiveElements.forEach((element) => {
-
-        element.addEventListener("mouseenter", () => {
-
-            micCursor.classList.add("hover");
-
-        });
-
-        element.addEventListener("mouseleave", () => {
-
-            micCursor.classList.remove("hover");
-
-        });
-
-    });
-
-});
-/* =========================================================
-   ON AIR — LEAVE YOUR MARK
-   STICKY NOTE COMMUNITY WALL
-========================================================= */
-
-(() => {
-
-    "use strict";
-
-
-    /* =====================================================
-       SUPABASE CONFIGURATION
-       
-       IMPORTANT:
-       Replace these two values with your own Supabase
-       project URL and ANON KEY.
-    ====================================================== */
-
-    const SUPABASE_URL =
-        "YOUR_SUPABASE_PROJECT_URL";
-
-    const SUPABASE_ANON_KEY =
-        "YOUR_SUPABASE_ANON_KEY";
-
-
-    let supabaseClient = null;
-
-
-    /* =====================================================
-       INITIALIZE SUPABASE
-    ====================================================== */
-
-    function initSupabase() {
-
-        if (
-            SUPABASE_URL.includes("YOUR_") ||
-            SUPABASE_ANON_KEY.includes("YOUR_")
-        ) {
-            console.warn(
-                "ON AIR Sticky Wall: Supabase is not configured yet."
-            );
-
-            return null;
-        }
-
-
-        if (
-            typeof window.supabase === "undefined"
-        ) {
-            console.warn(
-                "ON AIR Sticky Wall: Supabase library is missing."
-            );
-
-            return null;
-        }
-
-
-        try {
-
-            supabaseClient =
-                window.supabase.createClient(
-                    SUPABASE_URL,
-                    SUPABASE_ANON_KEY
-                );
-
-            return supabaseClient;
-
-        } catch (error) {
-
-            console.error(
-                "ON AIR Sticky Wall: Supabase initialization failed.",
-                error
-            );
-
-            return null;
-
-        }
-
-    }
-
-
-    /* =====================================================
-       DOM
-    ====================================================== */
-
-    const modal =
+    const cursor =
         document.getElementById(
-            "stickyModal"
-        );
-
-    const openButton =
-        document.getElementById(
-            "openStickyNote"
-        );
-
-    const closeButton =
-        document.getElementById(
-            "closeStickyNote"
-        );
-
-    const backdrop =
-        document.getElementById(
-            "stickyModalBackdrop"
-        );
-
-    const form =
-        document.getElementById(
-            "stickyNoteForm"
-        );
-
-    const messageInput =
-        document.getElementById(
-            "stickyMessageInput"
-        );
-
-    const nameInput =
-        document.getElementById(
-            "stickyNameInput"
-        );
-
-    const websiteInput =
-        document.getElementById(
-            "stickyWebsite"
-        );
-
-    const characterCount =
-        document.getElementById(
-            "stickyCharacterCount"
-        );
-
-    const submitButton =
-        document.getElementById(
-            "stickySubmitButton"
-        );
-
-    const formStatus =
-        document.getElementById(
-            "stickyFormStatus"
-        );
-
-    const notesContainer =
-        document.getElementById(
-            "stickyNotesContainer"
-        );
-
-    const loading =
-        document.getElementById(
-            "stickyLoading"
-        );
-
-    const emptyState =
-        document.getElementById(
-            "stickyEmpty"
-        );
-
-    const notesCount =
-        document.getElementById(
-            "stickyNotesCount"
+            "customMicCursor"
         );
 
 
-    if (
-        !modal ||
-        !openButton ||
-        !closeButton ||
-        !form ||
-        !messageInput ||
-        !nameInput ||
-        !notesContainer
-    ) {
+    if (!cursor) {
         return;
     }
 
 
-    /* =====================================================
-       CONFIG
-    ====================================================== */
-
-    const MAX_MESSAGE_LENGTH = 180;
-
-    const MAX_NAME_LENGTH = 35;
-
-    const STORAGE_KEY =
-        "onAirStickyNotes";
-
-    const LAST_SUBMISSION_KEY =
-        "onAirStickyLastSubmission";
-
-
-    const COLORS = [
-        "sticky-note-teal",
-        "sticky-note-cream",
-        "sticky-note-beige",
-        "sticky-note-dark",
-        "sticky-note-red"
-    ];
-
-
-    /* =====================================================
-       LANGUAGE HELPER
-    ====================================================== */
-
-    function currentLanguage() {
-
-        return (
-            document.documentElement.lang === "en"
-            ? "en"
-            : "ar"
-        );
-
-    }
-
-
-    /* =====================================================
-       TRANSLATION
-    ====================================================== */
-
-    function translate(ar, en) {
-
-        return currentLanguage() === "en"
-            ? en
-            : ar;
-
-    }
-
-
-    /* =====================================================
-       MODAL OPEN
-    ====================================================== */
-
-    function openModal() {
-
-        modal.classList.add(
-            "is-open"
-        );
-
-        modal.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-        document.body.classList.add(
-            "sticky-modal-open"
-        );
-
-
-        setTimeout(() => {
-
-            messageInput.focus();
-
-        }, 300);
-
-    }
-
-
-    /* =====================================================
-       MODAL CLOSE
-    ====================================================== */
-
-    function closeModal() {
-
-        modal.classList.remove(
-            "is-open"
-        );
-
-        modal.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-        document.body.classList.remove(
-            "sticky-modal-open"
-        );
-
-        clearStatus();
-
-    }
-
-
-    openButton.addEventListener(
-        "click",
-        openModal
-    );
-
-
-    closeButton.addEventListener(
-        "click",
-        closeModal
-    );
-
-
-    backdrop?.addEventListener(
-        "click",
-        closeModal
-    );
-
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Escape" &&
-                modal.classList.contains(
-                    "is-open"
-                )
-            ) {
-
-                closeModal();
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       CHARACTER COUNTER
-    ====================================================== */
-
-    function updateCharacterCount() {
-
-        const length =
-            messageInput.value.length;
-
-        characterCount.textContent =
-            length;
-
-        if (
-            length >
-            MAX_MESSAGE_LENGTH
-        ) {
-
-            characterCount.style.color =
-                "var(--red)";
-
-        } else {
-
-            characterCount.style.color =
-                "";
-
-        }
-
-    }
-
-
-    messageInput.addEventListener(
-        "input",
-        updateCharacterCount
-    );
-
-
-    /* =====================================================
-       STATUS
-    ====================================================== */
-
-    function clearStatus() {
-
-        formStatus.textContent = "";
-
-        formStatus.className =
-            "sticky-form-status";
-
-    }
-
-
-    function showStatus(
-        type,
-        ar,
-        en
+    /*
+     * مفيش custom cursor للموبايل.
+     */
+
+    if (
+        window.matchMedia(
+            "(hover: none), (pointer: coarse)"
+        ).matches
     ) {
 
-        formStatus.textContent =
-            translate(ar, en);
-
-        formStatus.className =
-            `sticky-form-status ${type}`;
-
-    }
-
-
-    /* =====================================================
-       SUBMIT STATE
-    ====================================================== */
-
-    function setSubmitting(
-        isSubmitting
-    ) {
-
-        if (
-            isSubmitting
-        ) {
-
-            submitButton.classList.add(
-                "loading"
-            );
-
-            submitButton.disabled =
-                true;
-
-            submitButton.querySelector(
-                ".sticky-submit-text"
-            ).textContent =
-                translate(
-                    "جاري تثبيت الرسالة...",
-                    "PINNING YOUR NOTE..."
-                );
-
-        } else {
-
-            submitButton.classList.remove(
-                "loading"
-            );
-
-            submitButton.disabled =
-                false;
-
-            submitButton.querySelector(
-                ".sticky-submit-text"
-            ).textContent =
-                translate(
-                    "ثبّت رسالتي على الحائط",
-                    "PIN MY NOTE TO THE WALL"
-                );
-
-        }
-
-    }
-
-
-    /* =====================================================
-       BASIC VALIDATION
-    ====================================================== */
-
-    function validateMessage(
-        message
-    ) {
-
-        const clean =
-            message.trim();
-
-
-        if (
-            clean.length < 2
-        ) {
-
-            return {
-                valid: false,
-                ar: "اكتبي رسالة أطول شوية.",
-                en: "Write a slightly longer message."
-            };
-
-        }
-
-
-        if (
-            clean.length >
-            MAX_MESSAGE_LENGTH
-        ) {
-
-            return {
-                valid: false,
-                ar: "الرسالة طويلة زيادة.",
-                en: "Your message is too long."
-            };
-
-        }
-
-
-        return {
-            valid: true
-        };
-
-    }
-
-
-    /* =====================================================
-       RATE LIMIT
-       
-       One submission per 60 seconds per browser.
-    ====================================================== */
-
-    function isRateLimited() {
-
-        try {
-
-            const last =
-                Number(
-                    localStorage.getItem(
-                        LAST_SUBMISSION_KEY
-                    )
-                );
-
-
-            if (!last) {
-                return false;
-            }
-
-
-            const elapsed =
-                Date.now() - last;
-
-
-            return (
-                elapsed <
-                60 * 1000
-            );
-
-        } catch {
-
-            return false;
-
-        }
-
-    }
-
-
-    function saveSubmissionTime() {
-
-        try {
-
-            localStorage.setItem(
-                LAST_SUBMISSION_KEY,
-                String(Date.now())
-            );
-
-        } catch {}
-
-    }
-
-
-    /* =====================================================
-       FORM SUBMIT
-    ====================================================== */
-
-    form.addEventListener(
-        "submit",
-        async event => {
-
-            event.preventDefault();
-
-
-            clearStatus();
-
-
-            /* HONEYPOT */
-
-            if (
-                websiteInput &&
-                websiteInput.value.trim()
-            ) {
-
-                return;
-
-            }
-
-
-            const message =
-                messageInput.value.trim();
-
-            const name =
-                nameInput.value.trim();
-
-
-            /* VALIDATE */
-
-            const validation =
-                validateMessage(
-                    message
-                );
-
-
-            if (
-                !validation.valid
-            ) {
-
-                showStatus(
-                    "error",
-                    validation.ar,
-                    validation.en
-                );
-
-                return;
-
-            }
-
-
-            if (
-                name.length >
-                MAX_NAME_LENGTH
-            ) {
-
-                showStatus(
-                    "error",
-                    "الاسم طويل زيادة.",
-                    "Your name is too long."
-                );
-
-                return;
-
-            }
-
-
-            if (
-                isRateLimited()
-            ) {
-
-                showStatus(
-                    "error",
-                    "استني دقيقة قبل ما تبعت رسالة تانية.",
-                    "Please wait a minute before sending another note."
-                );
-
-                return;
-
-            }
-
-
-            setSubmitting(true);
-
-
-            try {
-
-                const client =
-                    initSupabase();
-
-
-                /* =========================================
-                   SUPABASE MODE
-                ========================================== */
-
-                if (client) {
-
-                    const {
-                        error
-                    } =
-                        await client
-                            .from(
-                                "sticky_notes"
-                            )
-                            .insert({
-                                message:
-                                    message,
-
-                                name:
-                                    name ||
-                                    null,
-
-                                approved:
-                                    false
-                            });
-
-
-                    if (error) {
-
-                        throw error;
-
-                    }
-
-
-                    saveSubmissionTime();
-
-
-                    form.reset();
-
-                    updateCharacterCount();
-
-
-                    showStatus(
-                        "success",
-                        "وصلت! رسالتك دخلت المراجعة وهتظهر بعد الموافقة.",
-                        "Got it! Your note is waiting for approval."
-                    );
-
-
-                    setTimeout(() => {
-
-                        closeModal();
-
-                    }, 2200);
-
-
-                    return;
-
-                }
-
-
-                /* =========================================
-                   LOCAL FALLBACK
-                ========================================== */
-
-                saveLocalNote({
-                    message,
-                    name
-                });
-
-
-                saveSubmissionTime();
-
-
-                form.reset();
-
-                updateCharacterCount();
-
-
-                showStatus(
-                    "success",
-                    "رسالتك اتثبتت على الجهاز ده.",
-                    "Your note was saved on this device."
-                );
-
-
-                setTimeout(() => {
-
-                    closeModal();
-
-                }, 1800);
-
-
-            } catch (error) {
-
-                console.error(
-                    "ON AIR Sticky Wall submission error:",
-                    error
-                );
-
-
-                showStatus(
-                    "error",
-                    "حصلت مشكلة. جربي تاني.",
-                    "Something went wrong. Please try again."
-                );
-
-            } finally {
-
-                setSubmitting(false);
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       LOCAL STORAGE
-    ====================================================== */
-
-    function getLocalNotes() {
-
-        try {
-
-            const raw =
-                localStorage.getItem(
-                    STORAGE_KEY
-                );
-
-
-            if (!raw) {
-                return [];
-            }
-
-
-            const parsed =
-                JSON.parse(raw);
-
-
-            return Array.isArray(parsed)
-                ? parsed
-                : [];
-
-        } catch {
-
-            return [];
-
-        }
-
-    }
-
-
-    function saveLocalNote(
-        note
-    ) {
-
-        const notes =
-            getLocalNotes();
-
-
-        notes.push({
-            id:
-                `local-${Date.now()}`,
-
-            message:
-                note.message,
-
-            name:
-                note.name || null,
-
-            created_at:
-                new Date().toISOString()
-        });
-
-
-        try {
-
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify(notes)
-            );
-
-        } catch {}
-
-
-        renderUserNote(
-            note
-        );
-
-        updateCount();
-
-    }
-
-
-    /* =====================================================
-       LOAD SUPABASE NOTES
-    ====================================================== */
-
-    async function loadSupabaseNotes() {
-
-        const client =
-            initSupabase();
-
-
-        if (!client) {
-
-            loadLocalNotes();
-
-            finishLoading();
-
-            return;
-
-        }
-
-
-        try {
-
-            const {
-                data,
-                error
-            } =
-                await client
-                    .from(
-                        "sticky_notes"
-                    )
-                    .select(
-                        "id,message,name,created_at"
-                    )
-                    .eq(
-                        "approved",
-                        true
-                    )
-                    .order(
-                        "created_at",
-                        {
-                            ascending: true
-                        }
-                    )
-                    .limit(100);
-
-
-            if (error) {
-
-                throw error;
-
-            }
-
-
-            data.forEach(
-                note => {
-
-                    renderUserNote(
-                        note
-                    );
-
-                }
-            );
-
-
-            updateCount();
-
-
-        } catch (error) {
-
-            console.error(
-                "ON AIR Sticky Wall load error:",
-                error
-            );
-
-
-            loadLocalNotes();
-
-        } finally {
-
-            finishLoading();
-
-        }
-
-    }
-
-
-    /* =====================================================
-       LOCAL LOAD
-    ====================================================== */
-
-    function loadLocalNotes() {
-
-        const notes =
-            getLocalNotes();
-
-
-        notes.forEach(
-            note => {
-
-                renderUserNote(
-                    note
-                );
-
-            }
-        );
-
-
-        updateCount();
-
-    }
-
-
-    /* =====================================================
-       FINISH LOADING
-    ====================================================== */
-
-    function finishLoading() {
-
-        if (!loading) {
-            return;
-        }
-
-
-        loading.classList.add(
+        cursor.classList.add(
             "hidden"
         );
 
-    }
-
-
-    /* =====================================================
-       RANDOM NOTE STYLE
-    ====================================================== */
-
-    function randomBetween(
-        min,
-        max
-    ) {
-
-        return (
-            Math.random() *
-            (max - min)
-        ) + min;
+        return;
 
     }
 
 
-    function getNoteStyle() {
+    let mouseX = 0;
+    let mouseY = 0;
 
-        return {
+    let frame = null;
 
-            x:
-                randomBetween(
-                    10,
-                    90
-                ),
 
-            y:
-                randomBetween(
-                    20,
-                    82
-                ),
+    function updateCursor() {
 
-            rotation:
-                randomBetween(
-                    -5,
-                    5
-                ),
+        frame = null;
 
-            color:
-                COLORS[
-                    Math.floor(
-                        Math.random() *
-                        COLORS.length
-                    )
-                ]
 
-        };
+        cursor.style.transform =
+            `translate3d(${mouseX}px, ${mouseY}px, 0)`;
 
     }
 
-
-    /* =====================================================
-       CREATE NOTE
-    ====================================================== */
-
-    function renderUserNote(
-        note
-    ) {
-
-        if (
-            !note ||
-            !note.message
-        ) {
-
-            return;
-
-        }
-
-
-        const style =
-            getNoteStyle();
-
-
-        const article =
-            document.createElement(
-                "article"
-            );
-
-
-        article.className =
-            `onair-sticky-note user-sticky-note ${style.color}`;
-
-
-        article.style.setProperty(
-            "--x",
-            `${style.x}%`
-        );
-
-
-        article.style.setProperty(
-            "--y",
-            `${style.y}%`
-        );
-
-
-        article.style.setProperty(
-            "--r",
-            `${style.rotation}deg`
-        );
-
-
-        article.dataset.userNote =
-            "true";
-
-
-        article.dataset.noteId =
-            note.id || "";
-
-
-        const pin =
-            document.createElement(
-                "span"
-            );
-
-        pin.className =
-            "sticky-pin";
-
-
-        const content =
-            document.createElement(
-                "div"
-            );
-
-        content.className =
-            "sticky-paper-content";
-
-
-        const paragraph =
-            document.createElement(
-                "p"
-            );
-
-        paragraph.textContent =
-            note.message;
-
-
-        content.appendChild(
-            paragraph
-        );
-
-
-        article.appendChild(
-            pin
-        );
-
-
-        article.appendChild(
-            content
-        );
-
-
-        if (note.name) {
-
-            const author =
-                document.createElement(
-                    "span"
-                );
-
-            author.className =
-                "sticky-author";
-
-            author.textContent =
-                `— ${note.name}`;
-
-            article.appendChild(
-                author
-            );
-
-        } else {
-
-            const author =
-                document.createElement(
-                    "span"
-                );
-
-            author.className =
-                "sticky-author";
-
-            author.textContent =
-                "— ANONYMOUS";
-
-            article.appendChild(
-                author
-            );
-
-        }
-
-
-        notesContainer.appendChild(
-            article
-        );
-
-    }
-
-
-    /* =====================================================
-       COUNT
-    ====================================================== */
-
-    function updateCount() {
-
-        const userNotes =
-            notesContainer.querySelectorAll(
-                "[data-user-note='true']"
-            ).length;
-
-
-        const total =
-            userNotes;
-
-
-        if (notesCount) {
-
-            notesCount.textContent =
-                String(total).padStart(
-                    3,
-                    "0"
-                ) +
-                (
-                    currentLanguage() === "en"
-                    ? " NOTES"
-                    : " رسالة"
-                );
-
-        }
-
-
-        if (emptyState) {
-
-            emptyState.hidden =
-                total > 0;
-
-        }
-
-    }
-
-
-    /* =====================================================
-       LANGUAGE CHANGE OBSERVER
-       
-       Your existing archive.js changes language
-       dynamically. We watch the HTML lang attribute.
-    ====================================================== */
-
-    const languageObserver =
-        new MutationObserver(
-            () => {
-
-                updateCount();
-
-                updateCharacterCount();
-
-            }
-        );
-
-
-    languageObserver.observe(
-        document.documentElement,
-        {
-            attributes: true,
-            attributeFilter: [
-                "lang"
-            ]
-        }
-    );
-
-
-    /* =====================================================
-       INIT
-    ====================================================== */
 
     document.addEventListener(
-        "DOMContentLoaded",
-        () => {
+        "mousemove",
+        event => {
 
-            initSupabase();
+            mouseX =
+                event.clientX;
 
-            updateCharacterCount();
 
-            loadSupabaseNotes();
+            mouseY =
+                event.clientY;
 
+
+            if (
+                frame !== null
+            ) {
+
+                return;
+
+            }
+
+
+            frame =
+                requestAnimationFrame(
+                    updateCursor
+                );
+
+
+            cursor.classList.remove(
+                "hidden"
+            );
+
+        },
+        {
+            passive: true
         }
     );
 
 
-})();
+    document.addEventListener(
+        "mouseleave",
+        () => {
+
+            cursor.classList.add(
+                "hidden"
+            );
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    document.addEventListener(
+        "mouseenter",
+        () => {
+
+            cursor.classList.remove(
+                "hidden"
+            );
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    document.addEventListener(
+        "mousedown",
+        () => {
+
+            cursor.classList.add(
+                "clicking"
+            );
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    document.addEventListener(
+        "mouseup",
+        () => {
+
+            cursor.classList.remove(
+                "clicking"
+            );
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /*
+     * Event delegation
+     * بدل ما نضيف listeners لكل عنصر.
+     */
+
+    const interactiveSelector =
+        [
+            "a",
+            "button",
+            "input",
+            "textarea",
+            "select",
+            "[role='button']"
+        ].join(",");
+
+
+    document.addEventListener(
+        "mouseover",
+        event => {
+
+            const target =
+                event.target.closest(
+                    interactiveSelector
+                );
+
+
+            if (!target) {
+                return;
+            }
+
+
+            cursor.classList.add(
+                "hover"
+            );
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    document.addEventListener(
+        "mouseout",
+        event => {
+
+            const target =
+                event.target.closest(
+                    interactiveSelector
+                );
+
+
+            if (!target) {
+                return;
+            }
+
+
+            if (
+                target.contains(
+                    event.relatedTarget
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            cursor.classList.remove(
+                "hover"
+            );
+
+        },
+        {
+            passive: true
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ARCHIVE INITIALIZATION
+===================================================== */
+
+function initArchive() {
+
+    /*
+     * Production Days
+     */
+
+    renderOATimeline();
+
+
+    renderOADay(
+        0,
+        0
+    );
+
+
+    /*
+     * Controls
+     */
+
+    initOAPhotoControls();
+
+    initOADayNavigation();
+
+
+    /*
+     * Crew
+     */
+
+    initCrew();
+
+
+    /*
+     * Cursor
+     */
+
+    initCustomMicCursor();
+
+}
+
+
+/* =====================================================
+   SINGLE DOM READY
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initArchive,
+    {
+        once: true
+    }
+);

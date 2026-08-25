@@ -4980,3 +4980,105 @@
         animation: none !important;
     }
 }
+/* =========================================================
+   PRODUCTION TIMELINE
+   MOVABLE FILM STRIP — WITHOUT VISIBLE SCROLLBAR
+   ========================================================= */
+
+/* الأيام تفضل قابلة للحركة */
+#production-days #oaDaysTrack {
+    display: flex !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    scroll-behavior: smooth !important;
+    cursor: grab !important;
+
+    /* إخفاء scrollbar فقط */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+#production-days #oaDaysTrack::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* أثناء السحب */
+#production-days #oaDaysTrack:active {
+    cursor: grabbing !important;
+}
+
+
+/* =========================================================
+   FILM STRIP FEEL
+   ========================================================= */
+
+#production-days .oa-days-timeline-item {
+    flex: 0 0 220px !important;
+    width: 220px !important;
+
+    position: relative !important;
+
+    transition:
+        transform .45s cubic-bezier(.22,.61,.36,1),
+        opacity .35s ease,
+        filter .35s ease !important;
+}
+
+
+/* الكارت اللي عليه التركيز */
+#production-days .oa-days-timeline-item:hover {
+    transform: translateY(-8px) scale(1.025) !important;
+    z-index: 5 !important;
+}
+
+
+/* =========================================================
+   CINEMATIC TIMELINE LINE
+   ========================================================= */
+
+#production-days #oaDaysTrack::before {
+    content: "" !important;
+
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 50% !important;
+
+    height: 1px !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(78,132,132,.55),
+            rgba(78,132,132,.8),
+            rgba(78,132,132,.55),
+            transparent
+        ) !important;
+
+    pointer-events: none !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    #production-days #oaDaysTrack {
+        overflow-x: auto !important;
+        scroll-snap-type: x proximity !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    #production-days .oa-days-timeline-item {
+        flex: 0 0 190px !important;
+        width: 190px !important;
+
+        scroll-snap-align: center !important;
+    }
+}
