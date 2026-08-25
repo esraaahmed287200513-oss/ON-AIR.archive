@@ -1772,3 +1772,162 @@ html[lang="en"] .oa-days-timeline-item {
     border-color: #112548 !important;
     background-color: transparent !important;
 }
+/* =========================================================
+   ON AIR — ONE GLOBAL BACKGROUND
+   FINAL SAFE VERSION
+   ========================================================= */
+
+/* الخلفية الأساسية للموقع */
+html body #website {
+    background:
+        url("images/on-air-global.png")
+        center top / cover no-repeat fixed !important;
+
+    background-color: #050C14 !important;
+}
+
+
+/* =========================================================
+   ARCHIVE
+   ========================================================= */
+
+html body #website .archive-page {
+    background: transparent !important;
+}
+
+
+/* الخلفية القديمة للـArchive */
+html body #website .archive-page .archive-background {
+    background: transparent !important;
+    background-image: none !important;
+    opacity: 0 !important;
+}
+
+
+/* =========================================================
+   PRODUCTION
+   ========================================================= */
+
+html body #website #productionSection {
+    background: transparent !important;
+    background-image: none !important;
+}
+
+html body #website #productionSection .oa-production-bg {
+    background: transparent !important;
+    background-image: none !important;
+    opacity: 0 !important;
+}
+
+html body #website #productionSection .oa-production-overlay {
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   PRODUCTION DAYS
+   أهم جزء
+   ========================================================= */
+
+html body #website #production-days {
+    background: transparent !important;
+    background-image: none !important;
+}
+
+/* دي كانت صورة crew-background.png اللي لسه ظاهرة */
+html body #website #production-days .oa-days-bg {
+    background: transparent !important;
+    background-image: none !important;
+    opacity: 0 !important;
+}
+
+/* الـvignette القديم */
+html body #website #production-days .oa-days-vignette {
+    background: transparent !important;
+    opacity: 0 !important;
+}
+
+
+/* الـgrid والـgrain نسيبهم شغالين لو محتاجين الإحساس السينمائي */
+html body #website #production-days .oa-days-grid,
+html body #website #production-days .oa-days-grain {
+    background-color: transparent !important;
+}
+
+
+/* =========================================================
+   باقي السكاشن
+   ========================================================= */
+
+html body #website #statusSection,
+html body #website #ideaSection,
+html body #website #crewSection,
+html body #website #notesSection,
+html body #website #storySection,
+html body #website #reelSection {
+    background: transparent !important;
+    background-image: none !important;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+html body #website footer {
+    background: transparent !important;
+    background-image: none !important;
+}
+
+
+/* =========================================================
+   الصورة تفضل واحدة أثناء الـscroll
+   ========================================================= */
+
+@media (min-width: 769px) {
+    html body #website {
+        background-attachment: fixed !important;
+    }
+}
+
+@media (max-width: 768px) {
+    html body #website {
+        background-position: center top !important;
+        background-size: cover !important;
+        background-attachment: fixed !important;
+    }
+}
+/* =========================================================
+   ON AIR — CREW SECTION
+   REMOVE OLD CREW BACKGROUND
+   ========================================================= */
+
+/* القسم نفسه شفاف */
+#website .onair-team-stage {
+    background: transparent !important;
+    background-image: none !important;
+}
+
+/* إزالة crew-background.png */
+#website .onair-team-stage .onair-team-bg {
+    background: transparent !important;
+    background-image: none !important;
+    opacity: 0 !important;
+}
+
+/* إزالة الـvignette الخاص بالقسم */
+#website .onair-team-stage .onair-team-vignette {
+    background: transparent !important;
+    opacity: 0 !important;
+}
+
+/* الـgrain نسيبه لأنه مجرد texture خفيف */
+#website .onair-team-stage .onair-team-grain {
+    opacity: .035;
+}
+
+/* نخلي المحتوى فوق الخلفية العامة */
+#website .onair-team-stage > * {
+    position: relative;
+    z-index: 2;
+}
