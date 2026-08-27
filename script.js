@@ -31,6 +31,32 @@ window.addEventListener("load", () => {
 const languageButtons =
     document.querySelectorAll(".language button");
 
+function translateTeamSection(language) {
+
+    const teamSection =
+        document.querySelector("#teamCrewArchive");
+
+    if (!teamSection) return;
+
+    const translatableElements =
+        teamSection.querySelectorAll(
+            "[data-ar][data-en]"
+        );
+
+    translatableElements.forEach(element => {
+
+        const translatedText =
+            element.dataset[language];
+
+        if (translatedText !== undefined) {
+            element.textContent = translatedText;
+        }
+
+    });
+
+}
+
+
 languageButtons.forEach(button => {
 
     button.addEventListener("click", (event) => {
@@ -39,6 +65,9 @@ languageButtons.forEach(button => {
 
         const selectedLanguage =
             button.dataset.lang;
+
+
+        /* ACTIVE BUTTON */
 
         languageButtons.forEach(btn => {
 
@@ -51,12 +80,16 @@ languageButtons.forEach(button => {
 
         });
 
+
         button.classList.add("active");
 
         button.setAttribute(
             "aria-pressed",
             "true"
         );
+
+
+        /* PAGE LANGUAGE */
 
         if (selectedLanguage === "ar") {
 
@@ -70,9 +103,31 @@ languageButtons.forEach(button => {
 
         }
 
+
+        /* TEAM / CREW TRANSLATION */
+
+        translateTeamSection(
+            selectedLanguage
+        );
+
     });
 
 });
+
+/* =====================================================
+   INITIAL TEAM LANGUAGE
+===================================================== */
+
+const initialLanguage =
+    document.documentElement.lang === "en"
+        ? "en"
+        : "ar";
+
+translateTeamSection(
+    initialLanguage
+);
+
+
 
 
 /* =====================================================
