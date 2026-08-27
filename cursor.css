@@ -1,0 +1,121 @@
+/* =========================================================
+   ON AIR — CUSTOM CURSOR
+   SPLIT FROM ORIGINAL archive.css
+   DESIGN RULE: NO visual redesign / NO content rewrite
+   This file preserves the original rules assigned to this section.
+========================================================= */
+/* شكل الميكروفون */
+.custom-mic-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 34px;
+    height: 34px;
+
+    pointer-events: none;
+    z-index: 999999;
+
+    transform: translate(-50%, -50%);
+
+    transition:
+        transform 0.08s ease-out,
+        opacity 0.2s ease;
+
+    filter:
+        drop-shadow(0 0 4px rgba(212, 175, 55, 0.35))
+        drop-shadow(0 0 10px rgba(212, 175, 55, 0.15));
+}
+
+/* جسم الميكروفون */
+.custom-mic-cursor::before {
+    content: "";
+
+    position: absolute;
+
+    width: 13px;
+    height: 20px;
+
+    left: 50%;
+    top: 2px;
+
+    transform: translateX(-50%);
+
+    border: 2px solid #C7A86B;
+    border-radius: 8px;
+
+    box-sizing: border-box;
+}
+
+/* الحامل الخارجي */
+.custom-mic-cursor::after {
+    content: "";
+
+    position: absolute;
+
+    width: 20px;
+    height: 18px;
+
+    left: 50%;
+    top: 3px;
+
+    transform: translateX(-50%);
+
+    border: 2px solid #C7A86B;
+    border-top: none;
+
+    border-radius: 0 0 12px 12px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 16px 0 -7px #C7A86B,
+        0 20px 0 -8px #C7A86B;
+}
+
+/* الخط الصغير تحت الميكروفون */
+.custom-mic-cursor .mic-line {
+    position: absolute;
+
+    width: 2px;
+    height: 7px;
+
+    background: #C7A86B;
+
+    left: 50%;
+    bottom: 4px;
+
+    transform: translateX(-50%);
+}
+
+/* النقطة السفلية */
+.custom-mic-cursor .mic-base {
+    position: absolute;
+
+    width: 15px;
+    height: 2px;
+
+    background: #C7A86B;
+
+    left: 50%;
+    bottom: 1px;
+
+    transform: translateX(-50%);
+
+    border-radius: 2px;
+}
+
+/* عند الخروج من الصفحة */
+.custom-mic-cursor.hidden {
+    opacity: 0;
+}
+
+/* عند الضغط */
+.custom-mic-cursor.clicking {
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* عند المرور على الروابط والأزرار */
+.custom-mic-cursor.hover {
+    transform: translate(-50%, -50%) scale(1.25);
+}

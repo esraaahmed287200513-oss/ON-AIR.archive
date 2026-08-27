@@ -1,0 +1,487 @@
+/* =========================================================
+   ON AIR — PRODUCTION JOURNEY / DELIVERABLES / STATUS
+   SPLIT FROM ORIGINAL archive.css
+   DESIGN RULE: NO visual redesign / NO content rewrite
+   This file preserves the original rules assigned to this section.
+========================================================= */
+.production-header.archive-visible {
+    transition-delay: .05s;
+}
+
+.production-panel.archive-visible {
+    transition-delay: .12s;
+}
+
+.production-footer.archive-visible {
+    transition-delay: .20s;
+}
+
+/* =====================================================
+   LOCKED DELIVERABLES
+===================================================== */
+
+.deliverable-item.locked {
+
+    cursor: pointer;
+
+    position: relative;
+
+    transition:
+        border-color .3s ease,
+        background .3s ease,
+        transform .3s ease,
+        opacity .3s ease;
+
+}
+
+.deliverable-item.locked:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(225, 215, 204, .45);
+
+    background:
+        rgba(225, 215, 204, .035);
+
+}
+
+.deliverable-item.locked:focus-visible {
+
+    outline:
+        1px solid var(--teal);
+
+    outline-offset:
+        4px;
+
+}
+
+/* =====================================================
+   DELIVERABLES — FINAL VISUAL FIX
+===================================================== */
+
+/* اسم الملف نفسه:
+   TRAILER / FINAL FILM / POSTER / BTS / IDEA
+*/
+.deliverable-item .deliverable-name,
+.deliverable-item .deliverable-title,
+.deliverable-item h3,
+.deliverable-item h4 {
+
+    font-size: 18px !important;
+    font-weight: 700 !important;
+
+    color: var(--cream) !important;
+
+    line-height: 1.4 !important;
+
+    letter-spacing: .03em !important;
+
+    text-shadow:
+        0 2px 12px rgba(0, 0, 0, .25);
+
+}
+
+/* =====================================================
+   الخط اللي تحت الاسم يفضل أهدى وأقل بروزًا
+===================================================== */
+
+.deliverable-item {
+
+    border-bottom-color:
+        rgba(225, 215, 204, .22) !important;
+
+}
+
+/* =====================================================
+   إزالة المربع الصغير حول "اضغط"
+===================================================== */
+
+/* لو "اضغط" عبارة عن زر */
+.deliverable-item button,
+.deliverable-item .deliverable-action,
+.deliverable-item .action,
+.deliverable-item .click-hint,
+.deliverable-item .press-hint {
+
+    border: none !important;
+
+    outline: none !important;
+
+    background: transparent !important;
+
+    box-shadow: none !important;
+
+    padding: 0 !important;
+
+}
+
+/* إزالة الإطار عند الضغط أو التركيز */
+.deliverable-item button:focus,
+.deliverable-item button:focus-visible,
+.deliverable-item .deliverable-action:focus,
+.deliverable-item .deliverable-action:focus-visible {
+
+    outline: none !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+}
+
+/* =====================================================
+   كلمة "اضغط" نفسها
+===================================================== */
+
+.deliverable-item .deliverable-action,
+.deliverable-item .click-hint,
+.deliverable-item .press-hint {
+
+    color: var(--gray) !important;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 9px !important;
+
+    letter-spacing: .08em;
+
+}
+
+/* =====================================================
+   الأيقونة الصغيرة جنب "اضغط" — نخليها بسيطة
+===================================================== */
+
+.deliverable-item .deliverable-action::before,
+.deliverable-item .click-hint::before,
+.deliverable-item .press-hint::before {
+
+    border: none !important;
+
+    background: none !important;
+
+    box-shadow: none !important;
+
+}
+
+/* =====================================================
+   PRODUCTION STATUS + DELIVERABLES
+   FINAL TYPOGRAPHY
+===================================================== */
+
+
+/* =====================================================
+   PRODUCTION ITEMS
+   الفكرة / السيناريو / الكاست / الموقع / التصوير / المونتاج
+===================================================== */
+
+.production-item-title,
+.production-title,
+.status-title,
+.production-item h3,
+.production-item h4 {
+
+    font-family:
+        "Cairo",
+        "Tajawal",
+        sans-serif !important;
+
+    font-size:
+        clamp(20px, 2vw, 27px) !important;
+
+    font-weight:
+        700 !important;
+
+    line-height:
+        1.35 !important;
+
+    color:
+        var(--cream) !important;
+
+    margin: 0 !important;
+
+    letter-spacing:
+        0 !important;
+
+}
+
+/* =====================================================
+   الكلام اللي تحت العنوان
+===================================================== */
+
+.production-item-description,
+.production-description,
+.status-description,
+.production-item p {
+
+    font-family:
+        "Cairo",
+        "Tajawal",
+        sans-serif !important;
+
+    font-size:
+        clamp(11px, 1vw, 15px) !important;
+
+    font-weight:
+        400 !important;
+
+    line-height:
+        1.7 !important;
+
+    color:
+        var(--beige) !important;
+
+    opacity:
+        .78 !important;
+
+    margin-top:
+        4px !important;
+
+}
+
+/* =====================================================
+   DELIVERABLES
+   TRAILER / FINAL FILM / POSTER / BTS / PRESS KIT
+===================================================== */
+
+.deliverable-name,
+.deliverable-title,
+.deliverable-item h3,
+.deliverable-item h4 {
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        clamp(18px, 1.8vw, 25px) !important;
+
+    font-weight:
+        700 !important;
+
+    line-height:
+        1.35 !important;
+
+    color:
+        var(--cream) !important;
+
+    letter-spacing:
+        .04em !important;
+
+    margin: 0 !important;
+
+}
+
+/* =====================================================
+   الكلام اللي تحت TRAILER وغيره
+===================================================== */
+
+.deliverable-description,
+.deliverable-item p {
+
+    font-family:
+        "Cairo",
+        "Tajawal",
+        sans-serif !important;
+
+    font-size:
+        clamp(11px, 1vw, 14px) !important;
+
+    font-weight:
+        400 !important;
+
+    line-height:
+        1.7 !important;
+
+    color:
+        var(--beige) !important;
+
+    opacity:
+        .78 !important;
+
+    margin-top:
+        5px !important;
+
+}
+
+/* =====================================================
+   رقم العنصر 01 / 02 / 03
+===================================================== */
+
+.production-item-number,
+.status-number,
+.production-item .number {
+
+    font-family:
+        "Space Mono",
+        monospace !important;
+
+    font-size:
+        11px !important;
+
+    color:
+        var(--teal) !important;
+
+    letter-spacing:
+        .08em !important;
+
+}
+
+/* =====================================================
+   الحفاظ على مربع "اضغط"
+   ممنوع يتغير
+===================================================== */
+
+.production-item button,
+.production-item .action,
+.production-item .click-action,
+.deliverable-item button,
+.deliverable-item .action,
+.deliverable-item .click-action {
+
+    /* نسيبه زي ما هو */
+
+    font-size:
+        inherit;
+
+}
+
+/* =====================================================
+   المسافة بين العنوان والوصف
+===================================================== */
+
+.production-item-title + *,
+.production-title + *,
+.status-title + *,
+.deliverable-name + *,
+.deliverable-title + * {
+
+    margin-top:
+        4px;
+
+}
+
+/* =====================================================
+   PRODUCTION PANEL — CINEMATIC SPACING
+===================================================== */
+
+.production-item,
+.production-row,
+.status-item {
+
+    min-height:
+        78px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+}
+
+/* العنوان والوصف مع بعض */
+
+.production-item-content,
+.production-content,
+.status-content {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        center;
+
+}
+
+/* =====================================================
+   DELIVERABLE ROW
+===================================================== */
+
+.deliverable-item {
+
+    min-height:
+        82px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+}
+
+/* المحتوى ناحية اليمين */
+
+.deliverable-item-content,
+.deliverable-content {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        center;
+
+    flex: 1;
+
+}
+
+/* =====================================================
+   IMPORTANT:
+   مربع "اضغط" يفضل زي ما هو
+===================================================== */
+
+.deliverable-item .click-hint,
+.deliverable-item .press-hint,
+.deliverable-item .deliverable-action {
+
+    flex-shrink:
+        0;
+
+}
+
+@keyframes productionRecBlink {
+
+    0%,
+    45% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: .35;
+    }
+
+}
+
+/* =========================================================
+   GLOBAL BACKGROUND POLICY
+   Production section is transparent.
+========================================================= */
+.production-section,
+.oa-production,
+.production-days-section {
+    background: transparent !important;
+    background-image: none !important;
+}
+
+.production-section::before,
+.production-section::after,
+.oa-production::before,
+.oa-production::after {
+    background: transparent !important;
+    background-image: none !important;
+}

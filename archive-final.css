@@ -1,0 +1,244 @@
+/* =========================================================
+   ON AIR — GLOBAL / ROOT / RESET / WEBSITE
+   SPLIT FROM ORIGINAL archive.css
+   DESIGN RULE: NO visual redesign / NO content rewrite
+   This file preserves the original rules assigned to this section.
+========================================================= */
+html {
+
+    width: 100%;
+
+    min-height: 100%;
+
+    background: var(--dark);
+
+    scroll-behavior: smooth;
+
+}
+
+body {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    background: var(--dark);
+
+    color: var(--cream);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    overflow-x: hidden;
+
+    -webkit-font-smoothing: antialiased;
+
+}
+
+/* =====================================================
+   WEBSITE
+===================================================== */
+
+#website {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    background: var(--dark);
+
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+.reduce-motion *,
+
+.reduce-motion *::before,
+
+.reduce-motion *::after {
+
+    animation-duration: .01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: .01ms !important;
+
+    scroll-behavior: auto !important;
+
+}
+
+/* =====================================================
+   SCROLL PROGRESS
+===================================================== */
+
+#website {
+
+    --archive-scroll-progress:
+        0;
+
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .reveal {
+
+        opacity: 1;
+
+        transform: none;
+
+        transition: none;
+    }
+
+    .crew-card-inner {
+
+        transition: none;
+    }
+
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .cinematic-rec span,
+    .cinematic-mouse::before,
+    .cinematic-arrow,
+    .cinematic-project-label,
+    .cinematic-top-line,
+    .cinematic-logo,
+    .cinematic-scroll,
+    .cinematic-statement,
+    .cinematic-divider,
+    .cinematic-status {
+
+        animation:
+            none !important;
+
+    }
+
+
+    .cinematic-project-label,
+    .cinematic-top-line,
+    .cinematic-logo,
+    .cinematic-scroll,
+    .cinematic-statement,
+    .cinematic-divider,
+    .cinematic-status {
+
+        opacity:
+            1 !important;
+
+        transform:
+            none !important;
+
+    }
+
+}
+
+/* =========================================================
+   18 — REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .team-identity-label .label-dot {
+        animation:
+            none !important;
+    }
+
+    .team-identity-logo img,
+    .crew-card-inner,
+    .crew-icon {
+        transition:
+            none !important;
+    }
+
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .oa-days-rec span,
+    .oa-days-image-rec span {
+        animation: none;
+    }
+
+    .oa-days-main-image img,
+    .oa-days-thumb,
+    .oa-days-timeline-item {
+        transition: none;
+    }
+
+}
+
+/* =========================================================
+   ONE GLOBAL WEBSITE BACKGROUND
+   ========================================================= */
+:root {
+    --navy: #112548;
+    --teal: #4E8484;
+    --cream: #F7EDE3;
+    --beige: #E1D7CC;
+    --gray: #6D6D6D;
+    --red: #D92832;
+    --gold: #C7A86B;
+    --dark: #112548;
+    --dark-2: #112548;
+}
+
+html,
+body,
+#website {
+    background-color: #112548;
+}
+
+#website {
+    background-image:
+        url("images/on-air-global.png") !important;
+    background-position:
+        center top !important;
+    background-size:
+        cover !important;
+    background-repeat:
+        no-repeat !important;
+    background-attachment:
+        scroll !important;
+}
+
+/* Every page/section lets the global image show through. */
+#website section,
+#website footer,
+#website .archive-page,
+#website .cinematic-archive,
+#website .production-section,
+#website .production-days-section,
+#website #production-days,
+#website .leave-mark-section,
+#website .team-crew-archive,
+#website .crew-section,
+#website .onair-team-section,
+#website #crewSection,
+#website .status-section,
+#website #statusSection,
+#website .project-status,
+#website .idea-section,
+#website .reel-section {
+    background: transparent !important;
+    background-image: none !important;
+}

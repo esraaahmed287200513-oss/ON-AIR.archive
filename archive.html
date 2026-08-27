@@ -31,7 +31,7 @@
     >
 
 
-    <!-- =====================================================
+   <!-- =====================================================
          ARCHIVE CSS
     ====================================================== -->
 
@@ -94,8 +94,7 @@
       rel="stylesheet"
       href="Days.css"
        >
-
-
+       
 </head>
 
 
@@ -305,29 +304,121 @@
              SCROLL
         ================================================== -->
 
-        <div class="cinematic-scroll">
+       <!-- =================================================
+     HERO ACTIONS
+================================================= -->
 
-            <div class="cinematic-scroll-line"></div>
+<div class="cinematic-hero-actions">
 
-            <div
-                class="cinematic-scroll-text"
-                data-ar="انزل عشان تكمل الحكاية"
-                data-en="SCROLL TO CONTINUE"
+    <!-- =================================================
+         LEFT — NOTES
+    ================================================== -->
+
+    <a
+        href="#leaveMarkSection"
+        class="hero-action hero-action-notes"
+        aria-label="اضغط لترك ذكرى"
+    >
+
+        <span
+            class="hero-action-icon"
+            aria-hidden="true"
+        >
+            ↙
+        </span>
+
+        <span class="hero-action-copy">
+
+            <strong
+                data-ar="اضغط"
+                data-en="CLICK"
             >
-                انزل عشان تكمل الحكاية
-            </div>
+                اضغط
+            </strong>
 
-            <div class="cinematic-mouse">
+            <small
+                data-ar="متنساش تسيب لينا ذكرى"
+                data-en="Don't forget to leave us a memory"
+            >
+                متنساش تسيب لينا ذكرى
+            </small>
 
-                <span></span>
+        </span>
 
-            </div>
+    </a>
 
-            <div class="cinematic-arrow">
-                ↓
-            </div>
 
+    <!-- =================================================
+         CENTER — SCROLL
+    ================================================== -->
+
+    <div class="cinematic-scroll">
+
+        <div class="cinematic-scroll-line"></div>
+
+        <div
+            class="cinematic-scroll-text"
+            data-ar="انزل عشان تكمل الحكاية"
+            data-en="SCROLL TO CONTINUE"
+        >
+            انزل عشان تكمل الحكاية
         </div>
+
+        <div
+            class="cinematic-mouse"
+            aria-hidden="true"
+        >
+            <span></span>
+        </div>
+
+        <div
+            class="cinematic-arrow"
+            aria-hidden="true"
+        >
+            ↓
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         RIGHT — SOCIAL / QR
+    ================================================== -->
+
+    <a
+        href="social.html"
+        class="hero-action hero-action-social"
+        aria-label="اضغط لمتابعة الفريق"
+    >
+
+        <span class="hero-action-copy">
+
+            <strong
+                data-ar="اضغط"
+                data-en="CLICK"
+            >
+                اضغط
+            </strong>
+
+            <small
+                data-ar="متنساش تكمل معانا الحكاية وتابعنا"
+                data-en="Don't forget to continue the story with us"
+            >
+                متنساش تكمل معانا الحكاية وتابعنا
+            </small>
+
+        </span>
+
+        <span
+            class="hero-action-icon"
+            aria-hidden="true"
+        >
+            ↗
+        </span>
+
+    </a>
+
+</div>
 
 
         <!-- =================================================
@@ -863,7 +954,7 @@
                 <!-- 02 — CLICKABLE -->
                 <a
                     class="oa-status-row active clickable"
-                    href="script.html"
+                    href="story.html"
                 >
 
                     <div class="oa-status-number">02</div>

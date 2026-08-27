@@ -1,0 +1,1308 @@
+/* =========================================================
+   ON AIR — PRODUCTION JOURNEY
+   production.css
+   FINAL CLEAN VERSION
+
+   IMPORTANT:
+   - No section background image.
+   - The site-wide background is:
+     images/on-air-global.png
+   - This section stays transparent so the global background
+     remains visible.
+   - Mobile performance is intentionally lightweight.
+
+   PALETTE
+   Navy  #112548
+   Teal  #4E8484
+   Cream #F7EDE3
+   Beige #E1D7CC
+   Gray  #6D6D6D
+   Red   #D92832
+   Gold  #C7A86B
+========================================================= */
+
+
+/* =========================================================
+   ROOT / SECTION
+========================================================= */
+
+.oa-production {
+    --prod-navy: #112548;
+    --prod-teal: #4E8484;
+    --prod-cream: #F7EDE3;
+    --prod-beige: #E1D7CC;
+    --prod-gray: #6D6D6D;
+    --prod-red: #D92832;
+    --prod-gold: #C7A86B;
+
+    position: relative;
+    isolation: isolate;
+
+    width: 100%;
+    min-height: 100svh;
+
+    padding:
+        clamp(95px, 10vw, 145px)
+        clamp(16px, 5vw, 75px)
+        65px;
+
+    overflow: hidden;
+
+    color: var(--prod-cream);
+
+    /* NO SECTION BACKGROUND */
+    background: transparent;
+}
+
+
+/* =========================================================
+   DISABLE SECTION BACKGROUND LAYERS
+========================================================= */
+
+.oa-production-bg,
+.oa-production-overlay {
+    display: none !important;
+}
+
+
+/* =========================================================
+   CINEMATIC CORNERS
+========================================================= */
+
+.oa-prod-corner {
+    position: absolute;
+
+    width: 28px;
+    height: 28px;
+
+    opacity: .58;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.oa-prod-corner::before,
+.oa-prod-corner::after {
+    content: "";
+
+    position: absolute;
+
+    background:
+        rgba(247,237,227,.58);
+}
+
+.oa-prod-corner::before {
+    width: 28px;
+    height: 1px;
+}
+
+.oa-prod-corner::after {
+    width: 1px;
+    height: 28px;
+}
+
+.oa-prod-tl {
+    top: 28px;
+    left: 28px;
+}
+
+.oa-prod-tr {
+    top: 28px;
+    right: 28px;
+    transform: rotate(90deg);
+}
+
+.oa-prod-bl {
+    bottom: 28px;
+    left: 28px;
+    transform: rotate(-90deg);
+}
+
+.oa-prod-br {
+    bottom: 28px;
+    right: 28px;
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.oa-production-header {
+    position: relative;
+    z-index: 2;
+
+    width: min(1200px, 100%);
+
+    margin:
+        0 auto
+        clamp(48px, 6vw, 72px);
+
+    text-align: center;
+    direction: rtl;
+
+    animation:
+        oaProductionReveal
+        .8s
+        cubic-bezier(.22,1,.36,1)
+        both;
+}
+
+.oa-production-index {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+
+    color:
+        rgba(247,237,227,.65);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 11px;
+
+    letter-spacing: .18em;
+}
+
+.oa-production-index i {
+    width: 32px;
+    height: 1px;
+
+    background:
+        rgba(225,215,204,.48);
+}
+
+.oa-production-label {
+    margin-bottom: 8px;
+
+    color:
+        rgba(225,215,204,.72);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: .22em;
+}
+
+.oa-production-header h2 {
+    margin: 0;
+
+    color:
+        var(--prod-cream);
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(48px, 7vw, 82px);
+
+    font-weight: 700;
+
+    line-height: 1.05;
+
+    letter-spacing: -.025em;
+
+    text-shadow:
+        0 3px 18px
+        rgba(17,37,72,.35);
+}
+
+.oa-production-header p {
+    margin: 13px 0 0;
+
+    color:
+        rgba(247,237,227,.72);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(19px, 2.3vw, 26px);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   TABLE LAYOUT
+========================================================= */
+
+.oa-production-tables {
+    position: relative;
+    z-index: 2;
+
+    width: min(1200px, 100%);
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0,1fr)
+        minmax(0,1fr);
+
+    gap: 22px;
+
+    direction: ltr;
+}
+
+
+/* =========================================================
+   TABLE
+   Transparent — global background remains visible.
+========================================================= */
+
+.oa-production-table {
+    position: relative;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    direction: rtl;
+
+    background:
+        rgba(17,37,72,.10);
+
+    border:
+        1px solid
+        rgba(247,237,227,.22);
+
+    border-radius: 14px;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(247,237,227,.045);
+
+    -webkit-backdrop-filter:
+        blur(2px);
+
+    backdrop-filter:
+        blur(2px);
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.oa-table-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding:
+        22px 22px 18px;
+
+    background:
+        transparent;
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.15);
+}
+
+.oa-table-header > div {
+    min-width: 0;
+}
+
+.oa-table-header span {
+    display: block;
+
+    color:
+        rgba(225,215,204,.62);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 11px;
+
+    letter-spacing: .18em;
+}
+
+.oa-table-header h3 {
+    margin: 7px 0 0;
+
+    color:
+        var(--prod-cream);
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size: 31px;
+
+    font-weight: 700;
+
+    line-height: 1.15;
+}
+
+.oa-table-header small {
+    flex: 0 0 auto;
+
+    color:
+        rgba(225,215,204,.48);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 10px;
+
+    letter-spacing: .15em;
+}
+
+
+/* =========================================================
+   FILES
+========================================================= */
+
+.oa-files-list {
+    padding:
+        4px 22px 10px;
+}
+
+.oa-file-row {
+    display: grid;
+
+    grid-template-columns:
+        35px
+        35px
+        minmax(0,1fr)
+        auto;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-height: 86px;
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.12);
+
+    transition:
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.oa-file-row:last-child {
+    border-bottom: 0;
+}
+
+.oa-file-row:hover {
+    background:
+        rgba(78,132,132,.08);
+}
+
+.oa-file-number {
+    color:
+        rgba(247,237,227,.58);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 12px;
+}
+
+.oa-file-symbol {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border:
+        1px solid
+        rgba(247,237,227,.25);
+
+    border-radius: 6px;
+
+    color:
+        rgba(247,237,227,.62);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    background:
+        rgba(17,37,72,.08);
+}
+
+.oa-file-info {
+    min-width: 0;
+
+    text-align: right;
+}
+
+.oa-file-info h4 {
+    margin: 0;
+
+    color:
+        var(--prod-cream);
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    line-height: 1.35;
+}
+
+.oa-file-info p {
+    margin: 5px 0 0;
+
+    color:
+        rgba(225,215,204,.62);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+.oa-file-state {
+    color:
+        rgba(225,215,204,.58);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   SECRET FILE
+========================================================= */
+
+.oa-file-row.secret {
+    border-bottom-color:
+        rgba(217,40,50,.22);
+}
+
+.oa-file-row.secret .oa-file-number,
+.oa-file-row.secret .oa-file-state {
+    color:
+        var(--prod-red);
+}
+
+.oa-file-row.secret .oa-file-symbol {
+    color:
+        var(--prod-red);
+
+    border-color:
+        rgba(217,40,50,.45);
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.oa-status-list {
+    padding:
+        4px 22px 10px;
+}
+
+.oa-status-row {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        36px
+        20px
+        minmax(0,1fr)
+        auto;
+
+    align-items: center;
+
+    min-height: 86px;
+
+    border-bottom:
+        1px solid
+        rgba(247,237,227,.12);
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.oa-status-row:last-child {
+    border-bottom: 0;
+}
+
+.oa-status-row:hover {
+    background:
+        rgba(78,132,132,.08);
+}
+
+.oa-status-row.clickable {
+    cursor: pointer;
+
+    border-right:
+        2px solid
+        transparent;
+}
+
+.oa-status-row.clickable:hover {
+    background:
+        rgba(78,132,132,.10);
+
+    border-right:
+        2px solid
+        rgba(199,168,107,.72);
+}
+
+.oa-status-number {
+    color:
+        rgba(247,237,227,.55);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.oa-status-marker {
+    position: relative;
+
+    align-self: stretch;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+.oa-status-marker::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    width: 1px;
+
+    background:
+        rgba(247,237,227,.18);
+}
+
+.oa-status-marker::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+
+    width: 9px;
+    height: 9px;
+
+    transform:
+        translateY(-50%);
+
+    border-radius: 50%;
+
+    background:
+        var(--prod-navy);
+
+    border:
+        1px solid
+        rgba(247,237,227,.55);
+
+    box-shadow:
+        0 0 5px
+        rgba(247,237,227,.10);
+}
+
+.oa-status-row.active .oa-status-marker::after {
+    background:
+        var(--prod-teal);
+
+    border-color:
+        var(--prod-teal);
+
+    box-shadow:
+        0 0 7px
+        rgba(78,132,132,.72),
+        0 0 14px
+        rgba(78,132,132,.24);
+}
+
+
+/* =========================================================
+   STATUS INFO
+========================================================= */
+
+.oa-status-info {
+    min-width: 0;
+
+    text-align: right;
+}
+
+.oa-status-info h4 {
+    margin: 0;
+
+    color:
+        var(--prod-cream);
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size: 21px;
+
+    font-weight: 600;
+
+    line-height: 1.35;
+}
+
+.oa-status-info p {
+    margin: 5px 0 0;
+
+    color:
+        rgba(225,215,204,.62);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+.oa-status-state {
+    color:
+        rgba(225,215,204,.62);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   LIVE STATUS
+========================================================= */
+
+.oa-status-live {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 7px;
+
+    direction: rtl;
+
+    white-space: nowrap;
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+.oa-status-live i {
+    display: block;
+
+    width: 7px;
+    height: 7px;
+
+    flex: 0 0 7px;
+
+    border-radius: 50%;
+}
+
+
+/* OPEN */
+
+.oa-status-live.open-status {
+    color:
+        var(--prod-gold);
+}
+
+.oa-status-live.open-status i {
+    background:
+        var(--prod-gold);
+
+    box-shadow:
+        0 0 5px
+        rgba(199,168,107,.65);
+}
+
+
+/* NOW / RED */
+
+.oa-status-live.now-status {
+    color:
+        var(--prod-red);
+
+    font-weight: 600;
+}
+
+.oa-status-live.now-status i {
+    background:
+        var(--prod-red);
+
+    animation:
+        oaRecordingPulse
+        1.5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes oaRecordingPulse {
+
+    0%,
+    100% {
+        opacity: .4;
+
+        box-shadow:
+            0 0 0
+            rgba(217,40,50,0);
+    }
+
+    50% {
+        opacity: 1;
+
+        box-shadow:
+            0 0 6px
+            rgba(217,40,50,.75);
+    }
+}
+
+
+/* =========================================================
+   COMING SOON MESSAGE
+========================================================= */
+
+.oa-coming-soon-message {
+    position: fixed;
+
+    left: 50%;
+    bottom: 35px;
+
+    transform:
+        translate(-50%, 25px);
+
+    z-index: 99999;
+
+    min-width:
+        min(420px, calc(100vw - 30px));
+
+    padding:
+        18px 24px;
+
+    text-align: center;
+
+    direction: rtl;
+
+    color:
+        var(--prod-cream);
+
+    background:
+        rgba(17,37,72,.94);
+
+    border:
+        1px solid
+        rgba(247,237,227,.30);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(17,37,72,.28);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.oa-production-footer {
+    position: relative;
+    z-index: 2;
+
+    width: min(1200px,100%);
+
+    margin:
+        25px auto 0;
+
+    padding-top: 17px;
+
+    border-top:
+        1px solid
+        rgba(247,237,227,.14);
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        auto
+        1fr;
+
+    align-items: center;
+
+    gap: 20px;
+
+    color:
+        rgba(225,215,204,.38);
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 8px;
+}
+
+.oa-production-footer p {
+    margin: 0;
+
+    color:
+        rgba(247,237,227,.55);
+
+    font-size: 10px;
+
+    text-align: center;
+}
+
+.oa-production-footer::before {
+    content:
+        "FRAME / 002";
+
+    position: absolute;
+
+    left: 50%;
+    top: -28px;
+
+    transform:
+        translateX(-50%);
+
+    color:
+        rgba(225,215,204,.18);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: .25em;
+}
+
+
+/* =========================================================
+   DESKTOP HOVER — LIGHT ONLY
+========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .oa-file-row:hover {
+        transform:
+            translateX(-2px);
+    }
+
+    .oa-status-row.clickable:hover {
+        transform:
+            translateX(-3px);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .oa-production {
+        padding:
+            80px 12px 45px;
+    }
+
+
+    .oa-production-tables {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 16px;
+    }
+
+
+    /* Production stages first on mobile */
+
+    .oa-status-table {
+        order: 1;
+    }
+
+    .oa-files-table {
+        order: 2;
+    }
+
+
+    .oa-production-header {
+        margin-bottom:
+            45px;
+    }
+
+
+    .oa-production-header h2 {
+        font-size:
+            46px;
+    }
+
+
+    .oa-production-header p {
+        font-size:
+            18px;
+    }
+
+
+    .oa-production-table {
+        border-radius:
+            12px;
+
+        background:
+            rgba(17,37,72,.08);
+
+        -webkit-backdrop-filter:
+            none;
+
+        backdrop-filter:
+            none;
+
+        box-shadow:
+            inset 0 1px 0
+            rgba(247,237,227,.035);
+    }
+
+
+    .oa-table-header {
+        padding:
+            18px 16px 16px;
+    }
+
+
+    .oa-table-header h3 {
+        font-size:
+            25px;
+    }
+
+
+    .oa-files-list,
+    .oa-status-list {
+        padding:
+            3px 13px 8px;
+    }
+
+
+    .oa-file-row {
+        grid-template-columns:
+            27px
+            29px
+            minmax(0,1fr)
+            auto;
+
+        min-height:
+            78px;
+
+        gap:
+            8px;
+
+        transition:
+            background .15s ease;
+    }
+
+
+    .oa-file-row:hover {
+        transform: none;
+    }
+
+
+    .oa-file-info h4 {
+        font-size:
+            17px;
+    }
+
+
+    .oa-file-info p {
+        font-size:
+            9px;
+    }
+
+
+    .oa-file-number {
+        font-size:
+            10px;
+    }
+
+
+    .oa-file-state {
+        font-size:
+            9px;
+    }
+
+
+    .oa-status-row {
+        grid-template-columns:
+            28px
+            16px
+            minmax(0,1fr)
+            auto;
+
+        min-height:
+            78px;
+
+        transition:
+            background .15s ease;
+    }
+
+
+    .oa-status-info h4 {
+        font-size:
+            18px;
+    }
+
+
+    .oa-status-info p {
+        font-size:
+            9px;
+    }
+
+
+    .oa-status-number {
+        font-size:
+            10px;
+    }
+
+
+    .oa-status-state {
+        font-size:
+            9px;
+    }
+
+
+    .oa-status-live {
+        font-size:
+            10px;
+    }
+
+
+    .oa-status-live i {
+        width:
+            6px;
+
+        height:
+            6px;
+
+        flex-basis:
+            6px;
+    }
+
+
+    .oa-prod-corner {
+        opacity:
+            .42;
+    }
+
+
+    .oa-production-footer {
+        grid-template-columns:
+            1fr;
+
+        text-align:
+            center;
+    }
+
+
+    .oa-production-footer::before {
+        display:
+            none;
+    }
+
+
+    .oa-coming-soon-message {
+        bottom:
+            20px;
+
+        min-width:
+            calc(100vw - 30px);
+
+        padding:
+            15px 18px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .oa-production {
+        padding:
+            72px 9px 38px;
+    }
+
+
+    .oa-production-header h2 {
+        font-size:
+            40px;
+    }
+
+
+    .oa-production-header p {
+        font-size:
+            16px;
+    }
+
+
+    .oa-table-header h3 {
+        font-size:
+            22px;
+    }
+
+
+    .oa-file-info h4 {
+        font-size:
+            15px;
+    }
+
+
+    .oa-file-info p,
+    .oa-status-info p {
+        font-size:
+            8px;
+    }
+
+
+    .oa-status-info h4 {
+        font-size:
+            16px;
+    }
+
+
+    .oa-file-row {
+        grid-template-columns:
+            24px
+            26px
+            minmax(0,1fr)
+            auto;
+
+        gap:
+            6px;
+    }
+
+
+    .oa-status-row {
+        grid-template-columns:
+            24px
+            14px
+            minmax(0,1fr)
+            auto;
+    }
+
+
+    .oa-file-symbol {
+        width:
+            26px;
+
+        height:
+            26px;
+    }
+
+
+    .oa-file-state,
+    .oa-status-state {
+        font-size:
+            8px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .oa-production-header,
+    .oa-status-live.now-status i {
+        animation:
+            none !important;
+    }
+
+
+    .oa-file-row,
+    .oa-status-row {
+        transition:
+            none !important;
+    }
+}

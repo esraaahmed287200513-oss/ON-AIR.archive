@@ -1,715 +1,901 @@
-/* =====================================================
-   IDEA SECTION
-   ON AIR بالعافية
-===================================================== */
+/* =========================================================
+   ON AIR بِالعَافيَه
+   IDEA / THE FILM
+   CINEMATIC ARCHIVE
+========================================================= */
 
-.idea-section {
 
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #050C14;
+    color: #F7EDE3;
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.idea-page {
     position: relative;
 
     width: 100%;
-    height: 100vh;
-    min-height: 600px;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(78, 132, 132, 0.12),
-            transparent 55%
-        ),
-        #0B1824;
-
-    color: #F3DFC2;
+    height: 100svh;
+    min-height: 650px;
 
     overflow: hidden;
 
+    isolation: isolate;
+
+    background: #050C14;
 }
 
 
-/* =====================================================
-   CAMERA UI
-===================================================== */
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
-.camera-ui {
+.idea-bg {
+    position: absolute;
 
-    position: relative;
+    inset: -2%;
 
-    width: 100%;
-    height: 100%;
+    z-index: -5;
 
-    border: 1px solid rgba(243, 223, 194, 0.25);
+    background-image:
+        url("images/idea-background.png");
 
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    filter:
+        brightness(.78)
+        contrast(1.08)
+        saturate(.72);
+
+    transform: scale(1.025);
+
+    will-change: transform;
 }
 
 
-/* =====================================================
-   SUBTLE GRID
-===================================================== */
+/* =========================================================
+   DARK CINEMATIC LAYER
+========================================================= */
 
-.camera-ui::before {
-
-    content: "";
-
+.idea-darkness {
     position: absolute;
 
     inset: 0;
 
-    background-image:
-
-        linear-gradient(
-            rgba(243, 223, 194, 0.035) 1px,
-            transparent 1px
-        ),
-
-        linear-gradient(
-            90deg,
-            rgba(243, 223, 194, 0.035) 1px,
-            transparent 1px
-        );
-
-    background-size: 40px 40px;
+    z-index: -4;
 
     pointer-events: none;
 
+    background:
+
+        radial-gradient(
+            ellipse 55% 60% at 50% 50%,
+            transparent 5%,
+            rgba(3, 9, 15, .08) 40%,
+            rgba(3, 9, 15, .55) 100%
+        ),
+
+        linear-gradient(
+            to bottom,
+            rgba(2, 7, 12, .45),
+            transparent 20%,
+            transparent 78%,
+            rgba(2, 7, 12, .62)
+        );
 }
 
 
-/* =====================================================
-   TOP CAMERA DATA
-===================================================== */
+/* =========================================================
+   FILM GRAIN
+========================================================= */
 
-.camera-data-top {
-
+.idea-grain {
     position: absolute;
 
-    top: 32px;
-    left: 50%;
+    inset: 0;
 
-    transform: translateX(-50%);
+    z-index: 20;
 
-    font-family: monospace;
+    pointer-events: none;
 
-    font-size: 13px;
+    opacity: .09;
 
-    font-weight: 700;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.35'/%3E%3C/svg%3E");
 
-    letter-spacing: 4px;
+    mix-blend-mode: screen;
 
-    color: #F3DFC2;
-
-    white-space: nowrap;
-
-}
-
-.camera-data-top span,
-.camera-data-bottom span {
-
-    margin: 0 12px;
-
-    opacity: .6;
-
+    animation: grain 0.35s steps(2) infinite;
 }
 
 
-/* =====================================================
-   LANGUAGE
-===================================================== */
+@keyframes grain {
 
-.camera-language {
+    0% {
+        transform: translate(0, 0);
+    }
 
+    25% {
+        transform: translate(-1%, 1%);
+    }
+
+    50% {
+        transform: translate(1%, -1%);
+    }
+
+    75% {
+        transform: translate(-1%, -1%);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+
+/* =========================================================
+   CINEMATIC FRAME
+========================================================= */
+
+.cinematic-frame {
     position: absolute;
 
-    top: 32px;
-    left: 40px;
+    inset: 20px;
 
-    font-family: monospace;
+    z-index: 10;
 
-    font-size: 14px;
+    pointer-events: none;
 
-    font-weight: 700;
-
-    letter-spacing: 3px;
-
-    color: #F3DFC2;
-
-}
-
-.camera-language span {
-
-    opacity: .5;
-
-    margin: 0 7px;
-
+    border:
+        1px solid
+        rgba(247, 237, 227, .11);
 }
 
 
-/* =====================================================
-   LOGO
-===================================================== */
+/* =========================================================
+   CORNERS
+========================================================= */
 
-.camera-logo {
-
+.corner {
     position: absolute;
 
-    top: 75px;
-    left: 50%;
+    width: 56px;
+    height: 56px;
 
-    transform: translateX(-50%);
+    border-color:
+        rgba(247, 237, 227, .52);
+}
 
-    display: flex;
+.corner.tl {
+    top: -1px;
+    left: -1px;
 
-    flex-direction: column;
+    border-top: 1px solid;
+    border-left: 1px solid;
+}
+
+.corner.tr {
+    top: -1px;
+    right: -1px;
+
+    border-top: 1px solid;
+    border-right: 1px solid;
+}
+
+.corner.bl {
+    bottom: -1px;
+    left: -1px;
+
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+}
+
+.corner.br {
+    bottom: -1px;
+    right: -1px;
+
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+}
+
+
+/* =========================================================
+   TOP ARCHIVE
+========================================================= */
+
+.archive-top {
+    position: absolute;
+
+    top: 39px;
+    left: 42px;
+    right: 42px;
+
+    z-index: 30;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        auto
+        1fr;
 
     align-items: center;
-
-    gap: 2px;
-
-    color: #4E8484;
-
-    font-weight: 700;
-
-    letter-spacing: 3px;
-
-    z-index: 5;
-
-}
-
-.camera-logo span:first-child {
-
-    font-size: clamp(20px, 2vw, 30px);
-
-    letter-spacing: 4px;
-
-}
-
-.camera-logo span:last-child {
-
-    font-family: Arial, sans-serif;
-
-    font-size: clamp(16px, 1.6vw, 23px);
-
-    letter-spacing: 1px;
-
 }
 
 
-/* =====================================================
+/* =========================================================
    REC
-===================================================== */
+========================================================= */
 
-.recording {
-
-    position: absolute;
-
-    top: 32px;
-    right: 40px;
-
+.rec {
     display: flex;
 
     align-items: center;
 
-    gap: 10px;
+    gap: 9px;
 
-    font-family: monospace;
+    justify-self: start;
 
-    font-size: 14px;
+    font-family:
+        "Space Mono",
+        monospace;
 
-    font-weight: 700;
+    font-size: 9px;
 
     letter-spacing: 2px;
 
+    color:
+        rgba(247, 237, 227, .55);
 }
 
-
-/* RED LIGHT */
-
-.rec-dot {
-
-    width: 12px;
-    height: 12px;
+.rec span {
+    width: 6px;
+    height: 6px;
 
     border-radius: 50%;
 
-    background: #ff453a;
+    background: #D92832;
 
     box-shadow:
-        0 0 8px rgba(255, 69, 58, .8),
-        0 0 20px rgba(255, 69, 58, .45);
+        0 0 8px
+        rgba(217, 40, 50, .7);
 
-    animation: recordingLight 1.2s infinite;
-
+    animation: recording 1.3s infinite;
 }
 
-
-/* REC TEXT */
-
-.rec-text {
-
-    color: #F3DFC2;
-
-}
-
-
-/* =====================================================
-   RECORDING ANIMATION
-===================================================== */
-
-@keyframes recordingLight {
+@keyframes recording {
 
     0%,
     45% {
-
         opacity: 1;
-
-        box-shadow:
-            0 0 8px rgba(255, 69, 58, .9),
-            0 0 20px rgba(255, 69, 58, .5);
-
     }
 
-    50%,
+    55%,
     100% {
-
-        opacity: .25;
-
-        box-shadow: none;
-
+        opacity: .2;
     }
-
 }
 
 
-/* =====================================================
-   CAMERA CORNERS
-===================================================== */
+/* =========================================================
+   TOP CENTER
+========================================================= */
 
-.frame-corner {
+.top-center {
+    font-family:
+        "Space Mono",
+        monospace;
 
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color:
+        rgba(247, 237, 227, .38);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ARCHIVE NUMBER
+========================================================= */
+
+.archive-number {
+    justify-self: end;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(247, 237, 227, .45);
+}
+
+
+/* =========================================================
+   SIDE ELEMENTS
+========================================================= */
+
+.archive-side {
     position: absolute;
 
-    width: 65px;
-    height: 65px;
+    top: 50%;
 
-    border-color: #F3DFC2;
+    z-index: 15;
 
-    opacity: .85;
+    transform: translateY(-50%);
 
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+
+    color:
+        rgba(247, 237, 227, .38);
+}
+
+.archive-left {
+    left: 7.5%;
+
+    align-items: flex-start;
+}
+
+.archive-right {
+    right: 7.5%;
+
+    align-items: flex-start;
 }
 
 
-/* TOP LEFT */
+/* =========================================================
+   BRAND
+========================================================= */
 
-.frame-corner.top-left {
+.brand,
+.file-number {
+    display: flex;
 
-    top: 90px;
-    left: 40px;
+    flex-direction: column;
 
-    border-top: 2px solid;
-    border-left: 2px solid;
+    gap: 2px;
+}
 
+.brand span,
+.file-number span {
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    color:
+        rgba(247, 237, 227, .36);
+}
+
+.brand strong,
+.file-number strong {
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 400;
+
+    color:
+        rgba(247, 237, 227, .40);
 }
 
 
-/* TOP RIGHT */
+/* =========================================================
+   SIDE RULE
+========================================================= */
 
-.frame-corner.top-right {
+.side-rule {
+    width: 82px;
+    height: 1px;
 
-    top: 90px;
-    right: 40px;
-
-    border-top: 2px solid;
-    border-right: 2px solid;
-
+    background:
+        rgba(247, 237, 227, .16);
 }
 
 
-/* BOTTOM LEFT */
+/* =========================================================
+   SIDE SMALL
+========================================================= */
 
-.frame-corner.bottom-left {
+.side-small {
+    font-family:
+        "Space Mono",
+        monospace;
 
-    bottom: 70px;
-    left: 40px;
+    font-size: 6px;
 
-    border-bottom: 2px solid;
-    border-left: 2px solid;
+    letter-spacing: 2px;
 
+    color:
+        rgba(247, 237, 227, .24);
 }
 
 
-/* BOTTOM RIGHT */
+/* =========================================================
+   MAIN IDEA
+========================================================= */
 
-.frame-corner.bottom-right {
-
-    bottom: 70px;
-    right: 40px;
-
-    border-bottom: 2px solid;
-    border-right: 2px solid;
-
-}
-
-
-/* =====================================================
-   IDEA CONTENT
-===================================================== */
-
-.idea-content {
-
+.idea-center {
     position: absolute;
 
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    z-index: 25;
 
-    width: min(900px, 85%);
+    width:
+        min(780px, 62vw);
+
+    transform:
+        translate(-50%, -50%);
 
     text-align: center;
 
-    z-index: 3;
-
+    animation:
+        revealIdea
+        1.2s
+        cubic-bezier(.16, .72, .22, 1)
+        both;
 }
 
 
-/* =====================================================
-   MAIN SENTENCE
-===================================================== */
+@keyframes revealIdea {
 
-.idea-title {
+    from {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -47%)
+            scale(.985);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   IDEA LABEL
+========================================================= */
+
+.idea-label {
+    margin-bottom: 18px;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 5px;
+
+    color:
+        rgba(247, 237, 227, .48);
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.idea-center h1 {
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(32px, 3.7vw, 56px);
+
+    font-weight: 400;
+
+    line-height: 1.15;
+
+    color:
+        #F7EDE3;
+
+    text-shadow:
+        0 2px 25px
+        rgba(0, 0, 0, .28);
+}
+
+
+/* =========================================================
+   TITLE LINE
+========================================================= */
+
+.title-line {
+    position: relative;
+
+    width: 150px;
+    height: 1px;
+
+    margin:
+        24px auto 30px;
+
+    background:
+        rgba(247, 237, 227, .20);
+}
+
+.title-line span {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 5px;
+    height: 5px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        #F7EDE3;
+
+    box-shadow:
+        0 0 15px
+        rgba(247, 237, 227, .45);
+}
+
+
+/* =========================================================
+   LOGLINE — CINEMATIC SEQUENCE
+========================================================= */
+
+.logline {
+    width: 100%;
+    max-width: 790px;
+
+    margin: 0 auto;
 
     display: flex;
 
     flex-direction: column;
 
     align-items: center;
-
-    gap: 5px;
-
-    color: #F3DFC2;
-
-    font-weight: 700;
-
-    line-height: 1.25;
-
 }
 
 
-/* first line */
+/* =========================================================
+   SENTENCE
+========================================================= */
 
-.idea-title span:first-child {
+.logline-block {
+    width: 100%;
 
-    font-size: clamp(26px, 4vw, 52px);
+    opacity: 0;
 
+    transform:
+        translateY(18px);
+
+    filter:
+        blur(2px);
+
+    transition:
+        opacity .9s ease,
+        transform 1s cubic-bezier(.16,.72,.22,1),
+        filter 1s ease;
 }
 
 
-/* second line */
+.logline-block.is-visible {
+    opacity: 1;
 
-.idea-title span:last-child {
+    transform:
+        translateY(0);
 
-    font-size: clamp(30px, 5vw, 68px);
-
+    filter:
+        blur(0);
 }
 
 
-/* =====================================================
-   DIVIDER
-===================================================== */
+/* =========================================================
+   TEXT
+========================================================= */
 
-.idea-divider {
+.logline-block p {
+    margin: 0;
 
-    width: 180px;
-    height: 2px;
+    font-family:
+        "Cairo",
+        sans-serif;
 
-    margin: 30px auto;
+    font-size:
+        clamp(13px, 1.18vw, 17px);
 
-    background: #F3DFC2;
+    font-weight: 400;
 
-    opacity: .8;
+    line-height: 2.15;
 
+    color:
+        rgba(247, 237, 227, .84);
+
+    text-shadow:
+        0 2px 18px rgba(0,0,0,.42);
 }
 
 
-/* =====================================================
-   SECOND TEXT
-===================================================== */
+/* =========================================================
+   TRANSITION
+========================================================= */
 
-.idea-subtitle {
+.logline-transition {
+    position: relative;
+
+    width: 130px;
+    height: 14px;
+
+    margin:
+        17px auto;
 
     display: flex;
 
-    flex-direction: column;
+    align-items: center;
 
-    gap: 12px;
+    justify-content: center;
 
-    color: #F3DFC2;
+    gap: 10px;
 
-    font-weight: 500;
-
+    opacity: 0;
 }
 
 
-/* first sentence */
+/* =========================================================
+   SIDE LINES
+========================================================= */
 
-.idea-subtitle span:first-child {
+.transition-line {
+    position: relative;
 
-    font-size: clamp(19px, 2.3vw, 30px);
+    width: 40px;
+    height: 1px;
 
+    overflow: hidden;
+
+    background:
+        rgba(232, 72, 72, .20);
 }
 
 
-/* second sentence */
+/* =========================================================
+   MOVING RED SCAN
+========================================================= */
 
-.idea-subtitle span:last-child {
-
-    font-size: clamp(16px, 1.8vw, 24px);
-
-    color: #4E8484;
-
-    font-weight: 700;
-
-}
-
-
-/* =====================================================
-   BOTTOM DATA
-===================================================== */
-
-.camera-data-bottom {
+.transition-line::after {
+    content: "";
 
     position: absolute;
 
-    bottom: 30px;
-    left: 50%;
+    top: 0;
 
-    transform: translateX(-50%);
+    left: -100%;
 
-    font-family: monospace;
+    width: 70%;
 
-    font-size: 12px;
+    height: 100%;
 
-    letter-spacing: 4px;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #E84848,
+            transparent
+        );
 
-    color: #F3DFC2;
+    box-shadow:
+        0 0 8px rgba(232,72,72,.75);
 
-    opacity: .8;
+    animation:
+        scanLine 1.3s ease-in-out infinite;
+}
 
-    white-space: nowrap;
+
+@keyframes scanLine {
+
+    0% {
+        left: -100%;
+    }
+
+    50% {
+        left: 120%;
+    }
+
+    100% {
+        left: 120%;
+    }
+}
+
+
+/* =========================================================
+   CENTER RED CORE
+========================================================= */
+
+.transition-core {
+    position: relative;
+
+    width: 4px;
+    height: 4px;
+
+    flex: 0 0 4px;
+
+    border-radius: 50%;
+
+    background:
+        oklab(62.919000000000004% -0.08793 -0.02224);
+
+    box-shadow:
+        0 0 5px rgba(232,72,72,.9),
+        0 0 14px rgba(232,72,72,.45);
+
+    animation:
+        redPulse 1.4s ease-in-out infinite;
+}
+
+
+@keyframes redPulse {
+
+    0%,
+    100% {
+        transform: scale(.75);
+
+        opacity: .45;
+    }
+
+    50% {
+        transform: scale(1.45);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   TRANSITION VISIBILITY
+========================================================= */
+
+.logline-transition.is-visible {
+    animation:
+        transitionReveal .55s ease forwards;
+}
+
+
+@keyframes transitionReveal {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scaleX(.45);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scaleX(1);
+    }
+}
+
+
+/* =========================================================
+   FINAL SENTENCE
+========================================================= */
+
+.logline-block.final-line p {
+    color:
+        #F7EDE3;
+
+    text-shadow:
+        0 0 22px rgba(247,237,227,.12);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .logline {
+        max-width: 100%;
+    }
+
+    .logline-block p {
+        font-size: 11.5px;
+
+        line-height: 2.02;
+    }
+
+    .logline-transition {
+        width: 90px;
+
+        margin:
+            14px auto;
+    }
+
+    .transition-line {
+        width: 26px;
+    }
 
 }
 
 
-/* =====================================================
-   PLUS MARKS
-===================================================== */
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
-.plus-mark {
+@media (prefers-reduced-motion: reduce) {
 
-    position: absolute;
+    .logline-block {
+        opacity: 1;
 
-    font-family: monospace;
+        transform: none;
 
-    font-size: 28px;
+        filter: none;
 
-    font-weight: 300;
-
-    color: #F3DFC2;
-
-    opacity: .8;
-
-}
-
-.plus-left {
-
-    left: 7%;
-
-    top: 50%;
-
-}
-
-.plus-right {
-
-    right: 7%;
-
-    top: 50%;
-
-}
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media (max-width: 700px) {
-
-    .idea-section {
-
-        height: 100svh;
-
-        min-height: 500px;
-
+        transition: none;
     }
 
+    .logline-transition {
+        opacity: 1;
 
-    .camera-data-top {
-
-        top: 25px;
-
-        font-size: 9px;
-
-        letter-spacing: 2px;
-
+        animation: none;
     }
 
-
-    .camera-language {
-
-        top: 25px;
-        left: 20px;
-
-        font-size: 10px;
-
-    }
-
-
-    .recording {
-
-        top: 25px;
-        right: 20px;
-
-        font-size: 10px;
-
-    }
-
-
-    .rec-dot {
-
-        width: 8px;
-        height: 8px;
-
-    }
-
-
-    .camera-logo {
-
-        top: 65px;
-
-    }
-
-
-    .camera-logo span:first-child {
-
-        font-size: 19px;
-
-    }
-
-
-    .camera-logo span:last-child {
-
-        font-size: 15px;
-
-    }
-
-
-    .frame-corner {
-
-        width: 35px;
-        height: 35px;
-
-    }
-
-
-    .frame-corner.top-left,
-    .frame-corner.top-right {
-
-        top: 75px;
-
-    }
-
-
-    .frame-corner.bottom-left,
-    .frame-corner.bottom-right {
-
-        bottom: 55px;
-
-    }
-
-
-    .frame-corner.top-left,
-    .frame-corner.bottom-left {
-
-        left: 20px;
-
-    }
-
-
-    .frame-corner.top-right,
-    .frame-corner.bottom-right {
-
-        right: 20px;
-
-    }
-
-
-    .idea-content {
-
-        width: 88%;
-
-    }
-
-
-    .idea-title span:first-child {
-
-        font-size: 25px;
-
-    }
-
-
-    .idea-title span:last-child {
-
-        font-size: 31px;
-
-    }
-
-
-    .idea-divider {
-
-        width: 100px;
-
-        margin: 22px auto;
-
-    }
-
-
-    .idea-subtitle span:first-child {
-
-        font-size: 18px;
-
-    }
-
-
-    .idea-subtitle span:last-child {
-
-        font-size: 16px;
-
-    }
-
-
-    .camera-data-bottom {
-
-        bottom: 22px;
-
-        font-size: 8px;
-
-        letter-spacing: 2px;
-
-    }
-
-
-    .plus-mark {
-
-        display: none;
-
+    .transition-line::after,
+    .transition-core {
+        animation: none;
     }
 
 }

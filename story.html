@@ -1,80 +1,64 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07111D">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>The Story — ON AIR بالعافية</title>
-
+    <title>السيناريو — ON AIR بِالعَافيَه</title>
     <meta
         name="description"
-        content="The Story — ON AIR بالعافية"
+        content="السيناريو — ملف أرشيفي لمراحل كتابة فيلم ON AIR بِالعَافيَه"
     >
-
-    <!-- FONTS -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="story.css">
 </head>
 
+<body class="script-page">
 
-<body class="story-page">
+    <!-- ================= HEADER ================= -->
 
+    <header class="script-header">
 
-    <!-- =================================================
-         TOP BAR
-    ================================================= -->
-
-    <header class="top-bar">
-
-        <div class="rec">
-
-            <span class="rec-dot"></span>
-
+        <div class="header-side rec">
+            <span class="rec-dot" aria-hidden="true"></span>
             <span>REC</span>
-
         </div>
 
-
-        <div class="technical-info">
-
-            <span>FRAME 003</span>
-
-            <span class="separator">|</span>
-
+        <div class="header-tech" aria-label="Camera metadata">
+            <span>FRAME 004</span>
+            <i>|</i>
             <span>ISO 800</span>
-
-            <span class="separator">|</span>
-
+            <i>|</i>
             <span>24 FPS</span>
-
         </div>
 
+        <a
+            class="brand"
+            href="archive.html"
+            aria-label="Back to archive"
+        >
+            <span>ON AIR</span>
+            <b>بِالعَافيَه</b>
+        </a>
 
-        <nav class="language">
+        <div class="header-side header-actions">
+
+            <span>SOUND OFF</span>
+
+            <span class="slash">/</span>
 
             <button
                 type="button"
-                class="active"
+                class="lang active"
                 data-lang="ar"
                 aria-pressed="true"
             >
@@ -85,214 +69,88 @@
 
             <button
                 type="button"
+                class="lang"
                 data-lang="en"
                 aria-pressed="false"
             >
                 EN
             </button>
 
-        </nav>
+            <a
+                href="archive.html"
+                class="back-link"
+            >
+                MENU ☰
+            </a>
+
+        </div>
 
     </header>
 
 
+    <!-- ================= MAIN ================= -->
 
-    <!-- =================================================
-         STORY PAGE
-    ================================================= -->
+    <main class="script-main">
 
-    <main class="story-main">
+        <!-- page frame -->
 
+        <div class="frame-corner corner-tl" aria-hidden="true"></div>
+        <div class="frame-corner corner-tr" aria-hidden="true"></div>
+        <div class="frame-corner corner-bl" aria-hidden="true"></div>
+        <div class="frame-corner corner-br" aria-hidden="true"></div>
 
-        <!-- GRID -->
+        <div class="side-label side-left">
+            ARCHIVE / SCRIPT FILE
+        </div>
 
-        <div class="story-grid"></div>
-
-
-        <!-- CAMERA CORNERS -->
-
-        <div class="camera-corner top-left"></div>
-
-        <div class="camera-corner top-right"></div>
-
-        <div class="camera-corner bottom-left"></div>
-
-        <div class="camera-corner bottom-right"></div>
-
-
-
-        <!-- =================================================
-             PAGE NUMBER
-        ================================================= -->
-
-        <div class="story-page-number">
-
-            STORY / 003
-
+        <div class="side-label side-right">
+            FINAL DOCUMENT / 004
         </div>
 
 
+        <!-- ================= HERO ================= -->
 
-        <!-- =================================================
-             MAIN CONTENT
-        ================================================= -->
+        <section class="script-hero">
 
-        <section class="story-content">
+            <!-- LEFT -->
 
+            <div class="hero-copy reveal">
 
-            <div class="story-intro">
-
-                <p class="story-eyebrow">
-
-                    THE STORY
-
+                <p class="eyebrow">
+                    PROJECT FILE / 004
                 </p>
-
 
                 <h1>
-
-                    مش كل
-                    <span>اختلاف</span>
-                    بيتشاف.
-
+                    السيناريو
                 </h1>
 
-
-                <div class="story-line"></div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 STORY TEXT
-            ================================================= -->
-
-            <div class="story-body">
-
-
-                <div class="story-side-label">
-
-                    <span>
-                        FILE NOTE
-                    </span>
-
-                    <strong>
-                        003-A
-                    </strong>
-
+                <div class="hero-en">
+                    THE SCRIPT
                 </div>
 
+                <span class="hero-rule"></span>
 
-                <div class="story-text">
-
-                    <p class="story-lead">
-
-                        في ناس بتقرأ العالم
-                        <br>
-                        بطريقة مختلفة.
-
-                    </p>
-
-
-                    <p>
-
-                        الحروف ممكن تتحرك،
-                        الكلمات ممكن تتداخل،
-                        والقراءة اللي تبدو سهلة بالنسبة لحد
-                        ممكن تكون تحدي كبير بالنسبة لحد تاني.
-
-                    </p>
-
-
-                    <p>
-
-                        لكن الديسلكسيا مش معناها
-                        إن الشخص أقل ذكاء،
-                        ولا أقل قدرة،
-                        ولا إن صوته أقل أهمية.
-
-                    </p>
-
-
-                    <p>
-
-                        هي ببساطة طريقة مختلفة
-                        لمعالجة المعلومات والتعامل معها.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 QUOTE
-            ================================================= -->
-
-            <div class="story-quote">
-
-                <span class="quote-mark">
-                    “
-                </span>
-
-                <p>
-
-                    يمكن إحنا مش بنشوف
-                    العالم بنفس الطريقة...
+                <p class="hero-text">
+                    النسخة اللي وصلت للنهاية
                     <br>
-
-                    بس ده مش معناه
-                    إننا مش بنشوفه.
-
+                    ما كانتش أول محاولة.
                 </p>
 
-            </div>
+                <p class="hero-subtext">
+                    ورا النسخة النهائية مراحل كتابة،
+                    تعديل، وإعادة نظر كتير.
+                    لكن أغلب اللي حصل قبلها
+                    فضل جوّه الملف، مش على ورق.
+                </p>
 
-
-
-            <!-- =================================================
-                 PROJECT NOTE
-            ================================================= -->
-
-            <div class="story-note">
-
-                <div>
-
-                    <span>
-                        SUBJECT
-                    </span>
-
-                    <strong>
-                        DYSLEXIA
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <span>
-                        FORMAT
-                    </span>
-
-                    <strong>
-                        DOCUMENTARY FILM
-                    </strong>
-
-                </div>
-
-
-                <div>
+                <div class="hero-meta">
 
                     <span>
                         STATUS
                     </span>
 
                     <strong>
-                        IN PRODUCTION
+                        FINAL / LOCKED
                     </strong>
 
                 </div>
@@ -300,52 +158,258 @@
             </div>
 
 
+            <!-- RIGHT / REAL ARTIFACT -->
 
-            <!-- =================================================
-                 NEXT
-            ================================================= -->
+            <div class="final-artifact reveal">
 
-            <a
-                href="team.html"
-                class="story-next"
+                <div class="artifact-tag">
+                    FINAL SCRIPT
+                </div>
+
+               <div class="final-artifact reveal">
+
+    <div class="artifact-tag">
+        FINAL SCRIPT
+    </div>
+
+    <div class="artifact-button">
+
+        <span class="paper-shadow"></span>
+
+        <span class="paper-sheet">
+            <img
+                src="images/final-script.jpeg"
+                alt="النسخة النهائية من السيناريو"
             >
 
-                <span>
-                    MEET THE TEAM
-                </span>
+            <span class="paper-stamp">FINAL</span>
+        </span>
 
-                <span>
-                    ↘
-                </span>
+        <span class="paper-caption">
+            <small class="en-text">THE ORIGINAL ARTIFACT</small>
 
-            </a>
 
+            <strong class="ar-text">النسخة النهائية</strong>
+            <strong class="en-text">FINAL SCRIPT</strong>
+        </span>
+
+    </div>
+
+    <div class="artifact-data">
+        <span>FORMAT / PAPER</span>
+        <span>ARCHIVED / 01</span>
+    </div>
+
+</div>
+
+
+    
+
+    
 
         </section>
 
 
+       
 
-        <!-- =================================================
-             FOOTER
-        ================================================= -->
+        <!-- ================= DOCUMENT ================= -->
 
-        <div class="story-footer">
+        <section class="document-section">
+
+            <div class="document-panel reveal">
+
+                <div class="document-topline">
+
+                    <span>
+                        DOCUMENT / FINAL
+                    </span>
+
+                    <span>
+                        ON AIR بِالعَافيَه
+                    </span>
+
+                </div>
+
+
+                <div class="document-grid">
+
+                    <div class="document-title">
+
+                        <span>
+                            THE ORIGINAL ARTIFACT
+                        </span>
+
+                        <h2>
+                            بعين صبا
+                        </h2>
+
+
+                    </div>
+
+
+                    <div class="document-credits">
+
+                        <div>
+
+                            <span>
+                                قصة
+                            </span>
+
+                            <strong>
+                                سارة حسني
+                                <br>
+                                صبا أحمد
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                إخراج
+                            </span>
+
+                            <strong>
+                                عادل أحمد
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                سيناريو وحوار
+                            </span>
+
+                            <strong>
+                                إسراء أحمد
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                تحت إشراف
+                            </span>
+
+                            <strong>
+                                د. محمود عبد اللطيف
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CLOSING ================= -->
+
+        <section class="script-closing">
+
+            <div class="closing-mark reveal">
+                "
+            </div>
+
+
+            <div class="closing-copy reveal">
+
+                <span>
+                    FINAL NOTE
+                </span>
+
+                <h2>
+                    النسخة الأخيرة
+                    <br>
+                    هي اللي فضلت.
+                </h2>
+
+                <p>
+                    مش لأنها أول نسخة،
+                    لكن لأنها النسخة اللي أخيرًا
+                    كانت جاهزة تتحول من كتابة
+                    إلى كادر.
+                </p>
+
+            </div>
+
+
+            <a
+                class="next-page reveal"
+                href="archive.html"
+            >
+
+                <span>
+                    BACK / ARCHIVE
+                </span>
+
+                <strong>
+                    العودة إلى الأرشيف
+                </strong>
+
+                <em>
+                    ↙
+                </em>
+
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= SCRIPT VIEWER ================= -->
+
+    <div
+        class="script-viewer"
+        id="scriptViewer"
+        aria-hidden="true"
+    >
+
+        <button
+            type="button"
+            class="viewer-close"
+            data-close-script
+            aria-label="إغلاق الوثيقة"
+        >
+            ×
+        </button>
+
+
+        <div class="viewer-meta">
 
             <span>
-                ON AIR بالعافية
+                FINAL SCRIPT
             </span>
 
             <span>
-                003 / 009
+                004 / DOCUMENT
             </span>
 
         </div>
 
 
-    </main>
+        <div class="viewer-stage">
+
+            <img
+                src="images/final-script.jpeg"
+                alt="النسخة النهائية من سيناريو بعين صبا"
+            >
+
+        </div>
+
+    </div>
 
 
-    <script src="script.js"></script>
+    <script src="story.js"></script>
 
 </body>
 
