@@ -1164,6 +1164,15 @@ if (dayWatermark) {
     dayWatermark.textContent =
         `DAY ${day.number}`;
 }
+const featured =
+    document.querySelector(
+        ".oa-days-featured"
+    );
+
+if (featured) {
+    featured.dataset.dayWatermark =
+        `DAY ${day.number}`;
+}
 
     const titleElement =
         document.getElementById(
@@ -1886,10 +1895,8 @@ function renderOATimeline() {
                     "small"
                 );
 
-
-            label.textContent =
-                `DAY ${day.number}`;
-
+              label.textContent =
+                day.number;
 
             const title =
                 document.createElement(
