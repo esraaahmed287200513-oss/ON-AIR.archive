@@ -4544,7 +4544,8 @@ body.page-loaded .intro-animation * {
 
         margin: 0;
         padding: 0;
-
+        padding-top: 200px;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
 
@@ -4693,9 +4694,7 @@ body.page-loaded .intro-animation * {
     .enter-arrow {
         font-size: 11px;
     }
-    .hero-content {
-    transform: translateY(100px);
-}
+    
 
 }
 
