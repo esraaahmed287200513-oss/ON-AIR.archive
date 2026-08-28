@@ -1418,8 +1418,7 @@
 }
 
 #production-days .oa-days-timeline-number,
-#production-days .oa-days-timeline-copy,
-#production-days .oa-days-timeline-dot {
+#production-days .oa-days-timeline-copy {
     position: relative !important;
 
     z-index: 3 !important;
@@ -5551,4 +5550,57 @@
         font-size:
             5.5px !important;
     }
+}
+/* =========================================
+   FIX — DOT ABOVE TIMELINE CARD
+========================================= */
+
+#production-days .oa-days-timeline-item {
+    overflow: visible !important;
+}
+
+#production-days .oa-days-timeline-dot {
+    position: absolute !important;
+
+    top: -11px !important;
+
+    left: 50% !important;
+    right: auto !important;
+
+    width: 10px !important;
+    height: 10px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    transform: translateX(-50%) !important;
+
+    display: block !important;
+
+    border-radius: 50% !important;
+
+    background:
+        var(--days-navy) !important;
+
+    border:
+        1px solid
+        var(--days-beige) !important;
+
+    box-shadow:
+        0 0 0 4px rgba(5,12,20,.80) !important;
+
+    z-index: 20 !important;
+}
+
+#production-days .oa-days-timeline-item.active
+.oa-days-timeline-dot {
+    background:
+        var(--days-red) !important;
+
+    border-color:
+        var(--days-cream) !important;
+
+    box-shadow:
+        0 0 0 4px rgba(5,12,20,.80),
+        0 0 12px rgba(217,40,50,.30) !important;
 }
