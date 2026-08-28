@@ -62,6 +62,21 @@ function updateLanguageContent(language) {
         }
 
     });
+/* =====================================================
+   REFRESH PRODUCTION DAYS LANGUAGE
+===================================================== */
+
+if (
+    typeof renderOATimeline === "function" &&
+    typeof renderOADay === "function" &&
+    document.getElementById("oaDaysTrack")
+) {
+    renderOATimeline();
+    renderOADay(
+        oaActiveDay,
+        oaActivePhoto
+    );
+}
 
 }
 
@@ -1140,7 +1155,15 @@ function renderOADay(
         number.textContent =
             day.number;
     }
+const dayWatermark =
+    document.getElementById(
+        "oaDaysWatermark"
+    );
 
+if (dayWatermark) {
+    dayWatermark.textContent =
+        `DAY ${day.number}`;
+}
 
     const titleElement =
         document.getElementById(
