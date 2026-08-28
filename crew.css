@@ -731,6 +731,8 @@
 
     gap:
         12px 13px;
+
+         direction: ltr;
 }
 
 
@@ -973,10 +975,10 @@
     display: block;
 
     margin-top:
-        3px;
+        7px;
 
     font-size:
-        10px;
+        12px;
 
     line-height:
         1.45;
@@ -1192,12 +1194,14 @@
     }
 
 
-    .member-info span {
+   .member-info span {
+    font-size:
+        12px;
+    margin-top:
+        7px;
+}
 
-        font-size:
-            9px;
-
-    }
+    
 
 
     .member-info small {
@@ -2184,18 +2188,7 @@
         font-size: 8.5px !important;
     }
 }
-/* =========================================================
-   DESKTOP — CENTER SECOND CREW ROW
-   KEEP ORIGINAL CARD SIZE
-========================================================= */
 
-@media (min-width: 701px) {
-
-    .onair-member:nth-child(n+8) {
-        transform: translateX(-84px) !important;
-    }
-
-}
 /* =========================================================
    DESKTOP — FIX CREW TEXT
    NO CUT / NO ELLIPSIS
@@ -2247,4 +2240,250 @@
     .member-info {
         overflow: visible !important;
     }
+}
+/* =========================================================
+   CREW GRID — FINAL LANGUAGE SAFE LAYOUT
+   Desktop only
+========================================================= */
+
+@media (min-width: 951px) {
+
+    /* ================================================
+       GRID
+    ================================================= */
+
+    .onair-crew-grid {
+
+        display: grid !important;
+
+        grid-template-columns:
+            repeat(14, minmax(0, 1fr)) !important;
+
+        gap:
+            12px 13px !important;
+
+        direction: ltr !important;
+
+        grid-auto-flow: row !important;
+    }
+
+
+    /* ================================================
+       CARD BASE
+    ================================================= */
+
+    .onair-crew-grid .onair-member {
+
+        grid-column: auto !important;
+        grid-row: auto !important;
+
+        transform: none !important;
+
+        width: auto !important;
+    }
+
+
+    /* ================================================
+       ENGLISH
+       
+       01 02 03 04 05 06 07
+          08 09 10 11 12 13
+    ================================================= */
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(1) {
+        grid-column: 1 / 3 !important;
+        grid-row: 1 !important;
+    }
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(2) {
+        grid-column: 3 / 5 !important;
+        grid-row: 1 !important;
+    }
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(3) {
+        grid-column: 5 / 7 !important;
+        grid-row: 1 !important;
+    }
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(4) {
+        grid-column: 7 / 9 !important;
+        grid-row: 1 !important;
+    }
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(5) {
+        grid-column: 9 / 11 !important;
+        grid-row: 1 !important;
+    }
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(6) {
+        grid-column: 11 / 13 !important;
+        grid-row: 1 !important;
+    }
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(7) {
+        grid-column: 13 / 15 !important;
+        grid-row: 1 !important;
+    }
+
+
+    /* SECOND ROW */
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(8) {
+        grid-column: 2 / 4 !important;
+        grid-row: 2 !important;
+    }
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(9) {
+        grid-column: 4 / 6 !important;
+        grid-row: 2 !important;
+    }
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(10) {
+        grid-column: 6 / 8 !important;
+        grid-row: 2 !important;
+    }
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(11) {
+        grid-column: 8 / 10 !important;
+        grid-row: 2 !important;
+    }
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(12) {
+        grid-column: 10 / 12 !important;
+        grid-row: 2 !important;
+    }
+
+    html[dir="ltr"]
+    .onair-crew-grid
+    .onair-member:nth-child(13) {
+        grid-column: 12 / 14 !important;
+        grid-row: 2 !important;
+    }
+
+
+    /* ================================================
+       ARABIC
+       
+       07 06 05 04 03 02 01
+          13 12 11 10 09 08
+    ================================================= */
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(1) {
+        grid-column: 13 / 15 !important;
+        grid-row: 1 !important;
+    }
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(2) {
+        grid-column: 11 / 13 !important;
+        grid-row: 1 !important;
+    }
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(3) {
+        grid-column: 9 / 11 !important;
+        grid-row: 1 !important;
+    }
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(4) {
+        grid-column: 7 / 9 !important;
+        grid-row: 1 !important;
+    }
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(5) {
+        grid-column: 5 / 7 !important;
+        grid-row: 1 !important;
+    }
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(6) {
+        grid-column: 3 / 5 !important;
+        grid-row: 1 !important;
+    }
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(7) {
+        grid-column: 1 / 3 !important;
+        grid-row: 1 !important;
+    }
+
+
+    /* SECOND ROW */
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(8) {
+        grid-column: 12 / 14 !important;
+        grid-row: 2 !important;
+    }
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(9) {
+        grid-column: 10 / 12 !important;
+        grid-row: 2 !important;
+    }
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(10) {
+        grid-column: 8 / 10 !important;
+        grid-row: 2 !important;
+    }
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(11) {
+        grid-column: 6 / 8 !important;
+        grid-row: 2 !important;
+    }
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(12) {
+        grid-column: 4 / 6 !important;
+        grid-row: 2 !important;
+    }
+
+    html[dir="rtl"]
+    .onair-crew-grid
+    .onair-member:nth-child(13) {
+        grid-column: 2 / 4 !important;
+        grid-row: 2 !important;
+    }
+
 }
