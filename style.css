@@ -4358,18 +4358,26 @@ body.page-loaded .intro-animation * {
 
 }
 /* =====================================================
-   HERO — FINAL CINEMATIC LAYOUT
+   HERO — CAMERA LEFT / CONTENT RIGHT
+   DESKTOP + MOBILE
+   KEEP ALL EXISTING ANIMATIONS
 ===================================================== */
 
 .hero-content {
     position: absolute;
 
-    /* مكان البلوك كله */
-    right: 5%;
-    bottom: 9%;
+    /*
+       Header height is already 70–110px.
+       Keep content in the RIGHT column.
+    */
+    top: clamp(70px, 10.7vh, 110px);
+    right: 4.5%;
+    bottom: 0;
+    left: auto;
 
-    width: min(43vw, 560px);
+    width: 42%;
     max-width: 560px;
+    height: calc(100dvh - clamp(70px, 10.7vh, 110px));
 
     margin: 0;
     padding: 0;
@@ -4378,18 +4386,26 @@ body.page-loaded .intro-animation * {
     flex-direction: column;
 
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 
     text-align: center;
 }
 
 
 /* =========================================
-   SIGNAL
+   SIGNAL DETECTED
+   centered above logo
 ========================================= */
 
 .intro-signal {
     width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+
     text-align: center;
 }
 
@@ -4400,10 +4416,12 @@ body.page-loaded .intro-animation * {
 
 .animated-logo {
     width: fit-content;
+
     min-height: 0;
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
 
@@ -4411,8 +4429,7 @@ body.page-loaded .intro-animation * {
 }
 
 
-/* ON AIR
-   أصغر شوية من الحجم الحالي */
+
 .logo-english {
     width: fit-content;
 
@@ -4420,50 +4437,43 @@ body.page-loaded .intro-animation * {
     align-items: center;
     justify-content: center;
 
-    font-size: clamp(72px, 9.5vw, 145px);
+    font-size: clamp(64px, 8.7vw, 135px);
 }
 
-
-/* المسافات بين الحروف تفضل زي الـanimation الحالية */
-.logo-letter {
-    font-size: inherit;
-}
-
-
-/* بِالعَافيَه
-   نفس حجم ON AIR تقريبًا لكن أصغر سنة */
 .logo-arabic {
     width: auto;
 
-    margin-top: clamp(10px, 1.7vh, 18px);
+    margin-top: 9px;
 
-    font-size: clamp(58px, 7.5vw, 115px);
+    font-size: clamp(48px, 6vw, 92px);
+
     line-height: .9;
 
     text-align: center;
-    direction: rtl;
+
 
     align-self: center;
 }
 
 
-/* الخط تحت اللوجو */
-.logo-rule {
-    margin-top: 15px;
 
+
+.logo-rule {
+  
     align-self: center;
+
+    margin-top: 14px;
 }
 
 
 /* =========================================
-   TEXT UNDER LOGO
-   كله centered تحت اللوجو
+   TEXT BELOW LOGO
 ========================================= */
 
 .intro-statement {
     width: 100%;
 
-    margin-top: 24px;
+    margin-top: 20px;
 
     display: flex;
     flex-direction: column;
@@ -4471,16 +4481,17 @@ body.page-loaded .intro-animation * {
     align-items: center;
     justify-content: center;
 
-    text-align: center;
 
     gap: 4px;
+
+    text-align: center;
 }
 
 
 .intro-final-statement {
     width: 100%;
 
-    margin-top: 20px;
+    margin-top: 18px;
 
     text-align: center;
     direction: rtl;
@@ -4494,10 +4505,10 @@ body.page-loaded .intro-animation * {
 .enter-wrapper {
     width: 100%;
 
-    margin-top: 24px;
+    margin-top: 22px;
 
     display: flex;
-
+   
     align-items: center;
     justify-content: center;
 
@@ -4505,197 +4516,30 @@ body.page-loaded .intro-animation * {
 }
 
 
-/* =========================================
+/* =====================================================
    MOBILE
-========================================= */
+   CAMERA STAYS LEFT
+   CONTENT STAYS RIGHT
+===================================================== */
 
 @media (max-width: 700px) {
 
     .hero-content {
         position: absolute;
 
-        right: 0;
-        left: 0;
-
-        bottom: 7%;
-
-        width: 100%;
-        max-width: none;
-
-        padding:
-            0
-            7vw;
-
-        margin: 0;
-
-        align-items: center;
-        justify-content: flex-end;
-
-        text-align: center;
-    }
-
-
-    /* signal */
-    .intro-signal {
-        width: 100%;
-        text-align: center;
-
-        margin-bottom: 14px;
-    }
-
-
-    /* logo container */
-    .animated-logo {
-        width: fit-content;
-
-        min-height: 0;
-
-        align-items: center;
-        justify-content: center;
-    }
-
-
-    /* ON AIR */
-    .logo-english {
-        width: fit-content;
-
-        font-size: clamp(48px, 14vw, 72px);
-
-        justify-content: center;
-    }
-
-
-    /* بِالعَافيَه */
-    .logo-arabic {
-        margin-top: 9px;
-
-        font-size: clamp(42px, 11.5vw, 62px);
-
-        line-height: .88;
-
-        text-align: center;
-
-        align-self: center;
-    }
-
-
-    /* logo line */
-    .logo-rule {
-        margin-top: 11px;
-
-        align-self: center;
-    }
-
-
-    /* English statement */
-    .intro-statement {
-        width: 100%;
-
-        margin-top: 17px;
-
-        gap: 3px;
-
-        align-items: center;
-
-        text-align: center;
-
-        font-size: 7px;
-        line-height: 1.45;
-    }
-
-
-    /* Arabic sentence */
-    .intro-final-statement {
-        width: 100%;
-
-        margin-top: 17px;
-
-        text-align: center;
-
-        font-size: 10px;
-        line-height: 1.6;
-    }
-
-
-    /* ENTER */
-    .enter-wrapper {
-        width: 100%;
-
-        margin-top: 20px;
-
-        justify-content: center;
-
-        text-align: center;
-    }
-
-
-    .enter-button {
-        justify-content: center;
-    }
-}
-
-
-/* =========================================
-   VERY SMALL PHONES
-========================================= */
-
-@media (max-width: 380px) {
-
-    .hero-content {
-        bottom: 5.5%;
-        padding: 0 6vw;
-    }
-
-
-    .logo-english {
-        font-size: clamp(42px, 13.5vw, 60px);
-    }
-
-
-    .logo-arabic {
-        font-size: clamp(36px, 10.5vw, 50px);
-        margin-top: 8px;
-    }
-
-
-    .intro-statement {
-        margin-top: 14px;
-        font-size: 6.5px;
-    }
-
-
-    .intro-final-statement {
-        margin-top: 14px;
-        font-size: 9px;
-    }
-
-
-    .enter-wrapper {
-        margin-top: 17px;
-    }
-}
-/* =========================================================
-   MOBILE HERO — CAMERA LEFT / CONTENT RIGHT
-   Keep all existing animations
-========================================================= */
-
-@media (max-width: 700px) {
-
-    /* -----------------------------------------------------
-       HERO CONTENT
-       put the whole text/logo block beside the camera
-    ----------------------------------------------------- */
-
-    .hero-content {
-        position: absolute;
-
+        /*
+           IMPORTANT:
+           Do NOT center the hero content anymore.
+           Give it its own RIGHT column.
+        */
         top: 64px;
-        right: 2.5%;
+        right: 1.5%;
         bottom: 0;
         left: auto;
 
-        width: 54%;
+        width: 53%;
         max-width: none;
+
         height: calc(100dvh - 64px);
 
         margin: 0;
@@ -4711,125 +4555,118 @@ body.page-loaded .intro-animation * {
     }
 
 
-    /* -----------------------------------------------------
-       SIGNAL
-    ----------------------------------------------------- */
-
-    .eyebrow {
+    /* SIGNAL */
+    .intro-signal {
         width: 100%;
 
-        margin-bottom: 10px;
+        margin-bottom: 8px;
 
         text-align: center;
-        font-size: 6px;
-        letter-spacing: .20em;
+
+        font-size: 5.5px;
+        letter-spacing: .16em;
+
+        white-space: nowrap;
     }
 
 
-    /* -----------------------------------------------------
-       LOGO
-    ----------------------------------------------------- */
+    /* LOGO */
+    .animated-logo {
+        width: fit-content;
 
-    .team-logo {
-        width: 100%;
-
-        display: flex;
-        flex-direction: column;
+        min-height: 0;
 
         align-items: center;
         justify-content: center;
 
+        margin: 0 auto;
+    }
+
+
+
+    .logo-english {
+        width: fit-content;
+
+        font-size: clamp(38px, 10vw, 55px);
+
+        line-height: .8;
+
+        justify-content: center;
+    }
+
+
+
+    .logo-arabic {
+        width: auto;
+
+        margin-top: 8px;
+
+        font-size: clamp(31px, 8vw, 45px);
+
+        line-height: .88;
+
+        white-space: nowrap;
+
         text-align: center;
     }
 
 
-    /* ON AIR */
-    .on-air {
-        font-size: clamp(38px, 11vw, 58px);
 
-        line-height: .78;
-        letter-spacing: -.08em;
+    .logo-rule {
+        width: 30px;
 
-        white-space: nowrap;
-    }
-
-
-    /* بِالعَافيَه */
-    .arabic-logo {
         margin-top: 10px;
-
-        font-size: clamp(32px, 9vw, 48px);
-
-        line-height: .9;
-
-        white-space: nowrap;
-
-        text-align: center;
     }
 
 
-    /* -----------------------------------------------------
-       LINE
-    ----------------------------------------------------- */
-
-    .small-line {
-        width: 32px;
-
-        margin-top: 12px;
-    }
-
-
-    /* -----------------------------------------------------
-       DESCRIPTION
-    ----------------------------------------------------- */
-
-    .hero-description {
+    /* TEXT */
+    .intro-statement {
         width: 100%;
 
-        margin-top: 15px;
+
+        margin-top: 14px;
+
 
         align-items: center;
 
+
         text-align: center;
 
-        font-size: 7px;
-        line-height: 1.45;
-        gap: 3px;
+        gap: 2px;
+
+        font-size: 6px;
+        line-height: 1.4;
     }
 
 
-    /* -----------------------------------------------------
-       FINAL ARABIC SENTENCE
-    ----------------------------------------------------- */
-
-    .final-statement {
+    .intro-final-statement {
         width: 100%;
 
-        margin-top: 15px;
+        margin-top: 13px;
 
         text-align: center;
 
-        font-size: 9px;
-        line-height: 1.5;
+        font-size: 8px;
+        line-height: 1.45;
+
 
         white-space: nowrap;
     }
 
 
-    /* -----------------------------------------------------
-       ENTER
-    ----------------------------------------------------- */
-
+    /* ENTER */
     .enter-wrapper {
         width: 100%;
 
-        margin-top: 18px;
+        margin-top: 16px;
 
         justify-content: center;
     }
 
 
     .enter-button {
+        justify-content: center;
+
         gap: 8px;
     }
 
@@ -4856,37 +4693,53 @@ body.page-loaded .intro-animation * {
     .enter-arrow {
         font-size: 11px;
     }
+    .hero-content {
+    transform: translateY(100px);
+}
+
 }
 
 
-/* =========================================================
-   SMALL PHONES
-========================================================= */
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
 
 @media (max-width: 380px) {
 
     .hero-content {
-        right: 1.5%;
-        width: 56%;
+        right: 1%;
+        width: 54%;
     }
 
-    .on-air {
-        font-size: clamp(34px, 10.5vw, 50px);
+
+    .logo-english {
+        font-size: clamp(34px, 9.5vw, 48px);
     }
 
-    .arabic-logo {
-        font-size: clamp(29px, 8.5vw, 44px);
+
+    .logo-arabic {
+        font-size: clamp(28px, 7.6vw, 41px);
     }
 
-    .hero-description {
-        font-size: 6.5px;
+
+    .intro-signal {
+        font-size: 5px;
     }
 
-    .final-statement {
-        font-size: 8px;
+
+    .intro-statement {
+        font-size: 5.5px;
     }
+
+
+    .intro-final-statement {
+        font-size: 7.5px;
+    }
+
 
     .enter-wrapper {
-        margin-top: 15px;
+        margin-top: 14px;
     }
+
+    
 }
