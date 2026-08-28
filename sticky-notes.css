@@ -2024,3 +2024,1139 @@
 .onair-sticky-note.is-visible {
     opacity: 1 !important;
 }
+
+/* =========================================================
+   ON AIR — CINEMATIC GUESTBOOK
+   FINAL OVERRIDE
+========================================================= */
+
+.leave-mark-section {
+    position: relative;
+    isolation: isolate;
+}
+
+/* ---------------------------------------------------------
+   CINEMATIC SECTION ATMOSPHERE
+--------------------------------------------------------- */
+
+.leave-mark-section::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -2;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 38%,
+            rgba(78,132,132,.11),
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 15% 68%,
+            rgba(199,168,107,.06),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #07111D 0%,
+            #081522 48%,
+            #050C14 100%
+        );
+}
+
+.leave-mark-section::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 5px,
+            rgba(247,237,227,.012) 6px
+        );
+}
+
+
+/* ---------------------------------------------------------
+   INTRO — MORE CINEMATIC
+--------------------------------------------------------- */
+
+.leave-mark-intro {
+    position: relative;
+
+    width:
+        min(1180px, calc(100% - 60px));
+
+    margin:
+        0 auto 72px;
+}
+
+.leave-mark-index {
+    color:
+        rgba(199,168,107,.55) !important;
+}
+
+.leave-mark-eyebrow {
+    color:
+        rgba(78,132,132,.88) !important;
+}
+
+.leave-mark-title {
+    font-size:
+        clamp(48px, 6.5vw, 82px) !important;
+
+    font-weight:
+        800 !important;
+
+    letter-spacing:
+        -.055em !important;
+
+    text-shadow:
+        0 8px 45px rgba(0,0,0,.28);
+}
+
+.leave-mark-description {
+    color:
+        rgba(247,237,227,.58) !important;
+
+    max-width:
+        700px;
+}
+
+
+/* ---------------------------------------------------------
+   WALL — FILM SET FEEL
+--------------------------------------------------------- */
+
+.sticky-wall-wrapper {
+    position: relative;
+
+    min-height:
+        820px !important;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(78,132,132,.09),
+            transparent 48%
+        ) !important;
+}
+
+.sticky-wall-wrapper::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(247,237,227,.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(247,237,227,.018) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        70px 70px;
+
+    mask-image:
+        radial-gradient(
+            ellipse at center,
+            black 10%,
+            transparent 85%
+        );
+}
+
+.sticky-wall-wrapper::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 24%,
+            rgba(5,12,20,.12) 58%,
+            rgba(5,12,20,.72) 100%
+        );
+}
+
+.sticky-wall-info {
+    color:
+        rgba(247,237,227,.27) !important;
+}
+
+
+/* ---------------------------------------------------------
+   NOTE CONTAINER
+--------------------------------------------------------- */
+
+.sticky-notes-container {
+    inset:
+        60px
+        55px
+        105px !important;
+
+    overflow:
+        visible !important;
+}
+
+
+/* ---------------------------------------------------------
+   NOTES — BETTER PAPER
+--------------------------------------------------------- */
+
+.onair-sticky-note {
+    width:
+        208px !important;
+
+    min-height:
+        190px !important;
+
+    padding:
+        43px
+        23px
+        25px !important;
+
+    border: none !important;
+    border-radius: 1px !important;
+
+    box-shadow:
+        0 18px 28px rgba(0,0,0,.22),
+        0 30px 60px rgba(0,0,0,.18);
+
+    transition:
+        transform .38s cubic-bezier(.16,1,.3,1),
+        box-shadow .38s ease,
+        filter .38s ease;
+}
+
+
+/* ---------------------------------------------------------
+   PAPER TEXTURE
+--------------------------------------------------------- */
+
+.onair-sticky-note {
+    background-blend-mode:
+        multiply,
+        normal;
+}
+
+.onair-sticky-note .sticky-paper-content {
+    position: relative;
+    z-index: 3;
+}
+
+
+/* ---------------------------------------------------------
+   MESSAGE — CLEAR
+--------------------------------------------------------- */
+
+.onair-sticky-note .sticky-paper-content p {
+    margin: 0;
+
+    font-family:
+        "Cairo",
+        "Tajawal",
+        sans-serif;
+
+    font-size:
+        16px !important;
+
+    font-weight:
+        600 !important;
+
+    line-height:
+        1.82 !important;
+
+    letter-spacing:
+        -.02em !important;
+
+    overflow-wrap:
+        anywhere;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.05);
+}
+
+
+/* ---------------------------------------------------------
+   NAME — BIGGER
+--------------------------------------------------------- */
+
+.onair-sticky-note .sticky-author {
+    position: relative;
+    z-index: 4;
+
+    margin-top:
+        20px !important;
+
+    padding-top:
+        11px;
+
+    border-top:
+        1px solid rgba(17,37,72,.18);
+
+    font-family:
+        "Cairo",
+        "Tajawal",
+        sans-serif;
+
+    font-size:
+        12px !important;
+
+    line-height:
+        1.5;
+
+    font-weight:
+        800 !important;
+
+    opacity:
+        1 !important;
+
+    letter-spacing:
+        -.01em;
+}
+
+.sticky-note-navy .sticky-author,
+.sticky-note-dark .sticky-author,
+.sticky-note-red .sticky-author {
+    border-top-color:
+        rgba(247,237,227,.20);
+}
+
+
+/* ---------------------------------------------------------
+   MASKING TAPE
+--------------------------------------------------------- */
+
+.onair-sticky-note::before {
+    top:
+        -10px !important;
+
+    width:
+        78px !important;
+
+    height:
+        30px !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(247,237,227,.52),
+            rgba(225,215,204,.88) 48%,
+            rgba(247,237,227,.55)
+        ) !important;
+
+    box-shadow:
+        0 3px 7px rgba(0,0,0,.16);
+
+    opacity:
+        .94 !important;
+}
+
+
+/* ---------------------------------------------------------
+   NOTE HOVER
+--------------------------------------------------------- */
+
+.onair-sticky-note:hover {
+    transform:
+        translateY(-8px)
+        rotate(0deg)
+        scale(1.045) !important;
+
+    filter:
+        brightness(1.035)
+        saturate(1.05);
+
+    box-shadow:
+        0 30px 50px rgba(0,0,0,.35),
+        0 44px 80px rgba(0,0,0,.22);
+}
+
+
+/* =========================================================
+   LEAVE YOUR MARK BUTTON
+========================================================= */
+
+.leave-note-button {
+    left:
+        50% !important;
+
+    bottom:
+        32px !important;
+
+    z-index:
+        250 !important;
+
+    min-width:
+        225px !important;
+
+    min-height:
+        52px;
+
+    padding:
+        12px 18px !important;
+
+    border:
+        1px solid rgba(199,168,107,.32) !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(17,37,72,.92),
+            rgba(7,17,29,.96)
+        ) !important;
+
+    color:
+        #F7EDE3 !important;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.26);
+
+    backdrop-filter:
+        blur(16px);
+
+    font-size:
+        11px !important;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .01em;
+}
+
+.leave-note-button:hover {
+    border-color:
+        rgba(199,168,107,.72) !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #112548,
+            #07111D
+        ) !important;
+
+    box-shadow:
+        0 18px 42px rgba(0,0,0,.34),
+        0 0 24px rgba(199,168,107,.07);
+}
+
+.leave-note-plus {
+    color:
+        #C7A86B;
+
+    font-size:
+        18px !important;
+}
+
+
+/* =========================================================
+   FORM PANEL
+========================================================= */
+
+.leave-note-panel {
+    padding:
+        22px !important;
+
+    background:
+        rgba(3,8,13,.84) !important;
+
+    backdrop-filter:
+        blur(18px);
+}
+
+.leave-note-panel form {
+    width:
+        min(520px, 100%) !important;
+
+    max-height:
+        calc(100dvh - 40px);
+
+    overflow-y:
+        auto;
+
+    padding:
+        34px !important;
+
+    border:
+        1px solid rgba(199,168,107,.16);
+
+    background:
+        linear-gradient(
+            145deg,
+            #0D1D2E,
+            #07111D 72%,
+            #050C14
+        ) !important;
+
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.62),
+        0 0 0 1px rgba(247,237,227,.025);
+
+    scrollbar-width:
+        thin;
+}
+
+
+/* علامة سينمائية فوق الفورم */
+
+.leave-note-panel form::before {
+    content:
+        "ON AIR / COMMUNITY ARCHIVE";
+
+    display:
+        block;
+
+    margin-bottom:
+        18px;
+
+    color:
+        rgba(199,168,107,.62);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        .16em;
+
+    direction:
+        ltr;
+}
+
+
+/* ---------------------------------------------------------
+   INPUTS
+--------------------------------------------------------- */
+
+.leave-note-panel input:not([type="hidden"]),
+.leave-note-panel textarea {
+    border:
+        1px solid rgba(247,237,227,.12) !important;
+
+    background:
+        rgba(247,237,227,.035) !important;
+
+    color:
+        #F7EDE3 !important;
+
+    border-radius:
+        1px;
+
+    font-size:
+        14px !important;
+}
+
+.leave-note-panel input:not([type="hidden"]) {
+    min-height:
+        48px;
+}
+
+.leave-note-panel textarea {
+    min-height:
+        145px !important;
+}
+
+.leave-note-panel input:focus,
+.leave-note-panel textarea:focus {
+    border-color:
+        rgba(78,132,132,.82) !important;
+
+    box-shadow:
+        0 0 0 2px rgba(78,132,132,.08);
+}
+
+
+/* ---------------------------------------------------------
+   LABELS
+--------------------------------------------------------- */
+
+.leave-note-panel label {
+    color:
+        rgba(247,237,227,.62) !important;
+
+    font-size:
+        9px !important;
+}
+
+
+/* =========================================================
+   COLOR PICKER
+========================================================= */
+
+.sticky-color-picker {
+    gap:
+        12px !important;
+
+    margin:
+        19px 0 20px !important;
+}
+
+.sticky-color-option {
+    width:
+        30px !important;
+
+    height:
+        30px !important;
+
+    border:
+        1px solid rgba(247,237,227,.22) !important;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,.06);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.sticky-color-option:hover {
+    transform:
+        scale(1.08);
+}
+
+.sticky-color-option[data-color="teal"] {
+    background:
+        #4E8484 !important;
+}
+
+.sticky-color-option[data-color="red"] {
+    background:
+        #D92832 !important;
+}
+
+.sticky-color-option[data-color="gold"] {
+    background:
+        #C7A86B !important;
+}
+
+.sticky-color-option.is-selected {
+    box-shadow:
+        0 0 0 2px #07111D,
+        0 0 0 3px #C7A86B !important;
+}
+
+
+/* =========================================================
+   REAL SUBMIT BUTTON
+========================================================= */
+
+.sticky-submit {
+    position:
+        relative;
+
+    width:
+        100%;
+
+    min-height:
+        52px;
+
+    margin-top:
+        6px;
+
+    padding:
+        13px 17px !important;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        12px;
+
+    border:
+        1px solid rgba(199,168,107,.50) !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #C7A86B,
+            #A98A50
+        ) !important;
+
+    color:
+        #07111D !important;
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        13px !important;
+
+    font-weight:
+        800 !important;
+
+    cursor:
+        pointer;
+
+    overflow:
+        hidden;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+}
+
+.sticky-submit::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent 15%,
+            rgba(255,255,255,.25) 48%,
+            transparent 78%
+        );
+
+    transform:
+        translateX(-120%);
+
+    transition:
+        transform .65s ease;
+}
+
+.sticky-submit:hover::before {
+    transform:
+        translateX(120%);
+}
+
+.sticky-submit:hover {
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.05);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.28),
+        0 0 25px rgba(199,168,107,.14);
+}
+
+.sticky-submit:disabled {
+    opacity:
+        .5 !important;
+
+    transform:
+        none;
+}
+
+.sticky-submit-icon {
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        16px;
+}
+
+
+/* ---------------------------------------------------------
+   STATUS
+--------------------------------------------------------- */
+
+.sticky-form-status {
+    min-height:
+        24px;
+
+    margin-top:
+        11px !important;
+
+    color:
+        rgba(247,237,227,.50) !important;
+
+    font-size:
+        10px !important;
+
+    text-align:
+        center;
+}
+
+.sticky-form-status.success {
+    color:
+        #4E8484 !important;
+}
+
+.sticky-form-status.error {
+    color:
+        #D92832 !important;
+}
+
+
+/* =========================================================
+   MOBILE — PROPER LAYOUT
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .leave-mark-section {
+        padding:
+            82px 0 80px !important;
+    }
+
+    .leave-mark-intro {
+        width:
+            calc(100% - 30px);
+
+        margin-bottom:
+            42px;
+    }
+
+    .leave-mark-title {
+        font-size:
+            clamp(35px, 11vw, 54px) !important;
+    }
+
+    .leave-mark-description {
+        margin-top:
+            18px;
+
+        font-size:
+            12px !important;
+
+        line-height:
+            1.9;
+    }
+
+    /* -----------------------------
+       WALL
+    ----------------------------- */
+
+    .sticky-wall-wrapper {
+        min-height:
+            920px !important;
+    }
+
+    .sticky-wall-info-left {
+        left:
+            15px !important;
+
+        top:
+            14px !important;
+    }
+
+    .sticky-wall-info-right {
+        right:
+            15px !important;
+
+        top:
+            14px !important;
+    }
+
+    .sticky-wall-info-bottom {
+        bottom:
+            85px !important;
+
+        font-size:
+            6px;
+    }
+
+    /* -----------------------------
+       NOTES
+    ----------------------------- */
+
+    .sticky-notes-container {
+        inset:
+            50px
+            0
+            100px !important;
+
+        overflow:
+            visible !important;
+    }
+
+    .onair-sticky-note {
+        width:
+            calc((100vw - 45px) / 2) !important;
+
+        max-width:
+            170px !important;
+
+        min-height:
+            155px !important;
+
+        padding:
+            36px
+            13px
+            16px !important;
+
+        touch-action:
+            none;
+    }
+
+    .onair-sticky-note .sticky-paper-content p {
+        font-size:
+            clamp(11px, 3.5vw, 14px) !important;
+
+        line-height:
+            1.7 !important;
+    }
+
+    .onair-sticky-note .sticky-author {
+        margin-top:
+            12px !important;
+
+        padding-top:
+            8px;
+
+        font-size:
+            clamp(9px, 2.8vw, 11px) !important;
+    }
+
+    .onair-sticky-note::before {
+        width:
+            61px !important;
+
+        height:
+            24px !important;
+
+        top:
+            -8px !important;
+    }
+
+    /* -----------------------------
+       TWO-COLUMN MOBILE GRID
+    ----------------------------- */
+
+    .onair-sticky-note:nth-child(1) {
+        left:
+            2% !important;
+
+        top:
+            2% !important;
+    }
+
+    .onair-sticky-note:nth-child(2) {
+        left:
+            53% !important;
+
+        top:
+            2% !important;
+    }
+
+    .onair-sticky-note:nth-child(3) {
+        left:
+            2% !important;
+
+        top:
+            27% !important;
+    }
+
+    .onair-sticky-note:nth-child(4) {
+        left:
+            53% !important;
+
+        top:
+            27% !important;
+    }
+
+    .onair-sticky-note:nth-child(5) {
+        left:
+            2% !important;
+
+        top:
+            52% !important;
+    }
+
+    .onair-sticky-note:nth-child(6) {
+        left:
+            53% !important;
+
+        top:
+            52% !important;
+    }
+
+    .onair-sticky-note:nth-child(7) {
+        left:
+            2% !important;
+
+        top:
+            77% !important;
+    }
+
+    .onair-sticky-note:nth-child(8) {
+        left:
+            53% !important;
+
+        top:
+            77% !important;
+    }
+
+    /* -----------------------------
+       ADD BUTTON
+    ----------------------------- */
+
+    .leave-note-button {
+        width:
+            calc(100% - 38px) !important;
+
+        min-width:
+            0 !important;
+
+        bottom:
+            22px !important;
+
+        min-height:
+            50px;
+
+        font-size:
+            11px !important;
+    }
+
+    /* -----------------------------
+       FORM
+    ----------------------------- */
+
+    .leave-note-panel {
+        padding:
+            12px !important;
+    }
+
+    .leave-note-panel form {
+        width:
+            100% !important;
+
+        max-height:
+            calc(100dvh - 24px) !important;
+
+        padding:
+            22px 17px 18px !important;
+    }
+
+    .form-heading {
+        margin-bottom:
+            20px !important;
+    }
+
+    .leave-note-panel label {
+        margin:
+            14px 0 7px !important;
+    }
+
+    .leave-note-panel input:not([type="hidden"]),
+    .leave-note-panel textarea {
+        font-size:
+            13px !important;
+    }
+
+    .leave-note-panel textarea {
+        min-height:
+            105px !important;
+        max-height:
+            145px;
+    }
+
+    .sticky-color-picker {
+        flex-wrap:
+            wrap;
+
+        gap:
+            10px !important;
+
+        margin:
+            14px 0 17px !important;
+    }
+
+    .sticky-color-option {
+        width:
+            28px !important;
+
+        height:
+            28px !important;
+    }
+
+    .sticky-submit {
+        min-height:
+            50px;
+
+        font-size:
+            12px !important;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .sticky-wall-wrapper {
+        min-height:
+            900px !important;
+    }
+
+    .onair-sticky-note {
+        width:
+            calc((100vw - 35px) / 2) !important;
+
+        max-width:
+            158px !important;
+
+        min-height:
+            145px !important;
+
+        padding:
+            34px
+            11px
+            13px !important;
+    }
+
+    .onair-sticky-note .sticky-paper-content p {
+        font-size:
+            11px !important;
+
+        line-height:
+            1.63 !important;
+    }
+
+    .onair-sticky-note .sticky-author {
+        font-size:
+            9px !important;
+    }
+
+    .onair-sticky-note::before {
+        width:
+            55px !important;
+
+        height:
+            21px !important;
+    }
+}
