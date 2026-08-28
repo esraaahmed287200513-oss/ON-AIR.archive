@@ -1372,3 +1372,638 @@
 
     color: #F3DFC2 !important;
 }
+/* =========================================================
+   ON AIR — CINEMATIC REAL STICKY NOTES
+   FINAL OVERRIDE
+========================================================= */
+
+/* ---------------------------------------------------------
+   NOTE BASE
+--------------------------------------------------------- */
+
+.onair-sticky-note {
+    width: 198px !important;
+    min-height: 182px !important;
+
+    padding:
+        42px
+        22px
+        22px !important;
+
+    position: absolute;
+    overflow: visible !important;
+
+    border: none !important;
+    border-radius: 1px !important;
+
+    box-sizing: border-box;
+
+    transform:
+        translate3d(0,0,0)
+        rotate(var(--r));
+
+    transform-origin: center center;
+
+    box-shadow:
+        0 20px 28px rgba(0,0,0,.30),
+        0 8px 12px rgba(0,0,0,.14),
+        inset 0 0 0 1px rgba(17,37,72,.08);
+
+    filter: saturate(.94);
+
+    transition:
+        transform .38s cubic-bezier(.16,1,.3,1),
+        box-shadow .38s ease,
+        filter .38s ease;
+
+    cursor: grab;
+}
+
+/* ---------------------------------------------------------
+   REAL PAPER EDGE
+--------------------------------------------------------- */
+
+.onair-sticky-note::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .34;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0 91%,
+            rgba(17,37,72,.12) 91.5%,
+            transparent 95%
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 4px,
+            rgba(17,37,72,.025) 5px
+        );
+
+    mix-blend-mode: multiply;
+
+    z-index: 3;
+}
+
+/* ---------------------------------------------------------
+   MASKING TAPE
+--------------------------------------------------------- */
+
+.onair-sticky-note::before {
+    content: "";
+
+    position: absolute;
+
+    top: -9px;
+    left: 50%;
+
+    width: 70px;
+    height: 27px;
+
+    transform:
+        translateX(-50%)
+        rotate(-1.5deg);
+
+    z-index: 8;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(247,237,227,.72),
+            rgba(225,215,204,.92) 48%,
+            rgba(247,237,227,.72)
+        );
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.28);
+
+    border-bottom:
+        1px solid
+        rgba(17,37,72,.10);
+
+    box-shadow:
+        0 2px 4px rgba(0,0,0,.12);
+
+    opacity: .92;
+
+    clip-path:
+        polygon(
+            2% 5%,
+            22% 2%,
+            43% 5%,
+            64% 2%,
+            97% 6%,
+            100% 92%,
+            81% 97%,
+            61% 93%,
+            40% 98%,
+            19% 94%,
+            0 96%,
+            2% 5%
+        );
+}
+
+/* ---------------------------------------------------------
+   REMOVE OLD PIN
+--------------------------------------------------------- */
+
+.sticky-pin {
+    display: none !important;
+}
+
+/* ---------------------------------------------------------
+   TEXT
+--------------------------------------------------------- */
+
+.onair-sticky-note .sticky-paper-content {
+    position: relative;
+    z-index: 5;
+}
+
+.onair-sticky-note .sticky-paper-content p {
+    margin: 0;
+
+    font-family:
+        "Cairo",
+        "Tajawal",
+        sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    line-height: 1.85;
+
+    letter-spacing: -.01em;
+
+    text-wrap: balance;
+}
+
+.onair-sticky-note .sticky-author {
+    position: relative;
+
+    z-index: 5;
+
+    margin-top: 18px;
+
+    font-family:
+        "Cairo",
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: .03em;
+
+    opacity: .68;
+}
+
+/* ---------------------------------------------------------
+   AUTHENTIC PAPER COLORS
+--------------------------------------------------------- */
+
+.onair-sticky-note.sticky-note-navy {
+
+    background:
+        linear-gradient(
+            145deg,
+            #29476B 0%,
+            #1B365B 38%,
+            #112548 100%
+        ) !important;
+
+    color:
+        #F7EDE3 !important;
+}
+
+.onair-sticky-note.sticky-note-teal {
+
+    background:
+        linear-gradient(
+            145deg,
+            #76A5A2 0%,
+            #4E8484 48%,
+            #396B6B 100%
+        ) !important;
+
+    color:
+        #07111D !important;
+}
+
+.onair-sticky-note.sticky-note-cream {
+
+    background:
+        linear-gradient(
+            145deg,
+            #FFF9F1 0%,
+            #F7EDE3 52%,
+            #E9DCCE 100%
+        ) !important;
+
+    color:
+        #112548 !important;
+}
+
+.onair-sticky-note.sticky-note-beige {
+
+    background:
+        linear-gradient(
+            145deg,
+            #F0E6DA 0%,
+            #E1D7CC 50%,
+            #D1C0B0 100%
+        ) !important;
+
+    color:
+        #112548 !important;
+}
+
+.onair-sticky-note.sticky-note-red {
+
+    background:
+        linear-gradient(
+            145deg,
+            #E85C62 0%,
+            #D92832 48%,
+            #A91E27 100%
+        ) !important;
+
+    color:
+        #F7EDE3 !important;
+}
+
+.onair-sticky-note.sticky-note-gold {
+
+    background:
+        linear-gradient(
+            145deg,
+            #DFC88E 0%,
+            #C7A86B 48%,
+            #A98A50 100%
+        ) !important;
+
+    color:
+        #112548 !important;
+}
+
+.onair-sticky-note.sticky-note-dark {
+
+    background:
+        linear-gradient(
+            145deg,
+            #2A3744 0%,
+            #172534 52%,
+            #07111D 100%
+        ) !important;
+
+    color:
+        #F7EDE3 !important;
+}
+
+/* ---------------------------------------------------------
+   TAPE COLORS BY NOTE
+--------------------------------------------------------- */
+
+.sticky-note-navy::before,
+.sticky-note-dark::before {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(247,237,227,.56),
+            rgba(225,215,204,.76) 50%,
+            rgba(247,237,227,.54)
+        );
+}
+
+.sticky-note-teal::before {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(247,237,227,.62),
+            rgba(225,215,204,.82) 50%,
+            rgba(247,237,227,.58)
+        );
+}
+
+.sticky-note-red::before {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(247,237,227,.60),
+            rgba(225,215,204,.84) 50%,
+            rgba(247,237,227,.56)
+        );
+}
+
+.sticky-note-gold::before {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(247,237,227,.56),
+            rgba(225,215,204,.78) 50%,
+            rgba(247,237,227,.52)
+        );
+}
+
+/* ---------------------------------------------------------
+   HOVER — LIFT THE PAPER
+--------------------------------------------------------- */
+
+.onair-sticky-note:hover {
+
+    z-index: 1000;
+
+    transform:
+        translate3d(0,-7px,0)
+        rotate(0deg)
+        scale(1.055);
+
+    filter:
+        saturate(1.03)
+        brightness(1.035);
+
+    box-shadow:
+        0 32px 58px rgba(0,0,0,.48),
+        0 9px 15px rgba(0,0,0,.18);
+}
+
+/* ---------------------------------------------------------
+   DRAGGING
+--------------------------------------------------------- */
+
+.onair-sticky-note.is-dragging {
+
+    z-index: 3000;
+
+    cursor: grabbing;
+
+    transform:
+        translate3d(0,-12px,0)
+        rotate(0deg)
+        scale(1.055);
+
+    box-shadow:
+        0 40px 75px rgba(0,0,0,.55);
+}
+
+/* ---------------------------------------------------------
+   WALL
+--------------------------------------------------------- */
+
+.sticky-wall-wrapper {
+
+    position: relative;
+
+    min-height: 790px !important;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(78,132,132,.10),
+            transparent 42%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(7,17,29,.04),
+            rgba(7,17,29,.22)
+        ) !important;
+}
+
+.sticky-wall-wrapper::before {
+
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 5px,
+            rgba(247,237,227,.012) 6px
+        );
+
+    opacity: .7;
+}
+
+/* ---------------------------------------------------------
+   NOTES SPACE
+--------------------------------------------------------- */
+
+.sticky-notes-container {
+
+    position: absolute;
+
+    inset:
+        58px
+        28px
+        95px !important;
+
+    overflow: visible !important;
+
+    touch-action: none;
+}
+
+/* ---------------------------------------------------------
+   MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+    .sticky-wall-wrapper {
+
+        min-height: 820px !important;
+    }
+
+    .sticky-notes-container {
+
+        inset:
+            52px
+            8px
+            88px !important;
+
+        overflow: visible !important;
+
+        touch-action: pan-y;
+    }
+
+    .onair-sticky-note {
+
+        width:
+            clamp(140px, 41vw, 158px) !important;
+
+        min-height:
+            clamp(136px, 39vw, 150px) !important;
+
+        padding:
+            37px
+            13px
+            15px !important;
+    }
+
+    .onair-sticky-note .sticky-paper-content p {
+
+        font-size:
+            clamp(11px, 3.2vw, 13px);
+
+        line-height: 1.72;
+    }
+
+    .onair-sticky-note .sticky-author {
+
+        margin-top: 12px;
+
+        font-size: 7px;
+    }
+
+    .onair-sticky-note::before {
+
+        width: 60px;
+        height: 23px;
+
+        top: -7px;
+    }
+
+    /* TWO COLUMNS / FOUR ROWS */
+
+    .onair-sticky-note:nth-child(1) {
+        left: 2% !important;
+        top: 3% !important;
+    }
+
+    .onair-sticky-note:nth-child(2) {
+        left: 52% !important;
+        top: 3% !important;
+    }
+
+    .onair-sticky-note:nth-child(3) {
+        left: 2% !important;
+        top: 28% !important;
+    }
+
+    .onair-sticky-note:nth-child(4) {
+        left: 52% !important;
+        top: 28% !important;
+    }
+
+    .onair-sticky-note:nth-child(5) {
+        left: 2% !important;
+        top: 53% !important;
+    }
+
+    .onair-sticky-note:nth-child(6) {
+        left: 52% !important;
+        top: 53% !important;
+    }
+
+    .onair-sticky-note:nth-child(7) {
+        left: 2% !important;
+        top: 78% !important;
+    }
+
+    .onair-sticky-note:nth-child(8) {
+        left: 52% !important;
+        top: 78% !important;
+    }
+
+    .leave-note-button {
+
+        bottom: 18px !important;
+
+        min-width:
+            185px !important;
+
+        padding:
+            12px 15px !important;
+
+        font-size: 9px !important;
+    }
+}
+
+/* ---------------------------------------------------------
+   VERY SMALL PHONES
+--------------------------------------------------------- */
+
+@media (max-width: 380px) {
+
+    .sticky-wall-wrapper {
+        min-height: 800px !important;
+    }
+
+    .sticky-notes-container {
+        inset:
+            48px
+            5px
+            82px !important;
+    }
+
+    .onair-sticky-note {
+
+        width: 138px !important;
+
+        min-height: 132px !important;
+
+        padding:
+            35px
+            11px
+            13px !important;
+    }
+
+    .onair-sticky-note .sticky-paper-content p {
+
+        font-size: 11px;
+
+        line-height: 1.65;
+    }
+
+    .onair-sticky-note::before {
+
+        width: 54px;
+        height: 21px;
+    }
+
+    .onair-sticky-note:nth-child(1),
+    .onair-sticky-note:nth-child(3),
+    .onair-sticky-note:nth-child(5),
+    .onair-sticky-note:nth-child(7) {
+
+        left: 1% !important;
+    }
+
+    .onair-sticky-note:nth-child(2),
+    .onair-sticky-note:nth-child(4),
+    .onair-sticky-note:nth-child(6),
+    .onair-sticky-note:nth-child(8) {
+
+        left: 51% !important;
+    }
+}
+
+/* ---------------------------------------------------------
+   REDUCED MOTION
+--------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .onair-sticky-note {
+        transition: none !important;
+    }
+}

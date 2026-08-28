@@ -199,153 +199,46 @@ let transitionStarted = false;
 
 
 /* -----------------------------------------------------
-   CREATE CAMERA SOUND USING WEB AUDIO
+   PLAY REAL CAMERA SOUND
+   sounds/camera.mp4
 ----------------------------------------------------- */
 
 function playCameraSound() {
 
     try {
 
-        const AudioContext =
-            window.AudioContext ||
-            window.webkitAudioContext;
+        const cameraSound =
+            new Audio("sounds/camera.mp4");
 
-        if (!AudioContext) return;
+        cameraSound.preload = "auto";
+        cameraSound.volume = 1;
 
-        const audioContext =
-            new AudioContext();
+        cameraSound.currentTime = 0;
 
+        const playPromise =
+            cameraSound.play();
 
-        /* =========================
-           FOCUS BEEP
-        ========================== */
+        if (playPromise !== undefined) {
 
-        const focusOsc =
-            audioContext.createOscillator();
-
-        const focusGain =
-            audioContext.createGain();
-
-        focusOsc.type = "sine";
-
-        focusOsc.frequency.setValueAtTime(
-            1100,
-            audioContext.currentTime
-        );
-
-        focusGain.gain.setValueAtTime(
-            0.0001,
-            audioContext.currentTime
-        );
-
-        focusGain.gain.exponentialRampToValueAtTime(
-            0.12,
-            audioContext.currentTime + 0.015
-        );
-
-        focusGain.gain.exponentialRampToValueAtTime(
-            0.0001,
-            audioContext.currentTime + 0.08
-        );
-
-        focusOsc.connect(focusGain);
-
-        focusGain.connect(audioContext.destination);
-
-        focusOsc.start();
-
-        focusOsc.stop(
-            audioContext.currentTime + 0.09
-        );
-
-
-        /* =========================
-           CAMERA SHUTTER
-        ========================== */
-
-        setTimeout(() => {
-
-            const duration = 0.16;
-
-            const bufferSize =
-                audioContext.sampleRate * duration;
-
-            const buffer =
-                audioContext.createBuffer(
-                    1,
-                    bufferSize,
-                    audioContext.sampleRate
+            playPromise.catch(error => {
+                console.log(
+                    "Camera sound could not be played.",
+                    error
                 );
+            });
 
-            const data =
-                buffer.getChannelData(0);
-
-
-            for (let i = 0; i < bufferSize; i++) {
-
-                const envelope =
-                    Math.pow(
-                        1 - i / bufferSize,
-                        3
-                    );
-
-                data[i] =
-                    (Math.random() * 2 - 1) *
-                    envelope;
-
-            }
-
-
-            const noise =
-                audioContext.createBufferSource();
-
-            noise.buffer = buffer;
-
-
-            const filter =
-                audioContext.createBiquadFilter();
-
-            filter.type = "lowpass";
-
-            filter.frequency.value = 2500;
-
-
-            const gain =
-                audioContext.createGain();
-
-            gain.gain.setValueAtTime(
-                0.65,
-                audioContext.currentTime
-            );
-
-            gain.gain.exponentialRampToValueAtTime(
-                0.001,
-                audioContext.currentTime + duration
-            );
-
-
-            noise.connect(filter);
-
-            filter.connect(gain);
-
-            gain.connect(
-                audioContext.destination
-            );
-
-            noise.start();
-
-        }, 100);
+        }
 
     } catch (error) {
 
         console.log(
-            "Camera sound unavailable."
+            "Camera sound unavailable.",
+            error
         );
 
     }
 
 }
-
 
 /* -----------------------------------------------------
    CREATE CAMERA FLASH
