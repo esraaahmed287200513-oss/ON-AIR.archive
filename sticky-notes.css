@@ -2007,3 +2007,20 @@
         transition: none !important;
     }
 }
+/* =========================================================
+   FIX — SHOW STICKY NOTES AFTER REVEAL
+========================================================= */
+
+.onair-sticky-note {
+    opacity: 0;
+    
+    transition:
+        opacity .65s ease,
+        transform .38s cubic-bezier(.16,1,.3,1),
+        box-shadow .38s ease,
+        filter .38s ease;
+}
+
+.onair-sticky-note.is-visible {
+    opacity: 1 !important;
+}
